@@ -75,9 +75,9 @@
 If you can't wait until YASON is fixed, then this library is for you.
 The main differences are listed below.
 
-   * The parser is strictly RFC 8259 compliant whenever it makes
-     sense.  However, you can tweak the behavior of the parser to
-     suite your needs.
+   * The parser is strictly RFC 8259 compliant where it makes sense.
+     However, you can tweak the behavior of the parser to suite your
+     needs.
 
    * The printer does not support indentation.
 
@@ -93,7 +93,7 @@ The main differences are listed below.
 
    * The default configuration is round-trip save, i.e. you can read
      a JSON value and write it back without loss of information.  This
-     is a strict requirement when updating a Web resource via an HTTP
+     is a strict requirement when updating a web resource via an HTTP
      GET/PUT cycle.
 
    * Performance is competitive to other “fast” JSON libraries out
