@@ -41,7 +41,7 @@ Default is the ‘identity’ function.
 
 The function is called with one argument, the key string.  The value
 of the function is used as the key for the data structure produced.
-See also the ‘*decode-object-as*’ special variable.")
+See also the ‘*object-as*’ special variable.")
 
 (defvar *object-as* :alist
   "The Lisp data structure used to represent a JSON object.
@@ -52,11 +52,11 @@ For hash tables and alists, object keys are compared with ‘equal’,
 i.e. using strings as object keys works as expected.  For plists,
 object keys are compared with ‘eql’, i.e. you should also set
 ‘*object-key-decoder*’ to a function returning a symbol when
-parsing objects as plists.")
+representing objects as plists.")
 (declaim (type (member :hash-table :alist :plist) *object-as*))
 
 (defvar *array-as* :vector
-  "The Lisp data structure used to represent JSON arrays.
+  "The Lisp data structure used to represent a JSON array.
 Value is either ‘:vector’ or ‘:list’.  The default is to use
 vectors.")
 (declaim (type (member :vector :list) *array-as*))
@@ -68,43 +68,47 @@ Default is ‘:true’, but ‘t’ may be appropriate, too.")
 
 (defvar *false* :false
   "The symbol to represent the JSON value ‘false’.
-Default is ‘:false’, but ‘nil’ may be appropriate, too.
-For the later, please take care of ambiguities since ‘nil’
-also represents the empty list.")
+Default is ‘:false’, but ‘nil’ may be appropriate, too.  For the
+later, please take care of ambiguities since ‘nil’ also represents
+the empty list.")
 (declaim (type symbol *false*))
 
 (defvar *null* :null
   "The symbol to represent the JSON value ‘null’.
-Default is ‘:null’, but ‘nil’ may be appropriate, too.
-For the later, please take care of ambiguities since ‘nil’
-also represents falsity and the empty list.")
+Default is ‘:null’, but ‘nil’ may be appropriate, too.  For the
+later, please take care of ambiguities since ‘nil’ also represents
+falsity and the empty list.")
 (declaim (type symbol *null*))
 
 (defvar *maximum-nesting-depth* 1000
   "The maximum number of nested JSON structures.
-Value must be a positive number and should be at least 20.
-A value of ‘nil’ means to not limit the depth of nesting.")
+Value must be a positive number and should be at least 20.  A value
+of ‘nil’ means to not limit the depth of nesting.  The default value
+is 1000.  This option only has an effect when reading JSON values.")
 (declaim (type (or (integer (0)) null) *maximum-nesting-depth*))
 
 (defvar *allow-unicode-whitespace* nil
   "Whether or not to accept any Unicode whitespace character.
-Disabled by default.")
+If true, any character with the Unicode whitespace property is
+considered a whitespace character.  Otherwise, only the space,
+horizontal tab, line feed, and carriage return character are
+considered a whitespace character.  Default is false.")
 
 (defvar *allow-trailing-comma* nil
   "Whether or not to accept a comma after the last object member
-or after the last array element.  Disabled by default.")
+or after the last array element.  Default is false.")
 
 (defvar *allow-literal-object-keys* nil
   "Whether or not to accept literal names as keys of object members.
-Disabled by default.")
+Default is false.")
 
 (defvar *allow-duplicate-object-keys* nil
   "Whether or not to accept duplicate keys in JSON objects.
-If enabled, the value of an existing object member is replaced by a
+If true, the value of an existing object member is replaced by a
 successive object member with the same key.  Special value ‘:ignore’
 means to ignore successive duplicate object members, i.e. the value
 of an existing object member will not be replaced.
-If disabled, signal a ‘syntax-error’.  This is the default.
+If false, signal a ‘syntax-error’.  This is the default.
 
 ECMA-404 says nothing about duplicate object keys.  RFC 8259 says
 that object keys should be unique.  Anyway, with this user option,
@@ -112,9 +116,8 @@ you have the choice.")
 
 (defvar *allow-lax-numbers* nil
   "Whether or not to accept non-standard syntax of numbers.
-If enabled, numbers may have an explicit plus sign and digits
-before or after the decimal point may be omitted.  Disabled
-by default.")
+If true, numbers may have an explicit plus sign and digits before or
+after the decimal point may be omitted.  Default is false.")
 
 (defvar *list-encoder* 'encode-object
   "The actual function used to encode a list.
