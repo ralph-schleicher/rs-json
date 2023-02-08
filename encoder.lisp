@@ -56,9 +56,9 @@
 First argument DESTINATION is the output object.  Value is either a
  stream, a string, or a pathname.  The special value ‘t’ is equal to
  ‘*standard-output*’ and ‘nil’ means to return a string.
-Second argument OBJECT is the Lisp object to be serialized.
+Second argument OBJECT is the Lisp data to be serialized.
 
-The actual serialization of a Lisp object as a JSON value is performed
+The actual serialization of Lisp data as a JSON value is performed
 by the ‘encode’ methods (which see).
 
 If DESTINATION is a stream, a string, a pathname, or ‘t’, then the
@@ -67,7 +67,7 @@ output.
 
 Exceptional situations:
 
-   * Signals an ‘encoding-error’ if a Lisp object can not be
+   * Signals an ‘encoding-error’ if the Lisp data can not be
      encoded as a JSON value.
 
    * May signal an ‘arithmetic-error’ if a rational number is
@@ -108,9 +108,9 @@ then print the end delimiter END."
      ()))
 
 (defgeneric encode (object)
-  (:documentation "Encode a Lisp object as a JSON value.
+  (:documentation "Encode Lisp data as a JSON value.
 
-Argument OBJECT is the Lisp object to be serialized.
+Argument OBJECT is the Lisp data to be serialized.
 
 The JSON output is written to the ‘*standard-output*’ stream.
 The return value of an ‘encode’ method is ignored."))
@@ -161,9 +161,9 @@ The BODY calls ‘(object-member KEY VALUE)’ to print an object member."
 	  (object-member key value))))
 
 (defun encode-object (object)
-  "Encode a Lisp object as a JSON object.
+  "Encode Lisp data as a JSON object.
 
-Argument OBJECT is the Lisp object to be serialized as a JSON object.
+Argument OBJECT is the Lisp data to be serialized as a JSON object.
  Value has to be a hash table, an associated list, or a property list.
 If OBJECT is a list, the value of the ‘*object-as*’ special variable
  affects the interpretation of OBJECT.
@@ -216,9 +216,9 @@ The BODY calls ‘(array-element VALUE)’ to print an array element."
     (map nil #'array-element sequence)))
 
 (defun encode-array (object)
-  "Encode a Lisp object as a JSON array.
+  "Encode Lisp data as a JSON array.
 
-Argument OBJECT is the Lisp object to be serialized as a JSON array.
+Argument OBJECT is the Lisp data to be serialized as a JSON array.
  Value has to be a sequence, i.e. a vector or a list.
 
 Mostly useful for binding ‘*list-encoder*’."
