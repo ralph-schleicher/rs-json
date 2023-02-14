@@ -133,12 +133,14 @@ Signals an ‘encoding-error’."
 (defmacro with-object (&body body)
   "Encode a JSON object.
 The BODY calls ‘(object-member KEY VALUE)’ to print an object member."
-  (alexandria:once-only ((firstp t))
-    `(flet ((object-member (key value)
-	      (object-member key value ,firstp)
-	      (setf ,firstp nil)))
-       (with-delimiters #\{ #\}
-	 ,@body))))
+  (let ((firstp (gensym "FIRSTP")))
+    `(let ((,firstp t))
+       (declare (ignorable ,firstp))
+       (flet ((object-member (key value)
+		(object-member key value ,firstp)
+		(setf ,firstp nil)))
+	 (with-delimiters #\{ #\}
+	   ,@body)))))
 
 (defun object-from-hash-table (hash-table)
   "Encode hash table HASH-TABLE as a JSON object."
@@ -202,12 +204,14 @@ Mostly useful for binding the ‘*list-encoder*’ special variable."
 (defmacro with-array (&body body)
   "Encode a JSON array.
 The BODY calls ‘(array-element VALUE)’ to print an array element."
-  (alexandria:once-only ((firstp t))
-    `(flet ((array-element (value)
-	      (array-element value ,firstp)
-	      (setf ,firstp nil)))
-       (with-delimiters #\[ #\]
-	 ,@body))))
+  (let ((firstp (gensym "FIRSTP")))
+    `(let ((,firstp t))
+       (declare (ignorable ,firstp))
+       (flet ((array-element (value)
+		(array-element value ,firstp)
+		(setf ,firstp nil)))
+	 (with-delimiters #\[ #\]
+	   ,@body)))))
 
 (defun array-from-sequence (sequence)
   "Encode sequence SEQUENCE as a JSON array."
