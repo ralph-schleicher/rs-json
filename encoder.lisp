@@ -50,13 +50,13 @@
 	 (error 'encoding-error
 		:stream *standard-output*))))
 
-(defun serialize (destination object)
+(defun serialize (destination data)
   "Print a Lisp data structure as a JSON value.
 
 First argument DESTINATION is the output object.  Value is either a
  stream, a string, or a pathname.  The special value ‘t’ is equal to
  ‘*standard-output*’ and ‘nil’ means to return a string.
-Second argument OBJECT is the Lisp data to be serialized.
+Second argument DATA is the Lisp data to be serialized.
 
 The actual serialization of Lisp data as a JSON value is performed
 by the ‘encode’ methods (which see).
@@ -74,7 +74,7 @@ Exceptional situations:
      converted to a floating-point number."
   (flet ((%print (stream)
 	   (let ((*standard-output* stream))
-	     (encode object))))
+	     (encode data))))
     (etypecase destination
       (stream
        (%print destination) nil)
@@ -107,18 +107,18 @@ then print the end delimiter END."
      (output ,end)
      ()))
 
-(defgeneric encode (object)
+(defgeneric encode (data)
   (:documentation "Encode Lisp data as a JSON value.
 
-Argument OBJECT is the Lisp data to be serialized.
+Argument DATA is the Lisp data to be serialized.
 
 The JSON output is written to the ‘*standard-output*’ stream.
 The return value of an ‘encode’ method is ignored."))
 
-(defmethod encode (object)
+(defmethod encode (data)
   "The default encoding method.
 Signals an ‘encoding-error’."
-  (encoding-error "The type of object is ‘~S’." (type-of object)))
+  (encoding-error "The type of data is ‘~S’." (type-of data)))
 
 ;;; Objects
 
@@ -162,36 +162,36 @@ The BODY calls ‘(object-member KEY VALUE)’ to print an object member."
     (iter (for (key value) :on plist :by #'cddr)
 	  (object-member key value))))
 
-(defun encode-object (object)
+(defun encode-object (data)
   "Encode Lisp data as a JSON object.
 
-Argument OBJECT is the Lisp data to be serialized as a JSON object.
+Argument DATA is the Lisp data to be serialized as a JSON object.
  Value has to be a hash table, an associated list, or a property list.
-If OBJECT is a list, the value of the ‘*object-as*’ special variable
- affects the interpretation of OBJECT.
+If DATA is a list, the value of the ‘*object-as*’ special variable
+ affects the interpretation of DATA.
 
 Mostly useful for binding the ‘*list-encoder*’ special variable."
-  (check-type object (or list hash-table))
-  (etypecase object
+  (check-type data (or list hash-table))
+  (etypecase data
     (null
-     (with-object))
+     (object-from-alist ()))
     (list
      (case *object-as*
        (:alist
-	(object-from-alist object))
+	(object-from-alist data))
        (:plist
-	(object-from-plist object))
+	(object-from-plist data))
        (t
 	;; Use some heuristics.
-	(if (consp (first object))
-	    (object-from-alist object)
-	  (object-from-plist object)))))
+	(if (consp (first data))
+	    (object-from-alist data)
+	  (object-from-plist data)))))
     (hash-table
-     (object-from-hash-table object))))
+     (object-from-hash-table data))))
 
-(defmethod encode ((object hash-table))
+(defmethod encode ((data hash-table))
   "Encode a hash table as a JSON object."
-  (object-from-hash-table object))
+  (object-from-hash-table data))
 
 ;;; Arrays
 
@@ -219,19 +219,19 @@ The BODY calls ‘(array-element VALUE)’ to print an array element."
   (with-array
     (map nil #'array-element sequence)))
 
-(defun encode-array (object)
+(defun encode-array (data)
   "Encode Lisp data as a JSON array.
 
-Argument OBJECT is the Lisp data to be serialized as a JSON array.
+Argument DATA is the Lisp data to be serialized as a JSON array.
  Value has to be a sequence, i.e. a vector or a list.
 
 Mostly useful for binding ‘*list-encoder*’."
-  (check-type object sequence)
-  (array-from-sequence object))
+  (check-type data sequence)
+  (array-from-sequence data))
 
-(defmethod encode ((object vector))
+(defmethod encode ((data vector))
   "Encode a vector as a JSON array."
-  (array-from-sequence object))
+  (array-from-sequence data))
 
 ;;; Strings
 
@@ -274,93 +274,93 @@ Mostly useful for binding ‘*list-encoder*’."
     (iter (for char :in-string string)
 	  (string-char char))))
 
-(defmethod encode ((object string))
+(defmethod encode ((data string))
   "Encode a string as a JSON string."
-  (string-from-string object))
+  (string-from-string data))
 
-(defmethod encode ((object symbol))
+(defmethod encode ((data symbol))
   "Encode a symbol as a JSON string.
 Affected by ‘*print-case*’."
-  (let ((string (copy-seq (symbol-name object))))
+  (let ((string (copy-seq (symbol-name data))))
     (ecase *print-case*
       (:upcase (nstring-upcase string))
       (:downcase (nstring-downcase string))
       (:capitalize (nstring-capitalize string)))
     (string-from-string string)))
 
-(defmethod encode ((object character))
+(defmethod encode ((data character))
   "Encode a character as a JSON string."
   (with-delimiters #\" #\"
-    (string-char object)))
+    (string-char data)))
 
 ;;; Numbers
 
-(defmethod encode ((object integer))
+(defmethod encode ((data integer))
   "Encode an integer as a JSON number."
-  (princ object))
+  (princ data))
 
-(defmethod encode ((object rational))
+(defmethod encode ((data rational))
   "Encode a rational number as a JSON number.
 Affected by ‘*read-default-float-format*’."
-  (princ (coerce object *read-default-float-format*)))
+  (princ (coerce data *read-default-float-format*)))
 
-(defmethod encode ((object real))
+(defmethod encode ((data real))
   "Encode a floating-point number as a JSON number."
-  (let ((*read-default-float-format* (type-of object)))
-    (princ object)))
+  (let ((*read-default-float-format* (type-of data)))
+    (princ data)))
 
 ;;; Literals
 
-(defsubst encode-true (object)
+(defsubst encode-true (data)
   "Constantly print a JSON ‘true’ value."
-  (declare (ignore object))
+  (declare (ignore data))
   (write-string "true"))
 
-(defsubst encode-false (object)
+(defsubst encode-false (data)
   "Constantly print a JSON ‘false’ value.
 
 Mostly useful for binding ‘*nil-encoder*’."
-  (declare (ignore object))
+  (declare (ignore data))
   (write-string "false"))
 
-(defsubst encode-null (object)
+(defsubst encode-null (data)
   "Constantly print a JSON ‘null’ value.
 
 Mostly useful for binding ‘*nil-encoder*’."
-  (declare (ignore object))
+  (declare (ignore data))
   (write-string "null"))
 
-(defmethod encode ((object (eql :true)))
+(defmethod encode ((data (eql :true)))
   "Encode ‘:true’ as a JSON ‘true’ value."
-  (encode-true object))
+  (encode-true data))
 
-(defmethod encode ((object (eql :false)))
+(defmethod encode ((data (eql :false)))
   "Encode ‘:false’ as a JSON ‘false’ value."
-  (encode-false object))
+  (encode-false data))
 
-(defmethod encode ((object (eql :null)))
+(defmethod encode ((data (eql :null)))
   "Encode ‘:null’ as a JSON ‘null’ value."
-  (encode-null object))
+  (encode-null data))
 
-(defmethod encode ((object (eql t)))
+(defmethod encode ((data (eql t)))
   "Encode ‘t’ as a JSON ‘true’ value."
-  (encode-true object))
+  (encode-true data))
 
-(defmethod encode ((object (eql nil)))
+(defmethod encode ((data (eql nil)))
   "Encode ‘nil’ by calling ‘*nil-encoder*’."
-  (funcall *nil-encoder* object))
+  (funcall *nil-encoder* data))
 
 ;;; Miscellaneous
 
-(defsubst encode-list (object)
+(defsubst encode-list (data)
   "Encode a list by calling ‘*list-encoder*’.
 
 Mostly useful for binding ‘*nil-encoder*’."
-  (declare (type list object))
-  (funcall *list-encoder* object))
+  (declare (type list data))
+  (funcall *list-encoder* data))
 
-(defmethod encode ((object list))
+(defmethod encode ((data list))
   "Encode a list by calling ‘*list-encoder*’."
-  (encode-list object))
+  (encode-list data))
 
 ;;; encoder.lisp ends here
