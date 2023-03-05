@@ -95,11 +95,17 @@
 First argument SOURCE is the input object.  Value is either a
  stream, a string, or a pathname.  The special value ‘t’ is
  equal to ‘*standard-input*’
-If keyword argument JUNK-ALLOWED is false, signal an error of
- type ‘syntax-error’ if a non-whitespace character occurs after
- the JSON value.
+If keyword argument JUNK-ALLOWED is true, do not signal an error
+ of type ‘syntax-error’ if a non-whitespace character occurs after
+ the JSON value.  Default value is false.
+
+The ‘parse’ function expects exactly one JSON value.  Any value
+is accepted, not only an object or array.  Optional leading and
+trailing whitespace is ignored.
 
 Return value is the Lisp representation of the JSON value.
+Secondary value is the position where the parsing ends, or
+‘nil’ if the position can not be determined.
 
 Exceptional situations:
 
@@ -121,11 +127,15 @@ Exceptional situations:
 		 (nesting-depth 0))
 	     ;; Read first character.
 	     (next-char*)
-	     (prog1
-		 (parse-value)
+	     ;; Parse the JSON value.
+	     (let ((data (parse-value)))
 	       ;; Check for end of file.
-	       (unless (or junk-allowed (null next-char))
-		 (syntax-error))))))
+	       (when next-char
+		 (unless junk-allowed
+		   (syntax-error))
+		 (unread-char next-char stream))
+	       ;; Return values.
+	       (values data (file-position stream))))))
     (etypecase source
       (stream
        (%read source))
