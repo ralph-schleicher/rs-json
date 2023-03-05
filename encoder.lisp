@@ -50,13 +50,16 @@
 	 (error 'encoding-error
 		:stream *standard-output*))))
 
-(defun serialize (destination data)
+(defun serialize (destination data &key (pretty *print-pretty*))
   "Print a Lisp data structure as a JSON value.
 
 First argument DESTINATION is the output object.  Value is either a
  stream, a string, or a pathname.  The special value ‘t’ is equal to
  ‘*standard-output*’ and ‘nil’ means to return a string.
 Second argument DATA is the Lisp data to be serialized.
+If keyword argument PRETTY is true, pretty print the JSON value in a
+ compact format.  Default is the value of the ‘*print-pretty*’ special
+ variable.
 
 The actual serialization of Lisp data as a JSON value is performed
 by the ‘encode’ methods (which see).
@@ -73,7 +76,19 @@ Exceptional situations:
    * May signal an ‘arithmetic-error’ if a rational number is
      converted to a floating-point number."
   (flet ((%print (stream)
-	   (let ((*standard-output* stream))
+	   (let ((*standard-output* stream)
+		 (*print-pretty* pretty)
+		 (*print-base* 10)
+		 (*print-radix* nil)
+		 (*print-circle* nil)
+		 (*print-readably* nil)
+		 (*print-escape* nil)
+		 (*print-length* nil)
+		 (*print-level* nil)
+		 (*print-lines* nil)
+		 (*print-right-margin* nil)
+		 (*print-miser-width* nil)
+		 (*print-pprint-dispatch* (copy-pprint-dispatch nil)))
 	     (encode data))))
     (etypecase destination
       (stream
@@ -125,7 +140,10 @@ Signals an ‘encoding-error’."
 (defun object-member (key value firstp)
   "Encode a JSON object member."
   (when (not firstp)
-    (write-string ", "))
+    (write-char #\,)
+    (if *print-pretty*
+	(pprint-newline :mandatory)
+      (write-char #\Space)))
   (encode key)
   (write-string " : ")
   (encode value))
@@ -139,8 +157,11 @@ The BODY calls ‘(object-member KEY VALUE)’ to print an object member."
        (flet ((object-member (key value)
 		(object-member key value ,firstp)
 		(setf ,firstp nil)))
-	 (with-delimiters #\{ #\}
-	   ,@body)))))
+	 (if *print-pretty*
+	     (pprint-logical-block (*standard-output* () :prefix "{" :suffix "}")
+	       ,@body)
+	   (with-delimiters #\{ #\}
+	     ,@body))))))
 
 (defun object-from-hash-table (hash-table)
   "Encode hash table HASH-TABLE as a JSON object."
@@ -198,7 +219,10 @@ Mostly useful for binding the ‘*list-encoder*’ special variable."
 (defun array-element (value firstp)
   "Encode a JSON array element."
   (when (not firstp)
-    (write-string ", "))
+    (write-char #\,)
+    (if *print-pretty*
+	(pprint-newline :mandatory)
+      (write-char #\Space)))
   (encode value))
 
 (defmacro with-array (&body body)
@@ -210,8 +234,11 @@ The BODY calls ‘(array-element VALUE)’ to print an array element."
        (flet ((array-element (value)
 		(array-element value ,firstp)
 		(setf ,firstp nil)))
-	 (with-delimiters #\[ #\]
-	   ,@body)))))
+	 (if *print-pretty*
+	     (pprint-logical-block (*standard-output* () :prefix "[" :suffix "]")
+	       ,@body)
+	   (with-delimiters #\[ #\]
+	     ,@body))))))
 
 (defun array-from-sequence (sequence)
   "Encode sequence SEQUENCE as a JSON array."
