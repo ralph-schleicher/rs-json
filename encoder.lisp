@@ -277,10 +277,8 @@ Mostly useful for binding ‘*list-encoder*’."
 	((char= char #\Tab)
 	 (write-string "\\t"))
 	((or (char= char #\")
-	     (char= char #\\)
-	     ;; TODO: Consider adding an option to allow non-escaped
-	     ;; slash characters.
-	     (char= char #\/))
+	     (char= char #\\))
+	 ;; Slash characters must not be escaped.
 	 (write-char #\\)
 	 (write-char char))
 	((standard-char-p char)
