@@ -79,7 +79,7 @@ The main differences are listed below.
      However, you can tweak the behavior of the parser to suite your
      needs.
 
-   * The printer does not support indentation.
+   * The serializer only supports a compact pretty printing format.
 
    * JSON objects can be represented as hash-tables, associated lists,
      or property lists.  The default is to use alists.
