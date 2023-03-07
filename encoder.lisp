@@ -50,16 +50,16 @@
 	 (error 'encoding-error
 		:stream *standard-output*))))
 
-(defun serialize (destination data &key (pretty *print-pretty*))
+(defun serialize (destination data &key (pretty *pretty-printer*))
   "Print a Lisp data structure as a JSON value.
 
 First argument DESTINATION is the output object.  Value is either a
  stream, a string, or a pathname.  The special value ‘t’ is equal to
  ‘*standard-output*’ and ‘nil’ means to return a string.
-Second argument DATA is the Lisp data to be serialized.
-If keyword argument PRETTY is true, pretty print the JSON value in a
- compact format.  Default is the value of the ‘*print-pretty*’ special
- variable.
+Second argument DATA is the Lisp data structure to be serialized.
+If keyword argument PRETTY is true, pretty print the JSON value in
+ a compact format.  Default is the value of the ‘*pretty-printer*’
+ special variable.
 
 The actual serialization of Lisp data as a JSON value is performed
 by the ‘encode’ methods (which see).
