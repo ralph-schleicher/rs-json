@@ -50,6 +50,19 @@
 	 (error 'encoding-error
 		:stream *standard-output*))))
 
+(defgeneric encode (data)
+  (:documentation "Encode Lisp data as a JSON value.
+
+Argument DATA is the Lisp data to be serialized.
+
+The JSON output is written to the ‘*standard-output*’ stream.
+The return value of an ‘encode’ method is ignored."))
+
+(defmethod encode (data)
+  "The default encoding method.
+Signals an ‘encoding-error’."
+  (encoding-error "The type of data is ‘~S’." (type-of data)))
+
 (defun serialize (destination data &key (pretty *pretty-printer*))
   "Print a Lisp data structure as a JSON value.
 
@@ -121,19 +134,6 @@ then print the end delimiter END."
      ,@forms
      (output ,end)
      ()))
-
-(defgeneric encode (data)
-  (:documentation "Encode Lisp data as a JSON value.
-
-Argument DATA is the Lisp data to be serialized.
-
-The JSON output is written to the ‘*standard-output*’ stream.
-The return value of an ‘encode’ method is ignored."))
-
-(defmethod encode (data)
-  "The default encoding method.
-Signals an ‘encoding-error’."
-  (encoding-error "The type of data is ‘~S’." (type-of data)))
 
 ;;; Objects
 
