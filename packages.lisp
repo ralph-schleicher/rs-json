@@ -64,6 +64,7 @@
    #:parse
    ;; encoder.lisp
    #:serialize
+   #:serializer
    #:encode-object
    #:encode-array
    #:encode-false
