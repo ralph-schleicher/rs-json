@@ -124,7 +124,7 @@ Exceptional situations:
 
    * Signals a ‘program-error’ if JSON objects are parsed as
      hash tables, ‘*allow-duplicate-object-keys*’ is bound to
-     ‘:append’, and a duplicate object member exists.")
+     ‘:append’, and a duplicate object member exists."
   (flet ((%read (stream)
 	   (let ((*standard-input* stream)
 		 (next-char nil)
