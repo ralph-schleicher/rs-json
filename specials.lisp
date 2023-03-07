@@ -107,7 +107,9 @@ Default is false.")
 If true, the value of an existing object member is replaced by a
 successive object member with the same key.  Special value ‘:ignore’
 means to ignore successive duplicate object members, i.e. the value
-of an existing object member will not be replaced.
+of an existing object member will not be replaced.  Special value
+‘:append’ means to add a duplicate object member to the Lisp data
+structure – this feature is only available for alists and plists.
 If false, signal a ‘syntax-error’.  This is the default.
 
 ECMA-404 says nothing about duplicate object keys.  RFC 8259 says

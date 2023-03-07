@@ -120,7 +120,11 @@ Exceptional situations:
 
    * Signals a ‘program-error’ if JSON objects are parsed as
      plists and the return value of ‘*object-key-decoder*’
-     is not a symbol, number, or character."
+     is not a symbol, number, or character.
+
+   * Signals a ‘program-error’ if JSON objects are parsed as
+     hash tables, ‘*allow-duplicate-object-keys*’ is bound to
+     ‘:append’, and a duplicate object member exists.")
   (flet ((%read (stream)
 	   (let ((*standard-input* stream)
 		 (next-char nil)
@@ -214,10 +218,11 @@ Exceptional situations:
       (next-char*)
       ;; Read the value.
       (setf value (parse-value))
-      (cond ((not dup)
+      (cond ((or (not dup) (eq *allow-duplicate-object-keys* :append))
 	     ;; First occurrence of the key.
 	     (ecase *object-as*
 	       (:hash-table
+		(when dup (error 'program-error))
 		(setf (gethash key object) value))
 	       (:alist
 		(setf object (acons key value object)))
