@@ -63,6 +63,24 @@ The return value of an ‘encode’ method is ignored."))
 Signals an ‘encoding-error’."
   (encoding-error "The type of data is ‘~S’." (type-of data)))
 
+(defun %print (stream data &optional pretty)
+  "Common entry point for all print functions."
+  (let ((*standard-output* stream)
+	(*print-pretty* pretty)
+	(*print-base* 10)
+	(*print-radix* nil)
+	(*print-circle* nil)
+	(*print-readably* nil)
+	(*print-escape* nil)
+	(*print-length* nil)
+	(*print-level* nil)
+	(*print-lines* nil)
+	(*print-right-margin* nil)
+	(*print-miser-width* nil)
+	(*print-pprint-dispatch* (copy-pprint-dispatch nil)))
+    (encode data))
+  ())
+
 (defun serialize (destination data &key (pretty *pretty-printer*))
   "Print a Lisp data structure as a JSON value.
 
@@ -88,35 +106,75 @@ Exceptional situations:
 
    * May signal an ‘arithmetic-error’ if a rational number is
      converted to a floating-point number."
-  (flet ((%print (stream)
-	   (let ((*standard-output* stream)
-		 (*print-pretty* pretty)
-		 (*print-base* 10)
-		 (*print-radix* nil)
-		 (*print-circle* nil)
-		 (*print-readably* nil)
-		 (*print-escape* nil)
-		 (*print-length* nil)
-		 (*print-level* nil)
-		 (*print-lines* nil)
-		 (*print-right-margin* nil)
-		 (*print-miser-width* nil)
-		 (*print-pprint-dispatch* (copy-pprint-dispatch nil)))
-	     (encode data))))
-    (etypecase destination
-      (stream
-       (%print destination) nil)
-      (string
-       (with-output-to-string (stream destination)
-	 (%print stream) nil))
-      (pathname
-       (with-open-file (stream destination :direction :output :if-exists :supersede :if-does-not-exist :create)
-	 (%print stream) nil))
-      ((member t)
-       (%print *standard-output*) nil)
-      (null
-       (with-output-to-string (stream)
-	 (%print stream))))))
+  (etypecase destination
+    (stream
+     (%print destination data pretty))
+    (string
+     (with-output-to-string (stream destination)
+       (%print stream data pretty)))
+    (pathname
+     (with-open-file (stream destination :direction :output :if-exists :supersede :if-does-not-exist :create)
+       (%print stream data pretty)))
+    ((member t)
+     (%print *standard-output* data pretty))
+    (null
+     (with-output-to-string (stream)
+       (%print stream data pretty)))))
+
+(defconst serializer (lambda (stream &optional (data (error "Missing required argument.")) &rest rest)
+		       (%print stream data *print-pretty*) rest)
+  "Format control for printing a Lisp data structure as a JSON value.
+The value of the ‘*print-pretty*’ special variable determines if the
+JSON output is pretty printed.  For example,
+
+     (format t \"JSON: ~@?~%\" serializer #(((\"foo\" . 42) (\"bar\" . #(\"baz\" \"hack\"))) :null))
+
+may print
+
+     JSON: [{\"foo\" : 42,
+             \"bar\" : [\"baz\",
+                      \"hack\"]},
+            null]
+
+The value of this constant is a format control function that follows
+the conventions for a function created by the ‘formatter’ macro.  See
+also the ‘serializer’ function for another method for how to print
+JSON values with the ‘format’ function.")
+
+(defun serializer (stream data &optional colonp at-sign-p &rest parameters)
+  "Format function for printing a Lisp data structure as a JSON value.
+
+First argument STREAM is the output stream.
+Second argument DATA is the Lisp data structure to be serialized.
+If optional third argument COLONP is true, output the JSON value in
+ a pretty printed format.  Default is false.
+The remaining arguments are ignored.
+
+This function is designed so that it can be called by a slash format
+directive, i.e. ‘~/serializer/’.  If the colon modifier is given, use
+the pretty printer.  For example,
+
+     (format t \"JSON: ~/serializer/~%\" #(((\"foo\" . 42) (\"bar\" . #(\"baz\" \"hack\"))) :null))
+
+prints
+
+     JSON: [{\"foo\" : 42, \"bar\" : [\"baz\", \"hack\"]}, null]
+
+whereas
+
+     (format t \"JSON: ~:/serializer/~%\" #(((\"foo\" . 42) (\"bar\" . #(\"baz\" \"hack\"))) :null))
+
+prints
+
+     JSON: [{\"foo\" : 42,
+             \"bar\" : [\"baz\",
+                      \"hack\"]},
+            null]
+
+See also the ‘serializer’ constant variable for another method for
+how to print JSON values with the ‘format’ function."
+  (declare (ignore at-sign-p parameters))
+  (%print stream data colonp))
 
 (defsubst output (object)
   (etypecase object
