@@ -147,7 +147,7 @@ Exceptional situations:
        (with-input-from-string (stream source)
 	 (%read stream)))
       (pathname
-       (with-open-file (stream source)
+       (with-open-file (stream source :external-format (uiop:encoding-external-format :utf-8))
 	 (%read stream)))
       ((member t)
        (%read *standard-input*)))))

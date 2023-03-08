@@ -113,7 +113,7 @@ Exceptional situations:
      (with-output-to-string (stream destination)
        (%print stream data pretty)))
     (pathname
-     (with-open-file (stream destination :direction :output :if-exists :supersede :if-does-not-exist :create)
+     (with-open-file (stream destination :direction :output :if-exists :supersede :if-does-not-exist :create :external-format (uiop:encoding-external-format :utf-8))
        (%print stream data pretty)))
     ((member t)
      (%print *standard-output* data pretty))
