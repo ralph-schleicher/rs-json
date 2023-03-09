@@ -42,7 +42,9 @@
    ;; specials.lisp
    #:*object-key-decoder*
    #:*object-as*
+   #:*decode-object-hook*
    #:*array-as*
+   #:*decode-array-hook*
    #:*true*
    #:*false*
    #:*null*

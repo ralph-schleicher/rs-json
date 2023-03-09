@@ -55,11 +55,25 @@ object keys are compared with ‘eql’, i.e. you should also set
 representing objects as plists.")
 (declaim (type (member :hash-table :alist :plist) *object-as*))
 
+(defvar *decode-object-hook* nil
+  "Hook to run after a JSON object has been decoded.
+Value has to be a function designator.  The function is called with
+one argument, the Lisp data structure representing the JSON object;
+see the ‘*object-as*’ special variable.  The return value of the
+function is used as the actual object value.")
+
 (defvar *array-as* :vector
   "The Lisp data structure used to represent a JSON array.
 Value is either ‘:vector’ or ‘:list’.  The default is to use
 vectors.")
 (declaim (type (member :vector :list) *array-as*))
+
+(defvar *decode-array-hook* nil
+  "Hook to run after a JSON array has been decoded.
+Value has to be a function designator.  The function is called with
+one argument, the Lisp data structure representing the JSON array;
+see the ‘*array-as*’ special variable.  The return value of the
+function is used as the actual array value.")
 
 (defvar *true* :true
   "The symbol to represent the JSON value ‘true’.

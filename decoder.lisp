@@ -244,9 +244,11 @@ Exceptional situations:
     (decr-nesting)
     (next-char* nil)
     ;; Return value.
-    (if (eq *object-as* :alist)
-        (nreverse object)
-      object)))
+    (when (eq *object-as* :alist)
+      (setf object (nreverse object)))
+    (when *decode-object-hook*
+      (setf object (funcall *decode-object-hook* object)))
+    object))
 
 (defun parse-array ()
   "Parse a JSON array."
@@ -283,9 +285,11 @@ Exceptional situations:
     (decr-nesting)
     (next-char* nil)
     ;; Return value.
-    (if (not (eq *array-as* :vector))
-	(nreverse array)
-      array)))
+    (when (not (eq *array-as* :vector))
+      (setf array (nreverse array)))
+    (when *decode-array-hook*
+      (setf array (funcall *decode-array-hook* array)))
+    array))
 
 (defun parse-string ()
   "Parse a JSON string."
