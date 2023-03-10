@@ -93,7 +93,7 @@ Signals an ‘encoding-error’."
   "Common entry point for all print functions."
   (let ((*standard-output* stream)
 	(*pretty-printer* pretty)
-	(*print-pretty* nil)
+	(*print-pretty* pretty)
 	(*print-base* 10)
 	(*print-radix* nil)
 	(*print-circle* nil)
