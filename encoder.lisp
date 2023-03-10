@@ -56,7 +56,33 @@
 Argument DATA is the Lisp data to be serialized.
 
 The JSON output is written to the ‘*standard-output*’ stream.
-The return value of an ‘encode’ method is ignored."))
+The return value of an ‘encode’ method is ignored.
+
+The ‘with-object’ and ‘with-array’ macros can be used to define JSON
+encoders for your own Lisp data structures.  For example, define an
+encoder for a CLOS class:
+
+     (defclass bank-account ()
+       ((iban
+         :initarg :iban
+         :initform (error \"Missing IBAN argument.\"))
+        (balance
+         :initarg :balance
+         :initform 0)))
+
+     (defmethod encode ((object bank-account))
+       \"Encode a bank account as a JSON object.\"
+       (with-object
+         (object-member \"iban\" (slot-value object 'iban))
+         (object-member \"balance\" (slot-value object 'balance))))
+
+After that,
+
+     (serialize t (make-instance 'bank-account :iban \"DE75512108001245126199\"))
+
+prints
+
+     {\"iban\" : \"DE75512108001245126199\", \"balance\" : 0}"))
 
 (defmethod encode (data)
   "The default encoding method.
@@ -195,8 +221,13 @@ then print the end delimiter END."
 
 ;;; Objects
 
-(defun object-member (key value firstp)
-  "Encode a JSON object member."
+(defun object-member (key value)
+  "Encode a JSON object member.
+See the ‘with-object’ macro."
+  (declare (ignorable key value)))
+
+(defun %object-member (key value firstp)
+  "The actual ‘object-member’ function."
   (when (not firstp)
     (write-char #\,)
     (if *print-pretty*
@@ -208,18 +239,24 @@ then print the end delimiter END."
 
 (defmacro with-object (&body body)
   "Encode a JSON object.
-The BODY calls ‘(object-member KEY VALUE)’ to print an object member."
+
+The BODY calls ‘(object-member KEY VALUE)’ to encode the key/value
+pair of an object member."
   (let ((firstp (gensym "FIRSTP")))
     `(let ((,firstp t))
        (declare (ignorable ,firstp))
        (flet ((object-member (key value)
-		(object-member key value ,firstp)
+		(%object-member key value ,firstp)
 		(setf ,firstp nil)))
-	 (if *print-pretty*
-	     (pprint-logical-block (*standard-output* () :prefix "{" :suffix "}")
-	       ,@body)
-	   (with-delimiters #\{ #\}
-	     ,@body))))))
+	 (%with-object (lambda () ,@body))))))
+
+(defun %with-object (body)
+  "Helper function for the ‘with-object’ macro."
+  (if *print-pretty*
+      (pprint-logical-block (*standard-output* () :prefix "{" :suffix "}")
+	(funcall body))
+    (with-delimiters #\{ #\}
+      (funcall body))))
 
 (defun object-from-hash-table (hash-table)
   "Encode hash table HASH-TABLE as a JSON object."
@@ -274,8 +311,13 @@ Mostly useful for binding the ‘*list-encoder*’ special variable."
 
 ;;; Arrays
 
-(defun array-element (value firstp)
-  "Encode a JSON array element."
+(defun array-element (value)
+  "Encode a JSON array element.
+See the ‘with-array’ macro."
+  (declare (ignorable value)))
+
+(defun %array-element (value firstp)
+  "The actual ‘array-element’ function."
   (when (not firstp)
     (write-char #\,)
     (if *print-pretty*
@@ -285,18 +327,23 @@ Mostly useful for binding the ‘*list-encoder*’ special variable."
 
 (defmacro with-array (&body body)
   "Encode a JSON array.
-The BODY calls ‘(array-element VALUE)’ to print an array element."
+
+The BODY calls ‘(array-element VALUE)’ to encode an array element."
   (let ((firstp (gensym "FIRSTP")))
     `(let ((,firstp t))
        (declare (ignorable ,firstp))
        (flet ((array-element (value)
-		(array-element value ,firstp)
+		(%array-element value ,firstp)
 		(setf ,firstp nil)))
-	 (if *print-pretty*
-	     (pprint-logical-block (*standard-output* () :prefix "[" :suffix "]")
-	       ,@body)
-	   (with-delimiters #\[ #\]
-	     ,@body))))))
+	 (%with-array (lambda () ,@body))))))
+
+(defun %with-array (body)
+  "Helper function for the ‘with-array’ macro."
+  (if *print-pretty*
+      (pprint-logical-block (*standard-output* () :prefix "[" :suffix "]")
+	(funcall body))
+    (with-delimiters #\[ #\]
+      (funcall body))))
 
 (defun array-from-sequence (sequence)
   "Encode sequence SEQUENCE as a JSON array."

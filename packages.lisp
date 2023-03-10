@@ -67,6 +67,10 @@
    ;; encoder.lisp
    #:serialize
    #:serializer
+   #:with-object
+   #:object-member
+   #:with-array
+   #:array-element
    #:encode-object
    #:encode-array
    #:encode-false
