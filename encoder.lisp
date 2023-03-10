@@ -449,7 +449,9 @@ Affected by ‘*print-case*’."
 
 (defmethod encode ((data integer))
   "Encode an integer as a JSON number."
-  (princ data))
+  (let ((*print-base* 10)
+	(*print-radix* nil))
+    (princ data)))
 
 (defmethod encode ((data rational))
   "Encode a rational number as a JSON number.
