@@ -56,7 +56,6 @@
    #:*allow-lax-numbers*
    #:*list-encoder*
    #:*nil-encoder*
-   #:*pretty-printer*
    #:with-default-values
    ;; common.lisp
    #:json-error

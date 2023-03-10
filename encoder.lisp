@@ -92,7 +92,8 @@ Signals an ‘encoding-error’."
 (defun %print (stream data &optional pretty)
   "Common entry point for all print functions."
   (let ((*standard-output* stream)
-	(*print-pretty* pretty)
+	(*pretty-printer* pretty)
+	(*print-pretty* nil)
 	(*print-base* 10)
 	(*print-radix* nil)
 	(*print-circle* nil)
@@ -107,7 +108,7 @@ Signals an ‘encoding-error’."
     (encode data))
   ())
 
-(defun serialize (destination data &key (pretty *pretty-printer*))
+(defun serialize (destination data &key pretty)
   "Print a Lisp data structure as a JSON value.
 
 First argument DESTINATION is the output object.  Value is either a
@@ -115,8 +116,7 @@ First argument DESTINATION is the output object.  Value is either a
  ‘*standard-output*’ and ‘nil’ means to return a string.
 Second argument DATA is the Lisp data structure to be serialized.
 If keyword argument PRETTY is true, pretty print the JSON value in
- a compact format.  Default is the value of the ‘*pretty-printer*’
- special variable.
+ a compact format.  Default is false.
 
 The actual serialization of Lisp data as a JSON value is performed
 by the ‘encode’ methods (which see).
@@ -131,7 +131,29 @@ Exceptional situations:
      encoded as a JSON value.
 
    * May signal an ‘arithmetic-error’ if a rational number is
-     converted to a floating-point number."
+     converted to a floating-point number.
+
+Notes:
+
+If the pretty printer is disabled, JSON output is just a flat
+sequence of characters.  For example:
+
+     [{\"foo\" : 42, \"bar\" : [\"baz\", \"hack\"]}, null]
+
+There is no explicit or implicit line break since all control
+characters are escaped.  While this is fast and machine readable,
+it's difficult for humans to reveal the structure of the data.
+
+If the pretty printer is enabled, JSON output is more visually
+appearing.  Here is the same example as above but pretty printed:
+
+     [{\"foo\" : 42,
+       \"bar\" : [\"baz\",
+                \"hack\"]},
+      null]
+
+Explicit line breaks occur after object members and array elements
+and the items of these compound structures are lined up nicely."
   (etypecase destination
     (stream
      (%print destination data pretty))
@@ -230,7 +252,7 @@ See the ‘with-object’ macro."
   "The actual ‘object-member’ function."
   (when (not firstp)
     (write-char #\,)
-    (if *print-pretty*
+    (if *pretty-printer*
 	(pprint-newline :mandatory)
       (write-char #\Space)))
   (encode key)
@@ -252,7 +274,7 @@ pair of an object member."
 
 (defun %with-object (body)
   "Helper function for the ‘with-object’ macro."
-  (if *print-pretty*
+  (if *pretty-printer*
       (pprint-logical-block (*standard-output* () :prefix "{" :suffix "}")
 	(funcall body))
     (with-delimiters #\{ #\}
@@ -320,7 +342,7 @@ See the ‘with-array’ macro."
   "The actual ‘array-element’ function."
   (when (not firstp)
     (write-char #\,)
-    (if *print-pretty*
+    (if *pretty-printer*
 	(pprint-newline :mandatory)
       (write-char #\Space)))
   (encode value))
@@ -339,7 +361,7 @@ The BODY calls ‘(array-element VALUE)’ to encode an array element."
 
 (defun %with-array (body)
   "Helper function for the ‘with-array’ macro."
-  (if *print-pretty*
+  (if *pretty-printer*
       (pprint-logical-block (*standard-output* () :prefix "[" :suffix "]")
 	(funcall body))
     (with-delimiters #\[ #\]

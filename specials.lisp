@@ -157,28 +157,7 @@ to encode ‘nil’ as a list, as the JSON ‘false’ value, or as the JSON
 with the default value of the ‘*object-as*’ special variable.")
 
 (defvar *pretty-printer* nil
-  "Whether or not to enable the pretty printer for JSON output.
-Default is false.
-
-If the pretty printer is disabled, JSON output is just a flat
-sequence of characters.  For example:
-
-     [{\"foo\" : 42, \"bar\" : [\"baz\", \"hack\"]}, null]
-
-There is no explicit or implicit line break since all control
-characters are escaped.  While this is fast and machine readable,
-it's difficult for humans to reveal the structure of the data.
-
-If the pretty printer is enabled, JSON output is more visually
-appearing.  Here is the same example as above but pretty printed:
-
-     [{\"foo\" : 42,
-       \"bar\" : [\"baz\",
-                \"hack\"]},
-      null]
-
-Explicit line breaks occur after object members and array elements
-and the items of these compound structures are lined up nicely.")
+  "Whether or not to enable the pretty printer for JSON output.")
 
 (defmacro with-default-values ((&rest ignored) &body body)
   "Establish a lexical environment with all special variables bound
@@ -197,8 +176,7 @@ to their default values."
 	 (*allow-duplicate-object-keys* nil)
 	 (*allow-lax-numbers* nil)
 	 (*list-encoder* 'encode-object)
-	 (*nil-encoder* 'encode-list)
-	 (*pretty-printer* nil))
+	 (*nil-encoder* 'encode-list))
      ,@body))
 
 ;;; specials.lisp ends here
