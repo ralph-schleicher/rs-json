@@ -156,6 +156,18 @@ to encode ‘nil’ as a list, as the JSON ‘false’ value, or as the JSON
 ‘null’ value respectively.  Default is ‘encode-list’ in accordance
 with the default value of the ‘*object-as*’ special variable.")
 
+(defvar *encode-symbol-hook* nil
+  "Hook to convert a symbol into a string.
+Value has to be a function designator.  The function is called with
+the symbol as the only argument.  The return value of the function
+must be a string.
+
+Special value ‘:upcase’, ‘:downcase’, ‘:capitalize’, ‘:preserve’, or
+‘:invert’ means to change the case of the symbol name respectively.
+See the ‘*print-case*’ special variable and ‘readtable-case’ function.
+A value of ‘nil’ means to use the value of the ‘*print-case*’ special
+variable.")
+
 (defvar *pretty-printer* nil
   "Whether or not to enable the pretty printer for JSON output.")
 
@@ -165,7 +177,9 @@ to their default values."
   (declare (ignore ignored))
   `(let ((*object-key-decoder* #'identity)
 	 (*object-as* :alist)
+	 (*decode-object-hook* nil)
 	 (*array-as* :vector)
+	 (*decode-array-hook* nil)
 	 (*true* :true)
 	 (*false* :false)
 	 (*null* :null)
@@ -176,7 +190,8 @@ to their default values."
 	 (*allow-duplicate-object-keys* nil)
 	 (*allow-lax-numbers* nil)
 	 (*list-encoder* 'encode-object)
-	 (*nil-encoder* 'encode-list))
+	 (*nil-encoder* 'encode-list)
+	 (*encode-symbol-hook* nil))
      ,@body))
 
 ;;; specials.lisp ends here

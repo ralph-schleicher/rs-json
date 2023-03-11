@@ -432,13 +432,36 @@ Mostly useful for binding ‘*list-encoder*’."
 
 (defmethod encode ((data symbol))
   "Encode a symbol as a JSON string.
-Affected by ‘*print-case*’."
-  (let ((string (copy-seq (symbol-name data))))
-    (ecase *print-case*
-      (:upcase (nstring-upcase string))
-      (:downcase (nstring-downcase string))
-      (:capitalize (nstring-capitalize string)))
-    (string-from-string string)))
+Affected by ‘*encode-symbol-hook*’.
+
+Exceptional situations:
+
+   * Signals a ‘program-error’ if the value returned by the
+     ‘*encode-symbol-hook*’ function is not a string."
+  (string-from-string
+   (case (or *encode-symbol-hook* *print-case*)
+     (:upcase
+      (string-upcase (symbol-name data)))
+     (:downcase
+      (string-downcase (symbol-name data)))
+     (:capitalize
+      (string-capitalize (symbol-name data)))
+     (:preserve
+      (symbol-name data))
+     (:invert
+      (with-output-to-string (stream)
+	(iter (for char :in-string (symbol-name data))
+	      (write-char (or (and (lower-case-p char)
+				   (char-upcase char))
+			      (and (upper-case-p char)
+				   (char-downcase char))
+			      char)
+			  stream))))
+     (t
+      (let ((string (funcall *encode-symbol-hook* symbol)))
+	(unless (stringp string)
+	  (error 'program-error))
+	string)))))
 
 (defmethod encode ((data character))
   "Encode a character as a JSON string."

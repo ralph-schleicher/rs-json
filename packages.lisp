@@ -56,6 +56,7 @@
    #:*allow-lax-numbers*
    #:*list-encoder*
    #:*nil-encoder*
+   #:*encode-symbol-hook*
    #:with-default-values
    ;; common.lisp
    #:json-error
