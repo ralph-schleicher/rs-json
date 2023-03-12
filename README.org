@@ -1,0 +1,202 @@
+* RS-JSON
+
+Yet another JSON decoder/encoder.
+
+If you can't wait until YASON is fixed, then this library is for you.
+The main differences are listed below.
+- The parser is strictly RFC 8259 compliant where it makes sense.
+  However, you can tweak the behaviour of the parser to suite your
+  needs.
+- The serializer only supports a compact pretty printing format.
+- JSON objects can be represented as hash-tables, associated lists,
+  or property lists.  The default is to use alists.
+- JSON arrays can be represented as vectors or lists.  The default
+  is to use vectors.
+- The JSON values =true=, =false=, and =null= are represented by
+  the keywords =:true=, =:false=, and =:null= respectively.  But
+  you can change that to suite your needs.
+- The default configuration is round-trip save, i.e. you can read
+  a JSON value and write it back without loss of information.  This
+  is a strict requirement when updating a web resource via an HTTP
+  GET/PUT cycle.
+- Performance is competitive to other “fast” JSON libraries out
+  there.
+
+
+** The Decoder
+
+The =parse= function is the entry point for reading a JSON value as a
+Lisp data structure.  For example,
+#+BEGIN_SRC common-lisp
+(parse "[{\"foo\" : 42, \"bar\" : [\"baz\", \"hack\"]}, null]")
+
+ ⇒ #((("foo" . 42) ("bar" . #("baz" "hack"))) :null)
+#+END_SRC
+There are many user options to control the behaviour of the parser.
+Please check the documentation.
+
+
+** The Encoder
+
+The =serialize= function is the entry point for printing a Lisp data
+structure as a JSON value.  For example,
+#+BEGIN_SRC common-lisp
+(serialize nil #((("foo" . 42) ("bar" . #("baz" "hack"))) :null))
+
+ ⇒ "[{\"foo\" : 42, \"bar\" : [\"baz\", \"hack\"]}, null]")
+#+END_SRC
+
+
+*** Pretty Printing
+
+If the pretty printer is disabled, JSON output is just a flat
+sequence of characters.  For example:
+#+BEGIN_SRC json
+[{"foo" : 42, "bar" : ["baz", "hack"]}, null]
+#+END_SRC
+There is no explicit or implicit line break since all control
+characters are escaped.  While this is fast and machine readable,
+it's difficult for humans to reveal the structure of the data.
+
+If the pretty printer is enabled, JSON output is more visually
+appearing.  Here is the same example as above but pretty printed:
+#+BEGIN_SRC json
+[{"foo" : 42,
+  "bar" : ["baz",
+           "hack"]},
+ null]
+#+END_SRC
+Explicit line breaks occur after object members and array elements
+and the items of these compound structures are lined up nicely.
+
+
+*** Formatted Output
+
+JSON output via Common Lisp's =format= function is fully supported.
+There are two options.  The first option is the question mark =~?=
+directive.  For example,
+#+BEGIN_SRC common-lisp
+(format t "JSON: ~@?~%" serializer #((("foo" . 42) ("bar" . #("baz" "hack"))) :null))
+#+END_SRC
+may print
+#+BEGIN_EXAMPLE
+JSON: [{"foo" : 42,
+        "bar" : ["baz",
+                 "hack"]},
+       null]
+#+END_EXAMPLE
+The value of the =serializer= constant is a format control function
+that follows the conventions for a function created by the =formatter=
+macro and the value of the =*print-pretty*= special variable
+determines if the JSON output is pretty printed.
+
+The second option is the =serializer= function.  This function is
+designed so that it can be called by a slash format directive.  For
+example,
+#+BEGIN_SRC common-lisp
+(format t "JSON: ~/serializer/~%" #((("foo" . 42) ("bar" . #("baz" "hack"))) :null))
+#+END_SRC
+prints
+#+BEGIN_EXAMPLE
+JSON: [{"foo" : 42, "bar" : ["baz", "hack"]}, null]
+#+END_EXAMPLE
+If the colon modifier is given, use the pretty printer.  For example,
+#+BEGIN_SRC common-lisp
+(format t "JSON: ~:/serializer/~%" #((("foo" . 42) ("bar" . #("baz" "hack"))) :null))
+#+END_SRC
+prints
+#+BEGIN_EXAMPLE
+JSON: [{"foo" : 42,
+        "bar" : ["baz",
+                 "hack"]},
+       null]
+#+END_EXAMPLE
+Please note that the indentation of the pretty printed JSON output is
+relative to the start column of the JSON output.
+
+
+** User Defined Data Types
+
+The RS-JSON library provides means to encode/decode user defined data
+types.  Here is an example for a CLOS class.
+#+BEGIN_SRC common-lisp
+(defclass user ()
+  ((name
+    :initarg :name
+    :initform (error "Missing user name argument."))
+   (id
+    :initarg :id
+    :initform nil)))
+#+END_SRC
+
+For encoding, define an =encode= method for the class.
+#+BEGIN_SRC common-lisp
+(defmethod encode ((object user))
+  "Encode an user as a JSON object."
+  (let ((*encode-symbol-hook* :downcase))
+    (with-object
+      (object-member "" (type-of object))
+      (iter (for slot :in '(name id))
+            (object-member slot (or (slot-value object slot) :null))))))
+#+END_SRC
+Try it out.
+#+BEGIN_SRC common-lisp
+(serialize t (make-instance 'user :name "John"))
+#+END_SRC
+prints
+#+BEGIN_SRC json
+{"" : "user", "name" : "John", "id" : null}
+#+END_SRC
+Looks good.  How to encode the data type information is of course your
+choice.
+
+Decoding works differently.  A JSON object is parsed and converted
+into a Lisp data structure as per the =*object-as*= special variable.
+Then you provide a =*decode-object-hook*= function to convert this
+Lisp data structure into your user defined data type.
+
+We define two convenience functions.
+#+BEGIN_SRC common-lisp
+(defun oref (alist key)
+  (cdr (assoc key alist :test #'string=)))
+
+(defun tr (value)
+  (case value
+    (:true t)
+    (:false nil)
+    (:null nil)
+    (t value)))
+#+END_SRC
+Now we define the =*decode-object-hook*= function.
+#+BEGIN_SRC common-lisp
+(defun object-decoder (alist)
+  (let ((class (oref alist "")))
+    (cond ((equal class "user")
+           (make-instance 'user
+                          :name (oref alist "name")
+                          :id (tr (oref alist "id"))))
+          ;; No match, return argument as is.
+          (alist))))
+#+END_SRC
+Try it out.
+#+BEGIN_SRC common-lisp
+(let* ((*decode-object-hook* #'object-decoder)
+       (inp (make-instance 'user :name "John"))
+       (outp (parse (serialize nil inp))))
+  (list (slot-value outp 'name)
+        (slot-value outp 'id)))
+
+ ⇒ ("John" nil)
+#+END_SRC
+That's it.  Any questions?
+
+
+** Performance
+
+Don't trust any benchmark you haven't forged yourself!
+[[file:./ref/bench-read.png]]
+Note: Jonathan and jsown did not finish, poor souls.
+
+Results from the [[https://github.com/json-schema-org/JSON-Schema-Test-Suite][JSON Parsing Test Suite]]
+can be found [[file:./ref/parsing.html][here]].
+Only json-streams, jzon, and RS-JSON seem to be compliant.
