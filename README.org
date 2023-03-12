@@ -194,7 +194,9 @@ That's it.  Any questions?
 ** Performance
 
 Don't trust any benchmark you haven't forged yourself!
+#+BEGIN_VERSE
 [[file:./ref/bench-read.png]]
+#+END_VERSE
 Note: Jonathan and jsown did not finish, poor souls.
 
 Results from the [[https://github.com/json-schema-org/JSON-Schema-Test-Suite][JSON Parsing Test Suite]]
