@@ -408,7 +408,7 @@ Mostly useful for binding ‘*list-encoder*’."
 	 ;; Slash characters must not be escaped.
 	 (write-char #\\)
 	 (write-char char))
-	((standard-char-p char)
+	((unicode-graphic-p char)
 	 (write-char char))
 	((let ((code (char-code char)))
 	   (cond ((<= code #xFFFF)
