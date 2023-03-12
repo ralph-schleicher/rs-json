@@ -62,7 +62,6 @@ Argument CHAR has to be a character object."
       (char= char #\Linefeed)
       (char= char #\Return)
       (char= char #\Newline)
-      #+cl-unicode
       (when *allow-unicode-whitespace*
 	(cl-unicode:has-binary-property char (quote #.(cl-unicode:property-symbol "White_Space"))))))
 
