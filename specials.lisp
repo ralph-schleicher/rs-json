@@ -108,6 +108,12 @@ considered a whitespace character.  Otherwise, only the space,
 horizontal tab, line feed, and carriage return character are
 considered a whitespace character.  Default is false.")
 
+(defvar *allow-unicode-graphic* nil
+  "Whether or not to escape Unicode graphic characters in JSON strings.
+If true, any Unicode graphic character is printed as is.  Otherwise,
+a graphic character is escaped like any other non-graphic character.
+Thus, the JSON output is plain US-ASCII.  Default is false.")
+
 (defvar *allow-trailing-comma* nil
   "Whether or not to accept a comma after the last object member
 or after the last array element.  Default is false.")

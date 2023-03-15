@@ -389,7 +389,7 @@ Mostly useful for binding ‘*list-encoder*’."
 
 ;;; Strings
 
-(defun string-char (char)
+(defsubst string-char (char)
   "Encode the character CHAR as part of a JSON string."
   (declare (type character char))
   (cond ((char= char #\Backspace)
@@ -408,7 +408,9 @@ Mostly useful for binding ‘*list-encoder*’."
 	 ;; Slash characters must not be escaped.
 	 (write-char #\\)
 	 (write-char char))
-	((unicode-graphic-p char)
+	((standard-char-p char)
+	 (write-char char))
+	((and *allow-unicode-graphic* (unicode-graphic-p char))
 	 (write-char char))
 	((let ((code (char-code char)))
 	   (cond ((<= code #xFFFF)
