@@ -195,9 +195,19 @@ That's it.  Any questions?
 
 Don't trust any benchmark you haven't forged yourself!
 
-[[file:./ref/bench-read.png]]
+File =citm_catalog.json= has a size of 1.6 MiB and contains a nice mix
+of objects, arrays, strings, and numbers.  All libraries read the file
+contents from a string.
 
-Note: Jonathan and jsown did not finish, poor souls.
+For writing, there are two cases.  Those libraries who can write to a
+stream write to the null device.  The other libraries return a string
+and have to carry the additional memory payload.
+
+[[file:./ref/bench-relative.png]]
+
+[[file:./ref/bench-absolute.png]]
+
+Note: Jzon fails to load with Clozure CL.
 
 Results from the [[https://github.com/json-schema-org/JSON-Schema-Test-Suite][JSON Parsing Test Suite]]
 can be found [[file:./ref/parsing.html][here]].
