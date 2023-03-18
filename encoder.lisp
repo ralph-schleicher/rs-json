@@ -469,7 +469,7 @@ Exceptional situations:
 			      char)
 			  stream))))
      (t
-      (let ((string (funcall *encode-symbol-hook* symbol)))
+      (let ((string (funcall *encode-symbol-hook* data)))
 	(unless (stringp string)
 	  (error 'program-error))
 	string)))))
