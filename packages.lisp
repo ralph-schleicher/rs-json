@@ -35,7 +35,7 @@
 
 (in-package :common-lisp-user)
 
-(defpackage #:de.ralph-schleicher.restless/json
+(defpackage #:de.ralph-schleicher.json
   (:nicknames :rs-json)
   (:use :common-lisp :iterate)
   (:export
