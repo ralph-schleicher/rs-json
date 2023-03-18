@@ -1,0 +1,510 @@
+DE.RALPH-SCHLEICHER.JSON
+
+Yet another JSON decoder/encoder.
+
+If you can't wait until YASON is fixed, then this library is for you.
+The main differences are listed below.
+
+   * The parser is strictly RFC 8259 compliant where it makes sense.
+     However, you can tweak the behavior of the parser to suite your
+     needs.
+
+   * The serializer only supports a compact pretty printing format.
+
+   * JSON objects can be represented as hash-tables, associated lists,
+     or property lists.  The default is to use alists.
+
+   * JSON arrays can be represented as vectors or lists.  The default
+     is to use vectors.
+
+   * The JSON values ‘true’, ‘false’, and ‘null’ are represented by
+     the keywords ‘:true’, ‘:false’, and ‘:null’ respectively.  But
+     you can change that to suite your needs.
+
+   * The default configuration is round-trip save, i.e. you can read
+     a JSON value and write it back without loss of information.  This
+     is a strict requirement when updating a web resource via an HTTP
+     GET/PUT cycle.
+
+   * Performance is competitive to other “fast” JSON libraries out
+     there.
+
+                                                                     [Condition]
+encoding-error
+   Condition type for an encoding error.
+
+                                                                     [Condition]
+json-error
+   Base class for all JSON errors.
+
+                                                                     [Condition]
+syntax-error
+   Condition type for a syntax error.
+
+                                                              [Special Variable]
+*allow-duplicate-object-keys*
+   Whether or not to accept duplicate keys in JSON objects.
+   If true, the value of an existing object member is replaced by a
+   successive object member with the same key.  Special value ‘:ignore’
+   means to ignore successive duplicate object members, i.e. the value
+   of an existing object member will not be replaced.  Special value
+   ‘:append’ means to add a duplicate object member to the Lisp data
+   structure – this feature is only available for alists and plists.
+   If false, signal a ‘syntax-error’.  This is the default.
+
+   ECMA-404 says nothing about duplicate object keys.  RFC 8259 says
+   that object keys should be unique.  Anyway, with this user option,
+   you have the choice.
+
+                                                              [Special Variable]
+*allow-lax-numbers*
+   Whether or not to accept non-standard syntax of numbers.
+   If true, numbers may have an explicit plus sign and digits before or
+   after the decimal point may be omitted.  Default is false.
+
+                                                              [Special Variable]
+*allow-literal-object-keys*
+   Whether or not to accept literal names as keys of object members.
+   Default is false.
+
+                                                              [Special Variable]
+*allow-trailing-comma*
+   Whether or not to accept a comma after the last object member
+   or after the last array element.  Default is false.
+
+                                                              [Special Variable]
+*allow-unicode-graphic*
+   Whether or not to escape Unicode graphic characters in JSON strings.
+   If true, any Unicode graphic character is printed as is.  Otherwise,
+   a graphic character is escaped like any other non-graphic character.
+   Thus, the JSON output is plain US-ASCII.  Default is true.
+
+                                                              [Special Variable]
+*allow-unicode-whitespace*
+   Whether or not to accept any Unicode whitespace character.
+   If true, any character with the Unicode whitespace property is
+   considered a whitespace character.  Otherwise, only the space,
+   horizontal tab, line feed, and carriage return character are
+   considered a whitespace character.  Default is false.
+
+                                                              [Special Variable]
+*array-as*
+   The Lisp data structure used to represent a JSON array.
+   Value is either ‘:vector’ or ‘:list’.  The default is to use
+   vectors.
+
+                                                              [Special Variable]
+*decode-array-hook*
+   Hook to run after a JSON array has been decoded.
+   Value has to be a function designator.  The function is called with
+   one argument, the Lisp data structure representing the JSON array;
+   see the ‘*array-as*’ special variable.  The return value of the
+   function is used as the actual array value.
+
+                                                              [Special Variable]
+*decode-object-hook*
+   Hook to run after a JSON object has been decoded.
+   Value has to be a function designator.  The function is called with
+   one argument, the Lisp data structure representing the JSON object;
+   see the ‘*object-as*’ special variable.  The return value of the
+   function is used as the actual object value.
+
+                                                              [Special Variable]
+*encode-symbol-hook*
+   Hook to convert a symbol into a string.
+   Value has to be a function designator.  The function is called with
+   the symbol as the only argument.  The return value of the function
+   must be a string.
+
+   Special value ‘:upcase’, ‘:downcase’, ‘:capitalize’, ‘:preserve’, or
+   ‘:invert’ means to change the case of the symbol name respectively.
+   See the ‘*print-case*’ special variable and ‘readtable-case’ function.
+   A value of ‘nil’ means to use the value of the ‘*print-case*’ special
+   variable.
+
+                                                              [Special Variable]
+*false*
+   The symbol to represent the JSON value ‘false’.
+   Default is ‘:false’, but ‘nil’ may be appropriate, too.  For the
+   later, please take care of ambiguities since ‘nil’ also represents
+   the empty list.
+
+                                                              [Special Variable]
+*list-encoder*
+   The actual function used to encode a list.
+
+   Suitable values are ‘encode-object’ or ‘encode-array’ to encode
+   a list as a JSON object or as a JSON array respectively.  Default
+   is ‘encode-object’ in accordance with the default value of the
+   ‘*object-as*’ special variable.
+
+   The function is called with one argument, the list.  The return
+   value of the function is ignored.
+
+   See also the ‘*nil-encoder*’ special variable.
+
+                                                              [Special Variable]
+*maximum-nesting-depth*
+   The maximum number of nested JSON structures.
+   Value must be a positive number and should be at least 20.  A value
+   of ‘nil’ means to not limit the depth of nesting.  The default value
+   is 1000.  This option only has an effect when reading JSON values.
+
+                                                              [Special Variable]
+*nil-encoder*
+   The actual function used to encode ‘nil’.
+
+   Suitable values are ‘encode-list’, ‘encode-false’, or ‘encode-null’
+   to encode ‘nil’ as a list, as the JSON ‘false’ value, or as the JSON
+   ‘null’ value respectively.  Default is ‘encode-list’ in accordance
+   with the default value of the ‘*object-as*’ special variable.
+
+                                                              [Special Variable]
+*null*
+   The symbol to represent the JSON value ‘null’.
+   Default is ‘:null’, but ‘nil’ may be appropriate, too.  For the
+   later, please take care of ambiguities since ‘nil’ also represents
+   falsity and the empty list.
+
+                                                              [Special Variable]
+*object-as*
+   The Lisp data structure used to represent a JSON object.
+   Value is either ‘:hash-table’, ‘:alist’, or ‘:plist’.  The default
+   is to use alists.
+
+   For hash tables and alists, object keys are compared with ‘equal’,
+   i.e. using strings as object keys works as expected.  For plists,
+   object keys are compared with ‘eql’, i.e. you should also set
+   ‘*object-key-decoder*’ to a function returning a symbol when
+   representing objects as plists.
+
+                                                              [Special Variable]
+*object-key-decoder*
+   The function to convert the key string of an object member.
+   Default is the ‘identity’ function.
+
+   The function is called with one argument, the key string.  The value
+   of the function is used as the key for the data structure produced.
+   See also the ‘*object-as*’ special variable.
+
+                                                              [Special Variable]
+*true*
+   The symbol to represent the JSON value ‘true’.
+   Default is ‘:true’, but ‘t’ may be appropriate, too.
+
+                                                                      [Function]
+array-element (value)
+   Encode a JSON array element.
+   See the ‘with-array’ macro.
+
+                                                              [Generic Function]
+encode (data)
+   Encode Lisp data as a JSON value.
+
+   Argument DATA is the Lisp data to be serialized.
+
+   The JSON output is written to the ‘*standard-output*’ stream.
+   The return value of an ‘encode’ method is ignored.
+
+   The ‘with-object’ and ‘with-array’ macros can be used to define JSON
+   encoders for your own Lisp data structures.  For example, define an
+   encoder for a CLOS class:
+
+        (defclass bank-account ()
+          ((iban
+            :initarg :iban
+            :initform (error "Missing IBAN argument."))
+           (balance
+            :initarg :balance
+            :initform 0)))
+
+        (defmethod encode ((object bank-account))
+          "Encode a bank account as a JSON object."
+          (with-object
+            (object-member "iban" (slot-value object 'iban))
+            (object-member "balance" (slot-value object 'balance))))
+
+   After that,
+
+        (serialize t (make-instance 'bank-account :iban "DE75512108001245126199"))
+
+   prints
+
+        {"iban" : "DE75512108001245126199", "balance" : 0}
+
+                                                                        [Method]
+encode ((data list))
+   Encode a list by calling ‘*list-encoder*’.
+
+                                                                        [Method]
+encode ((data (eql nil)))
+   Encode ‘nil’ by calling ‘*nil-encoder*’.
+
+                                                                        [Method]
+encode ((data (eql t)))
+   Encode ‘t’ as a JSON ‘true’ value.
+
+                                                                        [Method]
+encode ((data (eql :null)))
+   Encode ‘:null’ as a JSON ‘null’ value.
+
+                                                                        [Method]
+encode ((data (eql :false)))
+   Encode ‘:false’ as a JSON ‘false’ value.
+
+                                                                        [Method]
+encode ((data (eql :true)))
+   Encode ‘:true’ as a JSON ‘true’ value.
+
+                                                                        [Method]
+encode ((data real))
+   Encode a floating-point number as a JSON number.
+
+                                                                        [Method]
+encode ((data rational))
+   Encode a rational number as a JSON number.
+   Affected by ‘*read-default-float-format*’.
+
+                                                                        [Method]
+encode ((data integer))
+   Encode an integer as a JSON number.
+
+                                                                        [Method]
+encode ((data character))
+   Encode a character as a JSON string.
+
+                                                                        [Method]
+encode ((data symbol))
+   Encode a symbol as a JSON string.
+   Affected by ‘*encode-symbol-hook*’.
+
+   Exceptional situations:
+
+      * Signals a ‘program-error’ if the value returned by the
+        ‘*encode-symbol-hook*’ function is not a string.
+
+                                                                        [Method]
+encode ((data string))
+   Encode a string as a JSON string.
+
+                                                                        [Method]
+encode ((data vector))
+   Encode a vector as a JSON array.
+
+                                                                        [Method]
+encode ((data hash-table))
+   Encode a hash table as a JSON object.
+
+                                                                        [Method]
+encode (data)
+   The default encoding method.
+   Signals an ‘encoding-error’.
+
+                                                                      [Function]
+encode-array (data)
+   Encode Lisp data as a JSON array.
+
+   Argument DATA is the Lisp data to be serialized as a JSON array.
+    Value has to be a sequence, i.e. a vector or a list.
+
+   Mostly useful for binding ‘*list-encoder*’.
+
+                                                                      [Function]
+encode-false (data)
+   Constantly print a JSON ‘false’ value.
+
+   Mostly useful for binding ‘*nil-encoder*’.
+
+                                                                      [Function]
+encode-list (data)
+   Encode a list by calling ‘*list-encoder*’.
+
+   Mostly useful for binding ‘*nil-encoder*’.
+
+                                                                      [Function]
+encode-null (data)
+   Constantly print a JSON ‘null’ value.
+
+   Mostly useful for binding ‘*nil-encoder*’.
+
+                                                                      [Function]
+encode-object (data)
+   Encode Lisp data as a JSON object.
+
+   Argument DATA is the Lisp data to be serialized as a JSON object.
+    Value has to be a hash table, an associated list, or a property list.
+   If DATA is a list, the value of the ‘*object-as*’ special variable
+    affects the interpretation of DATA.
+
+   Mostly useful for binding the ‘*list-encoder*’ special variable.
+
+                                                                      [Function]
+encoding-error (&optional datum &rest arguments)
+   Signal an encoding error.
+
+                                                                      [Function]
+object-member (key value)
+   Encode a JSON object member.
+   See the ‘with-object’ macro.
+
+                                                                      [Function]
+parse (source &key junk-allowed)
+   Read a JSON value.
+
+   First argument SOURCE is the input object.  Value is either a
+    stream, a string, or a pathname.  The special value ‘t’ is
+    equal to ‘*standard-input*’
+   If keyword argument JUNK-ALLOWED is true, do not signal an error
+    of type ‘syntax-error’ if a non-whitespace character occurs after
+    the JSON value.  Default value is false.
+
+   The ‘parse’ function expects exactly one JSON value.  Any value
+   is accepted, not only an object or array.  Optional leading and
+   trailing whitespace is ignored.
+
+   Return value is the Lisp representation of the JSON value.
+   Secondary value is the position where the parsing ends, or
+   ‘nil’ if the position can not be determined.
+
+   Exceptional situations:
+
+      * Signals an ‘end-of-file’ error if the input ends in the
+        middle of a JSON value.
+
+      * Signals a ‘syntax-error’ if the input contains an invalid
+        JSON structure.
+
+      * May signal an ‘arithmetic-error’ if a JSON number can not
+        be represented as a Lisp number.
+
+      * Signals a ‘program-error’ if JSON objects are parsed as
+        plists and the return value of ‘*object-key-decoder*’
+        is not a symbol, number, or character.
+
+      * Signals a ‘program-error’ if JSON objects are parsed as
+        hash tables, ‘*allow-duplicate-object-keys*’ is bound to
+        ‘:append’, and a duplicate object member exists.
+
+                                                                      [Function]
+serialize (destination data &key pretty)
+   Print a Lisp data structure as a JSON value.
+
+   First argument DESTINATION is the output object.  Value is either a
+    stream, a string, or a pathname.  The special value ‘t’ is equal to
+    ‘*standard-output*’ and ‘nil’ means to return a string.
+   Second argument DATA is the Lisp data structure to be serialized.
+   If keyword argument PRETTY is true, pretty print the JSON value in
+    a compact format.  Default is false.
+
+   The actual serialization of Lisp data as a JSON value is performed
+   by the ‘encode’ methods (which see).
+
+   If DESTINATION is a stream, a string, a pathname, or ‘t’, then the
+   result is ‘nil’.  Otherwise, the result is a string containing the
+   output.
+
+   Exceptional situations:
+
+      * Signals an ‘encoding-error’ if the Lisp data can not be
+        encoded as a JSON value.
+
+      * May signal an ‘arithmetic-error’ if a rational number is
+        converted to a floating-point number.
+
+   Notes:
+
+   If the pretty printer is disabled, JSON output is just a flat
+   sequence of characters.  For example:
+
+        [{"foo" : 42, "bar" : ["baz", "hack"]}, null]
+
+   There is no explicit or implicit line break since all control
+   characters are escaped.  While this is fast and machine readable,
+   it's difficult for humans to reveal the structure of the data.
+
+   If the pretty printer is enabled, JSON output is more visually
+   appearing.  Here is the same example as above but pretty printed:
+
+        [{"foo" : 42,
+          "bar" : ["baz",
+                   "hack"]},
+         null]
+
+   Explicit line breaks occur after object members and array elements
+   and the items of these compound structures are lined up nicely.
+
+                                                                      [Constant]
+serializer
+   Format control for printing a Lisp data structure as a JSON value.
+   The value of the ‘*print-pretty*’ special variable determines if the
+   JSON output is pretty printed.  For example,
+
+        (format t "JSON: ~@?~%" serializer #((("foo" . 42) ("bar" . #("baz" "hack"))) :null))
+
+   may print
+
+        JSON: [{"foo" : 42,
+                "bar" : ["baz",
+                         "hack"]},
+               null]
+
+   The value of this constant is a format control function that follows
+   the conventions for a function created by the ‘formatter’ macro.  See
+   also the ‘serializer’ function for another method for how to print
+   JSON values with the ‘format’ function.
+
+                                                                      [Function]
+serializer (stream data &optional colonp at-sign-p &rest parameters)
+   Format function for printing a Lisp data structure as a JSON value.
+
+   First argument STREAM is the output stream.
+   Second argument DATA is the Lisp data structure to be serialized.
+   If optional third argument COLONP is true, output the JSON value in
+    a pretty printed format.  Default is false.
+   The remaining arguments are ignored.
+
+   This function is designed so that it can be called by a slash format
+   directive, i.e. ‘~/serializer/’.  If the colon modifier is given, use
+   the pretty printer.  For example,
+
+        (format t "JSON: ~/serializer/~%" #((("foo" . 42) ("bar" . #("baz" "hack"))) :null))
+
+   prints
+
+        JSON: [{"foo" : 42, "bar" : ["baz", "hack"]}, null]
+
+   whereas
+
+        (format t "JSON: ~:/serializer/~%" #((("foo" . 42) ("bar" . #("baz" "hack"))) :null))
+
+   prints
+
+        JSON: [{"foo" : 42,
+                "bar" : ["baz",
+                         "hack"]},
+               null]
+
+   See also the ‘serializer’ constant variable for another method for
+   how to print JSON values with the ‘format’ function.
+
+                                                                      [Function]
+syntax-error (&optional datum &rest arguments)
+   Signal a syntax error.
+
+                                                                         [Macro]
+with-array (&body body)
+   Encode a JSON array.
+
+   The BODY calls ‘(array-element VALUE)’ to encode an array element.
+
+                                                                         [Macro]
+with-default-values ((&rest ignored) &body body)
+   Establish a lexical environment with all special variables bound
+   to their default values.
+
+                                                                         [Macro]
+with-object (&body body)
+   Encode a JSON object.
+
+   The BODY calls ‘(object-member KEY VALUE)’ to encode the key/value
+   pair of an object member.
