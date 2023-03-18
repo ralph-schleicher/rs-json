@@ -62,6 +62,8 @@ for inline expansion by the compiler."
 		  (defsubst ,unicode-name-p (c)
 		    (funcall ,unicode-name-p c))))))
   ;; Predicates for general categories and basic types.
+  ;; See ‹https://www.unicode.org/versions/Unicode15.0.0/›,
+  ;; §4.5 “General Category”, table 4-4 “General Category”.
   (define-property-test "L"  "letter")
   (define-property-test "Lu" "uppercase letter")
   (define-property-test "Ll" "lowercase letter")
@@ -100,6 +102,9 @@ for inline expansion by the compiler."
   (define-property-test "Co" "private use")
   (define-property-test "Cn" "not assigned")
 
+  ;; See ‹https://www.unicode.org/versions/Unicode15.0.0/›,
+  ;; §2.4 “Code Points and Characters”, table 2-3 “Types of
+  ;; Code Points”.
   (defsubst unicode-graphic-p (c)
     (or (unicode-letter-p c)
 	(unicode-mark-p c)
