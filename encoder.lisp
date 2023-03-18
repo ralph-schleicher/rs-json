@@ -395,6 +395,10 @@ Mostly useful for binding ‘*list-encoder*’."
 (defsubst string-char (char)
   "Encode the character CHAR as part of a JSON string."
   (declare (type character char))
+  ;; RFC 8259: All Unicode characters may be placed within the
+  ;; quotation marks, except for the characters that must be
+  ;; escaped: quotation mark, reverse solidus, and the control
+  ;; characters (U+0000 through U+001F).
   (cond ((char= char #\Backspace)
 	 (write-string "\\b"))
 	((char= char #\Page)
@@ -413,10 +417,12 @@ Mostly useful for binding ‘*list-encoder*’."
 	 (write-char char))
 	((standard-char-p char)
 	 (write-char char))
-	((and *allow-unicode-graphic* (unicode-graphic-p char))
-	 (write-char char))
 	((let ((code (char-code char)))
-	   (cond ((<= code #xFFFF)
+	   (cond ((<= code #x001F)
+		  (format t "\\u~4,'0X" code))
+		 ((and *allow-unicode-graphic* (not (unicode-other-p code)))
+		  (write-char char))
+		 ((<= code #xFFFF)
 		  (format t "\\u~4,'0X" code))
 		 ((<= code #x10FFFF)
 		  (multiple-value-bind (high low)
