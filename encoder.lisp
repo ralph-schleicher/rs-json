@@ -161,7 +161,10 @@ and the items of these compound structures are lined up nicely."
      (with-output-to-string (stream destination)
        (%print stream data pretty)))
     (pathname
-     (with-open-file (stream destination :direction :output :if-exists :supersede :if-does-not-exist :create :external-format (uiop:encoding-external-format :utf-8))
+     (with-open-file (stream destination :direction :output
+					 :if-exists :supersede
+					 :if-does-not-exist :create
+					 :external-format (uiop:encoding-external-format :utf-8))
        (%print stream data pretty)))
     ((member t)
      (%print *standard-output* data pretty))
