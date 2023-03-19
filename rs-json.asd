@@ -50,4 +50,31 @@
 	       (:file "decoder")
 	       (:file "encoder")))
 
+(defsystem "rs-json/test"
+  :description "Yet another JSON decoder/encoder test suite."
+  :author "Ralph Schleicher <rs@ralph-schleicher.de>"
+  :license "Modified BSD License"
+  :depends-on ("iterate"
+	       "lisp-unit"
+	       "rs-json"))
+
+(defsystem "rs-json/bench"
+  :description "Yet another JSON decoder/encoder benchmark."
+  :author "Ralph Schleicher <rs@ralph-schleicher.de>"
+  :license "Modified BSD License"
+  :depends-on ("cl-json"
+	       #-clisp
+	       "jonathan"
+	       "json-streams"
+	       "jsown"
+	       #-clozure
+	       "com.inuoe.jzon"
+	       "rs-json"
+	       "shasht"
+	       "st-json"
+	       "yason"
+	       ;; Others.
+	       "iterate"
+	       "trivial-garbage"))
+
 ;;; rs-json.asd ends here
