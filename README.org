@@ -209,6 +209,6 @@ and have to carry the additional memory payload.
 
 Note: Jzon fails to load with Clozure CL.
 
-Results from the [[https://github.com/json-schema-org/JSON-Schema-Test-Suite][JSON Parsing Test Suite]]
+Results from the [[https://github.com/nst/JSONTestSuite][JSON Parsing Test Suite]]
 can be found [[file:./ref/parsing.html][here]].
 Only json-streams, jzon, and RS-JSON seem to be compliant.
