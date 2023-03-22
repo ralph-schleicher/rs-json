@@ -43,24 +43,24 @@ citm_catalog: citm_catalog.stamp
 	octave --eval "rehash; bench('$*')"
 	echo timestamp > $@
 
-.PRECIOUS: citm_catalog.csv
+.PRECIOUS: %.csv
 %.csv: bench.pl %.sbcl.log %.ccl.log
 	perl ./bench.pl $* > $@
 
-.PRECIOUS: citm_catalog.sbcl.log
+.PRECIOUS: %.sbcl.log
 %.sbcl.log: bench.lisp
-	run-sbcl \
-	--load bench.lisp \
-	--eval '(rs-json-bench:$*)' \
-	--quit | \
-	tee $@
+	run-sbcl --load bench.lisp --eval '(rs-json-bench:$*)' --quit | tee $@
 
-.PRECIOUS: citm_catalog.ccl.log
+.PRECIOUS: %.ccl.log
 %.ccl.log: bench.lisp
-	run-ccl \
-	--batch \
-	--load bench.lisp \
-	--eval '(rs-json-bench:$*)' < /dev/null | \
-	tee $@
+	run-ccl --batch --load bench.lisp --eval '(rs-json-bench:$*)' < /dev/null | tee $@
+
+.PRECIOUS: %.clisp.log
+%.clisp.log: bench.lisp
+	run-clisp -x '(load "bench.lisp")' -x '(rs-json-bench:$*)' | tee $@
+
+.PHONY: clean
+clean:
+	rm -f citm_catalog.*
 
 ## GNUmakefile ends here
