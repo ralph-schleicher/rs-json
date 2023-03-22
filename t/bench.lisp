@@ -41,7 +41,9 @@
   (:nicknames :rs-json-bench)
   (:use :common-lisp :iterate)
   (:export
-   #:citm_catalog))
+   #:pass1
+   #:citm_catalog
+   #:large))
 
 (in-package :rs-json-bench)
 
@@ -58,6 +60,10 @@
   (let ((*read-default-float-format* 'double-float))
     (json:decode-json-from-string source)))
 
+(defmethod %read ((library (eql :cl-json)) (source stream))
+  (let ((*read-default-float-format* 'double-float))
+    (json:decode-json source)))
+
 (defmethod %write ((library (eql :cl-json)) data)
   (json:encode-json data *standard-output*))
 
@@ -70,6 +76,9 @@
   (jonathan:to-json data))
 
 (defmethod %read ((library (eql :json-streams)) (source string))
+  (json-streams:json-parse source :duplicate-key-check nil))
+
+(defmethod %read ((library (eql :json-streams)) (source stream))
   (json-streams:json-parse source :duplicate-key-check nil))
 
 (defmethod %write ((library (eql :json-streams)) data)
@@ -86,10 +95,18 @@
   (com.inuoe.jzon:parse source :max-depth 1000))
 
 #-clozure
+(defmethod %read ((library (eql :jzon)) (source stream))
+  (com.inuoe.jzon:parse source :max-depth 1000))
+
+#-clozure
 (defmethod %write ((library (eql :jzon)) data)
   (com.inuoe.jzon:stringify data :stream *standard-output*))
 
 (defmethod %read ((library (eql :rs-json)) (source string))
+  (let ((rs-json:*allow-duplicate-object-keys* t))
+    (rs-json:parse source)))
+
+(defmethod %read ((library (eql :rs-json)) (source stream))
   (let ((rs-json:*allow-duplicate-object-keys* t))
     (rs-json:parse source)))
 
@@ -100,10 +117,18 @@
   (let ((*read-default-float-format* 'double-float))
     (shasht:read-json source)))
 
+(defmethod %read ((library (eql :shasht)) (source stream))
+  (let ((*read-default-float-format* 'double-float))
+    (shasht:read-json source)))
+
 (defmethod %write ((library (eql :shasht)) data)
   (shasht:write-json data *standard-output*))
 
 (defmethod %read ((library (eql :st-json)) (source string))
+  (let ((*read-default-float-format* 'double-float))
+    (st-json:read-json source)))
+
+(defmethod %read ((library (eql :st-json)) (source stream))
   (let ((*read-default-float-format* 'double-float))
     (st-json:read-json source)))
 
@@ -113,37 +138,54 @@
 (defmethod %read ((library (eql :yason)) (source string))
   (yason:parse source))
 
+(defmethod %read ((library (eql :yason)) (source stream))
+  (yason:parse source))
+
 (defmethod %write ((library (eql :yason)) data)
   (yason:encode data *standard-output*))
 
-(defun bench (pathname &key (libraries *libraries*) (repeat-count 1) dump)
+(defun bench (pathname &key (libraries *libraries*) (repeat-count 1) stream dump)
   (let ((file-name (file-namestring pathname))
-	(source (alexandria:read-file-into-string pathname)))
+	(source (unless stream (alexandria:read-file-into-string pathname))))
     (iter (for lib :in libraries)
-	  (terpri)
+	  (terpri *trace-output*)
 	  (format *trace-output* "========================================~%")
 	  (format *trace-output* "~A~%" lib)
 	  (format *trace-output* "========================================~%")
 	  (trivial-garbage:gc)
 	  (handler-case
-	      (let ((data (%read lib source)))
-		(when dump
-		  (format *trace-output* "~:W~%" data))
-		(iter (repeat repeat-count)
-		      (format *trace-output* "~A;READ;~A~%" lib file-name)
-		      (trivial-garbage:gc)
-		      (time (%read lib source)))
-		(when dump
-		  (let ((*standard-output* *trace-output*))
-		    (let ((tem (%write lib data)))
-		      (when (stringp tem)
-			(format *trace-output* "~A~%" tem)))))
-		(with-open-file (stream dev-null :direction :output :if-exists :overwrite :external-format utf-8)
-		  (let ((*standard-output* stream))
+	      (if (not stream)
+		  (let ((data (%read lib source)))
+		    (when dump
+		      (format *trace-output* "~:W~%" data))
 		    (iter (repeat repeat-count)
-			  (format *trace-output* "~A;WRITE;~A~%" lib file-name)
+			  (format *trace-output* "~A;READ;~A~%" lib file-name)
 			  (trivial-garbage:gc)
-		      	  (time (%write lib data))))))
+			  (time (%read lib source)))
+		    (when dump
+		      (let ((*standard-output* *trace-output*))
+			(let ((tem (%write lib data)))
+			  (if (stringp tem)
+			      (format *trace-output* "~A~%" tem)
+			    (terpri *trace-output*)))))
+		    (with-open-file (stream dev-null :direction :output :if-exists :overwrite :external-format utf-8)
+		      (let ((*standard-output* stream))
+			(iter (repeat repeat-count)
+			      (format *trace-output* "~A;WRITE;~A~%" lib file-name)
+			      (trivial-garbage:gc)
+		      	      (time (%write lib data))))))
+		;; Streaming.
+		(progn
+		  (iter (repeat repeat-count)
+			(let ((data (with-open-file (stream pathname :external-format utf-8)
+				      (format *trace-output* "~A;READ;~A~%" lib file-name)
+				      (trivial-garbage:gc)
+				      (time (%read lib stream)))))
+			  (with-open-file (stream dev-null :direction :output :if-exists :overwrite :external-format utf-8)
+			    (let ((*standard-output* stream))
+			      (format *trace-output* "~A;WRITE;~A~%" lib file-name)
+			      (trivial-garbage:gc)
+		      	      (time (%write lib data))))))))
 	    (error (condition)
 	      (format *trace-output*
 		      "~A: error (~A)~%~A~&"
@@ -163,5 +205,11 @@
 		   #P"t/data/citm_catalog.json"
 		   (asdf:system-source-directory "rs-json"))))
     (bench pathname :repeat-count 9)))
+
+(defun large ()
+  (let ((pathname (merge-pathnames
+		   #P"t/large.json"
+		   (asdf:system-source-directory "rs-json"))))
+    (bench pathname :repeat-count 1 :stream t)))
 
 ;;; bench.lisp ends here
