@@ -197,17 +197,37 @@ Don't trust any benchmark you haven't forged yourself!
 
 File =citm_catalog.json= has a size of 1.6 MiB and contains a nice mix
 of objects, arrays, strings, and numbers.  All libraries read the file
-contents from a string.
+contents from a string.  For writing, there are two cases.  Those
+libraries who can write to a stream write to the null device.  The
+other libraries return a string and have to carry the additional
+memory payload.
 
-For writing, there are two cases.  Those libraries who can write to a
-stream write to the null device.  The other libraries return a string
-and have to carry the additional memory payload.
+[[file:./ref/citm_catalog-relative.png]]
 
-[[file:./ref/bench-relative.png]]
-
-[[file:./ref/bench-absolute.png]]
+[[file:./ref/citm_catalog-absolute.png]]
 
 Note: Jzon fails to load with Clozure CL.
+
+File =large.json= tests the streaming capabilities of the libraries.
+It is slightly larger than 100 MiB and is read from a stream and
+written to the null device.
+
+[[file:./ref/large-relative.png]]
+
+[[file:./ref/large-absolute.png]]
+
+Notes:
+- Jonathan and jsown can neither read from a stream not write to a
+  stream.
+- CL-JSON fails reading on Clozure CL with the error message “No
+  character corresponds to code #xD83D”.
+- json-streams fails reading with the error message “Number with
+  integer syntax too large 505874924095815700”.
+- Jzon fails to load with Clozure CL.
+- ST-JSON fails writing on Clozure CL with the error message “The
+  value NIL is not of the expected type REAL”.
+- shasht and YASON are not RFC 8259 compliant (see below).
+- RS-JSON rules!
 
 Results from the [[https://github.com/nst/JSONTestSuite][JSON Parsing Test Suite]]
 can be found [[file:./ref/parsing.html][here]].
