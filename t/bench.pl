@@ -83,6 +83,10 @@ if (-f "$stem.sbcl.log")
 
 	    printf ("$lisp;$lib;$job;mem;$tem\n");
 	  }
+	elsif (m/before it was aborted by a non-local transfer of control/)
+	  {
+	    printf ("$lisp;$lib;$job;err;1\n");
+	  }
       }
   }
 
