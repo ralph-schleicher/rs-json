@@ -69,12 +69,26 @@ function bench(stem)
     for j = 1:numel(lisp)
       for i = 1:numel(lib)
         k1 = strcmpi(lisp1, lisp{j}) & strcmpi(lib1, lib{i}) & strcmpi(job1, job{k});
-        k2 = k1 & strcmpi(tag1, 'run');
-        time(i, j, k) = mean(val1(k2));
-        k2 = k1 & strcmpi(tag1, 'mem');
-        mem(i, j, k) = mean(val1(k2));
+        k2 = k1 & strcmpi(tag1, 'err');
+        if ~ any(k2)
+          k2 = k1 & strcmpi(tag1, 'run');
+          time(i, j, k) = mean(val1(k2));
+          k2 = k1 & strcmpi(tag1, 'mem');
+          mem(i, j, k) = mean(val1(k2));
+        end
       end
     end
+  end
+
+  switch stem
+   case 'citm_catalog'
+    time_lim = 0.3;
+    mem_lim = 35;
+   case 'large'
+    time_lim = 30;
+    mem_lim = 3500;
+   otherwise
+    error('Fix me.');
   end
 
   % Absolute numbers.
@@ -84,10 +98,10 @@ function bench(stem)
   mem_write = squeeze(mem(:, :, 2)) ./ 2^20;
 
   [fig, ax] = figure1(2, 2);
-  plot1(ax(1, 1), lisp, lib, time_read,  0.3, 'Run Time / s', ['Read ', stem, '.json'],  'northwest');
-  plot1(ax(1, 2), lisp, lib, time_write, 0.3, 'Run Time / s', ['Write ', stem, '.json'], 'northeast');
-  plot1(ax(2, 1), lisp, lib, mem_read,    35, 'Bytes Consed / MiB', '', '');
-  plot1(ax(2, 2), lisp, lib, mem_write,   35, 'Bytes Consed / MiB', '', '');
+  plot1(ax(1, 1), lisp, lib, time_read,  time_lim, 'Run Time / s', ['Read ', stem, '.json'],  'northwest');
+  plot1(ax(1, 2), lisp, lib, time_write, time_lim, 'Run Time / s', ['Write ', stem, '.json'], 'northeast');
+  plot1(ax(2, 1), lisp, lib, mem_read,   mem_lim,  'Bytes Consed / MiB', '', '');
+  plot1(ax(2, 2), lisp, lib, mem_write,  mem_lim,  'Bytes Consed / MiB', '', '');
   print1(fig, [stem, '-absolute']);
 
   % Relative numbers.
