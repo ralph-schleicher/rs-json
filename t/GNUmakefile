@@ -204,9 +204,20 @@ json-test-suite/parser: json-test-suite.asd json-test-suite.lisp bench.lisp
 	fi
 	test -f $@
 
+# Say, e.g. ‘make json-test-suite.rs-json.log’
+# or ‘make json-checker.rs-json.log’.
+# TODO: Handle timeouts.
+json-test-suite.%.log: json-test-suite/parser
+	find json-test-suite/test_parsing -name \*.json | sort | xargs -t -n 1 json-test-suite/parser $* 2>&1 | tee $@
+
+json-checker.%.log: json-test-suite/parser
+	find json-checker -name \*.json | sort | xargs -t -n 1 json-test-suite/parser $* 2>&1 | tee $@
+
 .PHONY: test-suite-clean
 test-suite-clean:
-	rm -f json-test-suite.html json-test-suite.css json-test-suite.pdf json-test-suite.jpg json-test-suite/parser
+	rm -f json-test-suite/parser
+	rm -f json-test-suite.html json-test-suite.css json-test-suite.pdf json-test-suite.jpg
+	rm -f json-test-suite.*.log json-checker.*.log
 
 ### Miscellaneous
 
