@@ -72,20 +72,24 @@
   (cond ((stringp datum)
 	 (error 'syntax-error
 		:stream *standard-input*
+		:position (file-position *standard-input*)
 		:format-control datum
 		:format-arguments arguments))
 	(datum-supplied-p
 	 (apply #'error (or datum 'syntax-error)
 		:stream *standard-input*
+		:position (file-position *standard-input*)
 		arguments))
 	(next-char
 	 (error 'syntax-error
 		:stream *standard-input*
+		:position (file-position *standard-input*)
 		:format-control "Unexpected character ‘~A’."
 		:format-arguments (list next-char)))
 	(t
 	 (error 'syntax-error
 		:stream *standard-input*
+		:position (file-position *standard-input*)
 		:format-control "Premature end of file."
 		:format-arguments ()))))
 
