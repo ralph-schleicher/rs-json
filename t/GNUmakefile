@@ -148,7 +148,26 @@ large-clean:
 ### JSON Test Suite
 
 .PHONY: test-suite
-test-suite: json-test-suite/results/parsing.html
+test-suite: json-test-suite.html
+json-test-suite.html: json-test-suite/results/parsing.html json-test-suite.css
+	{ \
+	  echo '<style type="text/css">' ; \
+	  cat json-test-suite.css ; \
+	  echo '</style>' ; \
+	  echo '</HEAD>' ; \
+	} > json-test-suite.tem
+	sed -e '/<\/HEAD>/ {' \
+	    -e 'r json-test-suite.tem' \
+	    -e 'd' \
+	    -e '}' \
+	json-test-suite/results/parsing.html > $@
+	rm -f json-test-suite.tem
+
+# Add a final newline character to the compressed style sheet.
+json-test-suite.css: json-test-suite/results/style.css
+	lessc --clean-css='--s1 -b' $< $@
+	echo >> $@
+
 json-test-suite/results/parsing.html: json-test-suite/results/logs.txt
 	cd json-test-suite && python3 ./run_tests.py --no-run-tests
 
@@ -176,7 +195,7 @@ json-test-suite/parser: json-test-suite.asd json-test-suite.lisp bench.lisp
 
 .PHONY: test-suite-clean
 test-suite-clean:
-	rm -f json-test-suite/parser
+	rm -f json-test-suite.html json-test-suite.css json-test-suite/parser
 
 ### Miscellaneous
 
