@@ -35,8 +35,6 @@
 
 (in-package :common-lisp-user)
 
-(ql:quickload "rs-json/bench")
-
 (defpackage #:de.ralph-schleicher.json-benchmark
   (:nicknames :rs-json-bench)
   (:use :common-lisp :iterate)
@@ -47,7 +45,18 @@
 
 (in-package :rs-json-bench)
 
-(defparameter *libraries* (list :cl-json #-clisp :jonathan :json-streams :jsown #-clozure :jzon :rs-json :shasht :st-json :yason)
+(defparameter *libraries*
+  '(:cl-json
+    #-clisp
+    :jonathan
+    :json-streams
+    :jsown
+    #-clozure
+    :jzon
+    :rs-json
+    :shasht
+    :st-json
+    :yason)
   "List of JSON libraries.")
 
 (define-symbol-macro dev-null (uiop:null-device-pathname))
@@ -56,93 +65,156 @@
 (defgeneric %read (library source))
 (defgeneric %write (library data))
 
-(defmethod %read ((library (eql :cl-json)) (source string))
-  (let ((*read-default-float-format* 'double-float))
-    (json:decode-json-from-string source)))
+(progn
+  (defmethod %read ((library (eql :cl-json)) (source string))
+    (let ((*read-default-float-format* 'double-float))
+      (json:decode-json-from-string source)))
 
-(defmethod %read ((library (eql :cl-json)) (source stream))
-  (let ((*read-default-float-format* 'double-float))
-    (json:decode-json source)))
+  (defmethod %read ((library (eql :cl-json)) (source stream))
+    (let ((*read-default-float-format* 'double-float))
+      (json:decode-json source)))
 
-(defmethod %write ((library (eql :cl-json)) data)
-  (json:encode-json data *standard-output*))
+  (defmethod %read ((library (eql :cl-json)) (source pathname))
+    (with-open-file (stream source :external-format utf-8)
+      (%read library stream)))
+
+  (defmethod %write ((library (eql :cl-json)) data)
+    (json:encode-json data *standard-output*))
+  ())
 
 #-clisp
-(defmethod %read ((library (eql :jonathan)) (source string))
-  (jonathan:parse source))
+(progn
+  (defmethod %read ((library (eql :jonathan)) (source string))
+    (jonathan:parse source))
 
-#-clisp
-(defmethod %write ((library (eql :jonathan)) data)
-  (jonathan:to-json data))
+  (defmethod %read ((library (eql :jonathan)) (source pathname))
+    (%read library (alexandria:read-file-into-string source :external-format utf-8)))
 
-(defmethod %read ((library (eql :json-streams)) (source string))
-  (json-streams:json-parse source :duplicate-key-check nil))
+  (defmethod %write ((library (eql :jonathan)) data)
+    (jonathan:to-json data))
+  ())
 
-(defmethod %read ((library (eql :json-streams)) (source stream))
-  (json-streams:json-parse source :duplicate-key-check nil))
+(progn
+  (defun %read-json-streams (source)
+    (json-streams:json-parse source :duplicate-key-check nil))
 
-(defmethod %write ((library (eql :json-streams)) data)
-  (json-streams:json-stringify data))
+  (defmethod %read ((library (eql :json-streams)) (source string))
+    (%read-json-streams source))
 
-(defmethod %read ((library (eql :jsown)) (source string))
-  (jsown:parse source))
+  (defmethod %read ((library (eql :json-streams)) (source stream))
+    (%read-json-streams source))
 
-(defmethod %write ((library (eql :jsown)) data)
-  (jsown:to-json data))
+  (defmethod %read ((library (eql :json-streams)) (source pathname))
+    (with-open-file (stream source :external-format utf-8)
+      (%read-json-streams stream)))
+
+  (defmethod %write ((library (eql :json-streams)) data)
+    (json-streams:json-stringify data))
+  ())
+
+(progn
+  (defmethod %read ((library (eql :jsown)) (source string))
+    (jsown:parse source))
+
+  (defmethod %read ((library (eql :jsown)) (source pathname))
+    (%read library (alexandria:read-file-into-string source :external-format utf-8)))
+
+  (defmethod %write ((library (eql :jsown)) data)
+    (jsown:to-json data))
+  ())
 
 #-clozure
-(defmethod %read ((library (eql :jzon)) (source string))
-  (com.inuoe.jzon:parse source :max-depth 1000))
+(progn
+  (defun %read-jzon (source)
+    (com.inuoe.jzon:parse source :max-depth 1000))
 
-#-clozure
-(defmethod %read ((library (eql :jzon)) (source stream))
-  (com.inuoe.jzon:parse source :max-depth 1000))
+  (defmethod %read ((library (eql :jzon)) (source string))
+    (%read-jzon source))
 
-#-clozure
-(defmethod %write ((library (eql :jzon)) data)
-  (com.inuoe.jzon:stringify data :stream *standard-output*))
+  (defmethod %read ((library (eql :jzon)) (source stream))
+    (%read-jzon source))
 
-(defmethod %read ((library (eql :rs-json)) (source string))
-  (let ((rs-json:*allow-duplicate-object-keys* t))
-    (rs-json:parse source)))
+  (defmethod %read ((library (eql :jzon)) (source pathname))
+    (with-open-file (stream source :external-format utf-8)
+      (%read-jzon stream)))
 
-(defmethod %read ((library (eql :rs-json)) (source stream))
-  (let ((rs-json:*allow-duplicate-object-keys* t))
-    (rs-json:parse source)))
+  (defmethod %write ((library (eql :jzon)) data)
+    (com.inuoe.jzon:stringify data :stream *standard-output*))
+  ())
 
-(defmethod %write ((library (eql :rs-json)) data)
-  (rs-json:serialize *standard-output* data))
+(progn
+  (defun %read-rs-json (source)
+    (let ((rs-json:*allow-duplicate-object-keys* t))
+      (rs-json:parse source)))
 
-(defmethod %read ((library (eql :shasht)) (source string))
-  (let ((*read-default-float-format* 'double-float))
-    (shasht:read-json source)))
+  (defmethod %read ((library (eql :rs-json)) (source string))
+    (%read-rs-json source))
 
-(defmethod %read ((library (eql :shasht)) (source stream))
-  (let ((*read-default-float-format* 'double-float))
-    (shasht:read-json source)))
+  (defmethod %read ((library (eql :rs-json)) (source stream))
+    (%read-rs-json source))
 
-(defmethod %write ((library (eql :shasht)) data)
-  (shasht:write-json data *standard-output*))
+  (defmethod %read ((library (eql :rs-json)) (source pathname))
+    (%read-rs-json source))
 
-(defmethod %read ((library (eql :st-json)) (source string))
-  (let ((*read-default-float-format* 'double-float))
-    (st-json:read-json source)))
+  (defmethod %write ((library (eql :rs-json)) data)
+    (rs-json:serialize *standard-output* data))
+  ())
 
-(defmethod %read ((library (eql :st-json)) (source stream))
-  (let ((*read-default-float-format* 'double-float))
-    (st-json:read-json source)))
+(progn
+  (defun %read-shasht (source)
+    (let ((*read-default-float-format* 'double-float))
+      (shasht:read-json source)))
 
-(defmethod %write ((library (eql :st-json)) data)
-  (st-json:write-json data *standard-output*))
+  (defmethod %read ((library (eql :shasht)) (source string))
+    (%read-shasht source))
 
-(defmethod %read ((library (eql :yason)) (source string))
-  (yason:parse source))
+  (defmethod %read ((library (eql :shasht)) (source stream))
+    (%read-shasht source))
 
-(defmethod %read ((library (eql :yason)) (source stream))
-  (yason:parse source))
+  (defmethod %read ((library (eql :shasht)) (source pathname))
+    (with-open-file (stream source :external-format utf-8)
+      (%read-shasht stream)))
 
-(defmethod %write ((library (eql :yason)) data)
-  (yason:encode data *standard-output*))
+  (defmethod %write ((library (eql :shasht)) data)
+    (shasht:write-json data *standard-output*))
+  ())
+
+(progn
+  (defun %read-st-json (source)
+    (let ((*read-default-float-format* 'double-float))
+      (st-json:read-json source)))
+
+  (defmethod %read ((library (eql :st-json)) (source string))
+    (%read-st-json source))
+
+  (defmethod %read ((library (eql :st-json)) (source stream))
+    (%read-st-json source))
+
+  (defmethod %read ((library (eql :st-json)) (source pathname))
+    (with-open-file (stream source :external-format utf-8)
+      (%read-shasht stream)))
+
+  (defmethod %write ((library (eql :st-json)) data)
+    (st-json:write-json data *standard-output*))
+  ())
+
+(progn
+  (defun %read-yason (source)
+    (yason:parse source))
+
+  (defmethod %read ((library (eql :yason)) (source string))
+    (%read-yason source))
+
+  (defmethod %read ((library (eql :yason)) (source stream))
+    (%read-yason source))
+
+  (defmethod %read ((library (eql :yason)) (source pathname))
+    (with-open-file (stream source :external-format utf-8)
+      (%read-yason stream)))
+
+  (defmethod %write ((library (eql :yason)) data)
+    (yason:encode data *standard-output*))
+  ())
 
 (defun bench (pathname &key (libraries *libraries*) (repeat-count 1) stream dump)
   (let ((file-name (file-namestring pathname))
@@ -174,7 +246,7 @@
 			      (format *trace-output* "~A;WRITE;~A~%" lib file-name)
 			      (trivial-garbage:gc)
 		      	      (time (%write lib data))))))
-		;; Streaming.
+		;; Stream I/O.
 		(progn
 		  (iter (repeat repeat-count)
 			(let ((data (with-open-file (stream pathname :external-format utf-8)
