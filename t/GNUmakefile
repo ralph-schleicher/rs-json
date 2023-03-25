@@ -198,7 +198,7 @@ json-test-suite/parser: json-test-suite.asd json-test-suite.lisp bench.lisp
 
 .PHONY: test-suite-clean
 test-suite-clean:
-	rm -f json-test-suite.html json-test-suite.css json-test-suite/parser
+	rm -f json-test-suite.html json-test-suite.css json-test-suite.pdf json-test-suite/parser
 
 ### Miscellaneous
 
