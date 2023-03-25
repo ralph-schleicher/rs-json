@@ -7,6 +7,6 @@ sync:
 	unzip -j test.zip
 	chmod 644 *.json
 	rm -f test.zip
-	git status
+	svn status
 
 ## GNUmakefile ends here
