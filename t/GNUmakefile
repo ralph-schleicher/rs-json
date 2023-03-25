@@ -154,25 +154,28 @@ json-test-suite.html: json-test-suite/results/parsing.html json-test-suite.css
 	  echo '<style type="text/css">' ; \
 	  cat json-test-suite.css ; \
 	  echo '</style>' ; \
-	  echo '</HEAD>' ; \
 	} > json-test-suite.tem
-	sed -e '/<\/HEAD>/ {' \
+	sed -e '/href="style.css"/ {' \
 	    -e 'r json-test-suite.tem' \
 	    -e 'd' \
 	    -e '}' \
 	json-test-suite/results/parsing.html > $@
-	rm -f json-test-suite.tem
+	rm -f json-test-suite.css json-test-suite.tem
 
 # Add a final newline character to the compressed style sheet.
 json-test-suite.css: json-test-suite/results/style.css
 	lessc --clean-css='--s1 -b' $< $@
 	echo >> $@
 
+# See https://wkhtmltopdf.org/.
+json-test-suite.pdf: json-test-suite.html
+	wkhtmltopdf --page-width 210mm --page-height 2970mm --title 'JSON Test Suite' $< $@
+
 json-test-suite/results/parsing.html: json-test-suite/results/logs.txt
 	cd json-test-suite && python3 ./run_tests.py --no-run-tests
 
 json-test-suite/results/logs.txt: json-test-suite/parser
-	cd json-test-suite && python3 ./run_tests.py | tee ../json-test-suite.log
+	cd json-test-suite && python3 ./run_tests.py
 
 .PHONY: test-suite-exec
 test-suite-exec: json-test-suite/parser
