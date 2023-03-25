@@ -230,5 +230,5 @@ Notes:
 - RS-JSON rules!
 
 Results from the [[https://github.com/nst/JSONTestSuite][JSON Parsing Test Suite]]
-can be found [[file:./ref/parsing.html][here]].
+can be found [[file:./ref/json-test-suite.html][here]].
 Only json-streams, jzon, and RS-JSON seem to be compliant.
