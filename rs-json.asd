@@ -62,7 +62,10 @@
   :description "Yet another JSON decoder/encoder benchmark."
   :author "Ralph Schleicher <rs@ralph-schleicher.de>"
   :license "Modified BSD License"
-  :depends-on ("cl-json"
+  :depends-on ("iterate"
+	       "trivial-garbage"
+	       ;; JSON parsers.
+	       "cl-json"
 	       #-clisp
 	       "jonathan"
 	       "json-streams"
@@ -72,9 +75,6 @@
 	       "rs-json"
 	       "shasht"
 	       "st-json"
-	       "yason"
-	       ;; Others.
-	       "iterate"
-	       "trivial-garbage"))
+	       "yason"))
 
 ;;; rs-json.asd ends here
