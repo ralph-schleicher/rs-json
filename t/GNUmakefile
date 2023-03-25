@@ -171,6 +171,9 @@ json-test-suite.css: json-test-suite/results/style.css
 json-test-suite.pdf: json-test-suite.html
 	wkhtmltopdf --page-width 210mm --page-height 2970mm --title 'JSON Test Suite' $< $@
 
+json-test-suite.jpg: json-test-suite.pdf
+	convert json-test-suite.pdf -crop 516x1908+0+256 json-test-suite.jpg
+
 json-test-suite/results/parsing.html: json-test-suite/results/logs.txt
 	cd json-test-suite && python3 ./run_tests.py --no-run-tests
 
@@ -198,7 +201,7 @@ json-test-suite/parser: json-test-suite.asd json-test-suite.lisp bench.lisp
 
 .PHONY: test-suite-clean
 test-suite-clean:
-	rm -f json-test-suite.html json-test-suite.css json-test-suite.pdf json-test-suite/parser
+	rm -f json-test-suite.html json-test-suite.css json-test-suite.pdf json-test-suite.jpg json-test-suite/parser
 
 ### Miscellaneous
 
