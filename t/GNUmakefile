@@ -129,8 +129,13 @@ data/twitterescaped.json \
 data/update-center.json \
 $(nil)
 
+$(large_json_SOURCES): data.stamp
+data.stamp:
+	$(MAKE) -C data sync
+	echo timestamp > $@
+
 # Running ‘time json-test-suite/parser rs-json large.json’ works, too.
-large.json: $(large_json_SOURCES)
+large.json: data.stamp
 	{ echo "[" ; \
 	  for j in 1 2 3 4 5 6 7 ; do \
 	    for f in $(large_json_SOURCES) ; do \
@@ -207,5 +212,8 @@ test-suite-clean:
 
 .PHONY: clean
 clean: citm_catalog-clean large-clean test-suite-clean
+
+# Dependencies.
+bench.lisp: data.stamp
 
 ## GNUmakefile ends here
