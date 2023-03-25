@@ -75,6 +75,8 @@
 	       "rs-json"
 	       "shasht"
 	       "st-json"
-	       "yason"))
+	       "yason")
+  :components ((:module "t"
+		:components ((:file "bench")))))
 
 ;;; rs-json.asd ends here
