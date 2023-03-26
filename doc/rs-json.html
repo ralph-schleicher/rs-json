@@ -428,7 +428,11 @@ The main differences are listed below.
      </table>
     </div>
     <div class="documentation">
-     <pre>Condition type for an encoding error.</pre>
+     <pre>Condition type for an encoding error.
+
+Class precedence list:
+
+     ‘encoding-error’, ‘json-error’, ...</pre>
     </div>
    </div>
    <div class="definition" id="_911cca39-64ad-5515-85e9-3eec4844281b">
@@ -449,7 +453,11 @@ The main differences are listed below.
      </table>
     </div>
     <div class="documentation">
-     <pre>Base class for all JSON errors.</pre>
+     <pre>Base class for all JSON errors.
+
+Class precedence list:
+
+     ‘json-error’, ‘stream-error’, ‘error’, ...</pre>
     </div>
    </div>
    <div class="definition" id="_d22ccfa7-5a0b-5671-9b24-d75f740e2f9f">
@@ -470,7 +478,11 @@ The main differences are listed below.
      </table>
     </div>
     <div class="documentation">
-     <pre>Condition type for a syntax error.</pre>
+     <pre>Condition type for a syntax error.
+
+Class precedence list:
+
+     ‘syntax-error’, ‘json-error’, ...</pre>
     </div>
    </div>
    <div class="definition" id="_3ef79ba2-8685-5161-a84a-aad2c55727b8">
@@ -641,7 +653,10 @@ considered a whitespace character.  Default is false.</pre>
     <div class="documentation">
      <pre>The Lisp data structure used to represent a JSON array.
 Value is either ‘:vector’ or ‘:list’.  The default is to use
-vectors.</pre>
+vectors.
+
+If you want to use lists, you should set the ‘*list-encoder*’
+special variable to the ‘encode-array’ function.</pre>
     </div>
    </div>
    <div class="definition" id="_c07f8f84-9568-549a-aa5e-54cf0b9f222f">
@@ -1545,7 +1560,7 @@ Exceptional situations:
 
    * Signals a ‘program-error’ if JSON objects are parsed as
      hash tables, ‘*allow-duplicate-object-keys*’ is bound to
-     ‘:append’, and a duplicate object member exists.</pre>
+     ‘:append’, and a duplicate object member occurs.</pre>
     </div>
    </div>
    <div class="definition" id="_0326c79c-ef3b-538e-90ff-201c3e79eb9b">

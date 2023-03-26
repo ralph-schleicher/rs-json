@@ -33,13 +33,25 @@ The main differences are listed below.
 encoding-error
    Condition type for an encoding error.
 
+   Class precedence list:
+
+        ‘encoding-error’, ‘json-error’, ...
+
                                                                      [Condition]
 json-error
    Base class for all JSON errors.
 
+   Class precedence list:
+
+        ‘json-error’, ‘stream-error’, ‘error’, ...
+
                                                                      [Condition]
 syntax-error
    Condition type for a syntax error.
+
+   Class precedence list:
+
+        ‘syntax-error’, ‘json-error’, ...
 
                                                               [Special Variable]
 *allow-duplicate-object-keys*
@@ -92,6 +104,9 @@ syntax-error
    The Lisp data structure used to represent a JSON array.
    Value is either ‘:vector’ or ‘:list’.  The default is to use
    vectors.
+
+   If you want to use lists, you should set the ‘*list-encoder*’
+   special variable to the ‘encode-array’ function.
 
                                                               [Special Variable]
 *decode-array-hook*
@@ -383,7 +398,7 @@ parse (source &key junk-allowed)
 
       * Signals a ‘program-error’ if JSON objects are parsed as
         hash tables, ‘*allow-duplicate-object-keys*’ is bound to
-        ‘:append’, and a duplicate object member exists.
+        ‘:append’, and a duplicate object member occurs.
 
                                                                       [Function]
 serialize (destination data &key pretty)
