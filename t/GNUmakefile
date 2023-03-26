@@ -206,12 +206,21 @@ json-test-suite/parser: json-test-suite.asd json-test-suite.lisp bench.lisp
 
 # Say, e.g. ‘make json-test-suite.rs-json.log’
 # or ‘make json-checker.rs-json.log’.
-# TODO: Handle timeouts.
+.PHONY: json-test-suite.log
+json-test-suite.log: $(foreach lib,$(libraries),json-test-suite.$(lib).log)
 json-test-suite.%.log: json-test-suite/parser
-	find json-test-suite/test_parsing -name \*.json | sort | xargs -t -n 1 json-test-suite/parser $* 2>&1 | tee $@
+	$(SBCL) --noinform \
+	--eval '(ql:quickload "rs-json/bench")' \
+	--eval '(rs-json-bench:parser :$* "json-test-suite/test_parsing/")' \
+	--quit 2>&1 | tee $@
 
+.PHONY: json-checker.log
+json-checker.log: $(foreach lib,$(libraries),json-checker.$(lib).log)
 json-checker.%.log: json-test-suite/parser
-	find json-checker -name \*.json | sort | xargs -t -n 1 json-test-suite/parser $* 2>&1 | tee $@
+	$(SBCL) --noinform \
+	--eval '(ql:quickload "rs-json/bench")' \
+	--eval '(rs-json-bench:parser :$* "json-checker/")' \
+	--quit 2>&1 | tee $@
 
 .PHONY: test-suite-clean
 test-suite-clean:
