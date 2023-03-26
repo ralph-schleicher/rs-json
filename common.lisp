@@ -136,18 +136,26 @@ Argument CHAR has to be a character object."
 
 (define-condition json-error (stream-error simple-condition)
   ()
-  (:documentation "Base class for all JSON errors."))
+  (:documentation "Base class for all JSON errors.
+
+Class precedence list:
+
+     ‘json-error’, ‘stream-error’, ‘error’, ..."))
 
 (define-condition syntax-error (json-error)
   ((position
     :accessor syntax-error-position
     :initarg :position
     :initform nil))
-  (:documentation "Condition type for a syntax error.")
+  (:documentation "Condition type for a syntax error.
+
+Class precedence list:
+
+     ‘syntax-error’, ‘json-error’, ...")
   (:report (lambda (condition stream)
 	     (format stream "Invalid JSON syntax")
 	     (alexandria:when-let ((input (stream-error-stream condition)))
-	       (format stream " in ~S" input) 
+	       (format stream " in ~S" input)
 	       (alexandria:when-let ((position (syntax-error-position condition)))
 		 (format stream " at ~S" position)))
 	     (format stream ".")
@@ -159,7 +167,11 @@ Argument CHAR has to be a character object."
 
 (define-condition encoding-error (json-error)
   ()
-  (:documentation "Condition type for an encoding error.")
+  (:documentation "Condition type for an encoding error.
+
+Class precedence list:
+
+     ‘encoding-error’, ‘json-error’, ...")
   (:report (lambda (condition stream)
 	     (format stream "Failed to encode a Lisp object as JSON")
 	     (alexandria:when-let ((output (stream-error-stream condition)))
