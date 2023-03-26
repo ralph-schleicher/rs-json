@@ -40,23 +40,26 @@
   :author "Ralph Schleicher <rs@ralph-schleicher.de>"
   :license "Modified BSD License"
   :version (:read-file-line "VERSION")
-  :depends-on (:alexandria
-	       :iterate
-	       :cl-unicode)
+  :depends-on ("alexandria"
+	       "iterate"
+	       "cl-unicode")
   :serial t
   :components ((:file "packages")
 	       (:file "specials")
 	       (:file "common")
 	       (:file "decoder")
-	       (:file "encoder")))
+	       (:file "encoder"))
+  :in-order-to ((test-op (test-op "rs-json/tests"))))
 
-(defsystem "rs-json/test"
+(defsystem "rs-json/tests"
   :description "Yet another JSON decoder/encoder test suite."
   :author "Ralph Schleicher <rs@ralph-schleicher.de>"
   :license "Modified BSD License"
   :depends-on ("iterate"
 	       "lisp-unit"
-	       "rs-json"))
+	       "rs-json")
+  :components ((:file "tests"))
+  :perform (test-op (o c) (symbol-call :rs-json-tests :main)))
 
 (defsystem "rs-json/bench"
   :description "Yet another JSON decoder/encoder benchmark."
