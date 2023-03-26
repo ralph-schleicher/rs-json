@@ -194,6 +194,7 @@ to their default values."
 	 (*null* :null)
 	 (*maximum-nesting-depth* 1000)
 	 (*allow-unicode-whitespace* nil)
+	 (*allow-unicode-graphic* t)
 	 (*allow-trailing-comma* nil)
 	 (*allow-literal-object-keys* nil)
 	 (*allow-duplicate-object-keys* nil)
