@@ -35,12 +35,11 @@
 
 (in-package :common-lisp-user)
 
-(ql:quickload "rs-json/test")
-
 (defpackage #:de.ralph-schleicher.json-tests
   (:nicknames :rs-json-tests)
-  (:use :common-lisp :iterate
-	:lisp-unit))
+  (:use :common-lisp :iterate :lisp-unit)
+  (:export
+   #:main))
 
 (in-package :rs-json-tests)
 
@@ -123,9 +122,10 @@
 		 (assert-true t)))))))
   ())
 
-(let ((lisp-unit:*print-errors* t)
-      (lisp-unit:*print-failures* t)
-      (lisp-unit:*print-summary* t))
-  (run-tests))
+(defun main (&optional (tests :all))
+  (let ((lisp-unit:*print-errors* t)
+	(lisp-unit:*print-failures* t)
+	(lisp-unit:*print-summary* t))
+    (run-tests tests :rs-json-tests)))
 
 ;; tests.lisp ends here
