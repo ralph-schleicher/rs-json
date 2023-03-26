@@ -41,7 +41,8 @@
   (:export
    #:pass1
    #:citm_catalog
-   #:large))
+   #:large
+   #:parser))
 
 (in-package :rs-json-bench)
 
@@ -283,5 +284,52 @@
 		   #P"t/large.json"
 		   (asdf:system-source-directory "rs-json"))))
     (bench pathname :repeat-count 1 :stream t)))
+
+#+sbcl
+(defun parser (library directory)
+  "Run ‘json-test-suite/parser LIBRARY DIRECTORY/*.json’."
+  (unless (member library *libraries*)
+    (error "Unknown JSON library ‘~(~A~)’~%" library))
+  (setf directory (uiop:ensure-directory-pathname directory))
+  (let* ((test-dir (merge-pathnames #P"t/" (asdf:system-source-directory "rs-json")))
+	 (parser (namestring (merge-pathnames #P"json-test-suite/parser" test-dir)))
+	 (lib-name (string-downcase (string library))))
+    (iter (for pathname :in (sort (uiop:directory-files
+				   (if (uiop:relative-pathname-p directory)
+				       (merge-pathnames directory test-dir)
+				     directory)
+				   (make-pathname :name uiop:*wild* :type "json"))
+				  #'string< :key #'file-namestring))
+	  (for file-name = (let* ((absolute (namestring pathname))
+				  (prefix (namestring test-dir))
+				  (position (length prefix)))
+			     (if (string= absolute prefix :end1 position)
+				 (subseq absolute position)
+			       absolute)))
+	  (for status = (let (proc)
+			  (handler-case
+			      (sb-ext:with-timeout 5
+				(setf proc (sb-ext:run-program
+					    parser (list lib-name file-name)
+					    :directory test-dir
+					    :input nil
+					    :output *error-output*
+					    :wait nil))
+				(sb-ext:process-wait proc)
+				(ecase (sb-ext:process-status proc)
+				  (:exited
+				   (case (sb-ext:process-exit-code proc)
+				     (0 :pass)
+				     (1 :fail)
+				     (t :crash)))
+				  (:signaled
+				   :crash)))
+			    (sb-ext:timeout ()
+			      (ignore-errors
+			       (when (and (sb-ext:process-p proc)
+					  (sb-ext:process-alive-p proc))
+				 (sb-ext:process-kill proc 9)))
+			      :timeout))))
+	  (format t "~&~A;~A;~A~%" library status (file-namestring pathname)))))
 
 ;;; bench.lisp ends here
