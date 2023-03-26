@@ -93,6 +93,23 @@
 		:format-control "Premature end of file."
 		:format-arguments ()))))
 
+(defun %read (stream &optional junk-allowed)
+  "Common entry point for all read functions."
+  (let ((*standard-input* stream)
+	(next-char nil)
+	(nesting-depth 0))
+    ;; Read first character.
+    (next-char*)
+    ;; Parse the JSON value.
+    (let ((data (parse-value)))
+      ;; Check for end of file.
+      (when next-char
+	(unless junk-allowed
+	  (syntax-error))
+	(unread-char next-char stream))
+      ;; Return values.
+      (values data (file-position stream)))))
+
 (defun parse (source &key junk-allowed)
   "Read a JSON value.
 
@@ -129,32 +146,17 @@ Exceptional situations:
    * Signals a ‘program-error’ if JSON objects are parsed as
      hash tables, ‘*allow-duplicate-object-keys*’ is bound to
      ‘:append’, and a duplicate object member exists."
-  (flet ((%read (stream)
-	   (let ((*standard-input* stream)
-		 (next-char nil)
-		 (nesting-depth 0))
-	     ;; Read first character.
-	     (next-char*)
-	     ;; Parse the JSON value.
-	     (let ((data (parse-value)))
-	       ;; Check for end of file.
-	       (when next-char
-		 (unless junk-allowed
-		   (syntax-error))
-		 (unread-char next-char stream))
-	       ;; Return values.
-	       (values data (file-position stream))))))
-    (etypecase source
-      (stream
-       (%read source))
-      (string
-       (with-input-from-string (stream source)
-	 (%read stream)))
-      (pathname
-       (with-open-file (stream source :external-format (uiop:encoding-external-format :utf-8))
-	 (%read stream)))
-      ((member t)
-       (%read *standard-input*)))))
+  (etypecase source
+    (stream
+     (%read source junk-allowed))
+    (string
+     (with-input-from-string (stream source)
+       (%read stream junk-allowed)))
+    (pathname
+     (with-open-file (stream source :external-format (uiop:encoding-external-format :utf-8))
+       (%read stream junk-allowed)))
+    ((member t)
+     (%read *standard-input* junk-allowed))))
 
 (defun parse-value ()
   "Parse any JSON value."
