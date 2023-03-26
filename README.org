@@ -199,8 +199,8 @@ File =citm_catalog.json= has a size of 1.6 MiB and contains a nice mix
 of objects, arrays, strings, and numbers.  All libraries read the file
 contents from a string.  For writing, there are two cases.  Those
 libraries who can write to a stream write to the null device.  The
-other libraries return a string and have to carry the additional
-memory payload.
+other libraries (Jonathan and json) return a string and have to carry
+the additional memory payload.
 
 [[file:./ref/citm_catalog-relative.png]]
 
@@ -208,16 +208,16 @@ memory payload.
 
 Note: Jzon fails to load with Clozure CL.
 
-File =large.json= tests the streaming capabilities of the libraries.
-It is slightly larger than 100 MiB and is read from a stream and
-written to the null device.
+File =large.json= tests the stream I/O capabilities of the libraries.
+It is slightly larger than 100 MiB and is read from a file and written
+to the null device.
 
 [[file:./ref/large-relative.png]]
 
 [[file:./ref/large-absolute.png]]
 
 Notes:
-- Jonathan and jsown can neither read from a stream not write to a
+- Jonathan and jsown can neither read from a stream nor write to a
   stream.
 - CL-JSON fails reading on Clozure CL with the error message “No
   character corresponds to code #xD83D”.
@@ -232,6 +232,6 @@ Notes:
 Results from the [[https://github.com/nst/JSONTestSuite][JSON Parsing Test Suite]]
 can be found [[file:./ref/json-test-suite.html][here]] (HTML)
 or [[file:./ref/json-test-suite.pdf][here]] (PDF).
-Only json-streams, jzon, and RS-JSON seem to be compliant.
-Crashes (red) and timeouts (gray) indicate serious conditions not
-handled by the library, for example stack overflow or out of memory.
+Only json-streams, jzon, and RS-JSON seem to be compliant.  Crashes
+(red) and timeouts (gray) indicate serious conditions not handled by
+the library, for example a stack overflow or out of memory.
