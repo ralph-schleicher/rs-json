@@ -65,7 +65,10 @@ function is used as the actual object value.")
 (defvar *array-as* :vector
   "The Lisp data structure used to represent a JSON array.
 Value is either ‘:vector’ or ‘:list’.  The default is to use
-vectors.")
+vectors.
+
+If you want to use lists, you should set the ‘*list-encoder*’
+variable to ‘encode-array’.")
 (declaim (type (member :vector :list) *array-as*))
 
 (defvar *decode-array-hook* nil
