@@ -890,11 +890,9 @@ falsity and the empty list.</pre>
 Value is either ‘:hash-table’, ‘:alist’, or ‘:plist’.  The default
 is to use alists.
 
-For hash tables and alists, object keys are compared with ‘equal’,
-i.e. using strings as object keys works as expected.  For plists,
-object keys are compared with ‘eql’, i.e. you should also set
-‘*object-key-decoder*’ to a function returning a symbol when
-representing objects as plists.</pre>
+Object keys are compared with ‘equal’, i.e. using strings as object
+keys works as expected.  This also holds when representing objects
+as plists.</pre>
     </div>
    </div>
    <div class="definition" id="_f9821e2d-a0f0-5c59-a438-cb4143c9b08d">
@@ -920,7 +918,20 @@ Default is the ‘identity’ function.
 
 The function is called with one argument, the key string.  The value
 of the function is used as the key for the data structure produced.
-See also the ‘*object-as*’ special variable.</pre>
+See also the ‘*object-as*’ special variable.
+
+If you want to use symbols as objects keys, the simplest solution is
+to intern them into the current package.
+
+     (let ((*object-key-decoder* #'intern)
+           (*encode-symbol-hook* :preserve))
+       (parse "{\"foo\" : 42}"))
+
+      ⇒ ((|foo| . 42))
+
+Using symbols safes some memory if you have many objects with the
+same keys.  It may also speed up object member access.  But please
+remember: don't speculate, profile!</pre>
     </div>
    </div>
    <div class="definition" id="_a6d3ad1a-fc80-5b40-b490-9cb353e9719f">
@@ -1553,10 +1564,6 @@ Exceptional situations:
 
    * May signal an ‘arithmetic-error’ if a JSON number can not
      be represented as a Lisp number.
-
-   * Signals a ‘program-error’ if JSON objects are parsed as
-     plists and the return value of ‘*object-key-decoder*’
-     is not a symbol, number, or character.
 
    * Signals a ‘program-error’ if JSON objects are parsed as
      hash tables, ‘*allow-duplicate-object-keys*’ is bound to
