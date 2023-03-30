@@ -168,9 +168,9 @@ function plot1(ax, lisp, lib, data, lim, tag, name, loc)
   for i = 1:numel(lib)
     for j = 1:numel(lisp)
       if j == 1
-        x = i - 0.7/5;
+        x = i - 0.7 / 5;
       else
-        x = i + 0.7/5;
+        x = i + 0.7 / 5;
       end
       if isnan(data(i, j))
         s = 'N/A';
@@ -179,6 +179,8 @@ function plot1(ax, lisp, lib, data, lim, tag, name, loc)
         s = sprintf('%G', xround(data(i, j), p));
         y = lim;
       else
+        s = sprintf('%G', xround(data(i, j), p / 10));
+        y = data(i, j);
         s = '';
       end
       if ~ isempty(s)
