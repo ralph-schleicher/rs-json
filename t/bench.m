@@ -138,7 +138,7 @@ function plot1(ax, lisp, lib, data, lim, tag, name, loc)
 
   axes(ax);
 
-  h = bar(1:numel(lib), xmin(data, lim), 0.7);
+  h = bar(1:numel(lib), xnanmin(data, lim), 0.7);
   set(h(1), 'FaceColor', color_blue);
   set(h(2), 'FaceColor', color_yellow);
 
@@ -193,7 +193,7 @@ function plot1(ax, lisp, lib, data, lim, tag, name, loc)
     end
   end
 
-function c = xmin(a, b)
+function c = xnanmin(a, b)
 
   k = isnan(a) | isnan(b);
   c = min(a, b);
