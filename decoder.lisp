@@ -140,10 +140,6 @@ Exceptional situations:
      be represented as a Lisp number.
 
    * Signals a ‘program-error’ if JSON objects are parsed as
-     plists and the return value of ‘*object-key-decoder*’
-     is not a symbol, number, or character.
-
-   * Signals a ‘program-error’ if JSON objects are parsed as
      hash tables, ‘*allow-duplicate-object-keys*’ is bound to
      ‘:append’, and a duplicate object member occurs."
   (etypecase source
@@ -211,9 +207,12 @@ Exceptional situations:
 		  (:alist
 		   (assoc key object :test #'equal))
 		  (:plist
-		   (unless (typep key '(or symbol number character))
-		     (error 'program-error))
-		   (nth-value 2 (get-properties object (list key))))))
+		   ;; Like ‘(nth-value 2 (get-properties object (list key)))’
+		   ;; but without consing.  Keys can be strings, too.
+		   (do ((plist object (cddr plist)))
+		       ((null plist) nil)
+		     (when (equal (car plist) key)
+		       (return plist))))))
       (when (and dup (not *allow-duplicate-object-keys*))
         (syntax-error "Duplicate object key ‘~A’." key-string))
       ;; Read the key/value separator.

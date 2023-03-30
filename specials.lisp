@@ -41,18 +41,29 @@ Default is the ‘identity’ function.
 
 The function is called with one argument, the key string.  The value
 of the function is used as the key for the data structure produced.
-See also the ‘*object-as*’ special variable.")
+See also the ‘*object-as*’ special variable.
+
+If you want to use symbols as objects keys, the simplest solution is
+to intern them into the current package.
+
+     (let ((*object-key-decoder* #'intern)
+           (*encode-symbol-hook* :preserve))
+       (parse \"{\\\"foo\\\" : 42}\"))
+
+      ⇒ ((|foo| . 42))
+
+Using symbols safes some memory if you have many objects with the
+same keys.  It may also speed up object member access.  But please
+remember: don't speculate, profile!")
 
 (defvar *object-as* :alist
   "The Lisp data structure used to represent a JSON object.
 Value is either ‘:hash-table’, ‘:alist’, or ‘:plist’.  The default
 is to use alists.
 
-For hash tables and alists, object keys are compared with ‘equal’,
-i.e. using strings as object keys works as expected.  For plists,
-object keys are compared with ‘eql’, i.e. you should also set
-‘*object-key-decoder*’ to a function returning a symbol when
-representing objects as plists.")
+Object keys are compared with ‘equal’, i.e. using strings as object
+keys works as expected.  This also holds when representing objects
+as plists.")
 (declaim (type (member :hash-table :alist :plist) *object-as*))
 
 (defvar *decode-object-hook* nil
