@@ -258,7 +258,9 @@ Exceptional situations:
 (defun parse-array ()
   "Parse a JSON array."
   (let ((array (when (eq *array-as* :vector)
-		 (make-array 10 :adjustable t :fill-pointer 0)))
+		 ;; Start with an almost empty array to reduce
+		 ;; initial memory allocation.
+		 (make-array 1 :adjustable t :fill-pointer 0)))
 	(emptyp t) element)
     ;; Discard opening bracket.
     (next-char*)
