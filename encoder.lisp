@@ -286,8 +286,10 @@ pair of an object member."
 (defun object-from-hash-table (hash-table)
   "Encode hash table HASH-TABLE as a JSON object."
   (declare (type hash-table hash-table))
-  (with-object
-    (maphash #'object-member hash-table)))
+  (if (zerop (hash-table-count hash-table))
+      (with-object)
+    (with-object
+      (maphash #'object-member hash-table))))
 
 (defun object-from-alist (alist)
   "Encode associated list ALIST as a JSON object."
@@ -315,7 +317,7 @@ Mostly useful for binding the ‘*list-encoder*’ special variable."
   (check-type data (or list hash-table))
   (etypecase data
     (null
-     (object-from-alist ()))
+     (with-object))
     (list
      (case *object-as*
        (:alist
@@ -370,11 +372,13 @@ The BODY calls ‘(array-element VALUE)’ to encode an array element."
     (with-delimiters #\[ #\]
       (funcall body))))
 
-(defun array-from-sequence (sequence)
-  "Encode sequence SEQUENCE as a JSON array."
-  (declare (type sequence sequence))
-  (with-array
-    (map nil #'array-element sequence)))
+(defun array-from-vector (vector)
+  "Encode vector VECTOR as a JSON array."
+  (declare (type vector vector))
+  (if (zerop (length vector))
+      (with-array)
+    (with-array
+      (map nil #'array-element vector))))
 
 (defun encode-array (data)
   "Encode Lisp data as a JSON array.
@@ -384,11 +388,18 @@ Argument DATA is the Lisp data to be serialized as a JSON array.
 
 Mostly useful for binding ‘*list-encoder*’."
   (check-type data sequence)
-  (array-from-sequence data))
+  (etypecase data
+    (null
+     (with-array))
+    (list
+     (with-array
+       (map nil #'array-element data)))
+    (vector
+     (array-from-vector data))))
 
 (defmethod encode ((data vector))
   "Encode a vector as a JSON array."
-  (array-from-sequence data))
+  (array-from-vector data))
 
 ;;; Strings
 
