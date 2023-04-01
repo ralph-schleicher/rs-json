@@ -39,6 +39,8 @@
   (:nicknames :rs-json-bench)
   (:use :common-lisp :iterate)
   (:export
+   #:bench
+   #:hap
    #:pass1
    #:citm_catalog
    #:large
@@ -315,6 +317,11 @@
 		      "~A: error (~A)~%~A~&"
 		      (namestring pathname) (type-of condition) condition)))
 	  ())))
+
+(defun hap (pathname &rest options &key &allow-other-keys)
+  (apply #'bench pathname
+	 :libraries '(:rs-json-h :rs-json-a :rs-json-p)
+	 options))
 
 ;;; Program entry points.
 
