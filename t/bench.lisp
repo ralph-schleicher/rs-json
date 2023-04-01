@@ -159,6 +159,57 @@
 
   (defmethod %write ((library (eql :rs-json)) data)
     (rs-json:serialize *standard-output* data))
+
+  (defun %read-rs-json-h (source)
+    (let ((rs-json:*object-as* :hash-table))
+      (rs-json:parse source)))
+
+  (defmethod %read ((library (eql :rs-json-h)) (source string))
+    (%read-rs-json-h source))
+
+  (defmethod %read ((library (eql :rs-json-h)) (source stream))
+    (%read-rs-json-h source))
+
+  (defmethod %read ((library (eql :rs-json-h)) (source pathname))
+    (%read-rs-json-h source))
+
+  (defmethod %write ((library (eql :rs-json-h)) data)
+    (let ((rs-json:*object-as* :hash-table))
+      (rs-json:serialize *standard-output* data)))
+
+  (defun %read-rs-json-a (source)
+    (let ((rs-json:*object-as* :alist))
+      (rs-json:parse source)))
+
+  (defmethod %read ((library (eql :rs-json-a)) (source string))
+    (%read-rs-json-a source))
+
+  (defmethod %read ((library (eql :rs-json-a)) (source stream))
+    (%read-rs-json-a source))
+
+  (defmethod %read ((library (eql :rs-json-a)) (source pathname))
+    (%read-rs-json-a source))
+
+  (defmethod %write ((library (eql :rs-json-a)) data)
+    (let ((rs-json:*object-as* :alist))
+      (rs-json:serialize *standard-output* data)))
+
+  (defun %read-rs-json-p (source)
+    (let ((rs-json:*object-as* :plist))
+      (rs-json:parse source)))
+
+  (defmethod %read ((library (eql :rs-json-p)) (source string))
+    (%read-rs-json-p source))
+
+  (defmethod %read ((library (eql :rs-json-p)) (source stream))
+    (%read-rs-json-p source))
+
+  (defmethod %read ((library (eql :rs-json-p)) (source pathname))
+    (%read-rs-json-p source))
+
+  (defmethod %write ((library (eql :rs-json-p)) data)
+    (let ((rs-json:*object-as* :plist))
+      (rs-json:serialize *standard-output* data)))
   ())
 
 (progn
