@@ -95,7 +95,11 @@
 
 (defun %read (stream &optional junk-allowed)
   "Common entry point for all read functions."
-  (let ((*standard-input* stream)
+  ;; Using a non-volatile scratch buffer for parsing numbers
+  ;; and literals reduces running time by approximately 10 %
+  ;; and memory requirements by 20 % on file ‘large.json’.
+  (let ((*scratch* (make-scratch-buffer))
+	(*standard-input* stream)
 	(next-char nil)
 	(nesting-depth 0))
     ;; Read first character.
@@ -385,93 +389,90 @@ Exceptional situations:
   ;; The idea is to read the number into a string buffer and report
   ;; syntax errors as soon as possible.  Once the number is read, use
   ;; the Lisp reader to convert it into a Lisp object.
-  (let ((number (with-output-to-string (buffer)
-		  (labels ((outc (char)
-			     "Append a character to the output buffer."
-			     (write-char char buffer))
-			   (read-digits ()
-			     "Read a sequence of digits."
-			     (let ((length 0))
-			       (loop
-				 (unless (and next-char
-					      (standard-char-p next-char)
-					      (digit-char-p next-char))
-				   (return))
-				 (incf length)
-				 (outc next-char)
-				 (next-char nil))
-			       length)))
-		    ;; See ‘read-number:read-float’.
-		    (prog ((digits 0)
-			   (strictp (not *allow-lax-numbers*)))
-		       ;; Optional number sign.
-		       (cond ((char= next-char #\-)
-			      (outc #\-)
-			      (next-char))
-			     ((char= next-char #\+)
-			      (when strictp
-				(syntax-error "Number starts with an explicit plus sign."))
-			      (next-char)))
-		       ;; Integer part.
-		       (cond ((char= next-char #\0)
-			      (incf digits)
-			      (outc #\0)
-			      (next-char nil))
-			     (t
-			      (incf digits (read-digits))
-			      (when (and strictp (zerop digits))
-				(syntax-error "Integer part of a number must not be empty."))))
-		       (when (null next-char)
-			 (return))
-		       ;; Optional fractional part.
-		       (when (char= next-char #\.)
-			 (outc #\.)
-			 ;; Skip decimal point.  If the integer part
-			 ;; is empty, the fractional part must be not
-			 ;; empty.
-			 (next-char (or strictp (zerop digits)))
-			 (when (null next-char)
-			   ;; Lisp reads ‘1.’ as an integer.
-			   (outc #\0)
-			   (return))
-			 ;; Fractional part.
-			 (cond ((and (standard-char-p next-char)
-				     (digit-char-p next-char))
-				(incf digits (read-digits)))
-			       (t
-				(when (or strictp (zerop digits))
-				  (syntax-error "Fractional part of a number must not be empty."))
-				(outc #\0)))
-			 (when (null next-char)
-			   (return)))
-		       ;; Need at least one digit.
-		       (when (zerop digits)
-			 (syntax-error "Significant of a number must consist of at least one digit."))
-		       ;; Optional exponent part.
-		       (when (or (char= next-char #\E)
-				 (char= next-char #\e))
-			 (outc next-char)
-			 ;; Skip exponent marker.
-			 (next-char)
-			 ;; Exponent.
-			 (cond ((char= next-char #\-)
-				(outc #\-)
-				(next-char))
-			       ((char= next-char #\+)
-				(next-char)))
-			 (when (zerop (read-digits))
-			   (syntax-error "Exponent of a number must not be empty."))))))))
+  (with-scratch-buffer ()
+    (labels ((read-digits ()
+	       "Read a sequence of digits."
+	       (let ((length 0))
+		 (loop
+		   (unless (and next-char
+				(standard-char-p next-char)
+				(digit-char-p next-char))
+		     (return))
+		   (incf length)
+		   (outc next-char)
+		   (next-char nil))
+		 length)))
+      ;; See ‘read-number:read-float’.
+      (prog ((digits 0)
+	     (strictp (not *allow-lax-numbers*)))
+	 ;; Optional number sign.
+	 (cond ((char= next-char #\-)
+		(outc #\-)
+		(next-char))
+	       ((char= next-char #\+)
+		(when strictp
+		  (syntax-error "Number starts with an explicit plus sign."))
+		(next-char)))
+	 ;; Integer part.
+	 (cond ((char= next-char #\0)
+		(incf digits)
+		(outc #\0)
+		(next-char nil))
+	       (t
+		(incf digits (read-digits))
+		(when (and strictp (zerop digits))
+		  (syntax-error "Integer part of a number must not be empty."))))
+	 (when (null next-char)
+	   (return))
+	 ;; Optional fractional part.
+	 (when (char= next-char #\.)
+	   (outc #\.)
+	   ;; Skip decimal point.  If the integer part
+	   ;; is empty, the fractional part must be not
+	   ;; empty.
+	   (next-char (or strictp (zerop digits)))
+	   (when (null next-char)
+	     ;; Lisp reads ‘1.’ as an integer.
+	     (outc #\0)
+	     (return))
+	   ;; Fractional part.
+	   (cond ((and (standard-char-p next-char)
+		       (digit-char-p next-char))
+		  (incf digits (read-digits)))
+		 (t
+		  (when (or strictp (zerop digits))
+		    (syntax-error "Fractional part of a number must not be empty."))
+		  (outc #\0)))
+	   (when (null next-char)
+	     (return)))
+	 ;; Need at least one digit.
+	 (when (zerop digits)
+	   (syntax-error "Significant of a number must consist of at least one digit."))
+	 ;; Optional exponent part.
+	 (when (or (char= next-char #\E)
+		   (char= next-char #\e))
+	   (outc next-char)
+	   ;; Skip exponent marker.
+	   (next-char)
+	   ;; Exponent.
+	   (cond ((char= next-char #\-)
+		  (outc #\-)
+		  (next-char))
+		 ((char= next-char #\+)
+		  (next-char)))
+	   (when (zerop (read-digits))
+	     (syntax-error "Exponent of a number must not be empty.")))))
     (prog1
 	(handler-case
 	    (let ((*read-default-float-format* 'double-float))
-	      (read-from-string number))
+	      (read-from-string (current-buffer) t nil :start (point-min) :end (point-max)))
 	  (arithmetic-error (condition)
 	    ;; Re-throw the error.
 	    (error condition))
 	  (error ()
 	    (error 'arithmetic-error
 		   :operation 'read-from-string
-		   :operands (list number))))
+		   :operands (list (buffer-string)))))
       ;; Skip trailing whitespace.
       (when (and next-char (whitespace-char-p next-char))
 	(next-char* nil)))))
@@ -486,42 +487,43 @@ Return either the Lisp value of the literal name token or the identifier
 name (a string)."
   ;; The idea is to parse a JavaScript identifier name and then check
   ;; whether or not it is a literal name token.
-  (let ((name (with-output-to-string (buffer)
-		(labels ((outc (char)
-			   "Append a character to the output buffer."
-			   (write-char char buffer)))
-		  ;; Identifier names do not start with a digit.
-		  (unless (and (or (alpha-char-p next-char)
-				   (char= next-char #\$)
-				   (char= next-char #\_)))
-		    (syntax-error))
-		  (loop
-		    (outc next-char)
-		    (next-char nil)
-		    (unless (and next-char
-				 (or (alpha-char-p next-char)
-				     (digit-char-p next-char)
-				     (char= next-char #\$)
-				     (char= next-char #\_)))
-		      (return)))))))
-    (prog1
-	(if (not identifierp)
-	    ;; Expect a literal name token.
-	    (cond ((string= name "true")
-		   *true*)
-		  ((string= name "false")
-		   *false*)
-		  ((string= name "null")
-		   *null*)
-		  ((syntax-error "Unknown literal name token ‘~A’." name)))
-	  ;; Accept any identifier name.
-	  (if (or (string= name "true")
-		  (string= name "false")
-		  (string= name "null"))
-	      (syntax-error "Literal name token ‘~A’ is not a valid identifier name." name)
-	    name))
-      ;; Skip trailing whitespace.
-      (when (and next-char (whitespace-char-p next-char))
-	(next-char* nil)))))
+  (with-scratch-buffer ()
+    ;; Identifier names do not start with a digit.
+    (unless (or (alpha-char-p next-char)
+		(char= next-char #\$)
+		(char= next-char #\_))
+      (syntax-error))
+    (loop
+      (outc next-char)
+      (next-char nil)
+      (unless (and next-char
+		   (or (alpha-char-p next-char)
+		       (digit-char-p next-char)
+		       (char= next-char #\$)
+		       (char= next-char #\_)))
+	(return)))
+    (let ((buffer (current-buffer))
+	  (start (point-min))
+	  (end (point-max)))
+      (prog1
+	  (if (not identifierp)
+	      ;; Expect a literal name token.
+	      (cond ((string= buffer "true"  :start1 start :end1 end)
+		     *true*)
+		    ((string= buffer "false" :start1 start :end1 end)
+		     *false*)
+		    ((string= buffer "null"  :start1 start :end1 end)
+		     *null*)
+		    ((syntax-error "Unknown literal name token ‘~A’." (buffer-string))))
+	    ;; Accept any identifier name.
+	    (let ((name (buffer-string)))
+	      (if (or (string= name "true")
+		      (string= name "false")
+		      (string= name "null"))
+		  (syntax-error "Literal name token ‘~A’ is not a valid identifier name." name)
+		name)))
+	;; Skip trailing whitespace.
+	(when (and next-char (whitespace-char-p next-char))
+	  (next-char* nil))))))
 
 ;;; decoder.lisp ends here
