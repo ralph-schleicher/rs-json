@@ -183,4 +183,71 @@ Class precedence list:
 		      (simple-condition-format-control condition)
 		      (simple-condition-format-arguments condition))))))
 
+(defvar *scratch* nil
+  "The default scratch buffer.")
+
+(defparameter initial-scratch-buffer-size 200
+  "The initial number of characters allocated for a scratch buffer.
+Value has to be a positive integer.")
+(declaim (type (integer 1) initial-scratch-buffer-size))
+
+(defparameter scratch-buffer-growth-rate 2.0
+  "The number of characters to be added if a scratch buffer has to grow.
+Quite similar to the rehash size of hash tables.")
+(declaim (type (or (integer 1) (float (1.0))) scratch-buffer-growth-rate))
+
+(defun make-scratch-buffer (&optional (size initial-scratch-buffer-size))
+  "Create a scratch buffer."
+  (check-type size (integer 0))
+  (make-array size :element-type 'character :adjustable t :fill-pointer 0))
+
+(defun scratch-buffer-p (&optional (buffer *scratch*))
+  "Return true if BUFFER is a scratch buffer."
+  (and (stringp buffer)
+       (adjustable-array-p buffer)
+       (array-has-fill-pointer-p buffer)))
+
+(defmacro with-scratch-buffer ((&optional buffer) &body body)
+  "Establish a new region in a scratch buffer."
+  (let ((buf (gensym "BUF"))
+	(mark (gensym "MARK"))
+	(incr (gensym "INCR")))
+    `(let ((,buf (or ,buffer *scratch*)))
+       (unless (scratch-buffer-p ,buf)
+	 (error 'type-error :datum ,buf :expected-type 'string))
+       ;; Save the current buffer position and predetermine the number
+       ;; of elements for an array extension.
+       (let ((,mark (length ,buf))
+	     (,incr (max (etypecase scratch-buffer-growth-rate
+			   (integer
+			    scratch-buffer-growth-rate)
+			   (float
+			    (ceiling
+			     (* (1- scratch-buffer-growth-rate)
+				(array-total-size ,buf)))))
+			 initial-scratch-buffer-size)))
+	 (flet ((current-buffer ()
+		  "Return the scratch buffer."
+		  ,buf)
+		(buffer-string ()
+		  "Return a copy of the scratch buffer contents."
+		  (subseq ,buf ,mark (length ,buf)))
+		(displaced-buffer-string ()
+		  "Return a displaced array to the scratch buffer contents."
+		  (make-array (- (length ,buf) ,mark) :element-type 'character :displaced-to ,buf :displaced-index-offset ,mark))
+		(point-min ()
+		  "Return the beginning of the scratch buffer."
+		  ,mark)
+		(point-max ()
+		  "Return the end of the scratch buffer."
+		  (length ,buf))
+		(outc (char)
+		  "Append a character to the scratch buffer."
+		  (declare (type character char))
+		  (vector-push-extend char ,buf ,incr)))
+	   (declare (inline current-buffer buffer-string displaced-buffer-string point-min point-max outc))
+	   (unwind-protect
+		(progn ,@body)
+	     (setf (fill-pointer ,buf) ,mark)))))))
+
 ;;; common.lisp ends here
