@@ -68,7 +68,11 @@ Secondary value is true if the object member exists."
 
 (defun okey (name)
   "Return the object key symbol for the string NAME."
-  (intern name *package*))
+  (intern name :rs-json-tests))
+
+(defun rtt (string)
+  "Do a round-trip test."
+  (assert-equality #'string= string (rs-json:serialize nil (rs-json:parse string)) string))
 
 (define-test objects
   ;; Check ‘*object-as*’ and ‘*object-key-decoder*’.
@@ -167,6 +171,30 @@ Secondary value is true if the object member exists."
       (let ((rs-json:*allow-duplicate-object-keys* nil))
 	(assert-error 'rs-json:syntax-error (rs-json:parse source) source)))
     ()))
+
+(define-test round-trip
+  ;; Empty compound structures.
+  (iter (for elem :in '(:hash-table :alist :plist))
+	(let ((rs-json:*object-as* elem)
+	      (rs-json:*list-encoder* #'rs-json:encode-object))
+	  (rtt "{}")))
+  (iter (for elem :in '(:vector :list))
+	(let ((rs-json:*array-as* elem)
+	      (rs-json:*list-encoder* #'rs-json:encode-array))
+	  (rtt "[]")))
+  ;; Literals.
+  (iter (for elem :in '(:true t))
+	(let ((rs-json:*true* elem))
+	  (rtt "true")))
+  (iter (for elem :in '(:false nil))
+	(let ((rs-json:*false* elem)
+	      (rs-json:*nil-encoder* #'rs-json:encode-false))
+	  (rtt "false")))
+  (iter (for elem :in '(:null nil))
+	(let ((rs-json:*null* elem)
+	      (rs-json:*nil-encoder* #'rs-json:encode-null))
+	  (rtt "null")))
+  ())
 
 (defun save-parse (source &rest options &key &allow-other-keys)
   (let ((status :fail) data)
