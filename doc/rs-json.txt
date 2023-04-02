@@ -302,7 +302,8 @@ encode ((data character))
                                                                         [Method]
 encode ((data symbol))
    Encode a symbol as a JSON string.
-   Affected by ‘*encode-symbol-hook*’.
+   Affected by ‘*true*’, ‘*false*’, ‘*null*’, ‘*encode-symbol-hook*’,
+   and ‘*print-case*’.
 
    Exceptional situations:
 
