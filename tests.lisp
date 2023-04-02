@@ -74,6 +74,10 @@ Secondary value is true if the object member exists."
   "Do a round-trip test."
   (assert-equality #'string= string (serialize nil (parse string)) string))
 
+(defun irtt (data)
+  "Do an inverse round-trip test."
+  (assert-equal data (parse (serialize nil data)) data))
+
 (define-test objects
   ;; Check ‘*object-as*’ and ‘*object-key-decoder*’.
   (let ((source "{\"foo\" : 42, \"bar\" : \"baz\"}"))
@@ -232,6 +236,45 @@ Secondary value is true if the object member exists."
 	  (assert-equal "null" (serialize nil value) value)))
   ())
 
+(define-test unicode-whitespace
+  ;; Check ‘*allow-unicode-whitespace*’.
+  (let ((*allow-unicode-whitespace* t))
+    ;; No-break space around the array, em-space, en-space, figure
+    ;; space, and narrow no-break space inside the array.
+    (assert-equalp #("m" "n" 0 "'") (parse " [ \"m\" , \"n\" , 0 , \"'\" ] ")))
+  ;; Likewise inside a JSON string.
+  (let ((string " [ m , n , 0 , ' ] "))
+    (assert-equal string (parse (format nil "\"~A\"" string)))))
+
+(define-test trailing-comma
+  ;; Check ‘*allow-trailing-comma*’.
+  (let ((*allow-trailing-comma* t))
+    (assert-equal '(("a" . 1) ("b" . 2)) (parse "{ \"a\" : 1, \"b\" : 2, }"))
+    (assert-equalp #("a" 1 "b" 2) (parse "[ \"a\", 1, \"b\", 2, ]")))
+  ;; Other comma related errors.
+  (assert-error 'syntax-error (parse ", 0"))
+  (assert-error 'syntax-error (parse "0, "))
+  (assert-error 'syntax-error (parse "{, \"a\" : 1}"))
+  (assert-error 'syntax-error (parse "{\"a\" : 1, }"))
+  (assert-error 'syntax-error (parse "[, 1]"))
+  (assert-error 'syntax-error (parse "[1, ]"))
+  ())
+
+(define-test literal-object-keys
+  ;; Check ‘*allow-literal-object-keys*’.
+  (let ((*allow-literal-object-keys* t))
+    (assert-equal '(("foo" . 1) ("bar" . 2)) (parse "{foo : 1, bar : 2}"))
+    (assert-equal '(("_foo" . 1) ("$bar" . 2)) (parse "{_foo : 1, $bar : 2}"))
+    (assert-equal '(("foo_" . 1) ("bar$" . 2)) (parse "{foo_ : 1, bar$ : 2}"))
+    (assert-equal '(("foo_bar" . 1)) (parse "{foo_bar : 1}"))
+    (assert-equal '(("foo$bar" . 1)) (parse "{foo$bar : 1}"))
+    (assert-equal '(("_" . 1) ("$" . 2)) (parse "{_ : 1, $ : 2}"))
+    (assert-error 'syntax-error (parse "{#foo : 1}"))
+    (assert-error 'syntax-error (parse "{f#oo : 1}"))
+    (assert-error 'syntax-error (parse "{foo# : 1}")))
+  (assert-error 'syntax-error (parse  "{foo : 1, bar : 2}"))
+  ())
+
 (define-test duplicate-object-keys
   ;; Check ‘*allow-duplicate-object-keys*’.
   (let ((source "{\"a\" : 1, \"a\" : 2, \"a\" : 3}"))
@@ -327,6 +370,16 @@ Secondary value is true if the object member exists."
 	(let ((*list-encoder* #'encode-array)
 	      (*array-as* elem))
 	  (rtt "[]")))
+  ;; Numbers.
+  (iter (for elem :in (list 0 1 42D0 -42D0 0.23D0 -0.23D0 pi))
+	(irtt elem))
+  (iter (for elem :in (list least-positive-double-float
+			    least-negative-double-float
+			    most-positive-double-float
+			    most-negative-double-float
+			    double-float-epsilon
+			    double-float-negative-epsilon))
+	(irtt elem))
   ;; Literals.
   (iter (for elem :in '(:true true t))
 	(let ((*true* elem))
