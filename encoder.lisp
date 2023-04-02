@@ -401,6 +401,47 @@ Mostly useful for binding ‘*list-encoder*’."
   "Encode a vector as a JSON array."
   (array-from-vector data))
 
+;;; Literals
+
+(defsubst encode-true (data)
+  "Constantly print a JSON ‘true’ value."
+  (declare (ignore data))
+  (write-string "true"))
+
+(defsubst encode-false (data)
+  "Constantly print a JSON ‘false’ value.
+
+Mostly useful for binding ‘*nil-encoder*’."
+  (declare (ignore data))
+  (write-string "false"))
+
+(defsubst encode-null (data)
+  "Constantly print a JSON ‘null’ value.
+
+Mostly useful for binding ‘*nil-encoder*’."
+  (declare (ignore data))
+  (write-string "null"))
+
+(defmethod encode ((data (eql :true)))
+  "Encode ‘:true’ as a JSON ‘true’ value."
+  (encode-true data))
+
+(defmethod encode ((data (eql :false)))
+  "Encode ‘:false’ as a JSON ‘false’ value."
+  (encode-false data))
+
+(defmethod encode ((data (eql :null)))
+  "Encode ‘:null’ as a JSON ‘null’ value."
+  (encode-null data))
+
+(defmethod encode ((data (eql t)))
+  "Encode ‘t’ as a JSON ‘true’ value."
+  (encode-true data))
+
+(defmethod encode ((data (eql nil)))
+  "Encode ‘nil’ by calling ‘*nil-encoder*’."
+  (funcall *nil-encoder* data))
+
 ;;; Strings
 
 (defun char-invert (char)
@@ -527,47 +568,6 @@ Affected by ‘*read-default-float-format*’."
   "Encode a floating-point number as a JSON number."
   (let ((*read-default-float-format* (type-of data)))
     (princ data)))
-
-;;; Literals
-
-(defsubst encode-true (data)
-  "Constantly print a JSON ‘true’ value."
-  (declare (ignore data))
-  (write-string "true"))
-
-(defsubst encode-false (data)
-  "Constantly print a JSON ‘false’ value.
-
-Mostly useful for binding ‘*nil-encoder*’."
-  (declare (ignore data))
-  (write-string "false"))
-
-(defsubst encode-null (data)
-  "Constantly print a JSON ‘null’ value.
-
-Mostly useful for binding ‘*nil-encoder*’."
-  (declare (ignore data))
-  (write-string "null"))
-
-(defmethod encode ((data (eql :true)))
-  "Encode ‘:true’ as a JSON ‘true’ value."
-  (encode-true data))
-
-(defmethod encode ((data (eql :false)))
-  "Encode ‘:false’ as a JSON ‘false’ value."
-  (encode-false data))
-
-(defmethod encode ((data (eql :null)))
-  "Encode ‘:null’ as a JSON ‘null’ value."
-  (encode-null data))
-
-(defmethod encode ((data (eql t)))
-  "Encode ‘t’ as a JSON ‘true’ value."
-  (encode-true data))
-
-(defmethod encode ((data (eql nil)))
-  "Encode ‘nil’ by calling ‘*nil-encoder*’."
-  (funcall *nil-encoder* data))
 
 ;;; Miscellaneous
 
