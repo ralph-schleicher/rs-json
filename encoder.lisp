@@ -448,9 +448,25 @@ Mostly useful for binding ‘*list-encoder*’."
     (iter (for char :in-string string)
 	  (string-char char))))
 
+(defun string-from-symbol (symbol &optional (char-encoder #'identity))
+  "Encode symbol SYMBOL as a JSON string."
+  (declare (type symbol symbol))
+  (with-delimiters #\" #\"
+    (iter (for char :in-string (symbol-name symbol))
+	  (string-char (funcall char-encoder char)))))
+
 (defmethod encode ((data string))
   "Encode a string as a JSON string."
   (string-from-string data))
+
+(defun char-invert (char)
+  "Return CHAR with inverted case if that is possible."
+  (declare (type character char))
+  (or (and (lower-case-p char)
+	   (char-upcase char))
+      (and (upper-case-p char)
+	   (char-downcase char))
+      char))
 
 (defmethod encode ((data symbol))
   "Encode a symbol as a JSON string.
@@ -467,30 +483,22 @@ Exceptional situations:
 	 (encode-false data))
 	((eq data *null*)
 	 (encode-null data))
-	((string-from-string
-	  (case (or *encode-symbol-hook* *print-case*)
-	    (:upcase
-	     (string-upcase (symbol-name data)))
-	    (:downcase
-	     (string-downcase (symbol-name data)))
-	    (:capitalize
-	     (string-capitalize (symbol-name data)))
-	    (:preserve
-	     (symbol-name data))
-	    (:invert
-	     (with-output-to-string (stream)
-	       (iter (for char :in-string (symbol-name data))
-		     (write-char (or (and (lower-case-p char)
-					  (char-upcase char))
-				     (and (upper-case-p char)
-					  (char-downcase char))
-				     char)
-				 stream))))
-	    (t
-	     (let ((string (funcall *encode-symbol-hook* data)))
-	       (unless (stringp string)
-		 (error 'program-error))
-	       string)))))))
+	((case (or *encode-symbol-hook* *print-case*)
+	   (:upcase
+	    (string-from-symbol data #'char-upcase))
+	   (:downcase
+	    (string-from-symbol data #'char-downcase))
+	   (:capitalize ;mostly irrelevant
+	    (string-from-string (string-capitalize (symbol-name data))))
+	   (:preserve
+	    (string-from-string (symbol-name data)))
+	   (:invert
+	    (string-from-symbol data #'char-invert))
+	   (t
+	    (let ((string (funcall *encode-symbol-hook* data)))
+	      (unless (stringp string)
+		(error 'program-error))
+	      (string-from-string string)))))))
 
 (defmethod encode ((data character))
   "Encode a character as a JSON string."
