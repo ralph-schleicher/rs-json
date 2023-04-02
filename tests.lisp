@@ -119,6 +119,87 @@ Secondary value is true if the object member exists."
       (assert-equal "baz" (nth 1 data) data))
     ()))
 
+(define-test numbers
+  ;; Integers.
+  (assert-equal 0 (parse "0"))
+  (assert-equal 1 (parse "1"))
+  (assert-equal 42 (parse "42"))
+  (assert-equal 4223 (parse "4223"))
+  ;; Signed numbers.
+  (assert-equal 0 (parse "-0"))
+  (assert-equal -42 (parse "-42"))
+  (assert-error 'syntax-error (parse "+0"))
+  (assert-error 'syntax-error (parse "+42"))
+  ;; Leading zeros.
+  (assert-error 'syntax-error (parse "00"))
+  (assert-error 'syntax-error (parse "01"))
+  (assert-error 'syntax-error (parse "-01"))
+  ;; Decimal numbers.
+  (assert-equal 42.0D0 (parse "42.0"))
+  (assert-equal 42.0D0 (parse "42.00"))
+  (assert-equal 42.23D0 (parse "42.23"))
+  (assert-equal 42.23D0 (parse "42.230"))
+  (assert-equal 42.23D0 (parse "42.2300"))
+  (assert-equal 0.23D0 (parse "0.23"))
+  (assert-equal -0.23D0 (parse "-0.23"))
+  (assert-error 'end-of-file (parse "42."))
+  (assert-error 'syntax-error (parse ".23"))
+  (assert-error 'syntax-error (parse "+.23"))
+  (assert-error 'syntax-error (parse "-.23"))
+  ;; Exponential notation.
+  (assert-equal 1D1 (parse "1E1"))
+  (assert-equal -1D1 (parse "-1E1"))
+  (assert-equal 1D1 (parse "1.0E1"))
+  (assert-equal 1D+5 (parse "1E+5"))
+  (assert-equal 1D-5 (parse "1E-5"))
+  (assert-equal 1D0 (parse "1E00"))
+  (assert-equal 1D1 (parse "1E01"))
+  (assert-equal 1D+1 (parse "1E+01"))
+  (assert-equal 1D-1 (parse "1E-01"))
+  (assert-error 'syntax-error (parse "+1E1"))
+  (assert-error 'syntax-error (parse "1.E1"))
+  (assert-error 'syntax-error (parse ".1E2"))
+  ;; More errors.
+  (assert-error 'end-of-file (parse "-"))
+  (assert-error 'end-of-file (parse "1E"))
+  (assert-error 'end-of-file (parse "1E+"))
+  (assert-error 'end-of-file (parse "1E-"))
+  (assert-error 'syntax-error (parse "E"))
+  (assert-error 'syntax-error (parse "-E"))
+  (assert-error 'syntax-error (parse "-|"))
+  (assert-error 'syntax-error (parse "1.|"))
+  (assert-error 'syntax-error (parse "1E|"))
+  (assert-error 'syntax-error (parse "1E+|"))
+  (assert-error 'syntax-error (parse "1E-|"))
+  ())
+
+(define-test lax-numbers
+  (let ((*allow-lax-numbers* t))
+    ;; Signed numbers.
+    (assert-equal 0 (parse "+0"))
+    (assert-equal 42 (parse "+42"))
+    ;; Leading zeros.
+    (assert-error 'syntax-error (parse "00"))
+    (assert-error 'syntax-error (parse "01"))
+    (assert-error 'syntax-error (parse "-01"))
+    ;; Decimal numbers.
+    (assert-equal 42.0D0 (parse "42."))
+    (assert-equal 0.23D0 (parse ".23"))
+    (assert-equal 0.23D0 (parse "+.23"))
+    (assert-equal -0.23D0 (parse "-.23"))
+    ;; Exponential notation.
+    (assert-equal 1D1 (parse "+1E1"))
+    (assert-equal 1D1 (parse "1.E1"))
+    (assert-equal 1D1 (parse ".1E2"))
+    ;; More errors.
+    (assert-error 'end-of-file (parse "+"))
+    (assert-error 'end-of-file (parse "."))
+    (assert-error 'syntax-error (parse "+E"))
+    (assert-error 'syntax-error (parse ".E"))
+    (assert-error 'syntax-error (parse "+|"))
+    (assert-error 'syntax-error (parse ".|"))
+    ()))
+
 (define-test literals
   ;; Decoding.
   (assert-eq :true (parse "true"))
