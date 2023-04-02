@@ -403,6 +403,15 @@ Mostly useful for binding ‘*list-encoder*’."
 
 ;;; Strings
 
+(defun char-invert (char)
+  "Return CHAR with inverted case if that is possible."
+  (declare (type character char))
+  (or (and (lower-case-p char)
+	   (char-upcase char))
+      (and (upper-case-p char)
+	   (char-downcase char))
+      char))
+
 (defsubst string-char (char)
   "Encode the character CHAR as part of a JSON string."
   (declare (type character char))
@@ -455,18 +464,15 @@ Mostly useful for binding ‘*list-encoder*’."
     (iter (for char :in-string (symbol-name symbol))
 	  (string-char (funcall char-encoder char)))))
 
+(defun string-from-char (char)
+  "Encode character CHAR as a JSON string."
+  (declare (type character char))
+  (with-delimiters #\" #\"
+    (string-char char)))
+
 (defmethod encode ((data string))
   "Encode a string as a JSON string."
   (string-from-string data))
-
-(defun char-invert (char)
-  "Return CHAR with inverted case if that is possible."
-  (declare (type character char))
-  (or (and (lower-case-p char)
-	   (char-upcase char))
-      (and (upper-case-p char)
-	   (char-downcase char))
-      char))
 
 (defmethod encode ((data symbol))
   "Encode a symbol as a JSON string.
@@ -502,8 +508,7 @@ Exceptional situations:
 
 (defmethod encode ((data character))
   "Encode a character as a JSON string."
-  (with-delimiters #\" #\"
-    (string-char data)))
+  (string-from-char data))
 
 ;;; Numbers
 
