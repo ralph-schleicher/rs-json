@@ -123,6 +123,33 @@ Secondary value is true if the object member exists."
       (assert-equal "baz" (nth 1 data) data))
     ()))
 
+(define-test strings
+  (assert-equal (string #\") (parse "\"\\\"\""))
+  (assert-equal (string #\\) (parse "\"\\\\\""))
+  (assert-equal (string #\/) (parse "\"\\\/\""))
+  (assert-equal (string #\/) (parse "\"/\""))
+  (assert-equal (string #\Backspace) (parse "\"\\b\""))
+  (assert-equal (string #\Page) (parse "\"\\f\""))
+  (assert-equal (string #\Linefeed) (parse "\"\\n\""))
+  (assert-equal (string #\Newline) (parse "\"\\n\""))
+  (assert-equal (string #\Return) (parse "\"\\r\""))
+  (assert-equal (string #\Tab) (parse "\"\\t\""))
+  (assert-equal "\"\\\"\"" (serialize nil #\"))
+  (assert-equal "\"\\\\\"" (serialize nil #\\))
+  (assert-equal "\"/\"" (serialize nil #\/))
+  (assert-equal "\"\\b\"" (serialize nil #\Backspace))
+  (assert-equal "\"\\f\"" (serialize nil #\Page))
+  (assert-equal "\"\\n\"" (serialize nil #\Linefeed))
+  (assert-equal "\"\\n\"" (serialize nil #\Newline))
+  (assert-equal "\"\\r\"" (serialize nil #\Return))
+  (assert-equal "\"\\t\"" (serialize nil #\Tab))
+  (iter (for char :in '(#\" #\\ #\/ #\Backspace #\Page #\Linefeed #\Newline #\Return #\Tab))
+	(irtt (string char)))
+  (rtt "\"λ⁻¹\"")
+  (irtt "λ⁻¹")
+  ;; More stuff tested by ‘json-test-suite’.
+  ())
+
 (define-test numbers
   ;; Integers.
   (assert-equal 0 (parse "0"))
@@ -244,7 +271,15 @@ Secondary value is true if the object member exists."
     (assert-equalp #("m" "n" 0 "'") (parse " [ \"m\" , \"n\" , 0 , \"'\" ] ")))
   ;; Likewise inside a JSON string.
   (let ((string " [ m , n , 0 , ' ] "))
-    (assert-equal string (parse (format nil "\"~A\"" string)))))
+    (assert-equal string (parse (format nil "\"~A\"" string))))
+  ())
+
+(define-test unicode-graphic
+  ;; Check ‘*allow-unicode-graphic*’.
+  (let ((*allow-unicode-graphic* nil))
+    (assert-equal "\"\\u03BB\\u207B\\u00B9\"" (serialize nil "λ⁻¹"))
+    (irtt "λ⁻¹"))
+  ())
 
 (define-test trailing-comma
   ;; Check ‘*allow-trailing-comma*’.
