@@ -35,7 +35,7 @@
 
 (in-package :rs-json)
 
-(defun encoding-error (&optional (datum nil datum-supplied-p) &rest arguments)
+(defun %encoding-error (&optional (datum nil datum-supplied-p) &rest arguments)
   "Signal an encoding error."
   (cond ((stringp datum)
 	 (error 'encoding-error
@@ -87,7 +87,7 @@ prints
 (defmethod encode (data)
   "The default encoding method.
 Signals an ‘encoding-error’."
-  (encoding-error "The type of data is ‘~S’." (type-of data)))
+  (%encoding-error "The type of data is ‘~S’." (type-of data)))
 
 (defun %print (stream data &optional pretty)
   "Common entry point for all print functions."
@@ -489,7 +489,7 @@ Mostly useful for binding ‘*nil-encoder*’."
 		  (multiple-value-bind (high low)
 		      (truncate (- code #x10000) #x400)
 		    (format t "\\u~4,'0X\\u~4,'0X" (+ high #xD800) (+ low #xDC00))))
-		 ((encoding-error "Invalid Unicode character ‘~A’." char)))))))
+		 ((%encoding-error "Invalid Unicode character ‘~A’." char)))))))
 
 (defun string-from-string (string)
   "Encode string STRING as a JSON string."
