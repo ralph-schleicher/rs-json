@@ -38,22 +38,22 @@
 (quicklisp:quickload :rs-json)
 (quicklisp:quickload :rs-doc) ;private
 
-(let ((data (rs-doc:gather-doc
+(in-package :rs-doc-user)
+
+(let ((data (gather-doc
+             :title "RS-JSON"
 	     :package :rs-json
 	     :generic-functions t
-	     :undocumented t)))
-  (rs-doc:generate-doc
+	     :undocumented t))
+      (prefix (asdf:system-source-directory "rs-json")))
+  (generate-doc
    :data data
    :output-format :html
-   :output (make-pathname :directory '(:relative "doc")
-			  :name "rs-json"
-			  :type "html"))
-  (rs-doc:generate-doc
+   :output (merge-pathnames #P"doc/rs-json.html" prefix))
+  (generate-doc
    :data data
    :output-format :text
-   :output (make-pathname :directory '(:relative "doc")
-			  :name "rs-json"
-			  :type "txt"))
+   :output (merge-pathnames #P"doc/rs-json.txt" prefix))
   (values))
 
 ;;; generate-doc.lisp ends here
