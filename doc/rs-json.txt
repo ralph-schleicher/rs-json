@@ -1,4 +1,4 @@
-DE.RALPH-SCHLEICHER.JSON
+RS-JSON
 
 Yet another JSON decoder/encoder.
 
@@ -263,26 +263,6 @@ encode ((data list))
    Encode a list by calling ‘*list-encoder*’.
 
                                                                         [Method]
-encode ((data (eql nil)))
-   Encode ‘nil’ by calling ‘*nil-encoder*’.
-
-                                                                        [Method]
-encode ((data (eql t)))
-   Encode ‘t’ as a JSON ‘true’ value.
-
-                                                                        [Method]
-encode ((data (eql :null)))
-   Encode ‘:null’ as a JSON ‘null’ value.
-
-                                                                        [Method]
-encode ((data (eql :false)))
-   Encode ‘:false’ as a JSON ‘false’ value.
-
-                                                                        [Method]
-encode ((data (eql :true)))
-   Encode ‘:true’ as a JSON ‘true’ value.
-
-                                                                        [Method]
 encode ((data real))
    Encode a floating-point number as a JSON number.
 
@@ -313,6 +293,26 @@ encode ((data symbol))
                                                                         [Method]
 encode ((data string))
    Encode a string as a JSON string.
+
+                                                                        [Method]
+encode ((data (eql nil)))
+   Encode ‘nil’ by calling ‘*nil-encoder*’.
+
+                                                                        [Method]
+encode ((data (eql t)))
+   Encode ‘t’ as a JSON ‘true’ value.
+
+                                                                        [Method]
+encode ((data (eql :null)))
+   Encode ‘:null’ as a JSON ‘null’ value.
+
+                                                                        [Method]
+encode ((data (eql :false)))
+   Encode ‘:false’ as a JSON ‘false’ value.
+
+                                                                        [Method]
+encode ((data (eql :true)))
+   Encode ‘:true’ as a JSON ‘true’ value.
 
                                                                         [Method]
 encode ((data vector))
@@ -364,10 +364,6 @@ encode-object (data)
     affects the interpretation of DATA.
 
    Mostly useful for binding the ‘*list-encoder*’ special variable.
-
-                                                                      [Function]
-encoding-error (&optional datum &rest arguments)
-   Signal an encoding error.
 
                                                                       [Function]
 object-member (key value)
@@ -509,10 +505,6 @@ serializer (stream data &optional colonp at-sign-p &rest parameters)
 
    See also the ‘serializer’ constant variable for another method for
    how to print JSON values with the ‘format’ function.
-
-                                                                      [Function]
-syntax-error (&optional datum &rest arguments)
-   Signal a syntax error.
 
                                                                          [Macro]
 with-array (&body body)
