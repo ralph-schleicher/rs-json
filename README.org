@@ -226,12 +226,14 @@ Notes:
 - Jzon fails to load with Clozure CL.
 - ST-JSON fails writing on Clozure CL with the error message “The
   value NIL is not of the expected type REAL”.
-- shasht and YASON are not RFC 8259 compliant (see below).
+- YASON is not RFC 8259 compliant (see below).
 - RS-JSON rules!
 
 Results from the [[https://github.com/nst/JSONTestSuite][JSON Parsing Test Suite]]
 can be found [[file:./ref/json-test-suite.html][here]] (HTML)
 or [[file:./ref/json-test-suite.pdf][here]] (PDF).
-Only json-streams, jzon, and RS-JSON seem to be compliant.  Crashes
-(red) and timeouts (gray) indicate serious conditions not handled by
-the library, for example a stack overflow or out of memory.
+Only RS-JSON, shasht, and ST-JSON seem to be compliant (shasht and
+ST-JSON require some tweaking, e.g. set =*read-default-float-format*=
+to =double-float=).  Crashes (red) and timeouts (gray) indicate
+serious conditions not handled by the library, for example a stack
+overflow or out of memory.
