@@ -217,7 +217,7 @@
 (progn
   (defun %read-shasht (source)
     (let ((*read-default-float-format* 'double-float))
-      (shasht:read-json source)))
+      (shasht:read-json source t nil t))) ;issue #1
 
   (defmethod %read ((library (eql :shasht)) (source string))
     (%read-shasht source))
