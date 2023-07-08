@@ -61,6 +61,24 @@
     :yason)
   "List of JSON libraries.")
 
+#-(and)
+(progn
+  ;; Display version information of the JSON libraries.
+  (terpri)
+  (iter (for library :in *libraries*)
+        (for system-name = (case library
+                             (:jzon
+                              "com.inuoe.jzon")
+                             (t
+                              (string-downcase library))))
+        (for ql-release = (ql-dist:release
+                           (ql-dist:system system-name)))
+        (format t "| ~(~A~)~@[ ~A~] | ~A ~A |~%"
+                library (asdf:component-version
+                         (asdf:find-system system-name))
+                (ql-dist:name (ql-dist:dist ql-release))
+                (ql-dist:short-description ql-release))))
+
 (define-symbol-macro dev-null (uiop:null-device-pathname))
 (define-symbol-macro utf-8 (uiop:encoding-external-format :utf-8))
 
