@@ -54,7 +54,6 @@
     :jonathan
     :json-streams
     :jsown
-    #-clozure
     :jzon
     :rs-json
     :shasht
@@ -126,7 +125,6 @@
     (jsown:to-json data))
   ())
 
-#-clozure
 (progn
   (defun %read-jzon (source)
     (com.inuoe.jzon:parse source :max-depth 1000))

@@ -73,7 +73,6 @@
 	       "jonathan"
 	       "json-streams"
 	       "jsown"
-	       #-clozure
 	       "com.inuoe.jzon"
 	       "rs-json"
 	       "shasht"
