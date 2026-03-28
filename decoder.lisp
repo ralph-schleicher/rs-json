@@ -132,7 +132,7 @@ Return value is the Lisp representation of the JSON value.
 Secondary value is the position where the parsing ends, or
 ‘nil’ if the position can not be determined.
 
-Exceptional situations:
+Exceptional Situations:
 
    * Signals an ‘end-of-file’ error if the input ends in the
      middle of a JSON value.

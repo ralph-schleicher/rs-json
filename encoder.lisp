@@ -125,7 +125,7 @@ If DESTINATION is a stream, a string, a pathname, or ‘t’, then the
 result is ‘nil’.  Otherwise, the result is a string containing the
 output.
 
-Exceptional situations:
+Exceptional Situations:
 
    * Signals an ‘encoding-error’ if the Lisp data can not be
      encoded as a JSON value.
@@ -520,7 +520,7 @@ Mostly useful for binding ‘*nil-encoder*’."
 Affected by ‘*true*’, ‘*false*’, ‘*null*’, ‘*encode-symbol-hook*’,
 and ‘*print-case*’.
 
-Exceptional situations:
+Exceptional Situations:
 
    * Signals a ‘program-error’ if the value returned by the
      ‘*encode-symbol-hook*’ function is not a string."
