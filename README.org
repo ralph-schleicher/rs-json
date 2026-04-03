@@ -206,8 +206,6 @@ the additional memory payload.
 
 [[file:./ref/citm_catalog-absolute.png]]
 
-Note: Jzon fails to load with Clozure CL.
-
 File =large.json= tests the stream I/O capabilities of the libraries.
 It is slightly larger than 100 MiB and is read from a file and written
 to the null device.
@@ -223,7 +221,6 @@ Notes:
   character corresponds to code #xD83D”.
 - json-streams fails reading with the error message “Number with
   integer syntax too large 505874924095815700”.
-- Jzon fails to load with Clozure CL.
 - ST-JSON fails writing on Clozure CL with the error message “The
   value NIL is not of the expected type REAL”.
 - YASON is not RFC 8259 compliant (see below).
@@ -232,7 +229,7 @@ Notes:
 Results from the [[https://github.com/nst/JSONTestSuite][JSON Parsing Test Suite]]
 can be found [[file:./ref/json-test-suite.html][here]] (HTML)
 or [[file:./ref/json-test-suite.pdf][here]] (PDF).
-Only RS-JSON, shasht, and ST-JSON seem to be compliant (shasht and
+Only Jzon, RS-JSON, shasht, and ST-JSON seem to be compliant (shasht and
 ST-JSON require some tweaking, e.g. set =*read-default-float-format*=
 to =double-float=).  Crashes (red) and timeouts (gray) indicate
 serious conditions not handled by the library, for example a stack
