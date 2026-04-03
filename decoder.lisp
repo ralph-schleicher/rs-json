@@ -526,4 +526,95 @@ name (a string)."
 	(when (and next-char (whitespace-char-p next-char))
 	  (next-char* nil))))))
 
+(defun %oref (data key)
+  "Return the value of an object member.
+
+Signal an error of type ‘parse-error’ if the object member
+does not exist."
+  (declare (type string key))
+  (let ((needle (funcall *object-key-decoder* key)))
+    (typecase data
+      (list
+       (cond ((null data)
+              ;; No key.
+              ())
+             ((consp (first data))
+              ;; Object as alist.
+              (alexandria:when-let ((cell (assoc needle data :test #'equal)))
+                (return-from %oref (cdr cell))))
+             (t
+              ;; Object as plist.
+              (iter (for tail :on data :by #'cddr)
+                    (when (equal (first tail) needle)
+                      (when (endp (rest tail))
+                        (error 'simple-type-error
+                               :format-control "Lisp data structure is not a property list.~%Data: ~S"
+                               :format-arguments (list data)))
+                      (return-from %oref (second tail)))))))
+      (hash-table
+       (multiple-value-bind (value exists)
+           (gethash needle data)
+         (when exists
+           (return-from %oref value))))))
+  (error 'parse-error))
+
+(defun %aref (data index)
+  "Return the value of an array element.
+
+Signal an error of type ‘parse-error’ if the array element
+does not exist."
+  (declare (type (integer 0) index))
+  (typecase data
+    (vector
+     ;; Array as vector.
+     (when (< index (length data))
+       (return-from %aref (aref data index))))
+    (list
+     ;; Array as list.
+     (alexandria:when-let ((tail (nthcdr index data)))
+       (return-from %aref (first tail)))))
+  (error 'parse-error))
+
+(defun jref (data &rest keys)
+  "Access an element of a JSON value.
+
+First argument DATA is the Lisp representation of a JSON value.
+Remaining arguments are element selectors, keys for short.  A key is
+ either a string or a non-negative integer selecting an object member
+ or array element respectively.  If the key is a string, it is
+ filtered by calling ‘*object-key-decoder*’ before looking up the
+ object member.  A key can also be the symbol ‘-’ to refer to the
+ array element after the last array element.
+
+Return the value of the selected element.
+
+Exceptional Situations:
+
+   * Signals a ‘type-error’ if the key is not a string,
+     a non-negative integer, or the symbol ‘-’.
+
+   * Signals a ‘parse-error’ if the key does not exist
+     in the Lisp data structure.
+
+Notes:
+
+The ‘jref’ function implements the JSON Pointer standard, see
+RFC 6901, but with a Lisp interface instead of a string syntax
+to identify a specific element in a JSON value."
+  (dolist (key keys)
+    (typecase key
+      (string
+       ;; Access an object member.
+       (setf data (%oref data key)))
+      ((integer 0)
+       ;; Access an array element.
+       (setf data (%aref data key)))
+      (t
+       (unless (eq key '-)
+         (error 'simple-type-error
+                :format-control "Invalid key; should be a string, an array index, or ‘-’.~%Key: ~S"
+                :format-arguments (list key)))
+       (error 'parse-error))))
+  data)
+
 ;;; decoder.lisp ends here
