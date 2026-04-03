@@ -65,6 +65,7 @@
    #:encoding-error
    ;; decoder.lisp
    #:parse
+   #:jref
    ;; encoder.lisp
    #:serialize
    #:serializer
