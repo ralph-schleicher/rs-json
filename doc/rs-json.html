@@ -347,6 +347,12 @@ The main differences are listed below.
       </a>
      </li>
      <li>
+      <a href="#ncagh8io">
+       <span class="category">Function</span>
+       <span class="symbol">jref</span>
+      </a>
+     </li>
+     <li>
       <a href="#pbpmsoka">
        <span class="category">Function</span>
        <span class="symbol">object-member</span>
@@ -1146,7 +1152,7 @@ Affected by ‘*read-default-float-format*’.</pre>
 Affected by ‘<a href="#vddbknv2"><span class="symbol">*true*</span></a>’, ‘<a href="#kqdrbelo"><span class="symbol">*false*</span></a>’, ‘<a href="#q4ynhqef"><span class="symbol">*null*</span></a>’, ‘<a href="#vqyldfja"><span class="symbol">*encode-symbol-hook*</span></a>’,
 and ‘*print-case*’.
 
-Exceptional situations:
+Exceptional Situations:
 
    * Signals a ‘program-error’ if the value returned by the
      ‘<a href="#vqyldfja"><span class="symbol">*encode-symbol-hook*</span></a>’ function is not a string.</pre>
@@ -1465,6 +1471,51 @@ If DATA is a list, the value of the ‘<a href="#p8dkkdin"><span class="symbol">
 Mostly useful for binding the ‘<a href="#kz8bt32s"><span class="symbol">*list-encoder*</span></a>’ special variable.</pre>
     </div>
    </div>
+   <div class="definition" id="ncagh8io">
+    <div class="signature">
+     <table class="signature">
+      <colgroup>
+       <col />
+       <col />
+       <col />
+      </colgroup>
+      <tbody>
+       <tr>
+	<td class="symbol"><a href="#contents"><span class="symbol">jref</span></a></td>
+	<td class="lambda-list"><span class="lambda-list">(<span class="variable">data</span> <span class="lambda-list-keyword">&amp;rest</span> <span class="variable">keys</span>)</span></td>
+	<td class="category"><span class="category">Function</span></td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <div class="documentation">
+     <pre>Access an element of a JSON value.
+
+First argument DATA is the Lisp representation of a JSON value.
+Remaining arguments are element selectors, keys for short.  A key is
+ either a string or a non-negative integer selecting an object member
+ or array element respectively.  If the key is a string, it is
+ filtered by calling ‘<a href="#hnddauqc"><span class="symbol">*object-key-decoder*</span></a>’ before looking up the
+ object member.  A key can also be the symbol ‘-’ to refer to the
+ array element after the last array element.
+
+Return the value of the selected element.
+
+Exceptional Situations:
+
+   * Signals a ‘type-error’ if the key is not a string,
+     a non-negative integer, or the symbol ‘-’.
+
+   * Signals a ‘parse-error’ if the key does not exist
+     in the Lisp data structure.
+
+Notes:
+
+The ‘jref’ function implements the JSON Pointer standard, see
+RFC 6901, but with a Lisp interface instead of a string syntax
+to identify a specific element in a JSON value.</pre>
+    </div>
+   </div>
    <div class="definition" id="pbpmsoka">
     <div class="signature">
      <table class="signature">
@@ -1522,7 +1573,7 @@ Return value is the Lisp representation of the JSON value.
 Secondary value is the position where the parsing ends, or
 ‘nil’ if the position can not be determined.
 
-Exceptional situations:
+Exceptional Situations:
 
    * Signals an ‘end-of-file’ error if the input ends in the
      middle of a JSON value.
@@ -1572,7 +1623,7 @@ If DESTINATION is a stream, a string, a pathname, or ‘t’, then the
 result is ‘nil’.  Otherwise, the result is a string containing the
 output.
 
-Exceptional situations:
+Exceptional Situations:
 
    * Signals an ‘<a href="#urzpx82v"><span class="symbol">encoding-error</span></a>’ if the Lisp data can not be
      encoded as a JSON value.

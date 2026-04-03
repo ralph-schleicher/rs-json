@@ -285,7 +285,7 @@ encode ((data symbol))
    Affected by ‘*true*’, ‘*false*’, ‘*null*’, ‘*encode-symbol-hook*’,
    and ‘*print-case*’.
 
-   Exceptional situations:
+   Exceptional Situations:
 
       * Signals a ‘program-error’ if the value returned by the
         ‘*encode-symbol-hook*’ function is not a string.
@@ -366,6 +366,34 @@ encode-object (data)
    Mostly useful for binding the ‘*list-encoder*’ special variable.
 
                                                                       [Function]
+jref (data &rest keys)
+   Access an element of a JSON value.
+
+   First argument DATA is the Lisp representation of a JSON value.
+   Remaining arguments are element selectors, keys for short.  A key is
+    either a string or a non-negative integer selecting an object member
+    or array element respectively.  If the key is a string, it is
+    filtered by calling ‘*object-key-decoder*’ before looking up the
+    object member.  A key can also be the symbol ‘-’ to refer to the
+    array element after the last array element.
+
+   Return the value of the selected element.
+
+   Exceptional Situations:
+
+      * Signals a ‘type-error’ if the key is not a string,
+        a non-negative integer, or the symbol ‘-’.
+
+      * Signals a ‘parse-error’ if the key does not exist
+        in the Lisp data structure.
+
+   Notes:
+
+   The ‘jref’ function implements the JSON Pointer standard, see
+   RFC 6901, but with a Lisp interface instead of a string syntax
+   to identify a specific element in a JSON value.
+
+                                                                      [Function]
 object-member (key value)
    Encode a JSON object member.
    See the ‘with-object’ macro.
@@ -389,7 +417,7 @@ parse (source &key junk-allowed)
    Secondary value is the position where the parsing ends, or
    ‘nil’ if the position can not be determined.
 
-   Exceptional situations:
+   Exceptional Situations:
 
       * Signals an ‘end-of-file’ error if the input ends in the
         middle of a JSON value.
@@ -422,7 +450,7 @@ serialize (destination data &key pretty)
    result is ‘nil’.  Otherwise, the result is a string containing the
    output.
 
-   Exceptional situations:
+   Exceptional Situations:
 
       * Signals an ‘encoding-error’ if the Lisp data can not be
         encoded as a JSON value.
