@@ -558,6 +558,42 @@ does not exist."
            (return-from %oref value))))))
   (error 'parse-error))
 
+(defun %oset (data key value &optional create)
+  "Store a value into an object member.
+
+Signal an error of type ‘parse-error’ if the object member
+does not exist."
+  (declare (type string key))
+  (let ((needle (funcall *object-key-decoder* key)))
+    (typecase data
+      (cons
+       (cond ((consp (first data))
+              ;; Object as alist.
+              (alexandria:when-let ((cell (assoc needle data :test #'equal)))
+                (setf (cdr cell) value)
+                (return-from %oset))
+              (when create
+                (nconc data (acons needle value ()))
+                (return-from %oset)))
+             (t
+              ;; Object as plist.
+              (iter (for tail :on data :by #'cddr)
+                    (when (equal (first tail) needle)
+                      (when (endp (rest tail))
+                        (error 'simple-type-error
+                               :format-control "Lisp data structure is not a property list.~%Data: ~S"
+                               :format-arguments (list data)))
+                      (setf (second tail) value)
+                      (return-from %oset)))
+              (when create
+                (nconc data (list needle value))
+                (return-from %oset)))))
+      (hash-table
+       (when (or create (nth-value 1 (gethash needle data)))
+         (setf (gethash needle data) value)
+         (return-from %oset)))))
+  (error 'parse-error))
+
 (defun %aref (data index)
   "Return the value of an array element.
 
@@ -575,6 +611,34 @@ does not exist."
        (return-from %aref (first tail)))))
   (error 'parse-error))
 
+(defun %aset (data index value &optional append)
+  "Store a value into an array element.
+
+Signal an error of type ‘parse-error’ if the array element
+does not exist."
+  (declare (type (integer 0) index))
+  (if (not append)
+      (typecase data
+        (vector
+         ;; Array as vector.
+         (when (< index (length data))
+           (setf (aref data index) value)
+           (return-from %aset)))
+        (cons
+         ;; Array as list.
+         (alexandria:when-let ((tail (nthcdr index data)))
+           (setf (first tail) value)
+           (return-from %aset))))
+    ;; Append an array element.
+    (typecase data
+      (vector
+       (vector-push-extend value data)
+       (return-from %aset))
+      (cons
+       (nconc data (list value))
+       (return-from %aset))))
+  (error 'parse-error))
+
 (defun jref (data &rest keys)
   "Access an element of a JSON value.
 
@@ -588,13 +652,15 @@ Remaining arguments are element selectors, keys for short.  A key is
 
 Return the value of the selected element.
 
+The ‘setf’ macro can be used with ‘jref’ to modify the value
+associated with the selected element.
+
 Exceptional Situations:
 
    * Signals a ‘type-error’ if the key is not a string,
      a non-negative integer, or the symbol ‘-’.
 
-   * Signals a ‘parse-error’ if the key does not exist
-     in the Lisp data structure.
+   * Signals a ‘parse-error’ if the key does not exist.
 
 Notes:
 
@@ -602,19 +668,34 @@ The ‘jref’ function implements the JSON Pointer standard, see
 RFC 6901, but with a Lisp interface instead of a string syntax
 to identify a specific element in a JSON value."
   (dolist (key keys)
-    (typecase key
+    (etypecase key
       (string
        ;; Access an object member.
        (setf data (%oref data key)))
       ((integer 0)
        ;; Access an array element.
        (setf data (%aref data key)))
-      (t
-       (unless (eq key '-)
-         (error 'simple-type-error
-                :format-control "Invalid key; should be a string, an array index, or ‘-’.~%Key: ~S"
-                :format-arguments (list key)))
+      ((eql -)
        (error 'parse-error))))
   data)
+
+(defun (setf jref) (value data key &rest keys)
+  (loop
+    (when (endp keys)
+      (return))
+    ;; Descend into the data structure.
+    (setf data (jref data key)
+          key (first keys)
+          keys (rest keys)))
+  ;; Assign new value.
+  (etypecase key
+    (string
+     (%oset data key value))
+    ((integer 0)
+     (%aset data key value))
+    ((eql -)
+     (error 'parse-error)))
+  ;; Satisfy the setf protocol.
+  value)
 
 ;;; decoder.lisp ends here
