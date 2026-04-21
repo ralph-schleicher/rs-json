@@ -384,98 +384,140 @@ Exceptional Situations:
 	    #+cmucl
 	    (values (code-char high) (code-char low))))))))
 
+(defun %make-float (n q d)
+  "Poor man's floating-point number conversion of significand N and
+decimal exponent Q.  Third argument D is the number of significant
+digits."
+  (declare (type (integer 0) n d)
+           (type integer q))
+  (coerce
+   (if (zerop n)
+       0
+     (let ((e (+ q d)))
+       (cond ((> e 350)
+              (error 'floating-point-overflow
+                     :operation '%make-float
+                     :operands (list n q d)))
+             ((< e -400)
+              0)
+             ((minusp q)
+              (/ n (expt 10 (- q))))
+             (t ;q ≥ 0
+              (* n (expt 10 q))))))
+   'double-float))
+
 (defun parse-number ()
   "Parse a JSON number."
-  ;; The idea is to read the number into a string buffer and report
-  ;; syntax errors as soon as possible.  Once the number is read, use
-  ;; the Lisp reader to convert it into a Lisp object.
-  (with-scratch-buffer ()
-    (labels ((read-digits ()
-	       "Read a sequence of digits."
-	       (let ((length 0))
-		 (loop
-		   (unless (and next-char
-				(standard-char-p next-char)
-				(digit-char-p next-char))
-		     (return))
-		   (incf length)
-		   (outc next-char)
-		   (next-char nil))
-		 length)))
-      ;; See ‘read-number:read-float’.
-      (prog ((digits 0)
-	     (strictp (not *allow-lax-numbers*)))
-	 ;; Optional number sign.
-	 (cond ((char= next-char #\-)
-		(outc #\-)
-		(next-char))
-	       ((char= next-char #\+)
-		(when strictp
-		  (%syntax-error "Number starts with an explicit plus sign."))
-		(next-char)))
-	 ;; Integer part.
-	 (cond ((char= next-char #\0)
-		(incf digits)
-		(outc #\0)
+  (let ((sign #\+)
+        (int 0) ;significand
+	(bias 0) ;exponent of the significand
+	(exp 0) ;explicit exponent
+        (digits 0) ;number of significant digits
+	intp fracp ;true if a digit is processed
+	floatp ;true if the result is a floating-point number
+        (strictp (not *allow-lax-numbers*)))
+    (block nil
+      ;; Optional number sign.
+      (cond ((char= next-char #\-)
+	     (setf sign #\-)
+	     (next-char))
+	    ((char= next-char #\+)
+	     (when strictp
+	       (%syntax-error "Number starts with an explicit plus sign."))
+	     (next-char)))
+      ;; Integer part.
+      ;;
+      ;; To restrict the significand to 19 significant digits, replace
+      ;; any occurrence of the form
+      ;;
+      ;;      (setf int (+ (* int 10) ...))
+      ;; by
+      ;;      (if (< digits 19)
+      ;;          (setf int (+ (* int 10) ...))
+      ;;        (incf bias))
+      (cond ((char= next-char #\0)
+	     (setf intp t)
+	     (next-char nil))
+	    (t
+             ;; If NEXT-CHAR is actually a decimal digit, then it is
+             ;; non-zero and all following digits are significant.
+             (iter (for digit = (and next-char (decimal-digit-char-p next-char)))
+                   (while digit)
+		   (setf int (+ (* int 10) digit))
+                   (incf digits)
+                   (setf intp t)
+                   (next-char nil))
+	     (when (and strictp (not intp))
+	       (%syntax-error "Integer part of a number must not be empty."))))
+      (when (null next-char)
+	(return))
+      ;; Optional fractional part.
+      (when (char= next-char #\.)
+        (setf floatp t)
+	;; Skip decimal point.  If the integer part is empty, the
+	;; fractional part must be not empty.
+	(next-char (or strictp (not intp)))
+	(when (null next-char)
+	  (return))
+	;; Fractional part.
+        (let ((fractional-digits 0)
+              (trailing-zeros 0))
+          (iter (for digit = (and next-char (decimal-digit-char-p next-char)))
+                (while digit)
+                (if (zerop digit)
+                    (incf trailing-zeros)
+                  (progn
+                    (incf fractional-digits (1+ trailing-zeros))
+                    ;; Process intermediate zeros.
+                    (if (zerop int)
+                        ;; Don't have a significant digit up to here.
+                        (setf trailing-zeros 0)
+                      (iter (while (plusp trailing-zeros))
+                            (setf int (* int 10))
+                            (incf digits)
+                            (decf trailing-zeros)))
+	            ;; Process the significant digit.
+                    (setf int (+ (* int 10) digit))
+                    (incf digits)))
+ 	        (setf fracp t)
+                (next-char nil))
+	  (when (and strictp (not fracp))
+	    (%syntax-error "Fractional part of a number must not be empty."))
+          (decf bias fractional-digits)
+	  (when (null next-char)
+	    (return))))
+      ;; Need at least one digit.
+      (unless (or intp fracp)
+	(%syntax-error "Significand of a number must consist of at least one digit."))
+      ;; Optional exponent part.
+      (when (or (char= next-char #\E)
+		(char= next-char #\e))
+        (setf floatp t)
+	;; Skip exponent marker.
+	(next-char)
+	;; Exponent.
+        (let ((sign #\+) digitp)
+	  (cond ((char= next-char #\-)
+	         (setf sign #\-)
+	         (next-char))
+	        ((char= next-char #\+)
+	         (next-char)))
+          (iter (for digit = (and next-char (decimal-digit-char-p next-char)))
+                (while digit)
+		(setf exp (+ (* exp 10) digit))
+		(setf digitp t)
 		(next-char nil))
-	       (t
-		(incf digits (read-digits))
-		(when (and strictp (zerop digits))
-		  (%syntax-error "Integer part of a number must not be empty."))))
-	 (when (null next-char)
-	   (return))
-	 ;; Optional fractional part.
-	 (when (char= next-char #\.)
-	   (outc #\.)
-	   ;; Skip decimal point.  If the integer part
-	   ;; is empty, the fractional part must be not
-	   ;; empty.
-	   (next-char (or strictp (zerop digits)))
-	   (when (null next-char)
-	     ;; Lisp reads ‘1.’ as an integer.
-	     (outc #\0)
-	     (return))
-	   ;; Fractional part.
-	   (cond ((and (standard-char-p next-char)
-		       (digit-char-p next-char))
-		  (incf digits (read-digits)))
-		 (t
-		  (when (or strictp (zerop digits))
-		    (%syntax-error "Fractional part of a number must not be empty."))
-		  (outc #\0)))
-	   (when (null next-char)
-	     (return)))
-	 ;; Need at least one digit.
-	 (when (zerop digits)
-	   (%syntax-error "Significant of a number must consist of at least one digit."))
-	 ;; Optional exponent part.
-	 (when (or (char= next-char #\E)
-		   (char= next-char #\e))
-	   (outc next-char)
-	   ;; Skip exponent marker.
-	   (next-char)
-	   ;; Exponent.
-	   (cond ((char= next-char #\-)
-		  (outc #\-)
-		  (next-char))
-		 ((char= next-char #\+)
-		  (next-char)))
-	   (when (zerop (read-digits))
-	     (%syntax-error "Exponent of a number must not be empty.")))))
-    (prog1
-	(handler-case
-	    (let ((*read-default-float-format* 'double-float))
-	      (read-from-string (current-buffer) t nil :start (point-min) :end (point-max)))
-	  (arithmetic-error (condition)
-	    ;; Re-throw the error.
-	    (error condition))
-	  (error ()
-	    (error 'arithmetic-error
-		   :operation 'read-from-string
-		   :operands (list (buffer-string)))))
+	  (when (not digitp)
+	    (%syntax-error "Exponent of a number must not be empty."))
+	  (when (char= sign #\-)
+	    (setf exp (- exp))))))
+    ;; Create the unsigned number.
+    (let ((val (if floatp (%make-float int (+ bias exp) digits) int)))
       ;; Skip trailing whitespace.
       (when (and next-char (whitespace-char-p next-char))
-	(next-char* nil)))))
+        (next-char* nil))
+      ;; Return value.
+      (if (char= sign #\-) (- val) val))))
 
 (defun parse-literal (&optional identifierp)
   "Parse a JSON literal name token, i.e. ‘true’, ‘false’, or ‘null’.
