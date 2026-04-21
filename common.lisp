@@ -134,6 +134,13 @@ Argument CHAR has to be a character object."
       (when *allow-unicode-whitespace*
 	(unicode-whitespace-p char))))
 
+(defsubst decimal-digit-char-p (char)
+  "Return the digit weight if CHAR is a decimal digit character.
+Argument CHAR has to be a character object."
+  (declare (type character char))
+  (and (standard-char-p char)
+       (digit-char-p char)))
+
 (define-condition json-error (stream-error simple-condition)
   ()
   (:documentation "Base class for all JSON errors.
