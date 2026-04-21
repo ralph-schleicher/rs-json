@@ -308,6 +308,7 @@ Exceptional Situations:
     (labels ((outc (char)
 	       "Append a character to the output buffer."
 	       (write-char char buffer)))
+      (declare (inline outc))
       ;; Parse quoted string.
       (loop
 	;; Initially, this call discards the
