@@ -261,11 +261,7 @@ Exceptional Situations:
 
 (defun parse-array ()
   "Parse a JSON array."
-  (let ((array (when (eq *array-as* :vector)
-		 ;; Start with an almost empty array to reduce
-		 ;; initial memory allocation.
-		 (make-array 1 :adjustable t :fill-pointer 0)))
-	(emptyp t) element)
+  (let (array (length 0))
     ;; Discard opening bracket.
     (next-char*)
     (incr-nesting)
@@ -275,7 +271,7 @@ Exceptional Situations:
         (#\]
 	 (return))
 	(#\,
-	 (when emptyp
+	 (when (= length 0)
 	   (%syntax-error "Leading comma before array element."))
 	 ;; Discard comma.
 	 (next-char*)
@@ -283,21 +279,19 @@ Exceptional Situations:
 	 (when (and *allow-trailing-comma* (char= next-char #\]))
 	   (return)))
 	(t
-	 (when (not emptyp)
+	 (when (> length 0)
 	   (%syntax-error "Missing comma after array element."))))
       ;; Read the array element.
-      (setf element (parse-value))
-      (if (eq *array-as* :vector)
-	  (vector-push-extend element array)
-        (push element array))
+      (push (parse-value) array)
       ;; Array is not empty.
-      (setf emptyp nil))
+      (incf length))
     ;; Discard closing bracket and skip trailing whitespace.
     (decr-nesting)
     (next-char* nil)
     ;; Return value.
-    (when (not (eq *array-as* :vector))
-      (setf array (nreverse array)))
+    (setf array (nreverse array))
+    (when (eq *array-as* :vector)
+      (setf array (make-array length :initial-contents array)))
     (when *decode-array-hook*
       (setf array (funcall *decode-array-hook* array)))
     array))
