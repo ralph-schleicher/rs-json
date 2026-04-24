@@ -172,11 +172,25 @@ Exceptional Situations:
     (t
      (parse-literal))))
 
+(defsubst %plist-from-alist (alist)
+  "Destructively rearrange an alist into a plist.
+The order of the pairs is reversed."
+  (let (head cell tail)
+    (loop
+      (when (null alist)
+        (return))
+      (setf head alist
+            cell (first alist)
+            alist (rest alist))
+      (setf (first head) (rest cell)
+            (rest head) tail
+            (rest cell) head)
+      (setf tail cell))
+    tail))
+
 (defun parse-object ()
   "Parse a JSON object."
-  (let ((object (when (eq *object-as* :hash-table)
-		  (make-hash-table :test #'equal)))
-	(emptyp t) key-string key value dup)
+  (let (object (emptyp t) key-string key value dup)
     ;; Discard opening brace.
     (next-char*)
     (incr-nesting)
@@ -205,20 +219,12 @@ Exceptional Situations:
 			   (parse-literal t)))
 	    key (funcall *object-key-decoder* key-string))
       ;; Check if the key already exists.
-      (setf dup (ecase *object-as*
-		  (:hash-table
-		   (nth-value 1 (gethash key object)))
-		  (:alist
-		   (assoc key object :test #'equal))
-		  (:plist
-		   ;; Like ‘(nth-value 2 (get-properties object (list key)))’
-		   ;; but without consing.  Keys can be strings, too.
-		   (do ((plist object (cddr plist)))
-		       ((null plist) nil)
-		     (when (equal (car plist) key)
-		       (return plist))))))
-      (when (and dup (not *allow-duplicate-object-keys*))
-        (%syntax-error "Duplicate object key ‘~A’." key-string))
+      (setf dup (assoc key object :test #'equal))
+      (when dup
+        (cond ((not *allow-duplicate-object-keys*)
+               (%syntax-error "Duplicate object key ‘~A’." key-string))
+	      ((eq *object-as* :hash-table)
+	       (error 'program-error))))
       ;; Read the key/value separator.
       (when (null next-char)
 	(error 'end-of-file :stream *standard-input*))
@@ -229,32 +235,24 @@ Exceptional Situations:
       (setf value (parse-value))
       (cond ((or (not dup) (eq *allow-duplicate-object-keys* :append))
 	     ;; First occurrence of the key.
-	     (ecase *object-as*
-	       (:hash-table
-		(when dup (error 'program-error))
-		(setf (gethash key object) value))
-	       (:alist
-		(setf object (acons key value object)))
-	       (:plist
-		(setf object (nconc object (list key value))))))
+	     (setf object (acons key value object)))
 	    ((not (eq *allow-duplicate-object-keys* :ignore))
 	     ;; Successive occurrence of the same key.
 	     ;; Replace existing value.
-	     (ecase *object-as*
-	       (:hash-table
-		(setf (gethash key object) value))
-	       (:alist
-		(rplacd dup value))
-	       (:plist
-		(setf (second dup) value)))))
+	     (rplacd dup value)))
       ;; Object is not empty.
       (setf emptyp nil))
     ;; Discard closing brace and skip trailing whitespace.
     (decr-nesting)
     (next-char* nil)
     ;; Return value.
-    (when (eq *object-as* :alist)
-      (setf object (nreverse object)))
+    (ecase *object-as*
+      (:alist
+       (setf object (nreverse object)))
+      (:plist
+       (setf object (%plist-from-alist object)))
+      (:hash-table
+       (setf object (alexandria:alist-hash-table object :test #'equal))))
     (when *decode-object-hook*
       (setf object (funcall *decode-object-hook* object)))
     object))
