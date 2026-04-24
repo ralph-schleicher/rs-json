@@ -1,0 +1,6 @@
+/* json-test-suite-weasyprint.css --- CSS style sheet for weasyprint(1).  */
+
+@page {
+  size: 297mm 3780mm;
+  margin: 5mm;
+}
