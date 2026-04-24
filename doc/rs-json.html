@@ -348,7 +348,7 @@ The main differences are listed below.
      </li>
      <li>
       <a href="#ncagh8io">
-       <span class="category">Function</span>
+       <span class="category">Accessor&nbsp;Function</span>
        <span class="symbol">jref</span>
       </a>
      </li>
@@ -1483,7 +1483,7 @@ Mostly useful for binding the ‘<a href="#kz8bt32s"><span class="symbol">*list-
        <tr>
 	<td class="symbol"><a href="#contents"><span class="symbol">jref</span></a></td>
 	<td class="lambda-list"><span class="lambda-list">(<span class="variable">data</span> <span class="lambda-list-keyword">&amp;rest</span> <span class="variable">keys</span>)</span></td>
-	<td class="category"><span class="category">Function</span></td>
+	<td class="category"><span class="category">Accessor&nbsp;Function</span></td>
        </tr>
       </tbody>
      </table>
@@ -1501,13 +1501,15 @@ Remaining arguments are element selectors, keys for short.  A key is
 
 Return the value of the selected element.
 
+The ‘setf’ macro can be used with ‘jref’ to modify the value
+associated with the selected element.
+
 Exceptional Situations:
 
    * Signals a ‘type-error’ if the key is not a string,
      a non-negative integer, or the symbol ‘-’.
 
-   * Signals a ‘parse-error’ if the key does not exist
-     in the Lisp data structure.
+   * Signals a ‘parse-error’ if the key does not exist.
 
 Notes:
 

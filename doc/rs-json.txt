@@ -365,7 +365,7 @@ encode-object (data)
 
    Mostly useful for binding the ‘*list-encoder*’ special variable.
 
-                                                                      [Function]
+                                                             [Accessor Function]
 jref (data &rest keys)
    Access an element of a JSON value.
 
@@ -379,13 +379,15 @@ jref (data &rest keys)
 
    Return the value of the selected element.
 
+   The ‘setf’ macro can be used with ‘jref’ to modify the value
+   associated with the selected element.
+
    Exceptional Situations:
 
       * Signals a ‘type-error’ if the key is not a string,
         a non-negative integer, or the symbol ‘-’.
 
-      * Signals a ‘parse-error’ if the key does not exist
-        in the Lisp data structure.
+      * Signals a ‘parse-error’ if the key does not exist.
 
    Notes:
 

@@ -8,6 +8,7 @@ To load "rs-json/bench":
   Load 1 ASDF system:
     rs-json/bench
 ; Loading "rs-json/bench"
+..................................................
 [package de.ralph-schleicher.json-benchmark]....
 
 ========================================
@@ -15,148 +16,147 @@ CL-JSON
 ========================================
 CL-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 212,204 microseconds (0.212204 seconds) to run.
-       3,194 microseconds (0.003194 seconds, 1.51%) of which was spent in GC.
+took 215,151 microseconds (0.215151 seconds) to run.
+       4,006 microseconds (0.004006 seconds, 1.86%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     212,584 microseconds (0.212584 seconds) were spent in user mode
-           3 microseconds (0.000003 seconds) were spent in system mode
- 17,561,712 bytes of memory allocated.
-CL-JSON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 212,783 microseconds (0.212783 seconds) to run.
-       3,714 microseconds (0.003714 seconds, 1.75%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     213,118 microseconds (0.213118 seconds) were spent in user mode
+     214,942 microseconds (0.214942 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,561,712 bytes of memory allocated.
 CL-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 208,821 microseconds (0.208821 seconds) to run.
-       2,390 microseconds (0.002390 seconds, 1.14%) of which was spent in GC.
+took 219,244 microseconds (0.219244 seconds) to run.
+       5,060 microseconds (0.005060 seconds, 2.31%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     209,154 microseconds (0.209154 seconds) were spent in user mode
+     219,071 microseconds (0.219071 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,561,712 bytes of memory allocated.
 CL-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 210,021 microseconds (0.210021 seconds) to run.
-       3,005 microseconds (0.003005 seconds, 1.43%) of which was spent in GC.
+took 217,807 microseconds (0.217807 seconds) to run.
+       4,866 microseconds (0.004866 seconds, 2.23%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     210,329 microseconds (0.210329 seconds) were spent in user mode
+     213,737 microseconds (0.213737 seconds) were spent in user mode
+       3,997 microseconds (0.003997 seconds) were spent in system mode
+ 17,561,712 bytes of memory allocated.
+CL-JSON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 215,391 microseconds (0.215391 seconds) to run.
+       4,384 microseconds (0.004384 seconds, 2.04%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     215,188 microseconds (0.215188 seconds) were spent in user mode
+           1 microseconds (0.000001 seconds) were spent in system mode
+ 17,561,712 bytes of memory allocated.
+CL-JSON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 217,568 microseconds (0.217568 seconds) to run.
+       4,320 microseconds (0.004320 seconds, 1.99%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     217,433 microseconds (0.217433 seconds) were spent in user mode
+          28 microseconds (0.000028 seconds) were spent in system mode
+ 17,561,712 bytes of memory allocated.
+CL-JSON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 214,804 microseconds (0.214804 seconds) to run.
+       4,858 microseconds (0.004858 seconds, 2.26%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     214,737 microseconds (0.214737 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,561,712 bytes of memory allocated.
 CL-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 212,983 microseconds (0.212983 seconds) to run.
-       3,473 microseconds (0.003473 seconds, 1.63%) of which was spent in GC.
+took 218,877 microseconds (0.218877 seconds) to run.
+       5,144 microseconds (0.005144 seconds, 2.35%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     213,323 microseconds (0.213323 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
+     218,552 microseconds (0.218552 seconds) were spent in user mode
+         141 microseconds (0.000141 seconds) were spent in system mode
  17,561,712 bytes of memory allocated.
 CL-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 209,321 microseconds (0.209321 seconds) to run.
-       2,317 microseconds (0.002317 seconds, 1.11%) of which was spent in GC.
+took 216,315 microseconds (0.216315 seconds) to run.
+       4,118 microseconds (0.004118 seconds, 1.90%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     209,628 microseconds (0.209628 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
+     212,022 microseconds (0.212022 seconds) were spent in user mode
+       4,154 microseconds (0.004154 seconds) were spent in system mode
  17,561,712 bytes of memory allocated.
 CL-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 210,946 microseconds (0.210946 seconds) to run.
-       3,259 microseconds (0.003259 seconds, 1.54%) of which was spent in GC.
+took 216,107 microseconds (0.216107 seconds) to run.
+       4,179 microseconds (0.004179 seconds, 1.93%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     211,253 microseconds (0.211253 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 17,561,712 bytes of memory allocated.
-CL-JSON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 210,801 microseconds (0.210801 seconds) to run.
-       2,964 microseconds (0.002964 seconds, 1.41%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     211,136 microseconds (0.211136 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 17,561,712 bytes of memory allocated.
-CL-JSON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 210,520 microseconds (0.210520 seconds) to run.
-       3,133 microseconds (0.003133 seconds, 1.49%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     210,815 microseconds (0.210815 seconds) were spent in user mode
+     215,952 microseconds (0.215952 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,561,712 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 493,038 microseconds (0.493038 seconds) to run.
-       5,112 microseconds (0.005112 seconds, 1.04%) of which was spent in GC.
+took 513,390 microseconds (0.513390 seconds) to run.
+       7,662 microseconds (0.007662 seconds, 1.49%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     469,877 microseconds (0.469877 seconds) were spent in user mode
-      23,988 microseconds (0.023988 seconds) were spent in system mode
- 59,613,584 bytes of memory allocated.
- 1 minor page faults, 0 major page faults, 0 swaps.
+     473,176 microseconds (0.473176 seconds) were spent in user mode
+      39,867 microseconds (0.039867 seconds) were spent in system mode
+ 59,613,920 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 493,716 microseconds (0.493716 seconds) to run.
-       6,449 microseconds (0.006449 seconds, 1.31%) of which was spent in GC.
+took 513,198 microseconds (0.513198 seconds) to run.
+       7,468 microseconds (0.007468 seconds, 1.46%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     446,543 microseconds (0.446543 seconds) were spent in user mode
-      47,973 microseconds (0.047973 seconds) were spent in system mode
+     468,452 microseconds (0.468452 seconds) were spent in user mode
+      44,415 microseconds (0.044415 seconds) were spent in system mode
  59,607,776 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 500,297 microseconds (0.500297 seconds) to run.
-       6,660 microseconds (0.006660 seconds, 1.33%) of which was spent in GC.
+took 521,435 microseconds (0.521435 seconds) to run.
+       7,659 microseconds (0.007659 seconds, 1.47%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     449,361 microseconds (0.449361 seconds) were spent in user mode
-      51,948 microseconds (0.051948 seconds) were spent in system mode
+     484,664 microseconds (0.484664 seconds) were spent in user mode
+      32,188 microseconds (0.032188 seconds) were spent in system mode
  59,607,776 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 490,800 microseconds (0.490800 seconds) to run.
-       5,345 microseconds (0.005345 seconds, 1.09%) of which was spent in GC.
+took 517,761 microseconds (0.517761 seconds) to run.
+       7,670 microseconds (0.007670 seconds, 1.48%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     459,773 microseconds (0.459773 seconds) were spent in user mode
-      31,999 microseconds (0.031999 seconds) were spent in system mode
+     485,361 microseconds (0.485361 seconds) were spent in user mode
+      31,987 microseconds (0.031987 seconds) were spent in system mode
  59,607,776 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 492,024 microseconds (0.492024 seconds) to run.
-       5,325 microseconds (0.005325 seconds, 1.08%) of which was spent in GC.
+took 516,887 microseconds (0.516887 seconds) to run.
+       7,356 microseconds (0.007356 seconds, 1.42%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     464,838 microseconds (0.464838 seconds) were spent in user mode
-      27,996 microseconds (0.027996 seconds) were spent in system mode
+     480,479 microseconds (0.480479 seconds) were spent in user mode
+      36,047 microseconds (0.036047 seconds) were spent in system mode
  59,607,776 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 493,145 microseconds (0.493145 seconds) to run.
-       5,769 microseconds (0.005769 seconds, 1.17%) of which was spent in GC.
+took 514,648 microseconds (0.514648 seconds) to run.
+       8,096 microseconds (0.008096 seconds, 1.57%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     474,057 microseconds (0.474057 seconds) were spent in user mode
-      20,041 microseconds (0.020041 seconds) were spent in system mode
+     466,379 microseconds (0.466379 seconds) were spent in user mode
+      47,854 microseconds (0.047854 seconds) were spent in system mode
  59,607,776 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 490,925 microseconds (0.490925 seconds) to run.
-       5,891 microseconds (0.005891 seconds, 1.20%) of which was spent in GC.
+took 517,417 microseconds (0.517417 seconds) to run.
+       8,689 microseconds (0.008689 seconds, 1.68%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     455,748 microseconds (0.455748 seconds) were spent in user mode
-      36,129 microseconds (0.036129 seconds) were spent in system mode
+     468,889 microseconds (0.468889 seconds) were spent in user mode
+      48,087 microseconds (0.048087 seconds) were spent in system mode
  59,607,776 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 491,989 microseconds (0.491989 seconds) to run.
-       5,661 microseconds (0.005661 seconds, 1.15%) of which was spent in GC.
+took 514,368 microseconds (0.514368 seconds) to run.
+       7,883 microseconds (0.007883 seconds, 1.53%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     472,938 microseconds (0.472938 seconds) were spent in user mode
-      20,032 microseconds (0.020032 seconds) were spent in system mode
+     482,209 microseconds (0.482209 seconds) were spent in user mode
+      31,831 microseconds (0.031831 seconds) were spent in system mode
  59,607,776 bytes of memory allocated.
 CL-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 490,496 microseconds (0.490496 seconds) to run.
-       5,155 microseconds (0.005155 seconds, 1.05%) of which was spent in GC.
+took 515,645 microseconds (0.515645 seconds) to run.
+       8,093 microseconds (0.008093 seconds, 1.57%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     459,372 microseconds (0.459372 seconds) were spent in user mode
-      31,929 microseconds (0.031929 seconds) were spent in system mode
+     463,166 microseconds (0.463166 seconds) were spent in user mode
+      52,168 microseconds (0.052168 seconds) were spent in system mode
  59,607,776 bytes of memory allocated.
 
 ========================================
@@ -164,146 +164,146 @@ JONATHAN
 ========================================
 JONATHAN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 26,181 microseconds (0.026181 seconds) to run.
-      1,221 microseconds (0.001221 seconds, 4.66%) of which was spent in GC.
+took 28,301 microseconds (0.028301 seconds) to run.
+      2,008 microseconds (0.002008 seconds, 7.10%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     26,250 microseconds (0.026250 seconds) were spent in user mode
+     28,268 microseconds (0.028268 seconds) were spent in user mode
+         15 microseconds (0.000015 seconds) were spent in system mode
+ 9,804,544 bytes of memory allocated.
+JONATHAN;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 28,384 microseconds (0.028384 seconds) to run.
+      1,965 microseconds (0.001965 seconds, 6.92%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     28,391 microseconds (0.028391 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  9,804,544 bytes of memory allocated.
 JONATHAN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 27,189 microseconds (0.027189 seconds) to run.
-      1,727 microseconds (0.001727 seconds, 6.35%) of which was spent in GC.
+took 28,927 microseconds (0.028927 seconds) to run.
+      1,913 microseconds (0.001913 seconds, 6.61%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     27,268 microseconds (0.027268 seconds) were spent in user mode
+     28,950 microseconds (0.028950 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  9,804,544 bytes of memory allocated.
 JONATHAN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 26,163 microseconds (0.026163 seconds) to run.
-      1,248 microseconds (0.001248 seconds, 4.77%) of which was spent in GC.
+took 27,323 microseconds (0.027323 seconds) to run.
+      1,667 microseconds (0.001667 seconds, 6.10%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     26,240 microseconds (0.026240 seconds) were spent in user mode
+     27,222 microseconds (0.027222 seconds) were spent in user mode
+         59 microseconds (0.000059 seconds) were spent in system mode
+ 9,804,544 bytes of memory allocated.
+JONATHAN;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 26,680 microseconds (0.026680 seconds) to run.
+      1,374 microseconds (0.001374 seconds, 5.15%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     26,659 microseconds (0.026659 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  9,804,544 bytes of memory allocated.
 JONATHAN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 26,940 microseconds (0.026940 seconds) to run.
-      1,523 microseconds (0.001523 seconds, 5.65%) of which was spent in GC.
+took 28,037 microseconds (0.028037 seconds) to run.
+      1,861 microseconds (0.001861 seconds, 6.64%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     27,019 microseconds (0.027019 seconds) were spent in user mode
+     28,014 microseconds (0.028014 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  9,804,544 bytes of memory allocated.
 JONATHAN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 26,206 microseconds (0.026206 seconds) to run.
-      1,196 microseconds (0.001196 seconds, 4.56%) of which was spent in GC.
+took 27,482 microseconds (0.027482 seconds) to run.
+      1,604 microseconds (0.001604 seconds, 5.84%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     26,278 microseconds (0.026278 seconds) were spent in user mode
+     27,436 microseconds (0.027436 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  9,804,544 bytes of memory allocated.
 JONATHAN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 27,014 microseconds (0.027014 seconds) to run.
-      1,562 microseconds (0.001562 seconds, 5.78%) of which was spent in GC.
+took 28,531 microseconds (0.028531 seconds) to run.
+      1,910 microseconds (0.001910 seconds, 6.69%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     27,087 microseconds (0.027087 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     24,549 microseconds (0.024549 seconds) were spent in user mode
+      3,943 microseconds (0.003943 seconds) were spent in system mode
  9,804,544 bytes of memory allocated.
 JONATHAN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 26,024 microseconds (0.026024 seconds) to run.
-      1,209 microseconds (0.001209 seconds, 4.65%) of which was spent in GC.
+took 28,107 microseconds (0.028107 seconds) to run.
+      1,912 microseconds (0.001912 seconds, 6.80%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     26,101 microseconds (0.026101 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
- 9,804,544 bytes of memory allocated.
-JONATHAN;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 26,895 microseconds (0.026895 seconds) to run.
-      1,558 microseconds (0.001558 seconds, 5.79%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     26,978 microseconds (0.026978 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
- 9,804,544 bytes of memory allocated.
-JONATHAN;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 26,176 microseconds (0.026176 seconds) to run.
-      1,277 microseconds (0.001277 seconds, 4.88%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     26,257 microseconds (0.026257 seconds) were spent in user mode
+     28,082 microseconds (0.028082 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  9,804,544 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 48,991 microseconds (0.048991 seconds) to run.
-        865 microseconds (0.000865 seconds, 1.77%) of which was spent in GC.
+took 49,597 microseconds (0.049597 seconds) to run.
+      1,042 microseconds (0.001042 seconds, 2.10%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     49,080 microseconds (0.049080 seconds) were spent in user mode
+     49,535 microseconds (0.049535 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
- 11,664,848 bytes of memory allocated.
+ 11,664,640 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 48,935 microseconds (0.048935 seconds) to run.
-      1,071 microseconds (0.001071 seconds, 2.19%) of which was spent in GC.
+took 49,178 microseconds (0.049178 seconds) to run.
+      1,134 microseconds (0.001134 seconds, 2.31%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     49,078 microseconds (0.049078 seconds) were spent in user mode
+     49,135 microseconds (0.049135 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  11,663,296 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 47,443 microseconds (0.047443 seconds) to run.
-        743 microseconds (0.000743 seconds, 1.57%) of which was spent in GC.
+took 48,642 microseconds (0.048642 seconds) to run.
+      1,149 microseconds (0.001149 seconds, 2.36%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     47,558 microseconds (0.047558 seconds) were spent in user mode
+     48,607 microseconds (0.048607 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  11,663,296 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 48,524 microseconds (0.048524 seconds) to run.
-      1,020 microseconds (0.001020 seconds, 2.10%) of which was spent in GC.
+took 50,357 microseconds (0.050357 seconds) to run.
+      1,473 microseconds (0.001473 seconds, 2.93%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     48,640 microseconds (0.048640 seconds) were spent in user mode
+     50,397 microseconds (0.050397 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  11,663,296 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 48,022 microseconds (0.048022 seconds) to run.
-      1,007 microseconds (0.001007 seconds, 2.10%) of which was spent in GC.
+took 49,639 microseconds (0.049639 seconds) to run.
+      1,378 microseconds (0.001378 seconds, 2.78%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     48,145 microseconds (0.048145 seconds) were spent in user mode
+     49,582 microseconds (0.049582 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  11,663,296 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 48,487 microseconds (0.048487 seconds) to run.
-        963 microseconds (0.000963 seconds, 1.99%) of which was spent in GC.
+took 49,240 microseconds (0.049240 seconds) to run.
+      1,080 microseconds (0.001080 seconds, 2.19%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     48,594 microseconds (0.048594 seconds) were spent in user mode
+     49,187 microseconds (0.049187 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  11,663,296 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 46,764 microseconds (0.046764 seconds) to run.
-        714 microseconds (0.000714 seconds, 1.53%) of which was spent in GC.
+took 48,727 microseconds (0.048727 seconds) to run.
+      1,105 microseconds (0.001105 seconds, 2.27%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     46,892 microseconds (0.046892 seconds) were spent in user mode
+     48,678 microseconds (0.048678 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  11,663,296 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 47,604 microseconds (0.047604 seconds) to run.
-        935 microseconds (0.000935 seconds, 1.96%) of which was spent in GC.
+took 48,572 microseconds (0.048572 seconds) to run.
+      1,072 microseconds (0.001072 seconds, 2.21%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     47,720 microseconds (0.047720 seconds) were spent in user mode
+     48,533 microseconds (0.048533 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  11,663,296 bytes of memory allocated.
 JONATHAN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 48,003 microseconds (0.048003 seconds) to run.
-        985 microseconds (0.000985 seconds, 2.05%) of which was spent in GC.
+took 48,697 microseconds (0.048697 seconds) to run.
+      1,135 microseconds (0.001135 seconds, 2.33%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     48,144 microseconds (0.048144 seconds) were spent in user mode
+     48,661 microseconds (0.048661 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  11,663,296 bytes of memory allocated.
 
@@ -312,148 +312,148 @@ JSON-STREAMS
 ========================================
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 356,343 microseconds (0.356343 seconds) to run.
-       7,856 microseconds (0.007856 seconds, 2.20%) of which was spent in GC.
+took 379,814 microseconds (0.379814 seconds) to run.
+       8,617 microseconds (0.008617 seconds, 2.27%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     356,444 microseconds (0.356444 seconds) were spent in user mode
+     379,818 microseconds (0.379818 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 354,759 microseconds (0.354759 seconds) to run.
-       7,639 microseconds (0.007639 seconds, 2.15%) of which was spent in GC.
+took 380,613 microseconds (0.380613 seconds) to run.
+       8,888 microseconds (0.008888 seconds, 2.34%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     354,960 microseconds (0.354960 seconds) were spent in user mode
+     380,488 microseconds (0.380488 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 355,454 microseconds (0.355454 seconds) to run.
-       7,193 microseconds (0.007193 seconds, 2.02%) of which was spent in GC.
+took 380,026 microseconds (0.380026 seconds) to run.
+       8,709 microseconds (0.008709 seconds, 2.29%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     355,649 microseconds (0.355649 seconds) were spent in user mode
+     379,985 microseconds (0.379985 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 356,813 microseconds (0.356813 seconds) to run.
-       7,630 microseconds (0.007630 seconds, 2.14%) of which was spent in GC.
+took 379,323 microseconds (0.379323 seconds) to run.
+       8,402 microseconds (0.008402 seconds, 2.21%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     357,001 microseconds (0.357001 seconds) were spent in user mode
+     379,319 microseconds (0.379319 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 355,558 microseconds (0.355558 seconds) to run.
-       7,490 microseconds (0.007490 seconds, 2.11%) of which was spent in GC.
+took 383,642 microseconds (0.383642 seconds) to run.
+       8,864 microseconds (0.008864 seconds, 2.31%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     355,771 microseconds (0.355771 seconds) were spent in user mode
+     383,630 microseconds (0.383630 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 357,400 microseconds (0.357400 seconds) to run.
-       7,835 microseconds (0.007835 seconds, 2.19%) of which was spent in GC.
+took 381,670 microseconds (0.381670 seconds) to run.
+       8,784 microseconds (0.008784 seconds, 2.30%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     357,436 microseconds (0.357436 seconds) were spent in user mode
+     381,663 microseconds (0.381663 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 353,936 microseconds (0.353936 seconds) to run.
-       7,149 microseconds (0.007149 seconds, 2.02%) of which was spent in GC.
+took 384,168 microseconds (0.384168 seconds) to run.
+       9,048 microseconds (0.009048 seconds, 2.36%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     354,161 microseconds (0.354161 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
+     380,383 microseconds (0.380383 seconds) were spent in user mode
+       3,681 microseconds (0.003681 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 354,389 microseconds (0.354389 seconds) to run.
-       7,165 microseconds (0.007165 seconds, 2.02%) of which was spent in GC.
+took 384,411 microseconds (0.384411 seconds) to run.
+       8,919 microseconds (0.008919 seconds, 2.32%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     354,591 microseconds (0.354591 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
+     384,388 microseconds (0.384388 seconds) were spent in user mode
+           6 microseconds (0.000006 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 355,850 microseconds (0.355850 seconds) to run.
-       7,212 microseconds (0.007212 seconds, 2.03%) of which was spent in GC.
+took 380,745 microseconds (0.380745 seconds) to run.
+       8,622 microseconds (0.008622 seconds, 2.26%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     356,057 microseconds (0.356057 seconds) were spent in user mode
+     380,730 microseconds (0.380730 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  12,235,680 bytes of memory allocated.
 JSON-STREAMS;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 204,409 microseconds (0.204409 seconds) to run.
-       3,194 microseconds (0.003194 seconds, 1.56%) of which was spent in GC.
+took 217,998 microseconds (0.217998 seconds) to run.
+       4,935 microseconds (0.004935 seconds, 2.26%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     204,805 microseconds (0.204805 seconds) were spent in user mode
+     217,873 microseconds (0.217873 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
- 28,283,200 bytes of memory allocated.
+ 28,283,536 bytes of memory allocated.
  44 minor page faults, 0 major page faults, 0 swaps.
 JSON-STREAMS;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 204,493 microseconds (0.204493 seconds) to run.
-       3,220 microseconds (0.003220 seconds, 1.57%) of which was spent in GC.
+took 216,823 microseconds (0.216823 seconds) to run.
+       4,863 microseconds (0.004863 seconds, 2.24%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     204,794 microseconds (0.204794 seconds) were spent in user mode
+     216,728 microseconds (0.216728 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  28,281,440 bytes of memory allocated.
 JSON-STREAMS;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 206,617 microseconds (0.206617 seconds) to run.
-       3,239 microseconds (0.003239 seconds, 1.57%) of which was spent in GC.
+took 218,229 microseconds (0.218229 seconds) to run.
+       4,762 microseconds (0.004762 seconds, 2.18%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     206,774 microseconds (0.206774 seconds) were spent in user mode
+     218,072 microseconds (0.218072 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  28,281,440 bytes of memory allocated.
 JSON-STREAMS;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 202,388 microseconds (0.202388 seconds) to run.
-       2,699 microseconds (0.002699 seconds, 1.33%) of which was spent in GC.
+took 215,685 microseconds (0.215685 seconds) to run.
+       4,699 microseconds (0.004699 seconds, 2.18%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     202,762 microseconds (0.202762 seconds) were spent in user mode
+     211,666 microseconds (0.211666 seconds) were spent in user mode
+       3,912 microseconds (0.003912 seconds) were spent in system mode
+ 28,281,440 bytes of memory allocated.
+JSON-STREAMS;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 220,121 microseconds (0.220121 seconds) to run.
+       4,888 microseconds (0.004888 seconds, 2.22%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     219,942 microseconds (0.219942 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  28,281,440 bytes of memory allocated.
 JSON-STREAMS;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 202,223 microseconds (0.202223 seconds) to run.
-       2,638 microseconds (0.002638 seconds, 1.30%) of which was spent in GC.
+took 215,856 microseconds (0.215856 seconds) to run.
+       4,741 microseconds (0.004741 seconds, 2.20%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     202,559 microseconds (0.202559 seconds) were spent in user mode
+     211,655 microseconds (0.211655 seconds) were spent in user mode
+       3,947 microseconds (0.003947 seconds) were spent in system mode
+ 28,281,440 bytes of memory allocated.
+JSON-STREAMS;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 216,412 microseconds (0.216412 seconds) to run.
+       4,787 microseconds (0.004787 seconds, 2.21%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     216,262 microseconds (0.216262 seconds) were spent in user mode
+           6 microseconds (0.000006 seconds) were spent in system mode
+ 28,281,440 bytes of memory allocated.
+JSON-STREAMS;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 216,609 microseconds (0.216609 seconds) to run.
+       4,591 microseconds (0.004591 seconds, 2.12%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     216,524 microseconds (0.216524 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  28,281,440 bytes of memory allocated.
 JSON-STREAMS;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 203,996 microseconds (0.203996 seconds) to run.
-       3,197 microseconds (0.003197 seconds, 1.57%) of which was spent in GC.
+took 218,928 microseconds (0.218928 seconds) to run.
+       4,916 microseconds (0.004916 seconds, 2.25%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     204,366 microseconds (0.204366 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 28,281,440 bytes of memory allocated.
-JSON-STREAMS;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 200,670 microseconds (0.200670 seconds) to run.
-       2,430 microseconds (0.002430 seconds, 1.21%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     201,023 microseconds (0.201023 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 28,281,440 bytes of memory allocated.
-JSON-STREAMS;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 204,554 microseconds (0.204554 seconds) to run.
-       3,197 microseconds (0.003197 seconds, 1.56%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     204,949 microseconds (0.204949 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 28,281,440 bytes of memory allocated.
-JSON-STREAMS;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 202,883 microseconds (0.202883 seconds) to run.
-       2,974 microseconds (0.002974 seconds, 1.47%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     203,276 microseconds (0.203276 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
+     214,774 microseconds (0.214774 seconds) were spent in user mode
+       3,982 microseconds (0.003982 seconds) were spent in system mode
  28,281,440 bytes of memory allocated.
 
 ========================================
@@ -461,147 +461,146 @@ JSOWN
 ========================================
 JSOWN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 78,383 microseconds (0.078383 seconds) to run.
-      1,561 microseconds (0.001561 seconds, 1.99%) of which was spent in GC.
+took 82,071 microseconds (0.082071 seconds) to run.
+      2,124 microseconds (0.002124 seconds, 2.59%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     78,435 microseconds (0.078435 seconds) were spent in user mode
+     82,053 microseconds (0.082053 seconds) were spent in user mode
+          6 microseconds (0.000006 seconds) were spent in system mode
+ 3,279,328 bytes of memory allocated.
+JSOWN;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 82,607 microseconds (0.082607 seconds) to run.
+      2,199 microseconds (0.002199 seconds, 2.66%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     82,576 microseconds (0.082576 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,279,328 bytes of memory allocated.
 JSOWN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 79,269 microseconds (0.079269 seconds) to run.
-      1,881 microseconds (0.001881 seconds, 2.37%) of which was spent in GC.
+took 82,112 microseconds (0.082112 seconds) to run.
+      2,138 microseconds (0.002138 seconds, 2.60%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     79,302 microseconds (0.079302 seconds) were spent in user mode
+     82,097 microseconds (0.082097 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,279,328 bytes of memory allocated.
 JSOWN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 78,310 microseconds (0.078310 seconds) to run.
-      1,681 microseconds (0.001681 seconds, 2.15%) of which was spent in GC.
+took 82,342 microseconds (0.082342 seconds) to run.
+      2,173 microseconds (0.002173 seconds, 2.64%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     78,351 microseconds (0.078351 seconds) were spent in user mode
+     82,364 microseconds (0.082364 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,279,328 bytes of memory allocated.
 JSOWN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 80,401 microseconds (0.080401 seconds) to run.
-      2,018 microseconds (0.002018 seconds, 2.51%) of which was spent in GC.
+took 82,283 microseconds (0.082283 seconds) to run.
+      2,194 microseconds (0.002194 seconds, 2.67%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     80,461 microseconds (0.080461 seconds) were spent in user mode
+     82,278 microseconds (0.082278 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,279,328 bytes of memory allocated.
 JSOWN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 78,582 microseconds (0.078582 seconds) to run.
-      1,631 microseconds (0.001631 seconds, 2.08%) of which was spent in GC.
+took 82,867 microseconds (0.082867 seconds) to run.
+      2,236 microseconds (0.002236 seconds, 2.70%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     78,638 microseconds (0.078638 seconds) were spent in user mode
+     82,864 microseconds (0.082864 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,279,328 bytes of memory allocated.
 JSOWN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 79,409 microseconds (0.079409 seconds) to run.
-      1,813 microseconds (0.001813 seconds, 2.28%) of which was spent in GC.
+took 83,538 microseconds (0.083538 seconds) to run.
+      2,168 microseconds (0.002168 seconds, 2.60%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     79,141 microseconds (0.079141 seconds) were spent in user mode
+     83,464 microseconds (0.083464 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,279,328 bytes of memory allocated.
 JSOWN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 78,718 microseconds (0.078718 seconds) to run.
-      2,189 microseconds (0.002189 seconds, 2.78%) of which was spent in GC.
+took 83,789 microseconds (0.083789 seconds) to run.
+      2,476 microseconds (0.002476 seconds, 2.96%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     78,759 microseconds (0.078759 seconds) were spent in user mode
+     83,688 microseconds (0.083688 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,279,328 bytes of memory allocated.
 JSOWN;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 81,406 microseconds (0.081406 seconds) to run.
-      2,210 microseconds (0.002210 seconds, 2.71%) of which was spent in GC.
+took 82,186 microseconds (0.082186 seconds) to run.
+      2,187 microseconds (0.002187 seconds, 2.66%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     81,491 microseconds (0.081491 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
- 3,279,328 bytes of memory allocated.
-JSOWN;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 78,036 microseconds (0.078036 seconds) to run.
-      1,620 microseconds (0.001620 seconds, 2.08%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     78,077 microseconds (0.078077 seconds) were spent in user mode
+     82,167 microseconds (0.082167 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,279,328 bytes of memory allocated.
 JSOWN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 129,533 microseconds (0.129533 seconds) to run.
-       1,877 microseconds (0.001877 seconds, 1.45%) of which was spent in GC.
+took 134,820 microseconds (0.134820 seconds) to run.
+       3,462 microseconds (0.003462 seconds, 2.57%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     129,911 microseconds (0.129911 seconds) were spent in user mode
+     134,526 microseconds (0.134526 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  25,758,464 bytes of memory allocated.
- 1 minor page faults, 0 major page faults, 0 swaps.
 JSOWN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 130,908 microseconds (0.130908 seconds) to run.
-       2,640 microseconds (0.002640 seconds, 2.02%) of which was spent in GC.
+took 135,038 microseconds (0.135038 seconds) to run.
+       3,339 microseconds (0.003339 seconds, 2.47%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     127,441 microseconds (0.127441 seconds) were spent in user mode
-       3,872 microseconds (0.003872 seconds) were spent in system mode
- 25,757,328 bytes of memory allocated.
-JSOWN;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 127,562 microseconds (0.127562 seconds) to run.
-       1,739 microseconds (0.001739 seconds, 1.36%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     127,937 microseconds (0.127937 seconds) were spent in user mode
+     134,949 microseconds (0.134949 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  25,757,328 bytes of memory allocated.
 JSOWN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 128,078 microseconds (0.128078 seconds) to run.
-       1,787 microseconds (0.001787 seconds, 1.40%) of which was spent in GC.
+took 133,547 microseconds (0.133547 seconds) to run.
+       3,430 microseconds (0.003430 seconds, 2.57%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     128,453 microseconds (0.128453 seconds) were spent in user mode
+     133,406 microseconds (0.133406 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  25,757,328 bytes of memory allocated.
 JSOWN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 129,476 microseconds (0.129476 seconds) to run.
-       2,206 microseconds (0.002206 seconds, 1.70%) of which was spent in GC.
+took 133,559 microseconds (0.133559 seconds) to run.
+       3,611 microseconds (0.003611 seconds, 2.70%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     129,911 microseconds (0.129911 seconds) were spent in user mode
+     133,401 microseconds (0.133401 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  25,757,328 bytes of memory allocated.
 JSOWN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 130,703 microseconds (0.130703 seconds) to run.
-       2,678 microseconds (0.002678 seconds, 2.05%) of which was spent in GC.
+took 135,624 microseconds (0.135624 seconds) to run.
+       3,510 microseconds (0.003510 seconds, 2.59%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     131,076 microseconds (0.131076 seconds) were spent in user mode
+     135,510 microseconds (0.135510 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  25,757,328 bytes of memory allocated.
 JSOWN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 129,154 microseconds (0.129154 seconds) to run.
-       2,134 microseconds (0.002134 seconds, 1.65%) of which was spent in GC.
+took 134,631 microseconds (0.134631 seconds) to run.
+       3,186 microseconds (0.003186 seconds, 2.37%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     129,525 microseconds (0.129525 seconds) were spent in user mode
+     134,476 microseconds (0.134476 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  25,757,328 bytes of memory allocated.
 JSOWN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 127,401 microseconds (0.127401 seconds) to run.
-       1,638 microseconds (0.001638 seconds, 1.29%) of which was spent in GC.
+took 135,193 microseconds (0.135193 seconds) to run.
+       3,564 microseconds (0.003564 seconds, 2.64%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     127,786 microseconds (0.127786 seconds) were spent in user mode
+     135,059 microseconds (0.135059 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  25,757,328 bytes of memory allocated.
 JSOWN;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 127,792 microseconds (0.127792 seconds) to run.
-       1,761 microseconds (0.001761 seconds, 1.38%) of which was spent in GC.
+took 133,640 microseconds (0.133640 seconds) to run.
+       3,376 microseconds (0.003376 seconds, 2.53%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     128,174 microseconds (0.128174 seconds) were spent in user mode
+     133,469 microseconds (0.133469 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 25,757,328 bytes of memory allocated.
+JSOWN;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 133,747 microseconds (0.133747 seconds) to run.
+       3,417 microseconds (0.003417 seconds, 2.55%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     133,570 microseconds (0.133570 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  25,757,328 bytes of memory allocated.
 
@@ -610,149 +609,149 @@ JZON
 ========================================
 JZON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 97,372 microseconds (0.097372 seconds) to run.
-     36,300 microseconds (0.036300 seconds, 37.28%) of which was spent in GC.
+took 101,683 microseconds (0.101683 seconds) to run.
+      37,096 microseconds (0.037096 seconds, 36.48%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     93,766 microseconds (0.093766 seconds) were spent in user mode
-      4,012 microseconds (0.004012 seconds) were spent in system mode
+      97,636 microseconds (0.097636 seconds) were spent in user mode
+       3,876 microseconds (0.003876 seconds) were spent in system mode
  19,818,256 bytes of memory allocated.
  510 minor page faults, 0 major page faults, 0 swaps.
 JZON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 85,104 microseconds (0.085104 seconds) to run.
-     30,560 microseconds (0.030560 seconds, 35.91%) of which was spent in GC.
+took 96,542 microseconds (0.096542 seconds) to run.
+     36,206 microseconds (0.036206 seconds, 37.50%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     85,441 microseconds (0.085441 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     96,407 microseconds (0.096407 seconds) were spent in user mode
+          9 microseconds (0.000009 seconds) were spent in system mode
  19,818,256 bytes of memory allocated.
  1 minor page faults, 0 major page faults, 0 swaps.
 JZON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 85,405 microseconds (0.085405 seconds) to run.
-     30,483 microseconds (0.030483 seconds, 35.69%) of which was spent in GC.
+took 96,211 microseconds (0.096211 seconds) to run.
+     35,767 microseconds (0.035767 seconds, 37.18%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     85,759 microseconds (0.085759 seconds) were spent in user mode
-          3 microseconds (0.000003 seconds) were spent in system mode
- 19,818,256 bytes of memory allocated.
-JZON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 85,004 microseconds (0.085004 seconds) to run.
-     30,261 microseconds (0.030261 seconds, 35.60%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     85,363 microseconds (0.085363 seconds) were spent in user mode
+     96,103 microseconds (0.096103 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  19,818,256 bytes of memory allocated.
 JZON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 85,851 microseconds (0.085851 seconds) to run.
-     31,028 microseconds (0.031028 seconds, 36.14%) of which was spent in GC.
+took 100,077 microseconds (0.100077 seconds) to run.
+      37,957 microseconds (0.037957 seconds, 37.93%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     86,205 microseconds (0.086205 seconds) were spent in user mode
-         14 microseconds (0.000014 seconds) were spent in system mode
+      99,974 microseconds (0.099974 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
  19,818,256 bytes of memory allocated.
 JZON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 84,483 microseconds (0.084483 seconds) to run.
-     30,045 microseconds (0.030045 seconds, 35.56%) of which was spent in GC.
+took 102,335 microseconds (0.102335 seconds) to run.
+      38,861 microseconds (0.038861 seconds, 37.97%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     84,872 microseconds (0.084872 seconds) were spent in user mode
+     101,240 microseconds (0.101240 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 19,818,256 bytes of memory allocated.
+JZON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 100,285 microseconds (0.100285 seconds) to run.
+      37,750 microseconds (0.037750 seconds, 37.64%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     100,167 microseconds (0.100167 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 19,818,256 bytes of memory allocated.
+JZON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 101,153 microseconds (0.101153 seconds) to run.
+      37,931 microseconds (0.037931 seconds, 37.50%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     101,058 microseconds (0.101058 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 19,818,256 bytes of memory allocated.
+JZON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 99,296 microseconds (0.099296 seconds) to run.
+     37,398 microseconds (0.037398 seconds, 37.66%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     99,181 microseconds (0.099181 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  19,818,256 bytes of memory allocated.
 JZON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 86,728 microseconds (0.086728 seconds) to run.
-     31,540 microseconds (0.031540 seconds, 36.37%) of which was spent in GC.
+took 100,390 microseconds (0.100390 seconds) to run.
+      37,698 microseconds (0.037698 seconds, 37.55%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     87,094 microseconds (0.087094 seconds) were spent in user mode
-          9 microseconds (0.000009 seconds) were spent in system mode
- 19,818,256 bytes of memory allocated.
-JZON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 84,711 microseconds (0.084711 seconds) to run.
-     30,352 microseconds (0.030352 seconds, 35.83%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     85,071 microseconds (0.085071 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
- 19,818,256 bytes of memory allocated.
-JZON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 86,542 microseconds (0.086542 seconds) to run.
-     31,474 microseconds (0.031474 seconds, 36.37%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     86,881 microseconds (0.086881 seconds) were spent in user mode
-         14 microseconds (0.000014 seconds) were spent in system mode
+     100,296 microseconds (0.100296 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
  19,818,256 bytes of memory allocated.
 JZON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 58,067 microseconds (0.058067 seconds) to run.
-      1,648 microseconds (0.001648 seconds, 2.84%) of which was spent in GC.
+took 65,834 microseconds (0.065834 seconds) to run.
+      2,668 microseconds (0.002668 seconds, 4.05%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     54,155 microseconds (0.054155 seconds) were spent in user mode
-      3,993 microseconds (0.003993 seconds) were spent in system mode
+     65,809 microseconds (0.065809 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
  6,320,848 bytes of memory allocated.
 JZON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 57,211 microseconds (0.057211 seconds) to run.
-      1,657 microseconds (0.001657 seconds, 2.90%) of which was spent in GC.
+took 65,495 microseconds (0.065495 seconds) to run.
+      2,281 microseconds (0.002281 seconds, 3.48%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     57,290 microseconds (0.057290 seconds) were spent in user mode
+     61,664 microseconds (0.061664 seconds) were spent in user mode
+      3,861 microseconds (0.003861 seconds) were spent in system mode
+ 6,315,040 bytes of memory allocated.
+JZON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 65,863 microseconds (0.065863 seconds) to run.
+      2,714 microseconds (0.002714 seconds, 4.12%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     65,855 microseconds (0.065855 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  6,315,040 bytes of memory allocated.
 JZON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 57,808 microseconds (0.057808 seconds) to run.
-      1,669 microseconds (0.001669 seconds, 2.89%) of which was spent in GC.
+took 66,660 microseconds (0.066660 seconds) to run.
+      2,857 microseconds (0.002857 seconds, 4.29%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     57,915 microseconds (0.057915 seconds) were spent in user mode
+     66,679 microseconds (0.066679 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  6,315,040 bytes of memory allocated.
 JZON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 57,617 microseconds (0.057617 seconds) to run.
-      1,504 microseconds (0.001504 seconds, 2.61%) of which was spent in GC.
+took 65,266 microseconds (0.065266 seconds) to run.
+      2,712 microseconds (0.002712 seconds, 4.16%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     53,747 microseconds (0.053747 seconds) were spent in user mode
-      3,953 microseconds (0.003953 seconds) were spent in system mode
+     61,298 microseconds (0.061298 seconds) were spent in user mode
+      3,946 microseconds (0.003946 seconds) were spent in system mode
  6,315,040 bytes of memory allocated.
 JZON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 56,735 microseconds (0.056735 seconds) to run.
-      1,110 microseconds (0.001110 seconds, 1.96%) of which was spent in GC.
+took 64,165 microseconds (0.064165 seconds) to run.
+      2,148 microseconds (0.002148 seconds, 3.35%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     56,796 microseconds (0.056796 seconds) were spent in user mode
-         14 microseconds (0.000014 seconds) were spent in system mode
- 6,315,040 bytes of memory allocated.
-JZON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 57,421 microseconds (0.057421 seconds) to run.
-      1,500 microseconds (0.001500 seconds, 2.61%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     57,477 microseconds (0.057477 seconds) were spent in user mode
-         27 microseconds (0.000027 seconds) were spent in system mode
- 6,315,040 bytes of memory allocated.
-JZON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 57,654 microseconds (0.057654 seconds) to run.
-      1,197 microseconds (0.001197 seconds, 2.08%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     57,734 microseconds (0.057734 seconds) were spent in user mode
+     64,137 microseconds (0.064137 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  6,315,040 bytes of memory allocated.
 JZON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 57,553 microseconds (0.057553 seconds) to run.
-      1,588 microseconds (0.001588 seconds, 2.76%) of which was spent in GC.
+took 66,707 microseconds (0.066707 seconds) to run.
+      2,607 microseconds (0.002607 seconds, 3.91%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     57,635 microseconds (0.057635 seconds) were spent in user mode
+     66,742 microseconds (0.066742 seconds) were spent in user mode
+          1 microseconds (0.000001 seconds) were spent in system mode
+ 6,315,040 bytes of memory allocated.
+JZON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 65,323 microseconds (0.065323 seconds) to run.
+      2,690 microseconds (0.002690 seconds, 4.12%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     65,298 microseconds (0.065298 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  6,315,040 bytes of memory allocated.
 JZON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 56,851 microseconds (0.056851 seconds) to run.
-      1,105 microseconds (0.001105 seconds, 1.94%) of which was spent in GC.
+took 64,436 microseconds (0.064436 seconds) to run.
+      2,602 microseconds (0.002602 seconds, 4.04%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     56,947 microseconds (0.056947 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     60,472 microseconds (0.060472 seconds) were spent in user mode
+      3,950 microseconds (0.003950 seconds) were spent in system mode
  6,315,040 bytes of memory allocated.
 
 ========================================
@@ -760,138 +759,138 @@ RS-JSON
 ========================================
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 99,588 microseconds (0.099588 seconds) to run.
-      4,638 microseconds (0.004638 seconds, 4.66%) of which was spent in GC.
+took 59,652 microseconds (0.059652 seconds) to run.
+      1,403 microseconds (0.001403 seconds, 2.35%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     99,782 microseconds (0.099782 seconds) were spent in user mode
+     59,645 microseconds (0.059645 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+ 3,754,880 bytes of memory allocated.
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 101,063 microseconds (0.101063 seconds) to run.
-       5,067 microseconds (0.005067 seconds, 5.01%) of which was spent in GC.
+took 61,353 microseconds (0.061353 seconds) to run.
+      1,735 microseconds (0.001735 seconds, 2.83%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     101,234 microseconds (0.101234 seconds) were spent in user mode
-          21 microseconds (0.000021 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+     61,358 microseconds (0.061358 seconds) were spent in user mode
+         35 microseconds (0.000035 seconds) were spent in system mode
+ 3,754,880 bytes of memory allocated.
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 102,571 microseconds (0.102571 seconds) to run.
-       5,745 microseconds (0.005745 seconds, 5.60%) of which was spent in GC.
+took 61,302 microseconds (0.061302 seconds) to run.
+      1,633 microseconds (0.001633 seconds, 2.66%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     102,780 microseconds (0.102780 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+     61,300 microseconds (0.061300 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,754,880 bytes of memory allocated.
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 100,126 microseconds (0.100126 seconds) to run.
-       4,608 microseconds (0.004608 seconds, 4.60%) of which was spent in GC.
+took 61,068 microseconds (0.061068 seconds) to run.
+      1,607 microseconds (0.001607 seconds, 2.63%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     100,322 microseconds (0.100322 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+     61,040 microseconds (0.061040 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,754,880 bytes of memory allocated.
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 101,668 microseconds (0.101668 seconds) to run.
-       5,419 microseconds (0.005419 seconds, 5.33%) of which was spent in GC.
+took 60,923 microseconds (0.060923 seconds) to run.
+      1,678 microseconds (0.001678 seconds, 2.75%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     101,855 microseconds (0.101855 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+     60,880 microseconds (0.060880 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,754,880 bytes of memory allocated.
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 101,364 microseconds (0.101364 seconds) to run.
-       5,344 microseconds (0.005344 seconds, 5.27%) of which was spent in GC.
+took 61,490 microseconds (0.061490 seconds) to run.
+      1,705 microseconds (0.001705 seconds, 2.77%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     101,586 microseconds (0.101586 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+     61,461 microseconds (0.061461 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,754,880 bytes of memory allocated.
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 101,611 microseconds (0.101611 seconds) to run.
-       5,405 microseconds (0.005405 seconds, 5.32%) of which was spent in GC.
+took 61,615 microseconds (0.061615 seconds) to run.
+      1,651 microseconds (0.001651 seconds, 2.68%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     101,781 microseconds (0.101781 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+     61,586 microseconds (0.061586 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,754,880 bytes of memory allocated.
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 102,179 microseconds (0.102179 seconds) to run.
-       5,800 microseconds (0.005800 seconds, 5.68%) of which was spent in GC.
+took 60,623 microseconds (0.060623 seconds) to run.
+      1,573 microseconds (0.001573 seconds, 2.59%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     102,353 microseconds (0.102353 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+     60,645 microseconds (0.060645 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,754,880 bytes of memory allocated.
 RS-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 103,382 microseconds (0.103382 seconds) to run.
-       6,088 microseconds (0.006088 seconds, 5.89%) of which was spent in GC.
+took 61,578 microseconds (0.061578 seconds) to run.
+      1,670 microseconds (0.001670 seconds, 2.71%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     103,583 microseconds (0.103583 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 11,600,768 bytes of memory allocated.
+     61,582 microseconds (0.061582 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,754,880 bytes of memory allocated.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 29,306 microseconds (0.029306 seconds) to run.
+took 28,501 microseconds (0.028501 seconds) to run.
 During that period, and with 4 available CPU cores,
-     29,326 microseconds (0.029326 seconds) were spent in user mode
+     28,501 microseconds (0.028501 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,334,080 bytes of memory allocated.
  3 minor page faults, 0 major page faults, 0 swaps.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 28,412 microseconds (0.028412 seconds) to run.
+took 29,321 microseconds (0.029321 seconds) to run.
 During that period, and with 4 available CPU cores,
-     28,394 microseconds (0.028394 seconds) were spent in user mode
+     29,333 microseconds (0.029333 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,330,800 bytes of memory allocated.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 28,278 microseconds (0.028278 seconds) to run.
+took 28,135 microseconds (0.028135 seconds) to run.
 During that period, and with 4 available CPU cores,
-     28,273 microseconds (0.028273 seconds) were spent in user mode
+     28,136 microseconds (0.028136 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,330,800 bytes of memory allocated.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 28,799 microseconds (0.028799 seconds) to run.
+took 29,439 microseconds (0.029439 seconds) to run.
 During that period, and with 4 available CPU cores,
-     28,770 microseconds (0.028770 seconds) were spent in user mode
+     29,429 microseconds (0.029429 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,330,800 bytes of memory allocated.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 29,095 microseconds (0.029095 seconds) to run.
+took 29,213 microseconds (0.029213 seconds) to run.
 During that period, and with 4 available CPU cores,
-     28,957 microseconds (0.028957 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     25,300 microseconds (0.025300 seconds) were spent in user mode
+      3,926 microseconds (0.003926 seconds) were spent in system mode
  1,330,800 bytes of memory allocated.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 28,854 microseconds (0.028854 seconds) to run.
+took 29,030 microseconds (0.029030 seconds) to run.
 During that period, and with 4 available CPU cores,
-     28,836 microseconds (0.028836 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     29,041 microseconds (0.029041 seconds) were spent in user mode
+          5 microseconds (0.000005 seconds) were spent in system mode
  1,330,800 bytes of memory allocated.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 27,862 microseconds (0.027862 seconds) to run.
+took 29,259 microseconds (0.029259 seconds) to run.
 During that period, and with 4 available CPU cores,
-     27,864 microseconds (0.027864 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     29,243 microseconds (0.029243 seconds) were spent in user mode
+         21 microseconds (0.000021 seconds) were spent in system mode
  1,330,800 bytes of memory allocated.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 28,470 microseconds (0.028470 seconds) to run.
+took 28,599 microseconds (0.028599 seconds) to run.
 During that period, and with 4 available CPU cores,
-     28,470 microseconds (0.028470 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     28,591 microseconds (0.028591 seconds) were spent in user mode
+          8 microseconds (0.000008 seconds) were spent in system mode
  1,330,800 bytes of memory allocated.
 RS-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 27,816 microseconds (0.027816 seconds) to run.
+took 30,196 microseconds (0.030196 seconds) to run.
 During that period, and with 4 available CPU cores,
-     27,818 microseconds (0.027818 seconds) were spent in user mode
+     30,251 microseconds (0.030251 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,330,800 bytes of memory allocated.
 
@@ -900,138 +899,138 @@ SHASHT
 ========================================
 SHASHT;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 120,000 microseconds (0.120000 seconds) to run.
-      52,410 microseconds (0.052410 seconds, 43.67%) of which was spent in GC.
+took 126,780 microseconds (0.126780 seconds) to run.
+      55,749 microseconds (0.055749 seconds, 43.97%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     120,504 microseconds (0.120504 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
+     114,697 microseconds (0.114697 seconds) were spent in user mode
+      11,970 microseconds (0.011970 seconds) were spent in system mode
  27,205,504 bytes of memory allocated.
- 484 minor page faults, 0 major page faults, 0 swaps.
+ 69 minor page faults, 0 major page faults, 0 swaps.
 SHASHT;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 107,298 microseconds (0.107298 seconds) to run.
-      41,393 microseconds (0.041393 seconds, 38.58%) of which was spent in GC.
+took 126,672 microseconds (0.126672 seconds) to run.
+      56,527 microseconds (0.056527 seconds, 44.62%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     107,773 microseconds (0.107773 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
- 27,205,504 bytes of memory allocated.
-SHASHT;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 108,767 microseconds (0.108767 seconds) to run.
-      42,708 microseconds (0.042708 seconds, 39.27%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     105,353 microseconds (0.105353 seconds) were spent in user mode
-       3,891 microseconds (0.003891 seconds) were spent in system mode
- 27,205,504 bytes of memory allocated.
-SHASHT;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 107,679 microseconds (0.107679 seconds) to run.
-      41,880 microseconds (0.041880 seconds, 38.89%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     108,150 microseconds (0.108150 seconds) were spent in user mode
-           1 microseconds (0.000001 seconds) were spent in system mode
- 27,205,504 bytes of memory allocated.
-SHASHT;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 108,922 microseconds (0.108922 seconds) to run.
-      42,461 microseconds (0.042461 seconds, 38.98%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     109,404 microseconds (0.109404 seconds) were spent in user mode
+     126,489 microseconds (0.126489 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  27,205,504 bytes of memory allocated.
 SHASHT;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 114,793 microseconds (0.114793 seconds) to run.
-      48,151 microseconds (0.048151 seconds, 41.95%) of which was spent in GC.
+took 126,125 microseconds (0.126125 seconds) to run.
+      55,738 microseconds (0.055738 seconds, 44.19%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     115,261 microseconds (0.115261 seconds) were spent in user mode
+     125,965 microseconds (0.125965 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  27,205,504 bytes of memory allocated.
 SHASHT;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 107,054 microseconds (0.107054 seconds) to run.
-      41,316 microseconds (0.041316 seconds, 38.59%) of which was spent in GC.
+took 127,092 microseconds (0.127092 seconds) to run.
+      56,396 microseconds (0.056396 seconds, 44.37%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     107,520 microseconds (0.107520 seconds) were spent in user mode
+     126,994 microseconds (0.126994 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  27,205,504 bytes of memory allocated.
 SHASHT;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 107,750 microseconds (0.107750 seconds) to run.
-      41,883 microseconds (0.041883 seconds, 38.87%) of which was spent in GC.
+took 123,633 microseconds (0.123633 seconds) to run.
+      53,298 microseconds (0.053298 seconds, 43.11%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     108,226 microseconds (0.108226 seconds) were spent in user mode
+     123,447 microseconds (0.123447 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  27,205,504 bytes of memory allocated.
 SHASHT;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 109,491 microseconds (0.109491 seconds) to run.
-      43,583 microseconds (0.043583 seconds, 39.81%) of which was spent in GC.
+took 125,491 microseconds (0.125491 seconds) to run.
+      54,987 microseconds (0.054987 seconds, 43.82%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     109,963 microseconds (0.109963 seconds) were spent in user mode
+     125,348 microseconds (0.125348 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
+ 27,205,504 bytes of memory allocated.
+SHASHT;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 126,908 microseconds (0.126908 seconds) to run.
+      55,876 microseconds (0.055876 seconds, 44.03%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     126,786 microseconds (0.126786 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 27,205,504 bytes of memory allocated.
+SHASHT;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 113,929 microseconds (0.113929 seconds) to run.
+      45,284 microseconds (0.045284 seconds, 39.75%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     113,757 microseconds (0.113757 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 27,205,504 bytes of memory allocated.
+SHASHT;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 114,977 microseconds (0.114977 seconds) to run.
+      46,158 microseconds (0.046158 seconds, 40.15%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     110,997 microseconds (0.110997 seconds) were spent in user mode
+       3,868 microseconds (0.003868 seconds) were spent in system mode
  27,205,504 bytes of memory allocated.
 SHASHT;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 41,886 microseconds (0.041886 seconds) to run.
+took 42,869 microseconds (0.042869 seconds) to run.
 During that period, and with 4 available CPU cores,
-     41,889 microseconds (0.041889 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     38,906 microseconds (0.038906 seconds) were spent in user mode
+      3,964 microseconds (0.003964 seconds) were spent in system mode
  1,936,880 bytes of memory allocated.
 SHASHT;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 42,020 microseconds (0.042020 seconds) to run.
+took 42,485 microseconds (0.042485 seconds) to run.
 During that period, and with 4 available CPU cores,
-     42,021 microseconds (0.042021 seconds) were spent in user mode
+     42,436 microseconds (0.042436 seconds) were spent in user mode
+         24 microseconds (0.000024 seconds) were spent in system mode
+ 1,932,080 bytes of memory allocated.
+SHASHT;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 42,497 microseconds (0.042497 seconds) to run.
+During that period, and with 4 available CPU cores,
+     42,491 microseconds (0.042491 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,932,080 bytes of memory allocated.
 SHASHT;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 41,793 microseconds (0.041793 seconds) to run.
+took 42,318 microseconds (0.042318 seconds) to run.
 During that period, and with 4 available CPU cores,
-     37,889 microseconds (0.037889 seconds) were spent in user mode
-      3,929 microseconds (0.003929 seconds) were spent in system mode
- 1,932,080 bytes of memory allocated.
-SHASHT;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 41,288 microseconds (0.041288 seconds) to run.
-During that period, and with 4 available CPU cores,
-     41,290 microseconds (0.041290 seconds) were spent in user mode
+     42,312 microseconds (0.042312 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,932,080 bytes of memory allocated.
 SHASHT;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 41,290 microseconds (0.041290 seconds) to run.
+took 42,744 microseconds (0.042744 seconds) to run.
 During that period, and with 4 available CPU cores,
-     41,292 microseconds (0.041292 seconds) were spent in user mode
+     42,746 microseconds (0.042746 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,932,080 bytes of memory allocated.
 SHASHT;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 41,700 microseconds (0.041700 seconds) to run.
+took 42,401 microseconds (0.042401 seconds) to run.
 During that period, and with 4 available CPU cores,
-     41,701 microseconds (0.041701 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     38,443 microseconds (0.038443 seconds) were spent in user mode
+      3,954 microseconds (0.003954 seconds) were spent in system mode
  1,932,080 bytes of memory allocated.
 SHASHT;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 41,171 microseconds (0.041171 seconds) to run.
+took 43,109 microseconds (0.043109 seconds) to run.
 During that period, and with 4 available CPU cores,
-     41,173 microseconds (0.041173 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     43,113 microseconds (0.043113 seconds) were spent in user mode
+         34 microseconds (0.000034 seconds) were spent in system mode
  1,932,080 bytes of memory allocated.
 SHASHT;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 41,243 microseconds (0.041243 seconds) to run.
+took 43,069 microseconds (0.043069 seconds) to run.
 During that period, and with 4 available CPU cores,
-     41,246 microseconds (0.041246 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
+     42,998 microseconds (0.042998 seconds) were spent in user mode
+          6 microseconds (0.000006 seconds) were spent in system mode
  1,932,080 bytes of memory allocated.
 SHASHT;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 40,972 microseconds (0.040972 seconds) to run.
+took 42,714 microseconds (0.042714 seconds) to run.
 During that period, and with 4 available CPU cores,
-     40,968 microseconds (0.040968 seconds) were spent in user mode
+     42,716 microseconds (0.042716 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  1,932,080 bytes of memory allocated.
 
@@ -1040,138 +1039,138 @@ ST-JSON
 ========================================
 ST-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 139,626 microseconds (0.139626 seconds) to run.
-       2,664 microseconds (0.002664 seconds, 1.91%) of which was spent in GC.
+took 150,824 microseconds (0.150824 seconds) to run.
+       6,563 microseconds (0.006563 seconds, 4.35%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     135,912 microseconds (0.135912 seconds) were spent in user mode
-       3,972 microseconds (0.003972 seconds) were spent in system mode
- 17,264,672 bytes of memory allocated.
-ST-JSON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 141,158 microseconds (0.141158 seconds) to run.
-       3,028 microseconds (0.003028 seconds, 2.15%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     141,433 microseconds (0.141433 seconds) were spent in user mode
-          21 microseconds (0.000021 seconds) were spent in system mode
- 17,264,672 bytes of memory allocated.
-ST-JSON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 140,793 microseconds (0.140793 seconds) to run.
-       2,958 microseconds (0.002958 seconds, 2.10%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     141,065 microseconds (0.141065 seconds) were spent in user mode
-           1 microseconds (0.000001 seconds) were spent in system mode
- 17,264,672 bytes of memory allocated.
-ST-JSON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 140,603 microseconds (0.140603 seconds) to run.
-       2,965 microseconds (0.002965 seconds, 2.11%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     140,873 microseconds (0.140873 seconds) were spent in user mode
+     150,645 microseconds (0.150645 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,264,672 bytes of memory allocated.
 ST-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 142,006 microseconds (0.142006 seconds) to run.
-       3,565 microseconds (0.003565 seconds, 2.51%) of which was spent in GC.
+took 149,117 microseconds (0.149117 seconds) to run.
+       5,897 microseconds (0.005897 seconds, 3.95%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     142,334 microseconds (0.142334 seconds) were spent in user mode
+     148,953 microseconds (0.148953 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,264,672 bytes of memory allocated.
 ST-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 140,706 microseconds (0.140706 seconds) to run.
-       2,933 microseconds (0.002933 seconds, 2.08%) of which was spent in GC.
+took 150,514 microseconds (0.150514 seconds) to run.
+       6,395 microseconds (0.006395 seconds, 4.25%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     140,978 microseconds (0.140978 seconds) were spent in user mode
+     150,414 microseconds (0.150414 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,264,672 bytes of memory allocated.
 ST-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 142,506 microseconds (0.142506 seconds) to run.
-       3,488 microseconds (0.003488 seconds, 2.45%) of which was spent in GC.
+took 149,811 microseconds (0.149811 seconds) to run.
+       5,959 microseconds (0.005959 seconds, 3.98%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     142,777 microseconds (0.142777 seconds) were spent in user mode
+     149,660 microseconds (0.149660 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,264,672 bytes of memory allocated.
 ST-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 139,640 microseconds (0.139640 seconds) to run.
-       2,733 microseconds (0.002733 seconds, 1.96%) of which was spent in GC.
+took 148,025 microseconds (0.148025 seconds) to run.
+       5,134 microseconds (0.005134 seconds, 3.47%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     139,880 microseconds (0.139880 seconds) were spent in user mode
-          28 microseconds (0.000028 seconds) were spent in system mode
+     147,899 microseconds (0.147899 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
  17,264,672 bytes of memory allocated.
 ST-JSON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 143,070 microseconds (0.143070 seconds) to run.
-       3,810 microseconds (0.003810 seconds, 2.66%) of which was spent in GC.
+took 148,956 microseconds (0.148956 seconds) to run.
+       5,567 microseconds (0.005567 seconds, 3.74%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     143,041 microseconds (0.143041 seconds) were spent in user mode
+     148,833 microseconds (0.148833 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 17,264,672 bytes of memory allocated.
+ST-JSON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 148,806 microseconds (0.148806 seconds) to run.
+       5,738 microseconds (0.005738 seconds, 3.86%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     148,613 microseconds (0.148613 seconds) were spent in user mode
+          58 microseconds (0.000058 seconds) were spent in system mode
+ 17,264,672 bytes of memory allocated.
+ST-JSON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 149,154 microseconds (0.149154 seconds) to run.
+       5,448 microseconds (0.005448 seconds, 3.65%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     149,022 microseconds (0.149022 seconds) were spent in user mode
+          10 microseconds (0.000010 seconds) were spent in system mode
+ 17,264,672 bytes of memory allocated.
+ST-JSON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 148,586 microseconds (0.148586 seconds) to run.
+       5,596 microseconds (0.005596 seconds, 3.77%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     148,420 microseconds (0.148420 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  17,264,672 bytes of memory allocated.
 ST-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,533 microseconds (0.022533 seconds) to run.
+took 22,467 microseconds (0.022467 seconds) to run.
 During that period, and with 4 available CPU cores,
-     22,535 microseconds (0.022535 seconds) were spent in user mode
+     22,401 microseconds (0.022401 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  109,584 bytes of memory allocated.
 ST-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,178 microseconds (0.022178 seconds) to run.
+took 22,785 microseconds (0.022785 seconds) to run.
 During that period, and with 4 available CPU cores,
-     18,153 microseconds (0.018153 seconds) were spent in user mode
-      4,028 microseconds (0.004028 seconds) were spent in system mode
- 108,576 bytes of memory allocated.
-ST-JSON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,624 microseconds (0.022624 seconds) to run.
-During that period, and with 4 available CPU cores,
-     22,627 microseconds (0.022627 seconds) were spent in user mode
+     22,770 microseconds (0.022770 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  108,576 bytes of memory allocated.
 ST-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,328 microseconds (0.022328 seconds) to run.
+took 22,503 microseconds (0.022503 seconds) to run.
 During that period, and with 4 available CPU cores,
-     14,367 microseconds (0.014367 seconds) were spent in user mode
-      7,976 microseconds (0.007976 seconds) were spent in system mode
- 108,576 bytes of memory allocated.
-ST-JSON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,770 microseconds (0.022770 seconds) to run.
-During that period, and with 4 available CPU cores,
-     22,773 microseconds (0.022773 seconds) were spent in user mode
+     22,507 microseconds (0.022507 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  108,576 bytes of memory allocated.
 ST-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,268 microseconds (0.022268 seconds) to run.
+took 22,303 microseconds (0.022303 seconds) to run.
 During that period, and with 4 available CPU cores,
-     22,258 microseconds (0.022258 seconds) were spent in user mode
-         13 microseconds (0.000013 seconds) were spent in system mode
- 108,576 bytes of memory allocated.
-ST-JSON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,782 microseconds (0.022782 seconds) to run.
-During that period, and with 4 available CPU cores,
-     18,777 microseconds (0.018777 seconds) were spent in user mode
-      4,007 microseconds (0.004007 seconds) were spent in system mode
- 108,576 bytes of memory allocated.
-ST-JSON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,291 microseconds (0.022291 seconds) to run.
-During that period, and with 4 available CPU cores,
-     22,294 microseconds (0.022294 seconds) were spent in user mode
+     22,281 microseconds (0.022281 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  108,576 bytes of memory allocated.
 ST-JSON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 22,083 microseconds (0.022083 seconds) to run.
+took 22,827 microseconds (0.022827 seconds) to run.
 During that period, and with 4 available CPU cores,
-     18,081 microseconds (0.018081 seconds) were spent in user mode
-      4,005 microseconds (0.004005 seconds) were spent in system mode
+     22,856 microseconds (0.022856 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 108,576 bytes of memory allocated.
+ST-JSON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 22,333 microseconds (0.022333 seconds) to run.
+During that period, and with 4 available CPU cores,
+     22,328 microseconds (0.022328 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 108,576 bytes of memory allocated.
+ST-JSON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 22,373 microseconds (0.022373 seconds) to run.
+During that period, and with 4 available CPU cores,
+     22,283 microseconds (0.022283 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 108,576 bytes of memory allocated.
+ST-JSON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 22,234 microseconds (0.022234 seconds) to run.
+During that period, and with 4 available CPU cores,
+     22,236 microseconds (0.022236 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 108,576 bytes of memory allocated.
+ST-JSON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 22,395 microseconds (0.022395 seconds) to run.
+During that period, and with 4 available CPU cores,
+     22,398 microseconds (0.022398 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
  108,576 bytes of memory allocated.
 
 ========================================
@@ -1179,153 +1178,153 @@ YASON
 ========================================
 YASON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 214,620 microseconds (0.214620 seconds) to run.
-      45,711 microseconds (0.045711 seconds, 21.30%) of which was spent in GC.
+took 224,390 microseconds (0.224390 seconds) to run.
+      45,930 microseconds (0.045930 seconds, 20.47%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     215,180 microseconds (0.215180 seconds) were spent in user mode
-           0 microseconds (0.000000 seconds) were spent in system mode
+     224,250 microseconds (0.224250 seconds) were spent in user mode
+           3 microseconds (0.000003 seconds) were spent in system mode
  31,804,784 bytes of memory allocated.
- 452 minor page faults, 0 major page faults, 0 swaps.
+ 37 minor page faults, 0 major page faults, 0 swaps.
 YASON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 210,880 microseconds (0.210880 seconds) to run.
-      43,072 microseconds (0.043072 seconds, 20.42%) of which was spent in GC.
+took 219,368 microseconds (0.219368 seconds) to run.
+      42,590 microseconds (0.042590 seconds, 19.41%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     207,472 microseconds (0.207472 seconds) were spent in user mode
-       3,970 microseconds (0.003970 seconds) were spent in system mode
- 31,804,784 bytes of memory allocated.
-YASON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 210,018 microseconds (0.210018 seconds) to run.
-      41,852 microseconds (0.041852 seconds, 19.93%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     210,594 microseconds (0.210594 seconds) were spent in user mode
+     219,130 microseconds (0.219130 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  31,804,784 bytes of memory allocated.
 YASON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 213,889 microseconds (0.213889 seconds) to run.
-      44,800 microseconds (0.044800 seconds, 20.95%) of which was spent in GC.
+took 222,943 microseconds (0.222943 seconds) to run.
+      45,009 microseconds (0.045009 seconds, 20.19%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     214,436 microseconds (0.214436 seconds) were spent in user mode
-          18 microseconds (0.000018 seconds) were spent in system mode
+     214,814 microseconds (0.214814 seconds) were spent in user mode
+       7,977 microseconds (0.007977 seconds) were spent in system mode
  31,804,784 bytes of memory allocated.
 YASON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 211,310 microseconds (0.211310 seconds) to run.
-      42,611 microseconds (0.042611 seconds, 20.17%) of which was spent in GC.
+took 218,844 microseconds (0.218844 seconds) to run.
+      41,744 microseconds (0.041744 seconds, 19.07%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     207,911 microseconds (0.207911 seconds) were spent in user mode
-       3,975 microseconds (0.003975 seconds) were spent in system mode
+     214,668 microseconds (0.214668 seconds) were spent in user mode
+       4,009 microseconds (0.004009 seconds) were spent in system mode
  31,804,784 bytes of memory allocated.
 YASON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 212,586 microseconds (0.212586 seconds) to run.
-      44,419 microseconds (0.044419 seconds, 20.89%) of which was spent in GC.
+took 222,215 microseconds (0.222215 seconds) to run.
+      44,099 microseconds (0.044099 seconds, 19.85%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     213,146 microseconds (0.213146 seconds) were spent in user mode
-          14 microseconds (0.000014 seconds) were spent in system mode
- 31,804,784 bytes of memory allocated.
-YASON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 209,891 microseconds (0.209891 seconds) to run.
-      42,349 microseconds (0.042349 seconds, 20.18%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     206,490 microseconds (0.206490 seconds) were spent in user mode
-       3,972 microseconds (0.003972 seconds) were spent in system mode
- 31,804,784 bytes of memory allocated.
-YASON;READ;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 214,840 microseconds (0.214840 seconds) to run.
-      45,703 microseconds (0.045703 seconds, 21.27%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     215,419 microseconds (0.215419 seconds) were spent in user mode
+     222,048 microseconds (0.222048 seconds) were spent in user mode
            0 microseconds (0.000000 seconds) were spent in system mode
  31,804,784 bytes of memory allocated.
 YASON;READ;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
-took 221,273 microseconds (0.221273 seconds) to run.
-      51,035 microseconds (0.051035 seconds, 23.06%) of which was spent in GC.
+took 221,544 microseconds (0.221544 seconds) to run.
+      43,441 microseconds (0.043441 seconds, 19.61%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     217,843 microseconds (0.217843 seconds) were spent in user mode
-       4,021 microseconds (0.004021 seconds) were spent in system mode
+     221,327 microseconds (0.221327 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 31,804,784 bytes of memory allocated.
+YASON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 218,733 microseconds (0.218733 seconds) to run.
+      41,817 microseconds (0.041817 seconds, 19.12%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     218,493 microseconds (0.218493 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 31,804,784 bytes of memory allocated.
+YASON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 220,700 microseconds (0.220700 seconds) to run.
+      43,131 microseconds (0.043131 seconds, 19.54%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     220,540 microseconds (0.220540 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+ 31,804,784 bytes of memory allocated.
+YASON;READ;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::SOURCE)
+took 221,575 microseconds (0.221575 seconds) to run.
+      44,192 microseconds (0.044192 seconds, 19.94%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     217,477 microseconds (0.217477 seconds) were spent in user mode
+       3,914 microseconds (0.003914 seconds) were spent in system mode
  31,804,784 bytes of memory allocated.
 YASON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 79,671 microseconds (0.079671 seconds) to run.
-      1,178 microseconds (0.001178 seconds, 1.48%) of which was spent in GC.
+took 80,516 microseconds (0.080516 seconds) to run.
+      1,230 microseconds (0.001230 seconds, 1.53%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     79,713 microseconds (0.079713 seconds) were spent in user mode
+     80,479 microseconds (0.080479 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
- 3,795,280 bytes of memory allocated.
+ 3,794,944 bytes of memory allocated.
 YASON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 81,027 microseconds (0.081027 seconds) to run.
-      1,277 microseconds (0.001277 seconds, 1.58%) of which was spent in GC.
+took 81,121 microseconds (0.081121 seconds) to run.
+      1,424 microseconds (0.001424 seconds, 1.76%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     81,089 microseconds (0.081089 seconds) were spent in user mode
-          0 microseconds (0.000000 seconds) were spent in system mode
- 3,792,816 bytes of memory allocated.
-YASON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 79,672 microseconds (0.079672 seconds) to run.
-      1,033 microseconds (0.001033 seconds, 1.30%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     75,742 microseconds (0.075742 seconds) were spent in user mode
-      3,973 microseconds (0.003973 seconds) were spent in system mode
- 3,792,816 bytes of memory allocated.
-YASON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 80,269 microseconds (0.080269 seconds) to run.
-      1,137 microseconds (0.001137 seconds, 1.42%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     80,308 microseconds (0.080308 seconds) were spent in user mode
-          3 microseconds (0.000003 seconds) were spent in system mode
- 3,792,816 bytes of memory allocated.
-YASON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 79,734 microseconds (0.079734 seconds) to run.
-      1,119 microseconds (0.001119 seconds, 1.40%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     79,743 microseconds (0.079743 seconds) were spent in user mode
-          9 microseconds (0.000009 seconds) were spent in system mode
- 3,792,816 bytes of memory allocated.
-YASON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 81,705 microseconds (0.081705 seconds) to run.
-      1,239 microseconds (0.001239 seconds, 1.52%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     77,775 microseconds (0.077775 seconds) were spent in user mode
-      3,997 microseconds (0.003997 seconds) were spent in system mode
- 3,792,816 bytes of memory allocated.
-YASON;WRITE;citm_catalog.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 80,137 microseconds (0.080137 seconds) to run.
-      1,204 microseconds (0.001204 seconds, 1.50%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     80,179 microseconds (0.080179 seconds) were spent in user mode
+     81,140 microseconds (0.081140 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,792,816 bytes of memory allocated.
 YASON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 79,614 microseconds (0.079614 seconds) to run.
-      1,124 microseconds (0.001124 seconds, 1.41%) of which was spent in GC.
+took 79,708 microseconds (0.079708 seconds) to run.
+      1,024 microseconds (0.001024 seconds, 1.28%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     75,693 microseconds (0.075693 seconds) were spent in user mode
-      3,963 microseconds (0.003963 seconds) were spent in system mode
+     79,695 microseconds (0.079695 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
  3,792,816 bytes of memory allocated.
 YASON;WRITE;citm_catalog.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 79,657 microseconds (0.079657 seconds) to run.
-      1,057 microseconds (0.001057 seconds, 1.33%) of which was spent in GC.
+took 80,058 microseconds (0.080058 seconds) to run.
+      1,206 microseconds (0.001206 seconds, 1.51%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     79,693 microseconds (0.079693 seconds) were spent in user mode
+     80,032 microseconds (0.080032 seconds) were spent in user mode
           0 microseconds (0.000000 seconds) were spent in system mode
  3,792,816 bytes of memory allocated.
-Clozure Common Lisp Version 1.12.1 (v1.12.1) LinuxX8664
+YASON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 79,700 microseconds (0.079700 seconds) to run.
+      1,090 microseconds (0.001090 seconds, 1.37%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     79,680 microseconds (0.079680 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,792,816 bytes of memory allocated.
+YASON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 81,025 microseconds (0.081025 seconds) to run.
+      1,359 microseconds (0.001359 seconds, 1.68%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     81,032 microseconds (0.081032 seconds) were spent in user mode
+          0 microseconds (0.000000 seconds) were spent in system mode
+ 3,792,816 bytes of memory allocated.
+YASON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 80,824 microseconds (0.080824 seconds) to run.
+      1,040 microseconds (0.001040 seconds, 1.29%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     76,878 microseconds (0.076878 seconds) were spent in user mode
+      3,924 microseconds (0.003924 seconds) were spent in system mode
+ 3,792,816 bytes of memory allocated.
+YASON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 81,444 microseconds (0.081444 seconds) to run.
+      1,458 microseconds (0.001458 seconds, 1.79%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     81,208 microseconds (0.081208 seconds) were spent in user mode
+         24 microseconds (0.000024 seconds) were spent in system mode
+ 3,792,816 bytes of memory allocated.
+YASON;WRITE;citm_catalog.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 80,790 microseconds (0.080790 seconds) to run.
+      1,361 microseconds (0.001361 seconds, 1.68%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     76,769 microseconds (0.076769 seconds) were spent in user mode
+      4,009 microseconds (0.004009 seconds) were spent in system mode
+ 3,792,816 bytes of memory allocated.
+Clozure Common Lisp Version 1.13 (v1.13) LinuxX8664
 
-For more information about CCL, please see http://ccl.clozure.com.
+For more information about CCL, please see https://ccl.clozure.com.
 
-CCL is free software.  It is distributed under the terms of the Apache
-Licence, Version 2.0.
+CCL is free software.
+It is distributed under the terms of the Apache License, Version 2.0.
 ? 

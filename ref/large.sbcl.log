@@ -1,5 +1,5 @@
-sbcl --dynamic-space-size 4096 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large) --quit
-This is SBCL 2.3.3, an implementation of ANSI Common Lisp.
+sbcl --dynamic-space-size 12288 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large) --quit
+This is SBCL 2.5.11, an implementation of ANSI Common Lisp.
 More information about SBCL is available at <http://www.sbcl.org/>.
 
 SBCL is free software, provided as is, with absolutely no warranty.
@@ -15,30 +15,32 @@ To load "rs-json/bench":
   Load 1 ASDF system:
     rs-json/bench
 ; Loading "rs-json/bench"
-.
+..
 
 ========================================
 CL-JSON
 ========================================
 CL-JSON;READ;large.json
 Evaluation took:
-  5.567 seconds of real time
-  5.570041 seconds of total run time (5.407584 user, 0.162457 system)
-  [ Run times consist of 0.386 seconds GC time, and 5.185 seconds non-GC time. ]
+  4.275 seconds of real time
+  4.276721 seconds of total run time (4.262829 user, 0.013892 system)
+  [ Real times consist of 0.287 seconds GC time, and 3.988 seconds non-GC time. ]
+  [ Run times consist of 0.287 seconds GC time, and 3.990 seconds non-GC time. ]
   100.05% CPU
-  204 lambdas converted
-  18,981,288,172 processor cycles
-  2,956,686,944 bytes consed
+  155 lambdas converted
+  14,578,123,734 processor cycles
+  2,862,547,760 bytes consed
   
 CL-JSON;WRITE;large.json
 Evaluation took:
-  14.299 seconds of real time
-  14.302231 seconds of total run time (12.772962 user, 1.529269 system)
-  [ Run times consist of 0.420 seconds GC time, and 13.883 seconds non-GC time. ]
-  100.02% CPU
-  21 lambdas converted
-  48,733,433,492 processor cycles
-  14,179,949,984 bytes consed
+  13.643 seconds of real time
+  13.641901 seconds of total run time (12.158209 user, 1.483692 system)
+  [ Real times consist of 0.267 seconds GC time, and 13.376 seconds non-GC time. ]
+  [ Run times consist of 0.270 seconds GC time, and 13.372 seconds non-GC time. ]
+  99.99% CPU
+  16 lambdas converted
+  46,504,897,442 processor cycles
+  14,953,360,848 bytes consed
   
 
 ========================================
@@ -47,9 +49,9 @@ JONATHAN
 JONATHAN;READ;large.json
 Evaluation took:
   0.000 seconds of real time
-  0.000094 seconds of total run time (0.000094 user, 0.000000 system)
+  0.000103 seconds of total run time (0.000089 user, 0.000014 system)
   100.00% CPU
-  188,120 processor cycles
+  296,500 processor cycles
   0 bytes consed
   
   before it was aborted by a non-local transfer of control.
@@ -59,7 +61,7 @@ There is no applicable method for the generic function
   #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
 when called with arguments
   (:JONATHAN
-   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {1003518213}>).
+   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {12032081F3}>).
 See also:
   The ANSI Standard, Section 7.6.6
 
@@ -68,13 +70,12 @@ JSON-STREAMS
 ========================================
 JSON-STREAMS;READ;large.json
 Evaluation took:
-  1.159 seconds of real time
-  1.160155 seconds of total run time (1.148346 user, 0.011809 system)
-  [ Run times consist of 0.074 seconds GC time, and 1.087 seconds non-GC time. ]
-  100.09% CPU
-  71 lambdas converted
-  3,954,084,926 processor cycles
-  221,670,992 bytes consed
+  0.895 seconds of real time
+  0.894212 seconds of total run time (0.890491 user, 0.003721 system)
+  99.89% CPU
+  33 lambdas converted
+  3,048,492,570 processor cycles
+  209,179,200 bytes consed
   
   before it was aborted by a non-local transfer of control.
   
@@ -87,9 +88,9 @@ JSOWN
 JSOWN;READ;large.json
 Evaluation took:
   0.000 seconds of real time
-  0.000115 seconds of total run time (0.000101 user, 0.000014 system)
+  0.000092 seconds of total run time (0.000080 user, 0.000012 system)
   100.00% CPU
-  253,462 processor cycles
+  256,388 processor cycles
   0 bytes consed
   
   before it was aborted by a non-local transfer of control.
@@ -99,7 +100,7 @@ There is no applicable method for the generic function
   #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
 when called with arguments
   (:JSOWN
-   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {1003510213}>).
+   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {12032401F3}>).
 See also:
   The ANSI Standard, Section 7.6.6
 
@@ -108,21 +109,20 @@ JZON
 ========================================
 JZON;READ;large.json
 Evaluation took:
-  2.171 seconds of real time
-  2.169718 seconds of total run time (2.074060 user, 0.095658 system)
-  [ Run times consist of 0.192 seconds GC time, and 1.978 seconds non-GC time. ]
-  99.95% CPU
-  7,396,095,222 processor cycles
-  454,758,912 bytes consed
+  1.491 seconds of real time
+  1.493629 seconds of total run time (1.477436 user, 0.016193 system)
+  100.20% CPU
+  5,090,720,744 processor cycles
+  447,192,224 bytes consed
   
 JZON;WRITE;large.json
 Evaluation took:
-  1.735 seconds of real time
-  1.736061 seconds of total run time (1.732128 user, 0.003933 system)
-  100.06% CPU
-  98 lambdas converted
-  5,917,014,184 processor cycles
-  135,674,448 bytes consed
+  1.651 seconds of real time
+  1.650077 seconds of total run time (1.630202 user, 0.019875 system)
+  99.94% CPU
+  57 lambdas converted
+  5,624,453,588 processor cycles
+  135,078,960 bytes consed
   
 
 ========================================
@@ -130,22 +130,22 @@ RS-JSON
 ========================================
 RS-JSON;READ;large.json
 Evaluation took:
-  5.095 seconds of real time
-  5.094679 seconds of total run time (4.998951 user, 0.095728 system)
-  [ Run times consist of 0.270 seconds GC time, and 4.825 seconds non-GC time. ]
-  100.00% CPU
-  17,364,767,252 processor cycles
-  807,026,480 bytes consed
+  2.387 seconds of real time
+  2.381222 seconds of total run time (2.293867 user, 0.087355 system)
+  [ Real times consist of 0.119 seconds GC time, and 2.268 seconds non-GC time. ]
+  [ Run times consist of 0.120 seconds GC time, and 2.262 seconds non-GC time. ]
+  99.75% CPU
+  8,138,969,198 processor cycles
+  689,080,128 bytes consed
   
 RS-JSON;WRITE;large.json
 Evaluation took:
-  2.951 seconds of real time
-  2.951278 seconds of total run time (2.935397 user, 0.015881 system)
-  [ Run times consist of 0.026 seconds GC time, and 2.926 seconds non-GC time. ]
+  2.627 seconds of real time
+  2.626786 seconds of total run time (2.623123 user, 0.003663 system)
   100.00% CPU
-  61 lambdas converted
-  10,059,895,724 processor cycles
-  310,649,200 bytes consed
+  35 lambdas converted
+  8,953,977,314 processor cycles
+  128,288,528 bytes consed
   
 
 ========================================
@@ -153,462 +153,24 @@ SHASHT
 ========================================
 SHASHT;READ;large.json
 Evaluation took:
-  2.783 seconds of real time
-  2.785202 seconds of total run time (2.673126 user, 0.112076 system)
-  [ Run times consist of 0.478 seconds GC time, and 2.308 seconds non-GC time. ]
-  100.07% CPU
-  9,491,776,574 processor cycles
-  1,212,520,320 bytes consed
-  
-SHASHT;WRITE;large.json
-Evaluation took:
-  5.211 seconds of real time
-  5.210024 seconds of total run time (5.166255 user, 0.043769 system)
-  [ Run times consist of 0.036 seconds GC time, and 5.175 seconds non-GC time. ]
-  99.98% CPU
-  14 lambdas converted
-  17,755,678,140 processor cycles
-  2,051,583,600 bytes consed
-  
-
-========================================
-ST-JSON
-========================================
-ST-JSON;READ;large.json
-Evaluation took:
-  6.775 seconds of real time
-  6.777054 seconds of total run time (6.657038 user, 0.120016 system)
-  [ Run times consist of 0.549 seconds GC time, and 6.229 seconds non-GC time. ]
-  100.03% CPU
-  27 lambdas converted
-  23,095,949,822 processor cycles
-  1,993,817,216 bytes consed
-  
-ST-JSON;WRITE;large.json
-Evaluation took:
-  3.195 seconds of real time
-  3.197413 seconds of total run time (3.165349 user, 0.032064 system)
-  [ Run times consist of 0.024 seconds GC time, and 3.174 seconds non-GC time. ]
-  100.06% CPU
-  33 lambdas converted
-  10,896,186,168 processor cycles
-  1,290,550,768 bytes consed
-  
-
-========================================
-YASON
-========================================
-YASON;READ;large.json
-Evaluation took:
-  8.967 seconds of real time
-  8.970790 seconds of total run time (8.834776 user, 0.136014 system)
-  [ Run times consist of 0.543 seconds GC time, and 8.428 seconds non-GC time. ]
-  100.04% CPU
-  34 lambdas converted
-  30,572,477,388 processor cycles
-  1,679,023,856 bytes consed
-  
-YASON;WRITE;large.json
-Evaluation took:
-  3.839 seconds of real time
-  3.838491 seconds of total run time (3.738596 user, 0.099895 system)
-  [ Run times consist of 0.247 seconds GC time, and 3.592 seconds non-GC time. ]
-  99.97% CPU
-  37 lambdas converted
-  13,081,228,062 processor cycles
-  1,159,343,552 bytes consed
-  
-sbcl --dynamic-space-size 4096 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large) --quit
-This is SBCL 2.3.3, an implementation of ANSI Common Lisp.
-More information about SBCL is available at <http://www.sbcl.org/>.
-
-SBCL is free software, provided as is, with absolutely no warranty.
-It is mostly in the public domain; some portions are provided under
-BSD-style licenses.  See the CREDITS and COPYING files in the
-distribution for more information.
-To load "trivial-features":
-  Load 1 ASDF system:
-    trivial-features
-; Loading "trivial-features"
-
-To load "rs-json/bench":
-  Load 1 ASDF system:
-    rs-json/bench
-; Loading "rs-json/bench"
-.
-
-========================================
-CL-JSON
-========================================
-CL-JSON;READ;large.json
-Evaluation took:
-  5.671 seconds of real time
-  5.670582 seconds of total run time (5.577313 user, 0.093269 system)
-  [ Run times consist of 0.399 seconds GC time, and 5.272 seconds non-GC time. ]
-  100.00% CPU
-  204 lambdas converted
-  19,326,216,296 processor cycles
-  2,956,686,944 bytes consed
-  
-CL-JSON;WRITE;large.json
-Evaluation took:
-  14.323 seconds of real time
-  14.325510 seconds of total run time (12.756677 user, 1.568833 system)
-  [ Run times consist of 0.420 seconds GC time, and 13.906 seconds non-GC time. ]
-  100.02% CPU
-  21 lambdas converted
-  48,816,967,058 processor cycles
-  14,179,955,952 bytes consed
-  
-
-========================================
-JONATHAN
-========================================
-JONATHAN;READ;large.json
-Evaluation took:
-  0.000 seconds of real time
-  0.000129 seconds of total run time (0.000129 user, 0.000000 system)
-  100.00% CPU
-  270,800 processor cycles
-  0 bytes consed
-  
-  before it was aborted by a non-local transfer of control.
-  
-/home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-ERROR)
-There is no applicable method for the generic function
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
-when called with arguments
-  (:JONATHAN
-   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {1003510213}>).
-See also:
-  The ANSI Standard, Section 7.6.6
-
-========================================
-JSON-STREAMS
-========================================
-JSON-STREAMS;READ;large.json
-Evaluation took:
-  1.139 seconds of real time
-  1.138882 seconds of total run time (1.127183 user, 0.011699 system)
-  [ Run times consist of 0.074 seconds GC time, and 1.065 seconds non-GC time. ]
-  100.00% CPU
-  71 lambdas converted
-  3,881,577,084 processor cycles
-  221,670,720 bytes consed
-  
-  before it was aborted by a non-local transfer of control.
-  
-/home/ralph/src/lisp/rs-json/t/large.json: error (JSON-PARSE-ERROR)
-JSON parse error at line 244572 column 30: Number with integer syntax to large 505874924095815700.
-
-========================================
-JSOWN
-========================================
-JSOWN;READ;large.json
-Evaluation took:
-  0.000 seconds of real time
-  0.000092 seconds of total run time (0.000081 user, 0.000011 system)
-  100.00% CPU
-  165,132 processor cycles
-  0 bytes consed
-  
-  before it was aborted by a non-local transfer of control.
-  
-/home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-ERROR)
-There is no applicable method for the generic function
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
-when called with arguments
-  (:JSOWN
-   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {1003508213}>).
-See also:
-  The ANSI Standard, Section 7.6.6
-
-========================================
-JZON
-========================================
-JZON;READ;large.json
-Evaluation took:
-  2.155 seconds of real time
-  2.153459 seconds of total run time (2.050204 user, 0.103255 system)
-  [ Run times consist of 0.192 seconds GC time, and 1.962 seconds non-GC time. ]
-  99.91% CPU
-  7,338,905,014 processor cycles
-  454,758,912 bytes consed
-  
-JZON;WRITE;large.json
-Evaluation took:
-  1.731 seconds of real time
-  1.732586 seconds of total run time (1.728479 user, 0.004107 system)
-  100.12% CPU
-  98 lambdas converted
-  5,904,881,196 processor cycles
-  135,674,544 bytes consed
-  
-
-========================================
-RS-JSON
-========================================
-RS-JSON;READ;large.json
-Evaluation took:
-  5.087 seconds of real time
-  5.087975 seconds of total run time (4.983528 user, 0.104447 system)
-  [ Run times consist of 0.270 seconds GC time, and 4.818 seconds non-GC time. ]
-  100.02% CPU
-  17,340,333,846 processor cycles
-  807,026,480 bytes consed
-  
-RS-JSON;WRITE;large.json
-Evaluation took:
-  2.935 seconds of real time
-  2.939796 seconds of total run time (2.927438 user, 0.012358 system)
-  [ Run times consist of 0.026 seconds GC time, and 2.914 seconds non-GC time. ]
-  100.17% CPU
-  61 lambdas converted
-  10,018,910,138 processor cycles
-  310,649,856 bytes consed
-  
-
-========================================
-SHASHT
-========================================
-SHASHT;READ;large.json
-Evaluation took:
-  2.787 seconds of real time
-  2.788005 seconds of total run time (2.663670 user, 0.124335 system)
-  [ Run times consist of 0.481 seconds GC time, and 2.308 seconds non-GC time. ]
-  100.04% CPU
-  9,501,665,884 processor cycles
-  1,212,520,320 bytes consed
-  
-SHASHT;WRITE;large.json
-Evaluation took:
-  5.187 seconds of real time
-  5.188385 seconds of total run time (5.156422 user, 0.031963 system)
-  [ Run times consist of 0.036 seconds GC time, and 5.153 seconds non-GC time. ]
-  100.02% CPU
-  14 lambdas converted
-  17,682,994,432 processor cycles
-  2,051,583,840 bytes consed
-  
-
-========================================
-ST-JSON
-========================================
-ST-JSON;READ;large.json
-Evaluation took:
-  6.751 seconds of real time
-  6.753546 seconds of total run time (6.677476 user, 0.076070 system)
-  [ Run times consist of 0.541 seconds GC time, and 6.213 seconds non-GC time. ]
-  100.04% CPU
-  27 lambdas converted
-  23,018,343,784 processor cycles
-  1,993,817,008 bytes consed
-  
-ST-JSON;WRITE;large.json
-Evaluation took:
-  3.163 seconds of real time
-  3.164071 seconds of total run time (3.132130 user, 0.031941 system)
-  [ Run times consist of 0.023 seconds GC time, and 3.142 seconds non-GC time. ]
-  100.03% CPU
-  33 lambdas converted
-  10,785,338,796 processor cycles
-  1,290,518,160 bytes consed
-  
-
-========================================
-YASON
-========================================
-YASON;READ;large.json
-Evaluation took:
-  8.779 seconds of real time
-  8.780998 seconds of total run time (8.657081 user, 0.123917 system)
-  [ Run times consist of 0.527 seconds GC time, and 8.254 seconds non-GC time. ]
-  100.02% CPU
-  34 lambdas converted
-  29,931,208,538 processor cycles
-  1,679,023,872 bytes consed
-  
-YASON;WRITE;large.json
-Evaluation took:
-  3.759 seconds of real time
-  3.759055 seconds of total run time (3.679199 user, 0.079856 system)
-  [ Run times consist of 0.242 seconds GC time, and 3.518 seconds non-GC time. ]
-  100.00% CPU
-  37 lambdas converted
-  12,812,993,824 processor cycles
-  1,159,308,256 bytes consed
-  
-sbcl --dynamic-space-size 4096 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large) --quit
-This is SBCL 2.3.3, an implementation of ANSI Common Lisp.
-More information about SBCL is available at <http://www.sbcl.org/>.
-
-SBCL is free software, provided as is, with absolutely no warranty.
-It is mostly in the public domain; some portions are provided under
-BSD-style licenses.  See the CREDITS and COPYING files in the
-distribution for more information.
-To load "trivial-features":
-  Load 1 ASDF system:
-    trivial-features
-; Loading "trivial-features"
-
-To load "rs-json/bench":
-  Load 1 ASDF system:
-    rs-json/bench
-; Loading "rs-json/bench"
-.
-
-========================================
-CL-JSON
-========================================
-CL-JSON;READ;large.json
-Evaluation took:
-  5.543 seconds of real time
-  5.538874 seconds of total run time (5.479560 user, 0.059314 system)
-  [ Run times consist of 0.387 seconds GC time, and 5.152 seconds non-GC time. ]
-  99.93% CPU
-  204 lambdas converted
-  18,876,292,338 processor cycles
-  2,956,686,272 bytes consed
-  
-CL-JSON;WRITE;large.json
-Evaluation took:
-  14.391 seconds of real time
-  14.386770 seconds of total run time (12.875009 user, 1.511761 system)
-  [ Run times consist of 0.422 seconds GC time, and 13.965 seconds non-GC time. ]
-  99.97% CPU
-  21 lambdas converted
-  49,040,914,748 processor cycles
-  14,179,955,712 bytes consed
-  
-
-========================================
-JONATHAN
-========================================
-JONATHAN;READ;large.json
-Evaluation took:
-  0.000 seconds of real time
-  0.000098 seconds of total run time (0.000085 user, 0.000013 system)
-  100.00% CPU
-  186,370 processor cycles
-  0 bytes consed
-  
-  before it was aborted by a non-local transfer of control.
-  
-/home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-ERROR)
-There is no applicable method for the generic function
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
-when called with arguments
-  (:JONATHAN
-   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {1003510213}>).
-See also:
-  The ANSI Standard, Section 7.6.6
-
-========================================
-JSON-STREAMS
-========================================
-JSON-STREAMS;READ;large.json
-Evaluation took:
-  1.155 seconds of real time
-  1.154584 seconds of total run time (1.138776 user, 0.015808 system)
-  [ Run times consist of 0.074 seconds GC time, and 1.081 seconds non-GC time. ]
-  100.00% CPU
-  71 lambdas converted
-  3,935,656,872 processor cycles
-  221,670,976 bytes consed
-  
-  before it was aborted by a non-local transfer of control.
-  
-/home/ralph/src/lisp/rs-json/t/large.json: error (JSON-PARSE-ERROR)
-JSON parse error at line 244572 column 30: Number with integer syntax to large 505874924095815700.
-
-========================================
-JSOWN
-========================================
-JSOWN;READ;large.json
-Evaluation took:
-  0.000 seconds of real time
-  0.000121 seconds of total run time (0.000106 user, 0.000015 system)
-  100.00% CPU
-  252,226 processor cycles
-  0 bytes consed
-  
-  before it was aborted by a non-local transfer of control.
-  
-/home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-ERROR)
-There is no applicable method for the generic function
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
-when called with arguments
-  (:JSOWN
-   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {1003508213}>).
-See also:
-  The ANSI Standard, Section 7.6.6
-
-========================================
-JZON
-========================================
-JZON;READ;large.json
-Evaluation took:
-  2.183 seconds of real time
-  2.180479 seconds of total run time (2.096911 user, 0.083568 system)
-  [ Run times consist of 0.195 seconds GC time, and 1.986 seconds non-GC time. ]
-  99.86% CPU
-  7,433,488,398 processor cycles
-  454,758,912 bytes consed
-  
-JZON;WRITE;large.json
-Evaluation took:
-  1.759 seconds of real time
-  1.759298 seconds of total run time (1.755388 user, 0.003910 system)
-  100.00% CPU
-  98 lambdas converted
-  5,996,674,870 processor cycles
-  135,675,456 bytes consed
-  
-
-========================================
-RS-JSON
-========================================
-RS-JSON;READ;large.json
-Evaluation took:
-  5.095 seconds of real time
-  5.095653 seconds of total run time (5.007773 user, 0.087880 system)
-  [ Run times consist of 0.271 seconds GC time, and 4.825 seconds non-GC time. ]
-  100.02% CPU
-  17,370,584,194 processor cycles
-  807,026,480 bytes consed
-  
-RS-JSON;WRITE;large.json
-Evaluation took:
-  2.999 seconds of real time
-  2.996105 seconds of total run time (2.980458 user, 0.015647 system)
-  [ Run times consist of 0.028 seconds GC time, and 2.969 seconds non-GC time. ]
+  2.027 seconds of real time
+  2.025334 seconds of total run time (1.885547 user, 0.139787 system)
+  [ Real times consist of 0.231 seconds GC time, and 1.796 seconds non-GC time. ]
+  [ Run times consist of 0.235 seconds GC time, and 1.791 seconds non-GC time. ]
   99.90% CPU
-  61 lambdas converted
-  10,212,566,304 processor cycles
-  310,649,840 bytes consed
-  
-
-========================================
-SHASHT
-========================================
-SHASHT;READ;large.json
-Evaluation took:
-  2.835 seconds of real time
-  2.837371 seconds of total run time (2.717261 user, 0.120110 system)
-  [ Run times consist of 0.491 seconds GC time, and 2.347 seconds non-GC time. ]
-  100.07% CPU
-  9,669,041,324 processor cycles
-  1,212,520,320 bytes consed
+  6,904,284,516 processor cycles
+  1,174,317,920 bytes consed
   
 SHASHT;WRITE;large.json
 Evaluation took:
-  5.279 seconds of real time
-  5.280046 seconds of total run time (5.252042 user, 0.028004 system)
-  [ Run times consist of 0.037 seconds GC time, and 5.244 seconds non-GC time. ]
-  100.02% CPU
-  14 lambdas converted
-  17,993,184,648 processor cycles
-  2,051,583,792 bytes consed
+  4.859 seconds of real time
+  4.861233 seconds of total run time (4.808827 user, 0.052406 system)
+  [ Real times consist of 0.287 seconds GC time, and 4.572 seconds non-GC time. ]
+  [ Run times consist of 0.289 seconds GC time, and 4.573 seconds non-GC time. ]
+  100.04% CPU
+  23 lambdas converted
+  16,571,034,904 processor cycles
+  2,189,800,144 bytes consed
   
 
 ========================================
@@ -616,23 +178,25 @@ ST-JSON
 ========================================
 ST-JSON;READ;large.json
 Evaluation took:
-  6.755 seconds of real time
-  6.757479 seconds of total run time (6.657388 user, 0.100091 system)
-  [ Run times consist of 0.542 seconds GC time, and 6.216 seconds non-GC time. ]
-  100.03% CPU
-  27 lambdas converted
-  23,028,751,330 processor cycles
-  1,993,817,472 bytes consed
+  4.383 seconds of real time
+  4.381659 seconds of total run time (4.321789 user, 0.059870 system)
+  [ Real times consist of 0.251 seconds GC time, and 4.132 seconds non-GC time. ]
+  [ Run times consist of 0.252 seconds GC time, and 4.130 seconds non-GC time. ]
+  99.98% CPU
+  32 lambdas converted
+  14,936,708,836 processor cycles
+  1,933,833,536 bytes consed
   
 ST-JSON;WRITE;large.json
 Evaluation took:
-  3.151 seconds of real time
-  3.149600 seconds of total run time (3.125761 user, 0.023839 system)
-  [ Run times consist of 0.023 seconds GC time, and 3.127 seconds non-GC time. ]
-  99.97% CPU
-  33 lambdas converted
-  10,733,276,972 processor cycles
-  1,290,550,384 bytes consed
+  2.987 seconds of real time
+  2.984890 seconds of total run time (2.925013 user, 0.059877 system)
+  [ Real times consist of 0.115 seconds GC time, and 2.872 seconds non-GC time. ]
+  [ Run times consist of 0.118 seconds GC time, and 2.867 seconds non-GC time. ]
+  99.93% CPU
+  21 lambdas converted
+  10,174,447,538 processor cycles
+  1,423,472,224 bytes consed
   
 
 ========================================
@@ -640,21 +204,475 @@ YASON
 ========================================
 YASON;READ;large.json
 Evaluation took:
-  8.759 seconds of real time
-  8.761747 seconds of total run time (8.681719 user, 0.080028 system)
-  [ Run times consist of 0.528 seconds GC time, and 8.234 seconds non-GC time. ]
-  100.03% CPU
-  34 lambdas converted
-  29,859,943,264 processor cycles
-  1,679,023,296 bytes consed
+  4.615 seconds of real time
+  4.614392 seconds of total run time (4.458400 user, 0.155992 system)
+  [ Real times consist of 0.483 seconds GC time, and 4.132 seconds non-GC time. ]
+  [ Run times consist of 0.482 seconds GC time, and 4.133 seconds non-GC time. ]
+  99.98% CPU
+  26 lambdas converted
+  15,729,221,536 processor cycles
+  1,540,630,128 bytes consed
   
 YASON;WRITE;large.json
 Evaluation took:
-  3.751 seconds of real time
-  3.755003 seconds of total run time (3.674909 user, 0.080094 system)
-  [ Run times consist of 0.240 seconds GC time, and 3.516 seconds non-GC time. ]
-  100.11% CPU
-  37 lambdas converted
-  12,796,575,074 processor cycles
-  1,159,342,608 bytes consed
+  3.191 seconds of real time
+  3.188918 seconds of total run time (3.177008 user, 0.011910 system)
+  [ Real times consist of 0.008 seconds GC time, and 3.183 seconds non-GC time. ]
+  [ Run times consist of 0.005 seconds GC time, and 3.184 seconds non-GC time. ]
+  99.94% CPU
+  41 lambdas converted
+  10,870,129,792 processor cycles
+  1,251,778,032 bytes consed
+  
+sbcl --dynamic-space-size 12288 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large) --quit
+This is SBCL 2.5.11, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+To load "trivial-features":
+  Load 1 ASDF system:
+    trivial-features
+; Loading "trivial-features"
+
+To load "rs-json/bench":
+  Load 1 ASDF system:
+    rs-json/bench
+; Loading "rs-json/bench"
+..
+
+========================================
+CL-JSON
+========================================
+CL-JSON;READ;large.json
+Evaluation took:
+  4.399 seconds of real time
+  4.398996 seconds of total run time (4.351582 user, 0.047414 system)
+  [ Real times consist of 0.295 seconds GC time, and 4.104 seconds non-GC time. ]
+  [ Run times consist of 0.299 seconds GC time, and 4.100 seconds non-GC time. ]
+  100.00% CPU
+  155 lambdas converted
+  14,993,990,012 processor cycles
+  2,862,547,760 bytes consed
+  
+CL-JSON;WRITE;large.json
+Evaluation took:
+  13.751 seconds of real time
+  13.741905 seconds of total run time (12.207876 user, 1.534029 system)
+  [ Real times consist of 0.275 seconds GC time, and 13.476 seconds non-GC time. ]
+  [ Run times consist of 0.270 seconds GC time, and 13.472 seconds non-GC time. ]
+  99.93% CPU
+  16 lambdas converted
+  46,868,726,678 processor cycles
+  14,953,360,848 bytes consed
+  
+
+========================================
+JONATHAN
+========================================
+JONATHAN;READ;large.json
+Evaluation took:
+  0.000 seconds of real time
+  0.000105 seconds of total run time (0.000091 user, 0.000014 system)
+  100.00% CPU
+  301,366 processor cycles
+  0 bytes consed
+  
+  before it was aborted by a non-local transfer of control.
+  
+/home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-ERROR)
+There is no applicable method for the generic function
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
+when called with arguments
+  (:JONATHAN
+   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {12032081F3}>).
+See also:
+  The ANSI Standard, Section 7.6.6
+
+========================================
+JSON-STREAMS
+========================================
+JSON-STREAMS;READ;large.json
+Evaluation took:
+  0.891 seconds of real time
+  0.891452 seconds of total run time (0.887577 user, 0.003875 system)
+  100.00% CPU
+  33 lambdas converted
+  3,038,682,544 processor cycles
+  209,179,200 bytes consed
+  
+  before it was aborted by a non-local transfer of control.
+  
+/home/ralph/src/lisp/rs-json/t/large.json: error (JSON-PARSE-ERROR)
+JSON parse error at line 244572 column 30: Number with integer syntax to large 505874924095815700.
+
+========================================
+JSOWN
+========================================
+JSOWN;READ;large.json
+Evaluation took:
+  0.000 seconds of real time
+  0.000064 seconds of total run time (0.000056 user, 0.000008 system)
+  100.00% CPU
+  159,184 processor cycles
+  0 bytes consed
+  
+  before it was aborted by a non-local transfer of control.
+  
+/home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-ERROR)
+There is no applicable method for the generic function
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
+when called with arguments
+  (:JSOWN
+   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {12032401F3}>).
+See also:
+  The ANSI Standard, Section 7.6.6
+
+========================================
+JZON
+========================================
+JZON;READ;large.json
+Evaluation took:
+  1.491 seconds of real time
+  1.491870 seconds of total run time (1.479927 user, 0.011943 system)
+  100.07% CPU
+  5,085,429,570 processor cycles
+  447,192,224 bytes consed
+  
+JZON;WRITE;large.json
+Evaluation took:
+  1.647 seconds of real time
+  1.649630 seconds of total run time (1.641340 user, 0.008290 system)
+  100.18% CPU
+  57 lambdas converted
+  5,622,925,498 processor cycles
+  135,078,960 bytes consed
+  
+
+========================================
+RS-JSON
+========================================
+RS-JSON;READ;large.json
+Evaluation took:
+  2.379 seconds of real time
+  2.379779 seconds of total run time (2.315710 user, 0.064069 system)
+  [ Real times consist of 0.119 seconds GC time, and 2.260 seconds non-GC time. ]
+  [ Run times consist of 0.121 seconds GC time, and 2.259 seconds non-GC time. ]
+  100.04% CPU
+  8,112,177,066 processor cycles
+  689,080,128 bytes consed
+  
+RS-JSON;WRITE;large.json
+Evaluation took:
+  2.599 seconds of real time
+  2.600889 seconds of total run time (2.600783 user, 0.000106 system)
+  100.08% CPU
+  35 lambdas converted
+  8,865,613,788 processor cycles
+  128,288,528 bytes consed
+  
+
+========================================
+SHASHT
+========================================
+SHASHT;READ;large.json
+Evaluation took:
+  1.987 seconds of real time
+  1.986805 seconds of total run time (1.862890 user, 0.123915 system)
+  [ Real times consist of 0.231 seconds GC time, and 1.756 seconds non-GC time. ]
+  [ Run times consist of 0.232 seconds GC time, and 1.755 seconds non-GC time. ]
+  100.00% CPU
+  6,772,475,962 processor cycles
+  1,174,317,920 bytes consed
+  
+SHASHT;WRITE;large.json
+Evaluation took:
+  4.803 seconds of real time
+  4.800740 seconds of total run time (4.716878 user, 0.083862 system)
+  [ Real times consist of 0.279 seconds GC time, and 4.524 seconds non-GC time. ]
+  [ Run times consist of 0.283 seconds GC time, and 4.518 seconds non-GC time. ]
+  99.96% CPU
+  23 lambdas converted
+  16,364,700,440 processor cycles
+  2,189,800,144 bytes consed
+  
+
+========================================
+ST-JSON
+========================================
+ST-JSON;READ;large.json
+Evaluation took:
+  4.291 seconds of real time
+  4.285526 seconds of total run time (4.241915 user, 0.043611 system)
+  [ Real times consist of 0.243 seconds GC time, and 4.048 seconds non-GC time. ]
+  [ Run times consist of 0.245 seconds GC time, and 4.041 seconds non-GC time. ]
+  99.88% CPU
+  32 lambdas converted
+  14,623,116,106 processor cycles
+  1,933,833,536 bytes consed
+  
+ST-JSON;WRITE;large.json
+Evaluation took:
+  2.931 seconds of real time
+  2.931006 seconds of total run time (2.875005 user, 0.056001 system)
+  [ Real times consist of 0.111 seconds GC time, and 2.820 seconds non-GC time. ]
+  [ Run times consist of 0.116 seconds GC time, and 2.816 seconds non-GC time. ]
+  100.00% CPU
+  21 lambdas converted
+  9,991,404,336 processor cycles
+  1,423,472,224 bytes consed
+  
+
+========================================
+YASON
+========================================
+YASON;READ;large.json
+Evaluation took:
+  4.515 seconds of real time
+  4.514948 seconds of total run time (4.371017 user, 0.143931 system)
+  [ Real times consist of 0.467 seconds GC time, and 4.048 seconds non-GC time. ]
+  [ Run times consist of 0.469 seconds GC time, and 4.046 seconds non-GC time. ]
+  100.00% CPU
+  26 lambdas converted
+  15,390,453,044 processor cycles
+  1,540,630,128 bytes consed
+  
+YASON;WRITE;large.json
+Evaluation took:
+  3.123 seconds of real time
+  3.123129 seconds of total run time (3.111153 user, 0.011976 system)
+  [ Real times consist of 0.008 seconds GC time, and 3.115 seconds non-GC time. ]
+  [ Run times consist of 0.005 seconds GC time, and 3.119 seconds non-GC time. ]
+  100.00% CPU
+  41 lambdas converted
+  10,646,133,698 processor cycles
+  1,251,778,032 bytes consed
+  
+sbcl --dynamic-space-size 12288 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large) --quit
+This is SBCL 2.5.11, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+To load "trivial-features":
+  Load 1 ASDF system:
+    trivial-features
+; Loading "trivial-features"
+
+To load "rs-json/bench":
+  Load 1 ASDF system:
+    rs-json/bench
+; Loading "rs-json/bench"
+..
+
+========================================
+CL-JSON
+========================================
+CL-JSON;READ;large.json
+Evaluation took:
+  4.283 seconds of real time
+  4.282418 seconds of total run time (4.230932 user, 0.051486 system)
+  [ Real times consist of 0.283 seconds GC time, and 4.0000 seconds non-GC time. ]
+  [ Run times consist of 0.289 seconds GC time, and 3.994 seconds non-GC time. ]
+  99.98% CPU
+  155 lambdas converted
+  14,598,252,002 processor cycles
+  2,862,547,760 bytes consed
+  
+CL-JSON;WRITE;large.json
+Evaluation took:
+  13.779 seconds of real time
+  13.778152 seconds of total run time (12.318713 user, 1.459439 system)
+  [ Real times consist of 0.263 seconds GC time, and 13.516 seconds non-GC time. ]
+  [ Run times consist of 0.269 seconds GC time, and 13.510 seconds non-GC time. ]
+  99.99% CPU
+  16 lambdas converted
+  46,969,819,416 processor cycles
+  14,953,360,848 bytes consed
+  
+
+========================================
+JONATHAN
+========================================
+JONATHAN;READ;large.json
+Evaluation took:
+  0.000 seconds of real time
+  0.000123 seconds of total run time (0.000106 user, 0.000017 system)
+  100.00% CPU
+  358,826 processor cycles
+  0 bytes consed
+  
+  before it was aborted by a non-local transfer of control.
+  
+/home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-ERROR)
+There is no applicable method for the generic function
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
+when called with arguments
+  (:JONATHAN
+   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {12032081F3}>).
+See also:
+  The ANSI Standard, Section 7.6.6
+
+========================================
+JSON-STREAMS
+========================================
+JSON-STREAMS;READ;large.json
+Evaluation took:
+  0.891 seconds of real time
+  0.889115 seconds of total run time (0.889115 user, 0.000000 system)
+  99.78% CPU
+  33 lambdas converted
+  3,030,760,312 processor cycles
+  209,179,200 bytes consed
+  
+  before it was aborted by a non-local transfer of control.
+  
+/home/ralph/src/lisp/rs-json/t/large.json: error (JSON-PARSE-ERROR)
+JSON parse error at line 244572 column 30: Number with integer syntax to large 505874924095815700.
+
+========================================
+JSOWN
+========================================
+JSOWN;READ;large.json
+Evaluation took:
+  0.000 seconds of real time
+  0.000063 seconds of total run time (0.000063 user, 0.000000 system)
+  100.00% CPU
+  161,162 processor cycles
+  0 bytes consed
+  
+  before it was aborted by a non-local transfer of control.
+  
+/home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-ERROR)
+There is no applicable method for the generic function
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ (34)>
+when called with arguments
+  (:JSOWN
+   #<SB-SYS:FD-STREAM for "file /home/ralph/src/lisp/rs-json/t/large.json" {12032401F3}>).
+See also:
+  The ANSI Standard, Section 7.6.6
+
+========================================
+JZON
+========================================
+JZON;READ;large.json
+Evaluation took:
+  1.491 seconds of real time
+  1.492757 seconds of total run time (1.480962 user, 0.011795 system)
+  100.13% CPU
+  5,088,217,962 processor cycles
+  447,192,224 bytes consed
+  
+JZON;WRITE;large.json
+Evaluation took:
+  1.647 seconds of real time
+  1.645768 seconds of total run time (1.638005 user, 0.007763 system)
+  99.94% CPU
+  57 lambdas converted
+  5,609,523,252 processor cycles
+  135,078,960 bytes consed
+  
+
+========================================
+RS-JSON
+========================================
+RS-JSON;READ;large.json
+Evaluation took:
+  2.379 seconds of real time
+  2.378924 seconds of total run time (2.295029 user, 0.083895 system)
+  [ Real times consist of 0.123 seconds GC time, and 2.256 seconds non-GC time. ]
+  [ Run times consist of 0.122 seconds GC time, and 2.257 seconds non-GC time. ]
+  100.00% CPU
+  8,109,386,984 processor cycles
+  689,080,128 bytes consed
+  
+RS-JSON;WRITE;large.json
+Evaluation took:
+  2.583 seconds of real time
+  2.583733 seconds of total run time (2.583733 user, 0.000000 system)
+  100.04% CPU
+  35 lambdas converted
+  8,806,772,034 processor cycles
+  128,288,528 bytes consed
+  
+
+========================================
+SHASHT
+========================================
+SHASHT;READ;large.json
+Evaluation took:
+  1.991 seconds of real time
+  1.990411 seconds of total run time (1.878552 user, 0.111859 system)
+  [ Real times consist of 0.232 seconds GC time, and 1.759 seconds non-GC time. ]
+  [ Run times consist of 0.233 seconds GC time, and 1.758 seconds non-GC time. ]
+  99.95% CPU
+  6,785,434,052 processor cycles
+  1,174,317,920 bytes consed
+  
+SHASHT;WRITE;large.json
+Evaluation took:
+  4.799 seconds of real time
+  4.798798 seconds of total run time (4.742829 user, 0.055969 system)
+  [ Real times consist of 0.287 seconds GC time, and 4.512 seconds non-GC time. ]
+  [ Run times consist of 0.285 seconds GC time, and 4.514 seconds non-GC time. ]
+  100.00% CPU
+  23 lambdas converted
+  16,357,772,582 processor cycles
+  2,189,800,144 bytes consed
+  
+
+========================================
+ST-JSON
+========================================
+ST-JSON;READ;large.json
+Evaluation took:
+  4.375 seconds of real time
+  4.375432 seconds of total run time (4.311435 user, 0.063997 system)
+  [ Real times consist of 0.255 seconds GC time, and 4.120 seconds non-GC time. ]
+  [ Run times consist of 0.253 seconds GC time, and 4.123 seconds non-GC time. ]
+  100.00% CPU
+  32 lambdas converted
+  14,914,672,048 processor cycles
+  1,933,833,536 bytes consed
+  
+ST-JSON;WRITE;large.json
+Evaluation took:
+  2.979 seconds of real time
+  2.979901 seconds of total run time (2.924031 user, 0.055870 system)
+  [ Real times consist of 0.115 seconds GC time, and 2.864 seconds non-GC time. ]
+  [ Run times consist of 0.117 seconds GC time, and 2.863 seconds non-GC time. ]
+  100.03% CPU
+  21 lambdas converted
+  10,157,631,054 processor cycles
+  1,423,472,224 bytes consed
+  
+
+========================================
+YASON
+========================================
+YASON;READ;large.json
+Evaluation took:
+  4.603 seconds of real time
+  4.604220 seconds of total run time (4.464235 user, 0.139985 system)
+  [ Real times consist of 0.479 seconds GC time, and 4.124 seconds non-GC time. ]
+  [ Run times consist of 0.479 seconds GC time, and 4.126 seconds non-GC time. ]
+  100.02% CPU
+  26 lambdas converted
+  15,694,372,734 processor cycles
+  1,540,630,128 bytes consed
+  
+YASON;WRITE;large.json
+Evaluation took:
+  3.191 seconds of real time
+  3.189336 seconds of total run time (3.185478 user, 0.003858 system)
+  [ Real times consist of 0.008 seconds GC time, and 3.183 seconds non-GC time. ]
+  [ Run times consist of 0.005 seconds GC time, and 3.185 seconds non-GC time. ]
+  99.94% CPU
+  41 lambdas converted
+  10,871,495,702 processor cycles
+  1,251,778,032 bytes consed
   
