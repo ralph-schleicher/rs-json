@@ -223,7 +223,8 @@ The order of the pairs is reversed."
       (when dup
         (cond ((not *allow-duplicate-object-keys*)
                (%syntax-error "Duplicate object key ‘~A’." key-string))
-	      ((eq *object-as* :hash-table)
+	      ((and (eq *object-as* :hash-table)
+                    (eq *allow-duplicate-object-keys* :append))
 	       (error 'program-error))))
       ;; Read the key/value separator.
       (when (null next-char)
