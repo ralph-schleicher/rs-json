@@ -172,9 +172,9 @@ json-test-suite.css: json-test-suite/results/style.css
 	lessc --clean-css='--s1 -b' $< $@
 	echo >> $@
 
-# See https://wkhtmltopdf.org/.
+# See https://weasyprint.org/.
 json-test-suite.pdf: json-test-suite.html
-	wkhtmltopdf --page-width 210mm --page-height 2970mm --title 'JSON Test Suite' $< $@
+	weasyprint -s json-test-suite-weasyprint.css $< $@
 
 json-test-suite.jpg: json-test-suite.pdf
 	convert json-test-suite.pdf -crop 516x1908+0+256 json-test-suite.jpg
