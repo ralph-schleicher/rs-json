@@ -37,14 +37,29 @@ PACKAGE := rs-json
 VERSION := $(shell cat VERSION)
 TARNAME := $(PACKAGE)-$(VERSION)
 
+system_SOURCES := \
+$(PACKAGE).asd \
+packages.lisp \
+specials.lisp \
+common.lisp \
+decoder.lisp \
+encoder.lisp
+
 ### Rules
 
 .PHONY: all
 all:
 
 .PHONY: check
-check: all
+check: check-build
+	sbcl --non-interactive --eval '(asdf:test-system "$(PACKAGE)")' 2>&1 | tee asdf-test-system-sbcl.log
+	ccl --batch --eval '(asdf:test-system "$(PACKAGE)")' < /dev/null 2>&1 | tee asdf-test-system-ccl.log
+
+.PHONY: check-build
+check-build: quicklisp-check-build.stamp
+quicklisp-check-build.stamp: $(system_SOURCES)
 	quicklisp-check-build -sbcl -ccl $(PACKAGE)
+	echo timestamp > $@
 
 ### Maintenance
 
