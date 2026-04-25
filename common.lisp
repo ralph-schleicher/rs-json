@@ -208,7 +208,7 @@ Quite similar to the rehash size of hash tables.")
   (check-type size (integer 0))
   (make-array size :element-type 'character :adjustable t :fill-pointer 0))
 
-(defun scratch-buffer-p (&optional (buffer *scratch*))
+(defsubst scratch-buffer-p (&optional (buffer *scratch*))
   "Return true if BUFFER is a scratch buffer."
   (and (stringp buffer)
        (adjustable-array-p buffer)
