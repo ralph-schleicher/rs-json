@@ -172,7 +172,7 @@ Exceptional Situations:
     (t
      (parse-literal))))
 
-(defsubst %plist-from-alist (alist)
+(defsubst %plist-from-alist-reverse (alist)
   "Destructively rearrange an alist into a plist.
 The order of the pairs is reversed."
   (let (head cell tail)
@@ -251,7 +251,7 @@ The order of the pairs is reversed."
       (:alist
        (setf object (nreverse object)))
       (:plist
-       (setf object (%plist-from-alist object)))
+       (setf object (%plist-from-alist-reverse object)))
       (:hash-table
        (setf object (alexandria:alist-hash-table object :test #'equal))))
     (when *decode-object-hook*
