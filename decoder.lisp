@@ -378,7 +378,7 @@ The order of the pairs is reversed."
 	    #+cmucl
 	    (values (code-char high) (code-char low))))))))
 
-(defsubst %make-float (n q d)
+(defun %make-float (n q d)
   "Poor man's floating-point number conversion of significand N and
 decimal exponent Q.  Third argument D is the number of significant
 digits."
