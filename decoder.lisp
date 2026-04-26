@@ -70,28 +70,28 @@
   (when next-char
     (unread-char next-char *standard-input*))
   (cond ((stringp datum)
-	 (error 'syntax-error
-		:stream *standard-input*
-		:position (file-position *standard-input*)
-		:format-control datum
-		:format-arguments arguments))
-	(datum-supplied-p
-	 (apply #'error (or datum 'syntax-error)
-		:stream *standard-input*
-		:position (file-position *standard-input*)
-		arguments))
-	(next-char
-	 (error 'syntax-error
-		:stream *standard-input*
-		:position (file-position *standard-input*)
-		:format-control "Unexpected character ‘~A’."
-		:format-arguments (list next-char)))
-	(t
-	 (error 'syntax-error
-		:stream *standard-input*
-		:position (file-position *standard-input*)
-		:format-control "Premature end of file."
-		:format-arguments ()))))
+         (error 'syntax-error
+                :stream *standard-input*
+                :position (file-position *standard-input*)
+                :format-control datum
+                :format-arguments arguments))
+        (datum-supplied-p
+         (apply #'error (or datum 'syntax-error)
+                :stream *standard-input*
+                :position (file-position *standard-input*)
+                arguments))
+        (next-char
+         (error 'syntax-error
+                :stream *standard-input*
+                :position (file-position *standard-input*)
+                :format-control "Unexpected character ‘~A’."
+                :format-arguments (list next-char)))
+        (t
+         (error 'syntax-error
+                :stream *standard-input*
+                :position (file-position *standard-input*)
+                :format-control "Premature end of file."
+                :format-arguments ()))))
 
 (defun %read (stream &optional junk-allowed)
   "Common entry point for all read functions."
@@ -99,18 +99,18 @@
   ;; and literals reduces running time by approximately 10 %
   ;; and memory requirements by 20 % on file ‘large.json’.
   (let ((*scratch* (make-scratch-buffer))
-	(*standard-input* stream)
-	(next-char nil)
-	(nesting-depth 0))
+        (*standard-input* stream)
+        (next-char nil)
+        (nesting-depth 0))
     ;; Read first character.
     (next-char*)
     ;; Parse the JSON value.
     (let ((data (parse-value)))
       ;; Check for end of file.
       (when next-char
-	(unless junk-allowed
-	  (%syntax-error))
-	(unread-char next-char stream))
+        (unless junk-allowed
+          (%syntax-error))
+        (unread-char next-char stream))
       ;; Return values.
       (values data (file-position stream)))))
 
@@ -198,49 +198,49 @@ The order of the pairs is reversed."
     (loop
       (case next-char
         (#\}
-	 (return))
-	(#\,
-	 (when emptyp
-	   (%syntax-error "Leading comma before object member."))
-	 ;; Discard comma.
-	 (next-char*)
-	 ;; Check for trailing comma.
-	 (when (and *allow-trailing-comma* (char= next-char #\}))
-	   (return)))
-	(t
-	 (when (not emptyp)
-	   (%syntax-error "Missing comma after object member."))))
+         (return))
+        (#\,
+         (when emptyp
+           (%syntax-error "Leading comma before object member."))
+         ;; Discard comma.
+         (next-char*)
+         ;; Check for trailing comma.
+         (when (and *allow-trailing-comma* (char= next-char #\}))
+           (return)))
+        (t
+         (when (not emptyp)
+           (%syntax-error "Missing comma after object member."))))
       ;; Read the key.
       (setf key-string (if (char= next-char #\")
-			   (parse-string)
-			 (progn
-			   (when (not *allow-literal-object-keys*)
-			     (%syntax-error "Object key must be a quoted string."))
-			   (parse-literal t)))
-	    key (funcall *object-key-decoder* key-string))
+                           (parse-string)
+                         (progn
+                           (when (not *allow-literal-object-keys*)
+                             (%syntax-error "Object key must be a quoted string."))
+                           (parse-literal t)))
+            key (funcall *object-key-decoder* key-string))
       ;; Check if the key already exists.
       (setf dup (assoc key object :test #'equal))
       (when dup
         (cond ((not *allow-duplicate-object-keys*)
                (%syntax-error "Duplicate object key ‘~A’." key-string))
-	      ((and (eq *object-as* :hash-table)
+              ((and (eq *object-as* :hash-table)
                     (eq *allow-duplicate-object-keys* :append))
-	       (error 'program-error))))
+               (error 'program-error))))
       ;; Read the key/value separator.
       (when (null next-char)
-	(error 'end-of-file :stream *standard-input*))
+        (error 'end-of-file :stream *standard-input*))
       (unless (char= next-char #\:)
         (%syntax-error "Expect a colon between object key and value."))
       (next-char*)
       ;; Read the value.
       (setf value (parse-value))
       (cond ((or (not dup) (eq *allow-duplicate-object-keys* :append))
-	     ;; First occurrence of the key.
-	     (setf object (acons key value object)))
-	    ((not (eq *allow-duplicate-object-keys* :ignore))
-	     ;; Successive occurrence of the same key.
-	     ;; Replace existing value.
-	     (rplacd dup value)))
+             ;; First occurrence of the key.
+             (setf object (acons key value object)))
+            ((not (eq *allow-duplicate-object-keys* :ignore))
+             ;; Successive occurrence of the same key.
+             ;; Replace existing value.
+             (rplacd dup value)))
       ;; Object is not empty.
       (setf emptyp nil))
     ;; Discard closing brace and skip trailing whitespace.
@@ -268,18 +268,18 @@ The order of the pairs is reversed."
     (loop
       (case next-char
         (#\]
-	 (return))
-	(#\,
-	 (when (= length 0)
-	   (%syntax-error "Leading comma before array element."))
-	 ;; Discard comma.
-	 (next-char*)
-	 ;; Check for trailing comma.
-	 (when (and *allow-trailing-comma* (char= next-char #\]))
-	   (return)))
-	(t
-	 (when (> length 0)
-	   (%syntax-error "Missing comma after array element."))))
+         (return))
+        (#\,
+         (when (= length 0)
+           (%syntax-error "Leading comma before array element."))
+         ;; Discard comma.
+         (next-char*)
+         ;; Check for trailing comma.
+         (when (and *allow-trailing-comma* (char= next-char #\]))
+           (return)))
+        (t
+         (when (> length 0)
+           (%syntax-error "Missing comma after array element."))))
       ;; Read the array element.
       (push (parse-value) array)
       ;; Array is not empty.
@@ -299,84 +299,84 @@ The order of the pairs is reversed."
   "Parse a JSON string."
   (with-output-to-string (buffer)
     (labels ((outc (char)
-	       "Append a character to the output buffer."
-	       (write-char char buffer)))
+               "Append a character to the output buffer."
+               (write-char char buffer)))
       (declare (inline outc))
       ;; Parse quoted string.
       (loop
-	;; Initially, this call discards the
-	;; opening quote character.
-	(next-char)
-	(case next-char
-	  (#\"
-	   ;; Discard closing quote character
-	   ;; and skip trailing whitespace.
-	   (next-char* nil)
-	   (return))
-	  (#\\
-	   ;; Escape sequence.
-	   (next-char)
-	   (case next-char
-	     (#\" (outc #\"))
-	     (#\\ (outc #\\))
-	     (#\/ (outc #\/))
-	     (#\b (outc #\Backspace))
-	     (#\f (outc #\Page))
-	     (#\n (outc #\Linefeed))
-	     (#\r (outc #\Return))
-	     (#\t (outc #\Tab))
-	     (#\u
-	      #-cmucl
-	      (outc (parse-unicode-escape))
-	      #+cmucl
-	      (multiple-value-bind (high low)
-		  (parse-unicode-escape)
-		(outc high)
-		(when low
-		  (outc low))))
-	     (t
-	      (%syntax-error "Unknown escape sequence ‘\\~A’ in string." next-char))))
-	  (t
-	   ;; Any other character.
-	   ;;
-	   ;; “All code points may be placed within the
-	   ;; quotation marks except for the code points
-	   ;; that must be escaped: quotation mark (U+0022),
-	   ;; reverse solidus (U+005C), and the control
-	   ;; characters U+0000 to U+001F.”
-	   (when (<= 0 (char-code next-char) #x1F)
-	     (%syntax-error "Raw control character ‘~A’ in string." next-char))
-	   (outc next-char)))))))
+        ;; Initially, this call discards the
+        ;; opening quote character.
+        (next-char)
+        (case next-char
+          (#\"
+           ;; Discard closing quote character
+           ;; and skip trailing whitespace.
+           (next-char* nil)
+           (return))
+          (#\\
+           ;; Escape sequence.
+           (next-char)
+           (case next-char
+             (#\" (outc #\"))
+             (#\\ (outc #\\))
+             (#\/ (outc #\/))
+             (#\b (outc #\Backspace))
+             (#\f (outc #\Page))
+             (#\n (outc #\Linefeed))
+             (#\r (outc #\Return))
+             (#\t (outc #\Tab))
+             (#\u
+              #-cmucl
+              (outc (parse-unicode-escape))
+              #+cmucl
+              (multiple-value-bind (high low)
+                  (parse-unicode-escape)
+                (outc high)
+                (when low
+                  (outc low))))
+             (t
+              (%syntax-error "Unknown escape sequence ‘\\~A’ in string." next-char))))
+          (t
+           ;; Any other character.
+           ;;
+           ;; “All code points may be placed within the
+           ;; quotation marks except for the code points
+           ;; that must be escaped: quotation mark (U+0022),
+           ;; reverse solidus (U+005C), and the control
+           ;; characters U+0000 to U+001F.”
+           (when (<= 0 (char-code next-char) #x1F)
+             (%syntax-error "Raw control character ‘~A’ in string." next-char))
+           (outc next-char)))))))
 
 (defun parse-unicode-escape ()
   "Helper function for ‘parse-string’."
   (flet ((parse-hex ()
-	   "Read four hexadecimal digits and return the corresponding numerical value."
-	   (logior (ash (or (digit-char-p (next-char) 16) (%syntax-error)) 12)
-		   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  8)
-		   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  4)
-		   (or (digit-char-p (next-char) 16) (%syntax-error)))))
+           "Read four hexadecimal digits and return the corresponding numerical value."
+           (logior (ash (or (digit-char-p (next-char) 16) (%syntax-error)) 12)
+                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  8)
+                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  4)
+                   (or (digit-char-p (next-char) 16) (%syntax-error)))))
     (let ((high (parse-hex)))
       (if (not (<= #xD800 high #xDFFF))
-	  ;; A regular character.
-	  (code-char high)
-	;; A surrogate pair.
-	(progn
-	  (unless (and (char= (next-char) #\\)
-		       (char= (next-char) #\u))
-	    (%syntax-error))
-	  (let ((low (parse-hex)))
+          ;; A regular character.
+          (code-char high)
+        ;; A surrogate pair.
+        (progn
+          (unless (and (char= (next-char) #\\)
+                       (char= (next-char) #\u))
+            (%syntax-error))
+          (let ((low (parse-hex)))
             (unless (and (<= #xD800 high #xDBFF)
-			 (<= #xDC00 low #xDFFF))
-	      (%syntax-error "Invalid UTF-16 surrogate pair U+~4,'0X and U+~4,'0X in string." high low))
-	    #-cmucl
+                         (<= #xDC00 low #xDFFF))
+              (%syntax-error "Invalid UTF-16 surrogate pair U+~4,'0X and U+~4,'0X in string." high low))
+            #-cmucl
             (code-char (+ (ash (- high #xD800) 10)
                           (- low #xDC00)
-			  #x10000))
-	    ;; CMUCL strings use UTF-16 encoding.  Just return the
-	    ;; surrogate pair as is.
-	    #+cmucl
-	    (values (code-char high) (code-char low))))))))
+                          #x10000))
+            ;; CMUCL strings use UTF-16 encoding.  Just return the
+            ;; surrogate pair as is.
+            #+cmucl
+            (values (code-char high) (code-char low))))))))
 
 (defun %make-float (n q d)
   "Poor man's floating-point number conversion of significand N and
@@ -404,21 +404,21 @@ digits."
   "Parse a JSON number."
   (let ((sign #\+)
         (int 0) ;significand
-	(bias 0) ;exponent of the significand
-	(exp 0) ;explicit exponent
+        (bias 0) ;exponent of the significand
+        (exp 0) ;explicit exponent
         (digits 0) ;number of significant digits
-	intp fracp ;true if a digit is processed
-	floatp ;true if the result is a floating-point number
+        intp fracp ;true if a digit is processed
+        floatp ;true if the result is a floating-point number
         (strictp (not *allow-lax-numbers*)))
     (block nil
       ;; Optional number sign.
       (cond ((char= next-char #\-)
-	     (setf sign #\-)
-	     (next-char))
-	    ((char= next-char #\+)
-	     (when strictp
-	       (%syntax-error "Number starts with an explicit plus sign."))
-	     (next-char)))
+             (setf sign #\-)
+             (next-char))
+            ((char= next-char #\+)
+             (when strictp
+               (%syntax-error "Number starts with an explicit plus sign."))
+             (next-char)))
       ;; Integer part.
       ;;
       ;; To restrict the significand to 19 significant digits, replace
@@ -430,30 +430,30 @@ digits."
       ;;          (setf int (+ (* int 10) ...))
       ;;        (incf bias))
       (cond ((char= next-char #\0)
-	     (setf intp t)
-	     (next-char nil))
-	    (t
+             (setf intp t)
+             (next-char nil))
+            (t
              ;; If NEXT-CHAR is actually a decimal digit, then it is
              ;; non-zero and all following digits are significant.
              (iter (for digit = (and next-char (decimal-digit-char-p next-char)))
                    (while digit)
-		   (setf int (+ (* int 10) digit))
+                   (setf int (+ (* int 10) digit))
                    (incf digits)
                    (setf intp t)
                    (next-char nil))
-	     (when (and strictp (not intp))
-	       (%syntax-error "Integer part of a number must not be empty."))))
+             (when (and strictp (not intp))
+               (%syntax-error "Integer part of a number must not be empty."))))
       (when (null next-char)
-	(return))
+        (return))
       ;; Optional fractional part.
       (when (char= next-char #\.)
         (setf floatp t)
-	;; Skip decimal point.  If the integer part is empty, the
-	;; fractional part must be not empty.
-	(next-char (or strictp (not intp)))
-	(when (null next-char)
-	  (return))
-	;; Fractional part.
+        ;; Skip decimal point.  If the integer part is empty, the
+        ;; fractional part must be not empty.
+        (next-char (or strictp (not intp)))
+        (when (null next-char)
+          (return))
+        ;; Fractional part.
         (let ((fractional-digits 0)
               (trailing-zeros 0))
           (iter (for digit = (and next-char (decimal-digit-char-p next-char)))
@@ -470,41 +470,41 @@ digits."
                             (setf int (* int 10))
                             (incf digits)
                             (decf trailing-zeros)))
-	            ;; Process the significant digit.
+                    ;; Process the significant digit.
                     (setf int (+ (* int 10) digit))
                     (incf digits)))
- 	        (setf fracp t)
+                (setf fracp t)
                 (next-char nil))
-	  (when (and strictp (not fracp))
-	    (%syntax-error "Fractional part of a number must not be empty."))
+          (when (and strictp (not fracp))
+            (%syntax-error "Fractional part of a number must not be empty."))
           (decf bias fractional-digits)
-	  (when (null next-char)
-	    (return))))
+          (when (null next-char)
+            (return))))
       ;; Need at least one digit.
       (unless (or intp fracp)
-	(%syntax-error "Significand of a number must consist of at least one digit."))
+        (%syntax-error "Significand of a number must consist of at least one digit."))
       ;; Optional exponent part.
       (when (or (char= next-char #\E)
-		(char= next-char #\e))
+                (char= next-char #\e))
         (setf floatp t)
-	;; Skip exponent marker.
-	(next-char)
-	;; Exponent.
+        ;; Skip exponent marker.
+        (next-char)
+        ;; Exponent.
         (let ((sign #\+) digitp)
-	  (cond ((char= next-char #\-)
-	         (setf sign #\-)
-	         (next-char))
-	        ((char= next-char #\+)
-	         (next-char)))
+          (cond ((char= next-char #\-)
+                 (setf sign #\-)
+                 (next-char))
+                ((char= next-char #\+)
+                 (next-char)))
           (iter (for digit = (and next-char (decimal-digit-char-p next-char)))
                 (while digit)
-		(setf exp (+ (* exp 10) digit))
-		(setf digitp t)
-		(next-char nil))
-	  (when (not digitp)
-	    (%syntax-error "Exponent of a number must not be empty."))
-	  (when (char= sign #\-)
-	    (setf exp (- exp))))))
+                (setf exp (+ (* exp 10) digit))
+                (setf digitp t)
+                (next-char nil))
+          (when (not digitp)
+            (%syntax-error "Exponent of a number must not be empty."))
+          (when (char= sign #\-)
+            (setf exp (- exp))))))
     ;; Create the unsigned number.
     (let ((val (if floatp (%make-float int (+ bias exp) digits) int)))
       ;; Skip trailing whitespace.
@@ -526,41 +526,41 @@ name (a string)."
   (with-scratch-buffer ()
     ;; Identifier names do not start with a digit.
     (unless (or (alpha-char-p next-char)
-		(char= next-char #\$)
-		(char= next-char #\_))
+                (char= next-char #\$)
+                (char= next-char #\_))
       (%syntax-error))
     (loop
       (outc next-char)
       (next-char nil)
       (unless (and next-char
-		   (or (alpha-char-p next-char)
-		       (digit-char-p next-char)
-		       (char= next-char #\$)
-		       (char= next-char #\_)))
-	(return)))
+                   (or (alpha-char-p next-char)
+                       (digit-char-p next-char)
+                       (char= next-char #\$)
+                       (char= next-char #\_)))
+        (return)))
     (let ((buffer (current-buffer))
-	  (start (point-min))
-	  (end (point-max)))
+          (start (point-min))
+          (end (point-max)))
       (prog1
-	  (if (not identifierp)
-	      ;; Expect a literal name token.
-	      (cond ((string= buffer "true"  :start1 start :end1 end)
-		     *true*)
-		    ((string= buffer "false" :start1 start :end1 end)
-		     *false*)
-		    ((string= buffer "null"  :start1 start :end1 end)
-		     *null*)
-		    ((%syntax-error "Unknown literal name token ‘~A’." (buffer-string))))
-	    ;; Accept any identifier name.
-	    (let ((name (buffer-string)))
-	      (if (or (string= name "true")
-		      (string= name "false")
-		      (string= name "null"))
-		  (%syntax-error "Literal name token ‘~A’ is not a valid identifier name." name)
-		name)))
-	;; Skip trailing whitespace.
-	(when (and next-char (whitespace-char-p next-char))
-	  (next-char* nil))))))
+          (if (not identifierp)
+              ;; Expect a literal name token.
+              (cond ((string= buffer "true"  :start1 start :end1 end)
+                     *true*)
+                    ((string= buffer "false" :start1 start :end1 end)
+                     *false*)
+                    ((string= buffer "null"  :start1 start :end1 end)
+                     *null*)
+                    ((%syntax-error "Unknown literal name token ‘~A’." (buffer-string))))
+            ;; Accept any identifier name.
+            (let ((name (buffer-string)))
+              (if (or (string= name "true")
+                      (string= name "false")
+                      (string= name "null"))
+                  (%syntax-error "Literal name token ‘~A’ is not a valid identifier name." name)
+                name)))
+        ;; Skip trailing whitespace.
+        (when (and next-char (whitespace-char-p next-char))
+          (next-char* nil))))))
 
 (defun %oref (data key)
   "Return the value of an object member.

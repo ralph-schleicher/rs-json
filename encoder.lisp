@@ -38,17 +38,17 @@
 (defun %encoding-error (&optional (datum nil datum-supplied-p) &rest arguments)
   "Signal an encoding error."
   (cond ((stringp datum)
-	 (error 'encoding-error
-		:stream *standard-output*
-		:format-control datum
-		:format-arguments arguments))
-	(datum-supplied-p
-	 (apply #'error (or datum 'encoding-error)
-		:stream *standard-output*
-		arguments))
-	(t
-	 (error 'encoding-error
-		:stream *standard-output*))))
+         (error 'encoding-error
+                :stream *standard-output*
+                :format-control datum
+                :format-arguments arguments))
+        (datum-supplied-p
+         (apply #'error (or datum 'encoding-error)
+                :stream *standard-output*
+                arguments))
+        (t
+         (error 'encoding-error
+                :stream *standard-output*))))
 
 (defgeneric encode (data)
   (:documentation "Encode Lisp data as a JSON value.
@@ -92,19 +92,19 @@ Signals an ‘encoding-error’."
 (defun %print (stream data &optional pretty)
   "Common entry point for all print functions."
   (let ((*standard-output* stream)
-	(*pretty-printer* pretty)
-	(*print-pretty* pretty)
-	(*print-base* 10)
-	(*print-radix* nil)
-	(*print-circle* nil)
-	(*print-readably* nil)
-	(*print-escape* nil)
-	(*print-length* nil)
-	(*print-level* nil)
-	(*print-lines* nil)
-	(*print-right-margin* nil)
-	(*print-miser-width* nil)
-	(*print-pprint-dispatch* (copy-pprint-dispatch nil)))
+        (*pretty-printer* pretty)
+        (*print-pretty* pretty)
+        (*print-base* 10)
+        (*print-radix* nil)
+        (*print-circle* nil)
+        (*print-readably* nil)
+        (*print-escape* nil)
+        (*print-length* nil)
+        (*print-level* nil)
+        (*print-lines* nil)
+        (*print-right-margin* nil)
+        (*print-miser-width* nil)
+        (*print-pprint-dispatch* (copy-pprint-dispatch nil)))
     (encode data))
   ())
 
@@ -162,9 +162,9 @@ and the items of these compound structures are lined up nicely."
        (%print stream data pretty)))
     (pathname
      (with-open-file (stream destination :direction :output
-					 :if-exists :supersede
-					 :if-does-not-exist :create
-					 :external-format (uiop:encoding-external-format :utf-8))
+                                         :if-exists :supersede
+                                         :if-does-not-exist :create
+                                         :external-format (uiop:encoding-external-format :utf-8))
        (%print stream data pretty)))
     ((member t)
      (%print *standard-output* data pretty))
@@ -173,7 +173,7 @@ and the items of these compound structures are lined up nicely."
        (%print stream data pretty)))))
 
 (defconst serializer (lambda (stream &optional (data (error "Missing required argument.")) &rest rest)
-		       (%print stream data *print-pretty*) rest)
+                       (%print stream data *print-pretty*) rest)
   "Format control for printing a Lisp data structure as a JSON value.
 The value of the ‘*print-pretty*’ special variable determines if the
 JSON output is pretty printed.  For example,
@@ -256,7 +256,7 @@ See the ‘with-object’ macro."
   (when (not firstp)
     (write-char #\,)
     (if *pretty-printer*
-	(pprint-newline :mandatory)
+        (pprint-newline :mandatory)
       (write-char #\Space)))
   (encode key)
   (write-string " : ")
@@ -271,15 +271,15 @@ pair of an object member."
     `(let ((,firstp t))
        (declare (ignorable ,firstp))
        (flet ((object-member (key value)
-		(%object-member key value ,firstp)
-		(setf ,firstp nil)))
-	 (%with-object (lambda () ,@body))))))
+                (%object-member key value ,firstp)
+                (setf ,firstp nil)))
+         (%with-object (lambda () ,@body))))))
 
 (defun %with-object (body)
   "Helper function for the ‘with-object’ macro."
   (if *pretty-printer*
       (pprint-logical-block (*standard-output* () :prefix "{" :suffix "}")
-	(funcall body))
+        (funcall body))
     (with-delimiters #\{ #\}
       (funcall body))))
 
@@ -296,14 +296,14 @@ pair of an object member."
   (declare (type list alist))
   (with-object
     (iter (for (key . value) :in alist)
-	  (object-member key value))))
+          (object-member key value))))
 
 (defun object-from-plist (plist)
   "Encode property list PLIST as a JSON object."
   (declare (type list plist))
   (with-object
     (iter (for (key value) :on plist :by #'cddr)
-	  (object-member key value))))
+          (object-member key value))))
 
 (defun encode-object (data)
   "Encode Lisp data as a JSON object.
@@ -321,14 +321,14 @@ Mostly useful for binding the ‘*list-encoder*’ special variable."
     (list
      (case *object-as*
        (:alist
-	(object-from-alist data))
+        (object-from-alist data))
        (:plist
-	(object-from-plist data))
+        (object-from-plist data))
        (t
-	;; Use some heuristics.
-	(if (consp (first data))
-	    (object-from-alist data)
-	  (object-from-plist data)))))
+        ;; Use some heuristics.
+        (if (consp (first data))
+            (object-from-alist data)
+          (object-from-plist data)))))
     (hash-table
      (object-from-hash-table data))))
 
@@ -348,7 +348,7 @@ See the ‘with-array’ macro."
   (when (not firstp)
     (write-char #\,)
     (if *pretty-printer*
-	(pprint-newline :mandatory)
+        (pprint-newline :mandatory)
       (write-char #\Space)))
   (encode value))
 
@@ -360,15 +360,15 @@ The BODY calls ‘(array-element VALUE)’ to encode an array element."
     `(let ((,firstp t))
        (declare (ignorable ,firstp))
        (flet ((array-element (value)
-		(%array-element value ,firstp)
-		(setf ,firstp nil)))
-	 (%with-array (lambda () ,@body))))))
+                (%array-element value ,firstp)
+                (setf ,firstp nil)))
+         (%with-array (lambda () ,@body))))))
 
 (defun %with-array (body)
   "Helper function for the ‘with-array’ macro."
   (if *pretty-printer*
       (pprint-logical-block (*standard-output* () :prefix "[" :suffix "]")
-	(funcall body))
+        (funcall body))
     (with-delimiters #\[ #\]
       (funcall body))))
 
@@ -448,9 +448,9 @@ Mostly useful for binding ‘*nil-encoder*’."
   "Return CHAR with inverted case if that is possible."
   (declare (type character char))
   (or (and (lower-case-p char)
-	   (char-upcase char))
+           (char-upcase char))
       (and (upper-case-p char)
-	   (char-downcase char))
+           (char-downcase char))
       char))
 
 (defsubst string-char (char)
@@ -461,49 +461,49 @@ Mostly useful for binding ‘*nil-encoder*’."
   ;; escaped: quotation mark, reverse solidus, and the control
   ;; characters (U+0000 through U+001F).
   (cond ((char= char #\Backspace)
-	 (write-string "\\b"))
-	((char= char #\Page)
-	 (write-string "\\f"))
-	((or (char= char #\Linefeed)
-	     (char= char #\Newline))
-	 (write-string "\\n"))
-	((char= char #\Return)
-	 (write-string "\\r"))
-	((char= char #\Tab)
-	 (write-string "\\t"))
-	((or (char= char #\")
-	     (char= char #\\))
-	 ;; Slash characters must not be escaped.
-	 (write-char #\\)
-	 (write-char char))
-	((standard-char-p char)
-	 (write-char char))
-	((let ((code (char-code char)))
-	   (cond ((<= code #x001F)
-		  (format t "\\u~4,'0X" code))
-		 ((and *allow-unicode-graphic* (not (unicode-other-p code)))
-		  (write-char char))
-		 ((<= code #xFFFF)
-		  (format t "\\u~4,'0X" code))
-		 ((<= code #x10FFFF)
-		  (multiple-value-bind (high low)
-		      (truncate (- code #x10000) #x400)
-		    (format t "\\u~4,'0X\\u~4,'0X" (+ high #xD800) (+ low #xDC00))))
-		 ((%encoding-error "Invalid Unicode character ‘~A’." char)))))))
+         (write-string "\\b"))
+        ((char= char #\Page)
+         (write-string "\\f"))
+        ((or (char= char #\Linefeed)
+             (char= char #\Newline))
+         (write-string "\\n"))
+        ((char= char #\Return)
+         (write-string "\\r"))
+        ((char= char #\Tab)
+         (write-string "\\t"))
+        ((or (char= char #\")
+             (char= char #\\))
+         ;; Slash characters must not be escaped.
+         (write-char #\\)
+         (write-char char))
+        ((standard-char-p char)
+         (write-char char))
+        ((let ((code (char-code char)))
+           (cond ((<= code #x001F)
+                  (format t "\\u~4,'0X" code))
+                 ((and *allow-unicode-graphic* (not (unicode-other-p code)))
+                  (write-char char))
+                 ((<= code #xFFFF)
+                  (format t "\\u~4,'0X" code))
+                 ((<= code #x10FFFF)
+                  (multiple-value-bind (high low)
+                      (truncate (- code #x10000) #x400)
+                    (format t "\\u~4,'0X\\u~4,'0X" (+ high #xD800) (+ low #xDC00))))
+                 ((%encoding-error "Invalid Unicode character ‘~A’." char)))))))
 
 (defun string-from-string (string)
   "Encode string STRING as a JSON string."
   (declare (type string string))
   (with-delimiters #\" #\"
     (iter (for char :in-string string)
-	  (string-char char))))
+          (string-char char))))
 
 (defun string-from-symbol (symbol &optional (char-encoder #'identity))
   "Encode symbol SYMBOL as a JSON string."
   (declare (type symbol symbol))
   (with-delimiters #\" #\"
     (iter (for char :in-string (symbol-name symbol))
-	  (string-char (funcall char-encoder char)))))
+          (string-char (funcall char-encoder char)))))
 
 (defun string-from-char (char)
   "Encode character CHAR as a JSON string."
@@ -525,27 +525,27 @@ Exceptional Situations:
    * Signals a ‘program-error’ if the value returned by the
      ‘*encode-symbol-hook*’ function is not a string."
   (cond ((eq data *true*)
-	 (encode-true data))
-	((eq data *false*)
-	 (encode-false data))
-	((eq data *null*)
-	 (encode-null data))
-	((case (or *encode-symbol-hook* *print-case*)
-	   (:upcase
-	    (string-from-symbol data #'char-upcase))
-	   (:downcase
-	    (string-from-symbol data #'char-downcase))
-	   (:capitalize ;mostly irrelevant
-	    (string-from-string (string-capitalize (symbol-name data))))
-	   (:preserve
-	    (string-from-string (symbol-name data)))
-	   (:invert
-	    (string-from-symbol data #'char-invert))
-	   (t
-	    (let ((string (funcall *encode-symbol-hook* data)))
-	      (unless (stringp string)
-		(error 'program-error))
-	      (string-from-string string)))))))
+         (encode-true data))
+        ((eq data *false*)
+         (encode-false data))
+        ((eq data *null*)
+         (encode-null data))
+        ((case (or *encode-symbol-hook* *print-case*)
+           (:upcase
+            (string-from-symbol data #'char-upcase))
+           (:downcase
+            (string-from-symbol data #'char-downcase))
+           (:capitalize ;mostly irrelevant
+            (string-from-string (string-capitalize (symbol-name data))))
+           (:preserve
+            (string-from-string (symbol-name data)))
+           (:invert
+            (string-from-symbol data #'char-invert))
+           (t
+            (let ((string (funcall *encode-symbol-hook* data)))
+              (unless (stringp string)
+                (error 'program-error))
+              (string-from-string string)))))))
 
 (defmethod encode ((data character))
   "Encode a character as a JSON string."
@@ -556,7 +556,7 @@ Exceptional Situations:
 (defmethod encode ((data integer))
   "Encode an integer as a JSON number."
   (let ((*print-base* 10)
-	(*print-radix* nil))
+        (*print-radix* nil))
     (princ data)))
 
 (defmethod encode ((data rational))

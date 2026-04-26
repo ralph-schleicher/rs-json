@@ -42,9 +42,9 @@
 
 (let ((data (gather-doc
              :title "RS-JSON"
-	     :package :rs-json
-	     :generic-functions t
-	     :undocumented t))
+             :package :rs-json
+             :generic-functions t
+             :undocumented t))
       (prefix (asdf:system-source-directory "rs-json")))
   (generate-doc
    :data data

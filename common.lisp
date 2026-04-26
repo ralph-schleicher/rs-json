@@ -55,12 +55,12 @@ for inline expansion by the compiler."
 
 ;; Unicode character properties.
 (macrolet ((define-property-test (property label)
-	     (let* ((name (nsubstitute #\- #\Space (string-upcase (string label))))
-		    (unicode-name-p (intern (concatenate 'string "UNICODE-" name "-P"))))
-	       `(progn
-		  (defconst ,unicode-name-p (cl-unicode:property-test ,property))
-		  (defsubst ,unicode-name-p (c)
-		    (funcall ,unicode-name-p c))))))
+             (let* ((name (nsubstitute #\- #\Space (string-upcase (string label))))
+                    (unicode-name-p (intern (concatenate 'string "UNICODE-" name "-P"))))
+               `(progn
+                  (defconst ,unicode-name-p (cl-unicode:property-test ,property))
+                  (defsubst ,unicode-name-p (c)
+                    (funcall ,unicode-name-p c))))))
   ;; Predicates for general categories and basic types.
   ;; See ‹https://www.unicode.org/versions/Unicode15.0.0/›,
   ;; §4.5 “General Category”, table 4-4 “General Category”.
@@ -107,16 +107,16 @@ for inline expansion by the compiler."
   ;; Code Points”.
   (defsubst unicode-graphic-p (c)
     (or (unicode-letter-p c)
-	(unicode-mark-p c)
-	(unicode-number-p c)
-	(unicode-punctuation-p c)
-	(unicode-symbol-p c)
-	(unicode-space-separator-p c)))
+        (unicode-mark-p c)
+        (unicode-number-p c)
+        (unicode-punctuation-p c)
+        (unicode-symbol-p c)
+        (unicode-space-separator-p c)))
 
   (defsubst unicode-format-p (c)
     (or (unicode-other-format-p c)
-	(unicode-line-separator-p c)
-	(unicode-paragraph-separator-p c)))
+        (unicode-line-separator-p c)
+        (unicode-paragraph-separator-p c)))
 
   ;; Other predicates.
   (define-property-test "White_Space" "whitespace")
@@ -132,7 +132,7 @@ Argument CHAR has to be a character object."
       (char= char #\Return)
       (char= char #\Newline)
       (when *allow-unicode-whitespace*
-	(unicode-whitespace-p char))))
+        (unicode-whitespace-p char))))
 
 (defsubst decimal-digit-char-p (char)
   "Return the digit weight if CHAR is a decimal digit character.
@@ -160,17 +160,17 @@ Class precedence list:
 
      ‘syntax-error’, ‘json-error’, ...")
   (:report (lambda (condition stream)
-	     (format stream "Invalid JSON syntax")
-	     (alexandria:when-let ((input (stream-error-stream condition)))
-	       (format stream " in ~S" input)
-	       (alexandria:when-let ((position (syntax-error-position condition)))
-		 (format stream " at ~S" position)))
-	     (format stream ".")
-	     (when (stringp (simple-condition-format-control condition))
-	       (terpri stream)
-	       (apply #'format stream
-		      (simple-condition-format-control condition)
-		      (simple-condition-format-arguments condition))))))
+             (format stream "Invalid JSON syntax")
+             (alexandria:when-let ((input (stream-error-stream condition)))
+               (format stream " in ~S" input)
+               (alexandria:when-let ((position (syntax-error-position condition)))
+                 (format stream " at ~S" position)))
+             (format stream ".")
+             (when (stringp (simple-condition-format-control condition))
+               (terpri stream)
+               (apply #'format stream
+                      (simple-condition-format-control condition)
+                      (simple-condition-format-arguments condition))))))
 
 (define-condition encoding-error (json-error)
   ()
@@ -180,15 +180,15 @@ Class precedence list:
 
      ‘encoding-error’, ‘json-error’, ...")
   (:report (lambda (condition stream)
-	     (format stream "Failed to encode a Lisp object as JSON")
-	     (alexandria:when-let ((output (stream-error-stream condition)))
-	       (format stream " in ~S" output))
-	     (format stream ".")
-	     (when (stringp (simple-condition-format-control condition))
-	       (terpri stream)
-	       (apply #'format stream
-		      (simple-condition-format-control condition)
-		      (simple-condition-format-arguments condition))))))
+             (format stream "Failed to encode a Lisp object as JSON")
+             (alexandria:when-let ((output (stream-error-stream condition)))
+               (format stream " in ~S" output))
+             (format stream ".")
+             (when (stringp (simple-condition-format-control condition))
+               (terpri stream)
+               (apply #'format stream
+                      (simple-condition-format-control condition)
+                      (simple-condition-format-arguments condition))))))
 
 (defvar *scratch* nil
   "The default scratch buffer.")
@@ -217,44 +217,44 @@ Quite similar to the rehash size of hash tables.")
 (defmacro with-scratch-buffer ((&optional buffer) &body body)
   "Establish a new region in a scratch buffer."
   (let ((buf (gensym "BUF"))
-	(mark (gensym "MARK"))
-	(incr (gensym "INCR")))
+        (mark (gensym "MARK"))
+        (incr (gensym "INCR")))
     `(let ((,buf (or ,buffer *scratch*)))
        (unless (scratch-buffer-p ,buf)
-	 (error 'type-error :datum ,buf :expected-type 'string))
+         (error 'type-error :datum ,buf :expected-type 'string))
        ;; Save the current buffer position and predetermine the number
        ;; of elements for an array extension.
        (let ((,mark (length ,buf))
-	     (,incr (max (etypecase scratch-buffer-growth-rate
-			   (integer
-			    scratch-buffer-growth-rate)
-			   (float
-			    (ceiling
-			     (* (1- scratch-buffer-growth-rate)
-				(array-total-size ,buf)))))
-			 initial-scratch-buffer-size)))
-	 (flet ((current-buffer ()
-		  "Return the scratch buffer."
-		  ,buf)
-		(buffer-string ()
-		  "Return a copy of the scratch buffer contents."
-		  (subseq ,buf ,mark (length ,buf)))
-		(displaced-buffer-string ()
-		  "Return a displaced array to the scratch buffer contents."
-		  (make-array (- (length ,buf) ,mark) :element-type 'character :displaced-to ,buf :displaced-index-offset ,mark))
-		(point-min ()
-		  "Return the beginning of the scratch buffer."
-		  ,mark)
-		(point-max ()
-		  "Return the end of the scratch buffer."
-		  (length ,buf))
-		(outc (char)
-		  "Append a character to the scratch buffer."
-		  (declare (type character char))
-		  (vector-push-extend char ,buf ,incr)))
-	   (declare (inline current-buffer buffer-string displaced-buffer-string point-min point-max outc))
-	   (unwind-protect
-		(progn ,@body)
-	     (setf (fill-pointer ,buf) ,mark)))))))
+             (,incr (max (etypecase scratch-buffer-growth-rate
+                           (integer
+                            scratch-buffer-growth-rate)
+                           (float
+                            (ceiling
+                             (* (1- scratch-buffer-growth-rate)
+                                (array-total-size ,buf)))))
+                         initial-scratch-buffer-size)))
+         (flet ((current-buffer ()
+                  "Return the scratch buffer."
+                  ,buf)
+                (buffer-string ()
+                  "Return a copy of the scratch buffer contents."
+                  (subseq ,buf ,mark (length ,buf)))
+                (displaced-buffer-string ()
+                  "Return a displaced array to the scratch buffer contents."
+                  (make-array (- (length ,buf) ,mark) :element-type 'character :displaced-to ,buf :displaced-index-offset ,mark))
+                (point-min ()
+                  "Return the beginning of the scratch buffer."
+                  ,mark)
+                (point-max ()
+                  "Return the end of the scratch buffer."
+                  (length ,buf))
+                (outc (char)
+                  "Append a character to the scratch buffer."
+                  (declare (type character char))
+                  (vector-push-extend char ,buf ,incr)))
+           (declare (inline current-buffer buffer-string displaced-buffer-string point-min point-max outc))
+           (unwind-protect
+                (progn ,@body)
+             (setf (fill-pointer ,buf) ,mark)))))))
 
 ;;; common.lisp ends here

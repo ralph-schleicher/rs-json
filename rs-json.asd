@@ -41,14 +41,14 @@
   :license "Modified BSD License"
   :version (:read-file-line "VERSION")
   :depends-on ("alexandria"
-	       "iterate"
-	       "cl-unicode")
+               "iterate"
+               "cl-unicode")
   :serial t
   :components ((:file "packages")
-	       (:file "specials")
-	       (:file "common")
-	       (:file "decoder")
-	       (:file "encoder"))
+               (:file "specials")
+               (:file "common")
+               (:file "decoder")
+               (:file "encoder"))
   :in-order-to ((test-op (test-op "rs-json/tests"))))
 
 (defsystem "rs-json/tests"
@@ -56,8 +56,8 @@
   :author "Ralph Schleicher <rs@ralph-schleicher.de>"
   :license "Modified BSD License"
   :depends-on ("iterate"
-	       "lisp-unit"
-	       "rs-json")
+               "lisp-unit"
+               "rs-json")
   :components ((:file "tests"))
   :perform (test-op (o c) (symbol-call :rs-json-tests :main)))
 
@@ -66,19 +66,19 @@
   :author "Ralph Schleicher <rs@ralph-schleicher.de>"
   :license "Modified BSD License"
   :depends-on ("iterate"
-	       "trivial-garbage"
-	       ;; JSON parsers.
-	       "cl-json"
-	       #-clisp
-	       "jonathan"
-	       "json-streams"
-	       "jsown"
-	       "com.inuoe.jzon"
-	       "rs-json"
-	       "shasht"
-	       "st-json"
-	       "yason")
+               "trivial-garbage"
+               ;; JSON parsers.
+               "cl-json"
+               #-clisp
+               "jonathan"
+               "json-streams"
+               "jsown"
+               "com.inuoe.jzon"
+               "rs-json"
+               "shasht"
+               "st-json"
+               "yason")
   :components ((:module "t"
-		:components ((:file "bench")))))
+                :components ((:file "bench")))))
 
 ;;; rs-json.asd ends here
