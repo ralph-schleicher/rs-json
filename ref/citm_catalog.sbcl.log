@@ -1,4 +1,4 @@
-sbcl --dynamic-space-size 12288 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:citm_catalog) --quit
+sbcl --dynamic-space-size 12288 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:citm_catalog :self nil) --quit
 This is SBCL 2.5.11, an implementation of ANSI Common Lisp.
 More information about SBCL is available at <http://www.sbcl.org/>.
 
@@ -15,8 +15,7 @@ To load "rs-json/bench":
   Load 1 ASDF system:
     rs-json/bench
 ; Loading "rs-json/bench"
-..................................................
-[package de.ralph-schleicher.json-benchmark]....
+..
 
 ========================================
 CL-JSON
@@ -24,146 +23,146 @@ CL-JSON
 CL-JSON;READ;citm_catalog.json
 Evaluation took:
   0.036 seconds of real time
-  0.036638 seconds of total run time (0.036398 user, 0.000240 system)
+  0.036979 seconds of total run time (0.036566 user, 0.000413 system)
   102.78% CPU
-  124,797,222 processor cycles
+  125,900,636 processor cycles
   26,415,088 bytes consed
   
 CL-JSON;READ;citm_catalog.json
 Evaluation took:
-  0.039 seconds of real time
-  0.037076 seconds of total run time (0.037076 user, 0.000000 system)
-  94.87% CPU
-  126,313,576 processor cycles
+  0.036 seconds of real time
+  0.036644 seconds of total run time (0.036644 user, 0.000000 system)
+  102.78% CPU
+  124,765,852 processor cycles
   26,415,088 bytes consed
   
 CL-JSON;READ;citm_catalog.json
 Evaluation took:
   0.040 seconds of real time
-  0.039328 seconds of total run time (0.039328 user, 0.000000 system)
-  97.50% CPU
-  133,987,416 processor cycles
+  0.039500 seconds of total run time (0.039500 user, 0.000000 system)
+  100.00% CPU
+  134,475,590 processor cycles
+  26,415,088 bytes consed
+  
+CL-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.036 seconds of real time
+  0.037337 seconds of total run time (0.037337 user, 0.000000 system)
+  102.78% CPU
+  127,234,926 processor cycles
+  26,415,088 bytes consed
+  
+CL-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.036 seconds of real time
+  0.037673 seconds of total run time (0.037440 user, 0.000233 system)
+  105.56% CPU
+  128,322,936 processor cycles
+  26,415,088 bytes consed
+  
+CL-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.040 seconds of real time
+  0.037132 seconds of total run time (0.037132 user, 0.000000 system)
+  92.50% CPU
+  126,482,388 processor cycles
+  26,415,088 bytes consed
+  
+CL-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.040 seconds of real time
+  0.037187 seconds of total run time (0.037187 user, 0.000000 system)
+  92.50% CPU
+  126,673,880 processor cycles
   26,415,088 bytes consed
   
 CL-JSON;READ;citm_catalog.json
 Evaluation took:
   0.035 seconds of real time
-  0.037017 seconds of total run time (0.037017 user, 0.000000 system)
+  0.037167 seconds of total run time (0.036708 user, 0.000459 system)
   105.71% CPU
-  126,088,998 processor cycles
+  126,599,556 processor cycles
   26,415,088 bytes consed
   
 CL-JSON;READ;citm_catalog.json
 Evaluation took:
   0.036 seconds of real time
-  0.037120 seconds of total run time (0.037120 user, 0.000000 system)
-  102.78% CPU
-  126,439,970 processor cycles
-  26,415,088 bytes consed
-  
-CL-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.036 seconds of real time
-  0.036677 seconds of total run time (0.036677 user, 0.000000 system)
-  102.78% CPU
-  124,926,378 processor cycles
-  26,415,088 bytes consed
-  
-CL-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.035 seconds of real time
-  0.036278 seconds of total run time (0.036278 user, 0.000000 system)
-  102.86% CPU
-  123,576,666 processor cycles
-  26,415,088 bytes consed
-  
-CL-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.036 seconds of real time
-  0.035947 seconds of total run time (0.035947 user, 0.000000 system)
-  100.00% CPU
-  122,444,512 processor cycles
-  26,415,088 bytes consed
-  
-CL-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.035 seconds of real time
-  0.036454 seconds of total run time (0.035622 user, 0.000832 system)
-  102.86% CPU
-  124,172,472 processor cycles
+  0.037747 seconds of total run time (0.037373 user, 0.000374 system)
+  105.56% CPU
+  128,577,992 processor cycles
   26,415,088 bytes consed
   
 CL-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.143 seconds of real time
-  0.145586 seconds of total run time (0.113393 user, 0.032193 system)
-  102.10% CPU
+  0.144 seconds of real time
+  0.143994 seconds of total run time (0.096242 user, 0.047752 system)
+  100.00% CPU
   16 lambdas converted
-  496,084,162 processor cycles
-  70,205,232 bytes consed
+  490,658,580 processor cycles
+  70,216,576 bytes consed
   
 CL-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.139 seconds of real time
-  0.139912 seconds of total run time (0.112136 user, 0.027776 system)
-  100.72% CPU
-  476,778,068 processor cycles
-  69,062,464 bytes consed
-  
-CL-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.135 seconds of real time
-  0.135683 seconds of total run time (0.116158 user, 0.019525 system)
+  0.136 seconds of real time
+  0.136744 seconds of total run time (0.108715 user, 0.028029 system)
   100.74% CPU
-  462,341,936 processor cycles
+  465,977,924 processor cycles
   69,062,464 bytes consed
   
 CL-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.135 seconds of real time
-  0.135852 seconds of total run time (0.112248 user, 0.023604 system)
+  0.136 seconds of real time
+  0.137762 seconds of total run time (0.093459 user, 0.044303 system)
+  101.47% CPU
+  469,436,344 processor cycles
+  69,062,464 bytes consed
+  
+CL-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.136 seconds of real time
+  0.136672 seconds of total run time (0.092428 user, 0.044244 system)
   100.74% CPU
-  462,917,182 processor cycles
+  465,711,586 processor cycles
   69,062,464 bytes consed
   
 CL-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.131 seconds of real time
-  0.135204 seconds of total run time (0.102526 user, 0.032678 system)
-  103.05% CPU
-  460,800,598 processor cycles
+  0.140 seconds of real time
+  0.138553 seconds of total run time (0.107349 user, 0.031204 system)
+  99.29% CPU
+  472,224,932 processor cycles
   69,062,464 bytes consed
   
 CL-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.135 seconds of real time
-  0.134840 seconds of total run time (0.091435 user, 0.043405 system)
+  0.136 seconds of real time
+  0.136479 seconds of total run time (0.096566 user, 0.039913 system)
   100.00% CPU
-  459,465,174 processor cycles
+  465,082,458 processor cycles
   69,062,464 bytes consed
   
 CL-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.135 seconds of real time
-  0.136545 seconds of total run time (0.108706 user, 0.027839 system)
-  101.48% CPU
-  465,276,980 processor cycles
+  0.136 seconds of real time
+  0.138906 seconds of total run time (0.098186 user, 0.040720 system)
+  102.21% CPU
+  473,318,430 processor cycles
   69,062,464 bytes consed
   
 CL-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.135 seconds of real time
-  0.137121 seconds of total run time (0.093000 user, 0.044121 system)
-  101.48% CPU
-  467,439,628 processor cycles
+  0.140 seconds of real time
+  0.138639 seconds of total run time (0.115444 user, 0.023195 system)
+  99.29% CPU
+  472,413,834 processor cycles
   69,062,464 bytes consed
   
 CL-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.135 seconds of real time
-  0.136243 seconds of total run time (0.092501 user, 0.043742 system)
-  100.74% CPU
-  464,325,112 processor cycles
+  0.136 seconds of real time
+  0.137869 seconds of total run time (0.101468 user, 0.036401 system)
+  101.47% CPU
+  469,784,484 processor cycles
   69,062,464 bytes consed
   
 
@@ -173,145 +172,146 @@ JONATHAN
 JONATHAN;READ;citm_catalog.json
 Evaluation took:
   0.008 seconds of real time
-  0.008482 seconds of total run time (0.008482 user, 0.000000 system)
+  0.008412 seconds of total run time (0.008412 user, 0.000000 system)
   100.00% CPU
-  28,844,790 processor cycles
+  28,599,046 processor cycles
   10,108,768 bytes consed
   
 JONATHAN;READ;citm_catalog.json
 Evaluation took:
   0.008 seconds of real time
-  0.008291 seconds of total run time (0.008291 user, 0.000000 system)
+  0.008417 seconds of total run time (0.008417 user, 0.000000 system)
   100.00% CPU
-  28,190,222 processor cycles
+  28,613,068 processor cycles
   10,108,768 bytes consed
   
 JONATHAN;READ;citm_catalog.json
 Evaluation took:
-  0.007 seconds of real time
-  0.008679 seconds of total run time (0.007714 user, 0.000965 system)
-  128.57% CPU
-  29,512,240 processor cycles
+  0.008 seconds of real time
+  0.008569 seconds of total run time (0.008569 user, 0.000000 system)
+  112.50% CPU
+  29,141,712 processor cycles
+  10,108,768 bytes consed
+  
+JONATHAN;READ;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008577 seconds of total run time (0.008577 user, 0.000000 system)
+  112.50% CPU
+  29,219,564 processor cycles
+  10,108,768 bytes consed
+  
+JONATHAN;READ;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008528 seconds of total run time (0.008528 user, 0.000000 system)
+  112.50% CPU
+  28,997,310 processor cycles
+  10,108,768 bytes consed
+  
+JONATHAN;READ;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008559 seconds of total run time (0.008559 user, 0.000000 system)
+  112.50% CPU
+  29,103,450 processor cycles
   10,108,768 bytes consed
   
 JONATHAN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.008669 seconds of total run time (0.008669 user, 0.000000 system)
-  75.00% CPU
-  29,479,798 processor cycles
-  10,108,768 bytes consed
-  
-JONATHAN;READ;citm_catalog.json
-Evaluation took:
-  0.008 seconds of real time
-  0.008343 seconds of total run time (0.008343 user, 0.000000 system)
-  100.00% CPU
-  28,374,882 processor cycles
-  10,108,768 bytes consed
-  
-JONATHAN;READ;citm_catalog.json
-Evaluation took:
-  0.008 seconds of real time
-  0.008538 seconds of total run time (0.008538 user, 0.000000 system)
-  112.50% CPU
-  29,031,404 processor cycles
-  10,108,768 bytes consed
-  
-JONATHAN;READ;citm_catalog.json
-Evaluation took:
-  0.008 seconds of real time
-  0.008538 seconds of total run time (0.008538 user, 0.000000 system)
-  112.50% CPU
-  29,039,282 processor cycles
-  10,108,768 bytes consed
-  
-JONATHAN;READ;citm_catalog.json
-Evaluation took:
-  0.008 seconds of real time
-  0.008333 seconds of total run time (0.008333 user, 0.000000 system)
-  100.00% CPU
-  28,342,200 processor cycles
-  10,108,768 bytes consed
-  
-JONATHAN;READ;citm_catalog.json
-Evaluation took:
-  0.012 seconds of real time
-  0.008500 seconds of total run time (0.008500 user, 0.000000 system)
+  0.008494 seconds of total run time (0.008494 user, 0.000000 system)
   66.67% CPU
-  28,905,972 processor cycles
+  28,889,046 processor cycles
+  10,108,768 bytes consed
+  
+JONATHAN;READ;citm_catalog.json
+Evaluation took:
+  0.012 seconds of real time
+  0.008685 seconds of total run time (0.008685 user, 0.000000 system)
+  75.00% CPU
+  29,585,376 processor cycles
+  10,108,768 bytes consed
+  
+JONATHAN;READ;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008737 seconds of total run time (0.008737 user, 0.000000 system)
+  112.50% CPU
+  29,714,184 processor cycles
   10,108,768 bytes consed
   
 JONATHAN;WRITE;citm_catalog.json
 Evaluation took:
-  0.027 seconds of real time
-  0.025178 seconds of total run time (0.025178 user, 0.000000 system)
-  92.59% CPU
-  85,748,718 processor cycles
-  10,178,672 bytes consed
+  0.032 seconds of real time
+  0.034619 seconds of total run time (0.034619 user, 0.000000 system)
+  109.38% CPU
+  29 lambdas converted
+  117,911,668 processor cycles
+  12,278,832 bytes consed
   
 JONATHAN;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.024856 seconds of total run time (0.024835 user, 0.000021 system)
+  0.025197 seconds of total run time (0.025197 user, 0.000000 system)
   104.17% CPU
-  84,645,950 processor cycles
-  10,178,528 bytes consed
-  
-JONATHAN;WRITE;citm_catalog.json
-Evaluation took:
-  0.024 seconds of real time
-  0.024755 seconds of total run time (0.023684 user, 0.001071 system)
-  104.17% CPU
-  84,304,152 processor cycles
-  10,178,720 bytes consed
-  
-JONATHAN;WRITE;citm_catalog.json
-Evaluation took:
-  0.023 seconds of real time
-  0.024876 seconds of total run time (0.024876 user, 0.000000 system)
-  108.70% CPU
-  84,717,496 processor cycles
+  85,810,168 processor cycles
   10,178,720 bytes consed
   
 JONATHAN;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.025060 seconds of total run time (0.025060 user, 0.000000 system)
-  104.17% CPU
-  85,347,680 processor cycles
+  0.025611 seconds of total run time (0.025611 user, 0.000000 system)
+  108.33% CPU
+  87,212,066 processor cycles
   10,178,720 bytes consed
   
 JONATHAN;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.024908 seconds of total run time (0.024908 user, 0.000000 system)
+  0.025274 seconds of total run time (0.025274 user, 0.000000 system)
   104.17% CPU
-  84,826,676 processor cycles
+  86,062,984 processor cycles
   10,178,720 bytes consed
   
 JONATHAN;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.025021 seconds of total run time (0.025021 user, 0.000000 system)
+  0.025087 seconds of total run time (0.025087 user, 0.000000 system)
   104.17% CPU
-  85,273,778 processor cycles
+  85,446,706 processor cycles
   10,178,720 bytes consed
   
 JONATHAN;WRITE;citm_catalog.json
 Evaluation took:
-  0.024 seconds of real time
-  0.024699 seconds of total run time (0.024699 user, 0.000000 system)
-  104.17% CPU
-  84,215,630 processor cycles
+  0.028 seconds of real time
+  0.025517 seconds of total run time (0.025517 user, 0.000000 system)
+  92.86% CPU
+  86,944,492 processor cycles
   10,178,720 bytes consed
   
 JONATHAN;WRITE;citm_catalog.json
 Evaluation took:
-  0.024 seconds of real time
-  0.024646 seconds of total run time (0.024646 user, 0.000000 system)
-  104.17% CPU
-  83,934,454 processor cycles
+  0.028 seconds of real time
+  0.025175 seconds of total run time (0.025175 user, 0.000000 system)
+  89.29% CPU
+  85,727,842 processor cycles
+  10,178,720 bytes consed
+  
+JONATHAN;WRITE;citm_catalog.json
+Evaluation took:
+  0.028 seconds of real time
+  0.025058 seconds of total run time (0.025058 user, 0.000000 system)
+  89.29% CPU
+  85,412,782 processor cycles
+  10,178,720 bytes consed
+  
+JONATHAN;WRITE;citm_catalog.json
+Evaluation took:
+  0.028 seconds of real time
+  0.025239 seconds of total run time (0.025239 user, 0.000000 system)
+  89.29% CPU
+  85,965,540 processor cycles
   10,178,720 bytes consed
   
 
@@ -320,147 +320,147 @@ JSON-STREAMS
 ========================================
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.084 seconds of real time
-  0.085192 seconds of total run time (0.085192 user, 0.000000 system)
-  101.19% CPU
-  290,208,530 processor cycles
+  0.088 seconds of real time
+  0.086691 seconds of total run time (0.086691 user, 0.000000 system)
+  98.86% CPU
+  295,369,388 processor cycles
   11,921,568 bytes consed
   
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.083 seconds of real time
-  0.084699 seconds of total run time (0.084699 user, 0.000000 system)
-  102.41% CPU
-  288,532,114 processor cycles
+  0.088 seconds of real time
+  0.087393 seconds of total run time (0.087393 user, 0.000000 system)
+  98.86% CPU
+  297,816,416 processor cycles
   11,926,896 bytes consed
   
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.083 seconds of real time
-  0.085441 seconds of total run time (0.085441 user, 0.000000 system)
-  102.41% CPU
-  291,149,450 processor cycles
+  0.088 seconds of real time
+  0.087869 seconds of total run time (0.087869 user, 0.000000 system)
+  100.00% CPU
+  299,328,710 processor cycles
   11,921,568 bytes consed
   
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.083 seconds of real time
-  0.086458 seconds of total run time (0.086458 user, 0.000000 system)
-  103.61% CPU
-  294,567,554 processor cycles
+  0.088 seconds of real time
+  0.086807 seconds of total run time (0.086807 user, 0.000000 system)
+  98.86% CPU
+  295,767,558 processor cycles
   11,926,912 bytes consed
   
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.083 seconds of real time
-  0.086385 seconds of total run time (0.086247 user, 0.000138 system)
-  103.61% CPU
-  294,322,302 processor cycles
+  0.084 seconds of real time
+  0.087685 seconds of total run time (0.087685 user, 0.000000 system)
+  104.76% CPU
+  298,767,260 processor cycles
   11,921,568 bytes consed
   
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.083 seconds of real time
-  0.084649 seconds of total run time (0.084649 user, 0.000000 system)
-  102.41% CPU
-  288,405,558 processor cycles
+  0.088 seconds of real time
+  0.086420 seconds of total run time (0.086420 user, 0.000000 system)
+  97.73% CPU
+  294,457,020 processor cycles
   11,926,912 bytes consed
   
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.083 seconds of real time
-  0.085323 seconds of total run time (0.085323 user, 0.000000 system)
-  102.41% CPU
-  290,723,716 processor cycles
+  0.088 seconds of real time
+  0.087594 seconds of total run time (0.087594 user, 0.000000 system)
+  100.00% CPU
+  298,488,334 processor cycles
   11,921,568 bytes consed
   
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.083 seconds of real time
-  0.084991 seconds of total run time (0.084991 user, 0.000000 system)
-  102.41% CPU
-  289,540,460 processor cycles
+  0.088 seconds of real time
+  0.086360 seconds of total run time (0.086360 user, 0.000000 system)
+  97.73% CPU
+  294,178,680 processor cycles
   11,926,912 bytes consed
   
 JSON-STREAMS;READ;citm_catalog.json
 Evaluation took:
-  0.083 seconds of real time
-  0.085384 seconds of total run time (0.085384 user, 0.000000 system)
-  102.41% CPU
-  290,869,710 processor cycles
+  0.088 seconds of real time
+  0.089168 seconds of total run time (0.089168 user, 0.000000 system)
+  101.14% CPU
+  303,801,718 processor cycles
   11,921,568 bytes consed
   
 JSON-STREAMS;WRITE;citm_catalog.json
 Evaluation took:
-  0.027 seconds of real time
-  0.030404 seconds of total run time (0.030404 user, 0.000000 system)
-  111.11% CPU
+  0.032 seconds of real time
+  0.031143 seconds of total run time (0.031143 user, 0.000000 system)
+  96.88% CPU
   27 lambdas converted
-  103,553,496 processor cycles
-  12,390,688 bytes consed
+  106,062,786 processor cycles
+  12,390,976 bytes consed
   
 JSON-STREAMS;WRITE;citm_catalog.json
 Evaluation took:
   0.028 seconds of real time
-  0.028767 seconds of total run time (0.028767 user, 0.000000 system)
+  0.029559 seconds of total run time (0.029559 user, 0.000000 system)
+  107.14% CPU
+  100,693,736 processor cycles
+  11,399,344 bytes consed
+  
+JSON-STREAMS;WRITE;citm_catalog.json
+Evaluation took:
+  0.032 seconds of real time
+  0.029725 seconds of total run time (0.029725 user, 0.000000 system)
+  93.75% CPU
+  115,423,916 processor cycles
+  11,399,344 bytes consed
+  
+JSON-STREAMS;WRITE;citm_catalog.json
+Evaluation took:
+  0.032 seconds of real time
+  0.029008 seconds of total run time (0.029008 user, 0.000000 system)
+  90.63% CPU
+  98,794,354 processor cycles
+  11,399,344 bytes consed
+  
+JSON-STREAMS;WRITE;citm_catalog.json
+Evaluation took:
+  0.028 seconds of real time
+  0.028805 seconds of total run time (0.028805 user, 0.000000 system)
   103.57% CPU
-  97,974,824 processor cycles
+  98,462,526 processor cycles
   11,399,344 bytes consed
   
 JSON-STREAMS;WRITE;citm_catalog.json
 Evaluation took:
   0.028 seconds of real time
-  0.028209 seconds of total run time (0.028209 user, 0.000000 system)
-  100.00% CPU
-  96,106,816 processor cycles
-  11,399,344 bytes consed
-  
-JSON-STREAMS;WRITE;citm_catalog.json
-Evaluation took:
-  0.027 seconds of real time
-  0.028739 seconds of total run time (0.028739 user, 0.000000 system)
-  107.41% CPU
-  97,879,450 processor cycles
+  0.028588 seconds of total run time (0.028588 user, 0.000000 system)
+  103.57% CPU
+  97,353,634 processor cycles
   11,399,344 bytes consed
   
 JSON-STREAMS;WRITE;citm_catalog.json
 Evaluation took:
   0.028 seconds of real time
-  0.028478 seconds of total run time (0.028478 user, 0.000000 system)
-  100.00% CPU
-  96,989,198 processor cycles
-  11,399,344 bytes consed
-  
-JSON-STREAMS;WRITE;citm_catalog.json
-Evaluation took:
-  0.027 seconds of real time
-  0.028200 seconds of total run time (0.028200 user, 0.000000 system)
-  103.70% CPU
-  96,128,378 processor cycles
+  0.028881 seconds of total run time (0.028881 user, 0.000000 system)
+  103.57% CPU
+  98,359,250 processor cycles
   11,399,344 bytes consed
   
 JSON-STREAMS;WRITE;citm_catalog.json
 Evaluation took:
   0.028 seconds of real time
-  0.027964 seconds of total run time (0.027964 user, 0.000000 system)
-  100.00% CPU
-  95,239,008 processor cycles
+  0.028726 seconds of total run time (0.028726 user, 0.000000 system)
+  103.57% CPU
+  97,829,712 processor cycles
   11,399,344 bytes consed
   
 JSON-STREAMS;WRITE;citm_catalog.json
 Evaluation took:
   0.028 seconds of real time
-  0.028148 seconds of total run time (0.028148 user, 0.000000 system)
-  100.00% CPU
-  95,865,596 processor cycles
-  11,399,344 bytes consed
-  
-JSON-STREAMS;WRITE;citm_catalog.json
-Evaluation took:
-  0.027 seconds of real time
-  0.027928 seconds of total run time (0.027928 user, 0.000000 system)
-  103.70% CPU
-  95,176,690 processor cycles
+  0.028728 seconds of total run time (0.028728 user, 0.000000 system)
+  103.57% CPU
+  97,839,120 processor cycles
   11,399,344 bytes consed
   
 
@@ -470,146 +470,146 @@ JSOWN
 JSOWN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.012019 seconds of total run time (0.012019 user, 0.000000 system)
+  0.012123 seconds of total run time (0.012123 user, 0.000000 system)
   100.00% CPU
-  40,885,764 processor cycles
+  41,230,184 processor cycles
   3,536,592 bytes consed
   
 JSOWN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.011939 seconds of total run time (0.011939 user, 0.000000 system)
+  0.012029 seconds of total run time (0.012029 user, 0.000000 system)
   100.00% CPU
-  40,608,346 processor cycles
+  40,951,620 processor cycles
   3,536,592 bytes consed
   
 JSOWN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.011867 seconds of total run time (0.011867 user, 0.000000 system)
+  0.012169 seconds of total run time (0.012169 user, 0.000000 system)
   100.00% CPU
-  40,381,090 processor cycles
+  41,404,840 processor cycles
+  3,536,592 bytes consed
+  
+JSOWN;READ;citm_catalog.json
+Evaluation took:
+  0.016 seconds of real time
+  0.012396 seconds of total run time (0.012396 user, 0.000000 system)
+  75.00% CPU
+  42,170,564 processor cycles
   3,536,592 bytes consed
   
 JSOWN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.011941 seconds of total run time (0.011941 user, 0.000000 system)
+  0.012329 seconds of total run time (0.012329 user, 0.000000 system)
   100.00% CPU
-  40,633,034 processor cycles
-  3,536,592 bytes consed
-  
-JSOWN;READ;citm_catalog.json
-Evaluation took:
-  0.015 seconds of real time
-  0.012226 seconds of total run time (0.012226 user, 0.000000 system)
-  80.00% CPU
-  41,602,430 processor cycles
+  41,947,670 processor cycles
   3,536,592 bytes consed
   
 JSOWN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.011973 seconds of total run time (0.011973 user, 0.000000 system)
+  0.012037 seconds of total run time (0.012037 user, 0.000000 system)
   100.00% CPU
-  40,744,552 processor cycles
+  40,956,410 processor cycles
   3,536,592 bytes consed
   
 JSOWN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.012061 seconds of total run time (0.012061 user, 0.000000 system)
+  0.012031 seconds of total run time (0.012031 user, 0.000000 system)
   100.00% CPU
-  41,044,834 processor cycles
+  40,937,186 processor cycles
   3,536,592 bytes consed
   
 JSOWN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.012085 seconds of total run time (0.012085 user, 0.000000 system)
+  0.012127 seconds of total run time (0.012127 user, 0.000000 system)
   100.00% CPU
-  41,127,812 processor cycles
+  41,267,496 processor cycles
   3,536,592 bytes consed
   
 JSOWN;READ;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.012111 seconds of total run time (0.012111 user, 0.000000 system)
+  0.012140 seconds of total run time (0.012140 user, 0.000000 system)
   100.00% CPU
-  41,214,240 processor cycles
+  41,312,902 processor cycles
   3,536,592 bytes consed
   
 JSOWN;WRITE;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.020836 seconds of total run time (0.020836 user, 0.000000 system)
-  105.00% CPU
+  0.021675 seconds of total run time (0.021675 user, 0.000000 system)
+  110.00% CPU
   16 lambdas converted
-  70,940,436 processor cycles
-  29,606,304 bytes consed
+  73,794,126 processor cycles
+  29,606,240 bytes consed
   
 JSOWN;WRITE;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.018937 seconds of total run time (0.018937 user, 0.000000 system)
+  0.019158 seconds of total run time (0.019158 user, 0.000000 system)
   95.00% CPU
-  64,745,838 processor cycles
+  65,656,914 processor cycles
+  28,577,040 bytes consed
+  
+JSOWN;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.018982 seconds of total run time (0.018982 user, 0.000000 system)
+  95.00% CPU
+  64,631,056 processor cycles
   28,577,040 bytes consed
   
 JSOWN;WRITE;citm_catalog.json
 Evaluation took:
   0.016 seconds of real time
-  0.018647 seconds of total run time (0.018009 user, 0.000638 system)
+  0.019210 seconds of total run time (0.019210 user, 0.000000 system)
   118.75% CPU
-  63,485,834 processor cycles
-  28,577,040 bytes consed
-  
-JSOWN;WRITE;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.018239 seconds of total run time (0.017998 user, 0.000241 system)
-  112.50% CPU
-  62,102,526 processor cycles
+  65,403,100 processor cycles
   28,577,040 bytes consed
   
 JSOWN;WRITE;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.018312 seconds of total run time (0.018312 user, 0.000000 system)
-  90.00% CPU
-  62,350,074 processor cycles
-  28,577,040 bytes consed
-  
-JSOWN;WRITE;citm_catalog.json
-Evaluation took:
-  0.019 seconds of real time
-  0.018336 seconds of total run time (0.018336 user, 0.000000 system)
-  94.74% CPU
-  62,420,752 processor cycles
-  28,577,040 bytes consed
-  
-JSOWN;WRITE;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.018309 seconds of total run time (0.018309 user, 0.000000 system)
-  112.50% CPU
-  62,334,706 processor cycles
-  28,577,040 bytes consed
-  
-JSOWN;WRITE;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.018474 seconds of total run time (0.018474 user, 0.000000 system)
-  90.00% CPU
-  62,895,334 processor cycles
-  28,577,040 bytes consed
-  
-JSOWN;WRITE;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.018631 seconds of total run time (0.018631 user, 0.000000 system)
+  0.018944 seconds of total run time (0.018944 user, 0.000000 system)
   95.00% CPU
-  63,434,204 processor cycles
+  64,460,754 processor cycles
+  28,577,040 bytes consed
+  
+JSOWN;WRITE;citm_catalog.json
+Evaluation took:
+  0.016 seconds of real time
+  0.018662 seconds of total run time (0.018662 user, 0.000000 system)
+  118.75% CPU
+  63,517,260 processor cycles
+  28,577,040 bytes consed
+  
+JSOWN;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.018505 seconds of total run time (0.018505 user, 0.000000 system)
+  95.00% CPU
+  62,998,316 processor cycles
+  28,577,040 bytes consed
+  
+JSOWN;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.018558 seconds of total run time (0.018558 user, 0.000000 system)
+  95.00% CPU
+  63,178,368 processor cycles
+  28,577,040 bytes consed
+  
+JSOWN;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019204 seconds of total run time (0.019204 user, 0.000000 system)
+  95.00% CPU
+  65,392,438 processor cycles
   28,577,040 bytes consed
   
 
@@ -618,297 +618,148 @@ JZON
 ========================================
 JZON;READ;citm_catalog.json
 Evaluation took:
+  0.020 seconds of real time
+  0.018502 seconds of total run time (0.018502 user, 0.000000 system)
+  95.00% CPU
+  62,959,286 processor cycles
+  7,593,024 bytes consed
+  
+JZON;READ;citm_catalog.json
+Evaluation took:
   0.016 seconds of real time
-  0.017883 seconds of total run time (0.017438 user, 0.000445 system)
+  0.018325 seconds of total run time (0.018325 user, 0.000000 system)
   112.50% CPU
-  60,867,162 processor cycles
+  62,380,802 processor cycles
+  7,613,360 bytes consed
+  
+JZON;READ;citm_catalog.json
+Evaluation took:
+  0.016 seconds of real time
+  0.018436 seconds of total run time (0.018436 user, 0.000000 system)
+  112.50% CPU
+  62,770,038 processor cycles
   7,593,024 bytes consed
   
 JZON;READ;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.017891 seconds of total run time (0.017891 user, 0.000000 system)
-  90.00% CPU
-  60,886,550 processor cycles
+  0.018539 seconds of total run time (0.018539 user, 0.000000 system)
+  95.00% CPU
+  63,128,174 processor cycles
   7,613,360 bytes consed
   
 JZON;READ;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.018022 seconds of total run time (0.018022 user, 0.000000 system)
+  0.018425 seconds of total run time (0.018425 user, 0.000000 system)
   90.00% CPU
-  61,344,512 processor cycles
+  62,849,800 processor cycles
   7,593,024 bytes consed
   
 JZON;READ;citm_catalog.json
 Evaluation took:
-  0.019 seconds of real time
-  0.017944 seconds of total run time (0.017944 user, 0.000000 system)
-  94.74% CPU
-  61,083,728 processor cycles
+  0.016 seconds of real time
+  0.018483 seconds of total run time (0.018483 user, 0.000000 system)
+  112.50% CPU
+  62,918,060 processor cycles
+  7,613,360 bytes consed
+  
+JZON;READ;citm_catalog.json
+Evaluation took:
+  0.016 seconds of real time
+  0.018360 seconds of total run time (0.018360 user, 0.000000 system)
+  112.50% CPU
+  62,507,736 processor cycles
+  7,593,024 bytes consed
+  
+JZON;READ;citm_catalog.json
+Evaluation took:
+  0.016 seconds of real time
+  0.018735 seconds of total run time (0.018735 user, 0.000000 system)
+  118.75% CPU
+  63,819,454 processor cycles
   7,613,360 bytes consed
   
 JZON;READ;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.017759 seconds of total run time (0.017759 user, 0.000000 system)
+  0.018451 seconds of total run time (0.018451 user, 0.000000 system)
   90.00% CPU
-  60,457,140 processor cycles
-  7,593,024 bytes consed
-  
-JZON;READ;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.017854 seconds of total run time (0.017802 user, 0.000052 system)
-  112.50% CPU
-  60,762,882 processor cycles
-  7,613,360 bytes consed
-  
-JZON;READ;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.017883 seconds of total run time (0.017883 user, 0.000000 system)
-  112.50% CPU
-  60,874,572 processor cycles
-  7,593,024 bytes consed
-  
-JZON;READ;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.017845 seconds of total run time (0.017845 user, 0.000000 system)
-  112.50% CPU
-  60,729,538 processor cycles
-  7,613,360 bytes consed
-  
-JZON;READ;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.017928 seconds of total run time (0.017928 user, 0.000000 system)
-  112.50% CPU
-  60,962,728 processor cycles
+  62,867,022 processor cycles
   7,593,024 bytes consed
   
 JZON;WRITE;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.018744 seconds of total run time (0.018744 user, 0.000000 system)
+  0.019088 seconds of total run time (0.019088 user, 0.000000 system)
   95.00% CPU
   41 lambdas converted
-  63,825,172 processor cycles
-  3,959,376 bytes consed
+  64,968,646 processor cycles
+  3,959,328 bytes consed
   
 JZON;WRITE;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.013450 seconds of total run time (0.013450 user, 0.000000 system)
+  0.013385 seconds of total run time (0.013385 user, 0.000000 system)
   108.33% CPU
-  45,771,930 processor cycles
+  45,550,720 processor cycles
   1,572,416 bytes consed
   
 JZON;WRITE;citm_catalog.json
-Evaluation took:
-  0.012 seconds of real time
-  0.013347 seconds of total run time (0.013347 user, 0.000000 system)
-  108.33% CPU
-  45,425,886 processor cycles
-  1,572,416 bytes consed
-  
-JZON;WRITE;citm_catalog.json
-Evaluation took:
-  0.012 seconds of real time
-  0.013163 seconds of total run time (0.013163 user, 0.000000 system)
-  108.33% CPU
-  44,799,892 processor cycles
-  1,572,416 bytes consed
-  
-JZON;WRITE;citm_catalog.json
-Evaluation took:
-  0.012 seconds of real time
-  0.013429 seconds of total run time (0.013429 user, 0.000000 system)
-  108.33% CPU
-  45,703,922 processor cycles
-  1,572,416 bytes consed
-  
-JZON;WRITE;citm_catalog.json
-Evaluation took:
-  0.012 seconds of real time
-  0.013417 seconds of total run time (0.013417 user, 0.000000 system)
-  108.33% CPU
-  45,667,630 processor cycles
-  1,572,416 bytes consed
-  
-JZON;WRITE;citm_catalog.json
-Evaluation took:
-  0.012 seconds of real time
-  0.013399 seconds of total run time (0.013399 user, 0.000000 system)
-  108.33% CPU
-  45,604,580 processor cycles
-  1,572,416 bytes consed
-  
-JZON;WRITE;citm_catalog.json
-Evaluation took:
-  0.011 seconds of real time
-  0.013271 seconds of total run time (0.013271 user, 0.000000 system)
-  118.18% CPU
-  45,169,140 processor cycles
-  1,572,416 bytes consed
-  
-JZON;WRITE;citm_catalog.json
-Evaluation took:
-  0.012 seconds of real time
-  0.013286 seconds of total run time (0.013286 user, 0.000000 system)
-  108.33% CPU
-  45,218,982 processor cycles
-  1,572,416 bytes consed
-  
-
-========================================
-RS-JSON
-========================================
-RS-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.019145 seconds of total run time (0.019145 user, 0.000000 system)
-  95.00% CPU
-  65,533,188 processor cycles
-  4,034,576 bytes consed
-  
-RS-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.018935 seconds of total run time (0.018935 user, 0.000000 system)
-  95.00% CPU
-  64,432,672 processor cycles
-  4,028,208 bytes consed
-  
-RS-JSON;READ;citm_catalog.json
 Evaluation took:
   0.016 seconds of real time
-  0.018730 seconds of total run time (0.017643 user, 0.001087 system)
-  118.75% CPU
-  63,771,430 processor cycles
-  4,028,208 bytes consed
+  0.013381 seconds of total run time (0.013381 user, 0.000000 system)
+  81.25% CPU
+  45,560,416 processor cycles
+  1,572,416 bytes consed
   
-RS-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.018770 seconds of total run time (0.018770 user, 0.000000 system)
-  95.00% CPU
-  63,909,184 processor cycles
-  4,028,208 bytes consed
-  
-RS-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.018663 seconds of total run time (0.018663 user, 0.000000 system)
-  95.00% CPU
-  63,543,106 processor cycles
-  4,028,208 bytes consed
-  
-RS-JSON;READ;citm_catalog.json
+JZON;WRITE;citm_catalog.json
 Evaluation took:
   0.016 seconds of real time
-  0.018816 seconds of total run time (0.018690 user, 0.000126 system)
-  118.75% CPU
-  64,058,638 processor cycles
-  4,028,208 bytes consed
+  0.013402 seconds of total run time (0.013402 user, 0.000000 system)
+  81.25% CPU
+  45,631,154 processor cycles
+  1,572,416 bytes consed
   
-RS-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.018849 seconds of total run time (0.018849 user, 0.000000 system)
-  95.00% CPU
-  64,178,866 processor cycles
-  4,028,208 bytes consed
-  
-RS-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.018617 seconds of total run time (0.015807 user, 0.002810 system)
-  95.00% CPU
-  63,365,518 processor cycles
-  4,028,208 bytes consed
-  
-RS-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.018902 seconds of total run time (0.018902 user, 0.000000 system)
-  95.00% CPU
-  64,355,580 processor cycles
-  4,028,208 bytes consed
-  
-RS-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.014242 seconds of total run time (0.014242 user, 0.000000 system)
-  87.50% CPU
-  35 lambdas converted
-  48,467,814 processor cycles
-  3,008,784 bytes consed
-  
-RS-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.008 seconds of real time
-  0.008695 seconds of total run time (0.008695 user, 0.000000 system)
-  112.50% CPU
-  29,582,790 processor cycles
-  589,696 bytes consed
-  
-RS-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.008 seconds of real time
-  0.008557 seconds of total run time (0.008557 user, 0.000000 system)
-  112.50% CPU
-  29,104,868 processor cycles
-  589,696 bytes consed
-  
-RS-JSON;WRITE;citm_catalog.json
+JZON;WRITE;citm_catalog.json
 Evaluation took:
   0.012 seconds of real time
-  0.008610 seconds of total run time (0.008610 user, 0.000000 system)
-  75.00% CPU
-  29,286,094 processor cycles
-  599,312 bytes consed
+  0.013352 seconds of total run time (0.013352 user, 0.000000 system)
+  108.33% CPU
+  45,443,472 processor cycles
+  1,572,416 bytes consed
   
-RS-JSON;WRITE;citm_catalog.json
+JZON;WRITE;citm_catalog.json
 Evaluation took:
-  0.008 seconds of real time
-  0.008685 seconds of total run time (0.008646 user, 0.000039 system)
-  112.50% CPU
-  29,536,732 processor cycles
-  589,696 bytes consed
+  0.012 seconds of real time
+  0.013329 seconds of total run time (0.013329 user, 0.000000 system)
+  108.33% CPU
+  45,365,596 processor cycles
+  1,572,416 bytes consed
   
-RS-JSON;WRITE;citm_catalog.json
+JZON;WRITE;citm_catalog.json
 Evaluation took:
-  0.008 seconds of real time
-  0.008578 seconds of total run time (0.008578 user, 0.000000 system)
-  112.50% CPU
-  29,171,876 processor cycles
-  599,312 bytes consed
+  0.012 seconds of real time
+  0.013334 seconds of total run time (0.013334 user, 0.000000 system)
+  108.33% CPU
+  45,381,756 processor cycles
+  1,572,416 bytes consed
   
-RS-JSON;WRITE;citm_catalog.json
+JZON;WRITE;citm_catalog.json
 Evaluation took:
-  0.008 seconds of real time
-  0.008710 seconds of total run time (0.008710 user, 0.000000 system)
-  112.50% CPU
-  29,629,232 processor cycles
-  589,696 bytes consed
+  0.012 seconds of real time
+  0.013419 seconds of total run time (0.013419 user, 0.000000 system)
+  108.33% CPU
+  45,669,610 processor cycles
+  1,572,416 bytes consed
   
-RS-JSON;WRITE;citm_catalog.json
+JZON;WRITE;citm_catalog.json
 Evaluation took:
-  0.008 seconds of real time
-  0.008487 seconds of total run time (0.008487 user, 0.000000 system)
-  100.00% CPU
-  28,891,776 processor cycles
-  599,312 bytes consed
-  
-RS-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.008 seconds of real time
-  0.008805 seconds of total run time (0.008805 user, 0.000000 system)
-  112.50% CPU
-  29,946,800 processor cycles
-  589,696 bytes consed
+  0.016 seconds of real time
+  0.013475 seconds of total run time (0.013475 user, 0.000000 system)
+  81.25% CPU
+  45,822,674 processor cycles
+  1,572,416 bytes consed
   
 
 ========================================
@@ -916,147 +767,147 @@ SHASHT
 ========================================
 SHASHT;READ;citm_catalog.json
 Evaluation took:
+  0.024 seconds of real time
+  0.021146 seconds of total run time (0.021146 user, 0.000000 system)
+  87.50% CPU
+  71,999,464 processor cycles
+  15,861,632 bytes consed
+  
+SHASHT;READ;citm_catalog.json
+Evaluation took:
   0.020 seconds of real time
-  0.019261 seconds of total run time (0.019261 user, 0.000000 system)
-  95.00% CPU
-  65,563,402 processor cycles
+  0.021087 seconds of total run time (0.021087 user, 0.000000 system)
+  105.00% CPU
+  71,872,718 processor cycles
   15,868,352 bytes consed
   
 SHASHT;READ;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.019207 seconds of total run time (0.019207 user, 0.000000 system)
-  95.00% CPU
-  65,369,964 processor cycles
-  15,879,552 bytes consed
-  
-SHASHT;READ;citm_catalog.json
-Evaluation took:
-  0.015 seconds of real time
-  0.018983 seconds of total run time (0.018334 user, 0.000649 system)
-  126.67% CPU
-  64,634,942 processor cycles
-  15,868,352 bytes consed
-  
-SHASHT;READ;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.019386 seconds of total run time (0.019386 user, 0.000000 system)
-  95.00% CPU
-  65,941,328 processor cycles
+  0.021013 seconds of total run time (0.021013 user, 0.000000 system)
+  105.00% CPU
+  71,583,338 processor cycles
   15,879,552 bytes consed
   
 SHASHT;READ;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.019318 seconds of total run time (0.019318 user, 0.000000 system)
-  95.00% CPU
-  65,696,450 processor cycles
-  15,868,352 bytes consed
-  
-SHASHT;READ;citm_catalog.json
-Evaluation took:
-  0.019 seconds of real time
-  0.019147 seconds of total run time (0.019147 user, 0.000000 system)
-  100.00% CPU
-  65,192,638 processor cycles
-  15,879,552 bytes consed
-  
-SHASHT;READ;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.019141 seconds of total run time (0.018466 user, 0.000675 system)
-  118.75% CPU
-  65,156,478 processor cycles
+  0.020932 seconds of total run time (0.020932 user, 0.000000 system)
+  105.00% CPU
+  71,276,940 processor cycles
   15,868,352 bytes consed
   
 SHASHT;READ;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.019180 seconds of total run time (0.019180 user, 0.000000 system)
-  95.00% CPU
-  65,238,674 processor cycles
+  0.021301 seconds of total run time (0.021301 user, 0.000000 system)
+  105.00% CPU
+  72,484,382 processor cycles
   15,879,552 bytes consed
   
 SHASHT;READ;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.025198 seconds of total run time (0.016945 user, 0.008253 system)
-  104.17% CPU
-  85,707,982 processor cycles
+  0.021393 seconds of total run time (0.021393 user, 0.000000 system)
+  87.50% CPU
+  72,836,380 processor cycles
   15,868,352 bytes consed
+  
+SHASHT;READ;citm_catalog.json
+Evaluation took:
+  0.024 seconds of real time
+  0.021176 seconds of total run time (0.021176 user, 0.000000 system)
+  87.50% CPU
+  72,083,890 processor cycles
+  15,879,552 bytes consed
+  
+SHASHT;READ;citm_catalog.json
+Evaluation took:
+  0.028 seconds of real time
+  0.026895 seconds of total run time (0.019154 user, 0.007741 system)
+  96.43% CPU
+  91,551,630 processor cycles
+  15,868,352 bytes consed
+  
+SHASHT;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.020690 seconds of total run time (0.020523 user, 0.000167 system)
+  105.00% CPU
+  70,446,198 processor cycles
+  15,878,144 bytes consed
   
 SHASHT;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.026156 seconds of total run time (0.025895 user, 0.000261 system)
-  108.33% CPU
+  0.026610 seconds of total run time (0.025361 user, 0.001249 system)
+  112.50% CPU
   23 lambdas converted
-  89,070,186 processor cycles
-  12,965,376 bytes consed
+  90,699,532 processor cycles
+  12,965,664 bytes consed
   
 SHASHT;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.022923 seconds of total run time (0.022923 user, 0.000000 system)
-  95.83% CPU
-  78,059,194 processor cycles
-  11,918,592 bytes consed
-  
-SHASHT;WRITE;citm_catalog.json
-Evaluation took:
-  0.023 seconds of real time
-  0.023050 seconds of total run time (0.023050 user, 0.000000 system)
+  0.023521 seconds of total run time (0.023521 user, 0.000000 system)
   100.00% CPU
-  78,514,300 processor cycles
+  80,095,026 processor cycles
   11,918,592 bytes consed
   
 SHASHT;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.023149 seconds of total run time (0.023149 user, 0.000000 system)
-  95.83% CPU
-  78,829,510 processor cycles
-  11,918,592 bytes consed
-  
-SHASHT;WRITE;citm_catalog.json
-Evaluation took:
-  0.024 seconds of real time
-  0.022915 seconds of total run time (0.022915 user, 0.000000 system)
-  95.83% CPU
-  78,023,438 processor cycles
-  11,918,592 bytes consed
-  
-SHASHT;WRITE;citm_catalog.json
-Evaluation took:
-  0.023 seconds of real time
-  0.022924 seconds of total run time (0.022924 user, 0.000000 system)
+  0.023703 seconds of total run time (0.023703 user, 0.000000 system)
   100.00% CPU
-  78,061,934 processor cycles
+  80,713,220 processor cycles
   11,918,592 bytes consed
   
 SHASHT;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.023363 seconds of total run time (0.023363 user, 0.000000 system)
-  95.83% CPU
-  79,558,424 processor cycles
+  0.023523 seconds of total run time (0.023523 user, 0.000000 system)
+  100.00% CPU
+  80,098,990 processor cycles
   11,918,592 bytes consed
   
 SHASHT;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.023096 seconds of total run time (0.023096 user, 0.000000 system)
-  95.83% CPU
-  78,645,190 processor cycles
+  0.023575 seconds of total run time (0.023575 user, 0.000000 system)
+  100.00% CPU
+  80,235,522 processor cycles
   11,918,592 bytes consed
   
 SHASHT;WRITE;citm_catalog.json
 Evaluation took:
   0.024 seconds of real time
-  0.023002 seconds of total run time (0.023002 user, 0.000000 system)
-  95.83% CPU
-  78,327,238 processor cycles
+  0.023798 seconds of total run time (0.023798 user, 0.000000 system)
+  100.00% CPU
+  81,036,900 processor cycles
+  11,918,592 bytes consed
+  
+SHASHT;WRITE;citm_catalog.json
+Evaluation took:
+  0.024 seconds of real time
+  0.023568 seconds of total run time (0.023568 user, 0.000000 system)
+  100.00% CPU
+  80,248,708 processor cycles
+  11,918,592 bytes consed
+  
+SHASHT;WRITE;citm_catalog.json
+Evaluation took:
+  0.024 seconds of real time
+  0.023959 seconds of total run time (0.023959 user, 0.000000 system)
+  100.00% CPU
+  81,583,414 processor cycles
+  11,918,592 bytes consed
+  
+SHASHT;WRITE;citm_catalog.json
+Evaluation took:
+  0.024 seconds of real time
+  0.023742 seconds of total run time (0.023742 user, 0.000000 system)
+  100.00% CPU
+  80,845,010 processor cycles
   11,918,592 bytes consed
   
 
@@ -1066,146 +917,146 @@ ST-JSON
 ST-JSON;READ;citm_catalog.json
 Evaluation took:
   0.040 seconds of real time
-  0.037109 seconds of total run time (0.037109 user, 0.000000 system)
-  92.50% CPU
-  126,396,472 processor cycles
+  0.038412 seconds of total run time (0.038412 user, 0.000000 system)
+  95.00% CPU
+  130,841,742 processor cycles
+  10,447,472 bytes consed
+  
+ST-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.040 seconds of real time
+  0.039216 seconds of total run time (0.039216 user, 0.000000 system)
+  97.50% CPU
+  133,604,566 processor cycles
+  10,447,472 bytes consed
+  
+ST-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.040 seconds of real time
+  0.039588 seconds of total run time (0.039588 user, 0.000000 system)
+  100.00% CPU
+  135,416,774 processor cycles
+  10,447,472 bytes consed
+  
+ST-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.040 seconds of real time
+  0.039222 seconds of total run time (0.039222 user, 0.000000 system)
+  97.50% CPU
+  133,600,032 processor cycles
   10,447,472 bytes consed
   
 ST-JSON;READ;citm_catalog.json
 Evaluation took:
   0.036 seconds of real time
-  0.037067 seconds of total run time (0.037067 user, 0.000000 system)
-  102.78% CPU
-  126,208,714 processor cycles
+  0.038389 seconds of total run time (0.038389 user, 0.000000 system)
+  105.56% CPU
+  130,757,856 processor cycles
+  10,447,472 bytes consed
+  
+ST-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.040 seconds of real time
+  0.038701 seconds of total run time (0.038701 user, 0.000000 system)
+  97.50% CPU
+  131,822,904 processor cycles
   10,447,472 bytes consed
   
 ST-JSON;READ;citm_catalog.json
 Evaluation took:
   0.036 seconds of real time
-  0.037121 seconds of total run time (0.037121 user, 0.000000 system)
-  102.78% CPU
-  126,445,438 processor cycles
+  0.038277 seconds of total run time (0.038277 user, 0.000000 system)
+  105.56% CPU
+  130,382,832 processor cycles
   10,447,472 bytes consed
   
 ST-JSON;READ;citm_catalog.json
 Evaluation took:
-  0.035 seconds of real time
-  0.037070 seconds of total run time (0.037070 user, 0.000000 system)
-  105.71% CPU
-  126,360,298 processor cycles
+  0.040 seconds of real time
+  0.038634 seconds of total run time (0.038634 user, 0.000000 system)
+  97.50% CPU
+  131,598,204 processor cycles
   10,447,472 bytes consed
   
 ST-JSON;READ;citm_catalog.json
 Evaluation took:
-  0.036 seconds of real time
-  0.036893 seconds of total run time (0.036893 user, 0.000000 system)
-  102.78% CPU
-  125,667,838 processor cycles
-  10,447,472 bytes consed
-  
-ST-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.035 seconds of real time
-  0.037279 seconds of total run time (0.037279 user, 0.000000 system)
-  105.71% CPU
-  126,978,270 processor cycles
-  10,447,472 bytes consed
-  
-ST-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.036 seconds of real time
-  0.037086 seconds of total run time (0.037086 user, 0.000000 system)
-  102.78% CPU
-  126,443,228 processor cycles
-  10,447,472 bytes consed
-  
-ST-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.035 seconds of real time
-  0.037030 seconds of total run time (0.037030 user, 0.000000 system)
-  105.71% CPU
-  126,133,900 processor cycles
-  10,447,472 bytes consed
-  
-ST-JSON;READ;citm_catalog.json
-Evaluation took:
-  0.036 seconds of real time
-  0.037071 seconds of total run time (0.037071 user, 0.000000 system)
-  102.78% CPU
-  126,290,882 processor cycles
+  0.040 seconds of real time
+  0.038503 seconds of total run time (0.038503 user, 0.000000 system)
+  97.50% CPU
+  131,112,290 processor cycles
   10,447,472 bytes consed
   
 ST-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.024 seconds of real time
-  0.021766 seconds of total run time (0.021766 user, 0.000000 system)
-  91.67% CPU
+  0.020 seconds of real time
+  0.022632 seconds of total run time (0.022632 user, 0.000000 system)
+  115.00% CPU
   21 lambdas converted
-  74,132,280 processor cycles
-  5,859,344 bytes consed
-  
-ST-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.019 seconds of real time
-  0.018788 seconds of total run time (0.018788 user, 0.000000 system)
-  100.00% CPU
-  63,970,516 processor cycles
-  4,550,384 bytes consed
-  
-ST-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.018458 seconds of total run time (0.018423 user, 0.000035 system)
-  112.50% CPU
-  62,846,262 processor cycles
-  4,550,384 bytes consed
+  77,058,406 processor cycles
+  5,924,400 bytes consed
   
 ST-JSON;WRITE;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.018793 seconds of total run time (0.018793 user, 0.000000 system)
+  0.019442 seconds of total run time (0.019442 user, 0.000000 system)
   95.00% CPU
-  63,980,842 processor cycles
+  66,284,406 processor cycles
   4,550,384 bytes consed
   
 ST-JSON;WRITE;citm_catalog.json
 Evaluation took:
-  0.016 seconds of real time
-  0.018529 seconds of total run time (0.018529 user, 0.000000 system)
-  118.75% CPU
-  63,085,256 processor cycles
-  4,550,384 bytes consed
-  
-ST-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.019 seconds of real time
-  0.018726 seconds of total run time (0.018726 user, 0.000000 system)
+  0.020 seconds of real time
+  0.019533 seconds of total run time (0.019533 user, 0.000000 system)
   100.00% CPU
-  63,705,598 processor cycles
+  66,585,782 processor cycles
   4,550,384 bytes consed
   
 ST-JSON;WRITE;citm_catalog.json
 Evaluation took:
   0.020 seconds of real time
-  0.018500 seconds of total run time (0.018500 user, 0.000000 system)
-  90.00% CPU
-  62,985,628 processor cycles
-  4,550,384 bytes consed
-  
-ST-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.016 seconds of real time
-  0.018629 seconds of total run time (0.018629 user, 0.000000 system)
-  118.75% CPU
-  63,426,154 processor cycles
-  4,550,384 bytes consed
-  
-ST-JSON;WRITE;citm_catalog.json
-Evaluation took:
-  0.020 seconds of real time
-  0.019017 seconds of total run time (0.019017 user, 0.000000 system)
+  0.019391 seconds of total run time (0.019391 user, 0.000000 system)
   95.00% CPU
-  64,749,142 processor cycles
+  66,017,874 processor cycles
+  4,550,384 bytes consed
+  
+ST-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019582 seconds of total run time (0.019582 user, 0.000000 system)
+  100.00% CPU
+  66,664,826 processor cycles
+  4,550,384 bytes consed
+  
+ST-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019885 seconds of total run time (0.019885 user, 0.000000 system)
+  100.00% CPU
+  67,696,830 processor cycles
+  4,550,384 bytes consed
+  
+ST-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.020060 seconds of total run time (0.020060 user, 0.000000 system)
+  100.00% CPU
+  68,373,320 processor cycles
+  4,550,384 bytes consed
+  
+ST-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019593 seconds of total run time (0.019593 user, 0.000000 system)
+  100.00% CPU
+  66,704,770 processor cycles
+  4,550,384 bytes consed
+  
+ST-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019730 seconds of total run time (0.019730 user, 0.000000 system)
+  100.00% CPU
+  67,180,426 processor cycles
   4,550,384 bytes consed
   
 
@@ -1214,146 +1065,313 @@ YASON
 ========================================
 YASON;READ;citm_catalog.json
 Evaluation took:
-  0.043 seconds of real time
-  0.045663 seconds of total run time (0.045663 user, 0.000000 system)
-  106.98% CPU
-  155,550,272 processor cycles
-  12,894,656 bytes consed
-  
-YASON;READ;citm_catalog.json
-Evaluation took:
   0.048 seconds of real time
-  0.046162 seconds of total run time (0.046162 user, 0.000000 system)
-  95.83% CPU
-  157,204,160 processor cycles
-  12,894,656 bytes consed
-  
-YASON;READ;citm_catalog.json
-Evaluation took:
-  0.047 seconds of real time
-  0.046070 seconds of total run time (0.046070 user, 0.000000 system)
-  97.87% CPU
-  157,003,722 processor cycles
-  12,894,656 bytes consed
-  
-YASON;READ;citm_catalog.json
-Evaluation took:
-  0.044 seconds of real time
-  0.045585 seconds of total run time (0.045502 user, 0.000083 system)
-  104.55% CPU
-  155,259,742 processor cycles
-  12,894,656 bytes consed
-  
-YASON;READ;citm_catalog.json
-Evaluation took:
-  0.047 seconds of real time
-  0.045829 seconds of total run time (0.045829 user, 0.000000 system)
-  97.87% CPU
-  156,105,646 processor cycles
-  12,894,656 bytes consed
-  
-YASON;READ;citm_catalog.json
-Evaluation took:
-  0.043 seconds of real time
-  0.045630 seconds of total run time (0.045550 user, 0.000080 system)
-  106.98% CPU
-  155,437,944 processor cycles
-  12,894,656 bytes consed
-  
-YASON;READ;citm_catalog.json
-Evaluation took:
-  0.048 seconds of real time
-  0.047355 seconds of total run time (0.047355 user, 0.000000 system)
-  97.92% CPU
-  161,300,478 processor cycles
-  12,894,656 bytes consed
-  
-YASON;READ;citm_catalog.json
-Evaluation took:
-  0.047 seconds of real time
-  0.047295 seconds of total run time (0.047295 user, 0.000000 system)
+  0.047786 seconds of total run time (0.047786 user, 0.000000 system)
   100.00% CPU
-  161,102,138 processor cycles
+  162,783,054 processor cycles
   12,894,656 bytes consed
   
 YASON;READ;citm_catalog.json
 Evaluation took:
-  0.047 seconds of real time
-  0.047973 seconds of total run time (0.047973 user, 0.000000 system)
-  102.13% CPU
-  163,411,770 processor cycles
+  0.048 seconds of real time
+  0.047541 seconds of total run time (0.047541 user, 0.000000 system)
+  100.00% CPU
+  161,986,728 processor cycles
+  12,894,656 bytes consed
+  
+YASON;READ;citm_catalog.json
+Evaluation took:
+  0.048 seconds of real time
+  0.047281 seconds of total run time (0.047281 user, 0.000000 system)
+  97.92% CPU
+  161,491,692 processor cycles
+  12,894,656 bytes consed
+  
+YASON;READ;citm_catalog.json
+Evaluation took:
+  0.048 seconds of real time
+  0.047779 seconds of total run time (0.047779 user, 0.000000 system)
+  100.00% CPU
+  163,004,556 processor cycles
+  12,894,656 bytes consed
+  
+YASON;READ;citm_catalog.json
+Evaluation took:
+  0.048 seconds of real time
+  0.047173 seconds of total run time (0.047173 user, 0.000000 system)
+  97.92% CPU
+  160,697,852 processor cycles
+  12,894,656 bytes consed
+  
+YASON;READ;citm_catalog.json
+Evaluation took:
+  0.048 seconds of real time
+  0.047109 seconds of total run time (0.047109 user, 0.000000 system)
+  97.92% CPU
+  160,556,842 processor cycles
+  12,894,656 bytes consed
+  
+YASON;READ;citm_catalog.json
+Evaluation took:
+  0.048 seconds of real time
+  0.047304 seconds of total run time (0.047304 user, 0.000000 system)
+  97.92% CPU
+  161,157,132 processor cycles
+  12,894,656 bytes consed
+  
+YASON;READ;citm_catalog.json
+Evaluation took:
+  0.048 seconds of real time
+  0.046885 seconds of total run time (0.046885 user, 0.000000 system)
+  97.92% CPU
+  159,698,896 processor cycles
+  12,894,656 bytes consed
+  
+YASON;READ;citm_catalog.json
+Evaluation took:
+  0.048 seconds of real time
+  0.047262 seconds of total run time (0.047262 user, 0.000000 system)
+  97.92% CPU
+  160,996,638 processor cycles
   12,894,656 bytes consed
   
 YASON;WRITE;citm_catalog.json
 Evaluation took:
   0.044 seconds of real time
-  0.044773 seconds of total run time (0.044347 user, 0.000426 system)
+  0.044582 seconds of total run time (0.044582 user, 0.000000 system)
   102.27% CPU
   41 lambdas converted
-  152,467,144 processor cycles
-  8,182,560 bytes consed
+  151,870,540 processor cycles
+  8,183,440 bytes consed
   
 YASON;WRITE;citm_catalog.json
 Evaluation took:
-  0.031 seconds of real time
-  0.033903 seconds of total run time (0.033665 user, 0.000238 system)
-  109.68% CPU
-  115,475,800 processor cycles
-  5,565,888 bytes consed
-  
-YASON;WRITE;citm_catalog.json
-Evaluation took:
-  0.031 seconds of real time
-  0.033877 seconds of total run time (0.033676 user, 0.000201 system)
-  109.68% CPU
-  115,378,672 processor cycles
+  0.036 seconds of real time
+  0.034896 seconds of total run time (0.034896 user, 0.000000 system)
+  97.22% CPU
+  118,857,490 processor cycles
   5,565,888 bytes consed
   
 YASON;WRITE;citm_catalog.json
 Evaluation took:
   0.036 seconds of real time
-  0.034130 seconds of total run time (0.033965 user, 0.000165 system)
-  94.44% CPU
-  116,099,202 processor cycles
-  5,565,888 bytes consed
-  
-YASON;WRITE;citm_catalog.json
-Evaluation took:
-  0.031 seconds of real time
-  0.033463 seconds of total run time (0.033303 user, 0.000160 system)
-  106.45% CPU
-  113,998,508 processor cycles
-  5,565,888 bytes consed
-  
-YASON;WRITE;citm_catalog.json
-Evaluation took:
-  0.032 seconds of real time
-  0.033574 seconds of total run time (0.033409 user, 0.000165 system)
-  106.25% CPU
-  114,353,668 processor cycles
-  5,565,888 bytes consed
-  
-YASON;WRITE;citm_catalog.json
-Evaluation took:
-  0.035 seconds of real time
-  0.033985 seconds of total run time (0.033985 user, 0.000000 system)
-  97.14% CPU
-  115,751,990 processor cycles
+  0.034557 seconds of total run time (0.034557 user, 0.000000 system)
+  97.22% CPU
+  117,760,106 processor cycles
   5,565,888 bytes consed
   
 YASON;WRITE;citm_catalog.json
 Evaluation took:
   0.036 seconds of real time
-  0.033737 seconds of total run time (0.033737 user, 0.000000 system)
-  94.44% CPU
-  114,907,372 processor cycles
+  0.034614 seconds of total run time (0.034614 user, 0.000000 system)
+  97.22% CPU
+  117,898,640 processor cycles
+  5,565,888 bytes consed
+  
+YASON;WRITE;citm_catalog.json
+Evaluation took:
+  0.036 seconds of real time
+  0.034963 seconds of total run time (0.034963 user, 0.000000 system)
+  97.22% CPU
+  119,477,642 processor cycles
+  5,565,888 bytes consed
+  
+YASON;WRITE;citm_catalog.json
+Evaluation took:
+  0.036 seconds of real time
+  0.034990 seconds of total run time (0.034990 user, 0.000000 system)
+  97.22% CPU
+  120,006,926 processor cycles
   5,565,888 bytes consed
   
 YASON;WRITE;citm_catalog.json
 Evaluation took:
   0.032 seconds of real time
-  0.033611 seconds of total run time (0.033611 user, 0.000000 system)
-  106.25% CPU
-  114,482,632 processor cycles
+  0.034566 seconds of total run time (0.034566 user, 0.000000 system)
+  109.38% CPU
+  117,734,230 processor cycles
   5,565,888 bytes consed
+  
+YASON;WRITE;citm_catalog.json
+Evaluation took:
+  0.036 seconds of real time
+  0.034594 seconds of total run time (0.034594 user, 0.000000 system)
+  97.22% CPU
+  118,109,830 processor cycles
+  5,565,888 bytes consed
+  
+YASON;WRITE;citm_catalog.json
+Evaluation took:
+  0.036 seconds of real time
+  0.034131 seconds of total run time (0.034131 user, 0.000000 system)
+  94.44% CPU
+  116,284,850 processor cycles
+  5,565,888 bytes consed
+  
+sbcl --dynamic-space-size 12288 --core /home/ralph/.lisp.d/sbcl.core --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:citm_catalog :self t) --quit
+This is SBCL 2.5.11, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+To load "trivial-features":
+  Load 1 ASDF system:
+    trivial-features
+; Loading "trivial-features"
+
+To load "rs-json/bench":
+  Load 1 ASDF system:
+    rs-json/bench
+; Loading "rs-json/bench"
+..
+
+========================================
+RS-JSON
+========================================
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019719 seconds of total run time (0.019719 user, 0.000000 system)
+  100.00% CPU
+  67,078,648 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.021246 seconds of total run time (0.021246 user, 0.000000 system)
+  105.00% CPU
+  72,651,406 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.023 seconds of real time
+  0.021644 seconds of total run time (0.018530 user, 0.003114 system)
+  95.65% CPU
+  73,641,314 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.020004 seconds of total run time (0.020004 user, 0.000000 system)
+  100.00% CPU
+  68,111,778 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019981 seconds of total run time (0.019981 user, 0.000000 system)
+  100.00% CPU
+  68,066,896 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.020286 seconds of total run time (0.020286 user, 0.000000 system)
+  100.00% CPU
+  69,069,846 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019949 seconds of total run time (0.019949 user, 0.000000 system)
+  100.00% CPU
+  67,925,478 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019982 seconds of total run time (0.019982 user, 0.000000 system)
+  100.00% CPU
+  68,036,262 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;READ;citm_catalog.json
+Evaluation took:
+  0.020 seconds of real time
+  0.019791 seconds of total run time (0.019162 user, 0.000629 system)
+  100.00% CPU
+  67,385,100 processor cycles
+  4,028,208 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.016 seconds of real time
+  0.016629 seconds of total run time (0.016629 user, 0.000000 system)
+  106.25% CPU
+  51 lambdas converted
+  56,607,284 processor cycles
+  4,223,280 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008569 seconds of total run time (0.008569 user, 0.000000 system)
+  112.50% CPU
+  29,141,910 processor cycles
+  589,696 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.007 seconds of real time
+  0.008330 seconds of total run time (0.008330 user, 0.000000 system)
+  114.29% CPU
+  28,332,838 processor cycles
+  599,312 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.012 seconds of real time
+  0.008424 seconds of total run time (0.008424 user, 0.000000 system)
+  66.67% CPU
+  28,729,724 processor cycles
+  589,696 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008607 seconds of total run time (0.008607 user, 0.000000 system)
+  112.50% CPU
+  29,275,972 processor cycles
+  599,312 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008746 seconds of total run time (0.008746 user, 0.000000 system)
+  112.50% CPU
+  29,745,338 processor cycles
+  589,696 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008523 seconds of total run time (0.008523 user, 0.000000 system)
+  112.50% CPU
+  28,989,544 processor cycles
+  599,312 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008515 seconds of total run time (0.008515 user, 0.000000 system)
+  112.50% CPU
+  28,960,960 processor cycles
+  589,696 bytes consed
+  
+RS-JSON;WRITE;citm_catalog.json
+Evaluation took:
+  0.008 seconds of real time
+  0.008746 seconds of total run time (0.008746 user, 0.000000 system)
+  112.50% CPU
+  29,747,344 processor cycles
+  599,312 bytes consed
   

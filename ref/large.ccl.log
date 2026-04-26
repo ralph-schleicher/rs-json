@@ -1,4 +1,4 @@
-ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large)
+ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large :self nil)
 To load "trivial-features":
   Load 1 ASDF system:
     trivial-features
@@ -23,9 +23,9 @@ JONATHAN
 JONATHAN;READ;large.json
 /home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-EXISTS)
 There is no applicable method for the generic function:
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D39C8F>
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D382EF>
 when called with arguments:
-  (:JONATHAN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D77ADD>)
+  (:JONATHAN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D84A3D>)
 
 ========================================
 JSON-STREAMS
@@ -40,74 +40,52 @@ JSOWN
 JSOWN;READ;large.json
 /home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-EXISTS)
 There is no applicable method for the generic function:
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D3973F>
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D37D9F>
 when called with arguments:
-  (:JSOWN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D785BD>)
+  (:JSOWN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D8551D>)
 
 ========================================
 JZON
 ========================================
 JZON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 27,071,519 microseconds (27.071520 seconds) to run.
-     17,829,955 microseconds (17.829954 seconds, 65.86%) of which was spent in GC.
+took 27,139,238 microseconds (27.139238 seconds) to run.
+     17,768,420 microseconds (17.768420 seconds, 65.47%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     26,877,744 microseconds (26.877745 seconds) were spent in user mode
-        171,855 microseconds ( 0.171855 seconds) were spent in system mode
+     26,886,480 microseconds (26.886480 seconds) were spent in user mode
+        231,956 microseconds ( 0.231956 seconds) were spent in system mode
  2,244,412,976 bytes of memory allocated.
- 19,504 minor page faults, 0 major page faults, 0 swaps.
+ 19,981 minor page faults, 0 major page faults, 0 swaps.
 JZON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 96,392,722 microseconds (96.392720 seconds) to run.
-     72,546,456 microseconds (72.546455 seconds, 75.26%) of which was spent in GC.
+took 98,065,678 microseconds (98.065680 seconds) to run.
+     73,946,330 microseconds (73.946330 seconds, 75.40%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     95,984,839 microseconds (95.984840 seconds) were spent in user mode
-        347,875 microseconds ( 0.347875 seconds) were spent in system mode
+     97,717,515 microseconds (97.717520 seconds) were spent in user mode
+        283,883 microseconds ( 0.283883 seconds) were spent in system mode
  5,926,089,744 bytes of memory allocated.
- 8 minor page faults, 0 major page faults, 0 swaps.
-
-========================================
-RS-JSON
-========================================
-RS-JSON;READ;large.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 6,662,075 microseconds (6.662075 seconds) to run.
-     1,129,129 microseconds (1.129129 seconds, 16.95%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     6,613,482 microseconds (6.613482 seconds) were spent in user mode
-        39,986 microseconds (0.039986 seconds) were spent in system mode
- 484,642,832 bytes of memory allocated.
- 3,850 minor page faults, 0 major page faults, 0 swaps.
-RS-JSON;WRITE;large.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 8,180,118 microseconds (8.180118 seconds) to run.
-        30,206 microseconds (0.030206 seconds, 0.37%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     8,052,790 microseconds (8.052790 seconds) were spent in user mode
-       123,963 microseconds (0.123963 seconds) were spent in system mode
- 481,456,336 bytes of memory allocated.
- 4 minor page faults, 0 major page faults, 0 swaps.
+ 9 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
 SHASHT
 ========================================
 SHASHT;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 41,033,422 microseconds (41.033424 seconds) to run.
-     26,055,433 microseconds (26.055431 seconds, 63.50%) of which was spent in GC.
+took 41,436,863 microseconds (41.436863 seconds) to run.
+     26,287,258 microseconds (26.287258 seconds, 63.44%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     40,781,607 microseconds (40.781610 seconds) were spent in user mode
-        215,879 microseconds ( 0.215879 seconds) were spent in system mode
- 2,143,625,088 bytes of memory allocated.
- 18,979 minor page faults, 0 major page faults, 0 swaps.
+     41,182,495 microseconds (41.182495 seconds) were spent in user mode
+        227,971 microseconds ( 0.227971 seconds) were spent in system mode
+ 2,143,626,384 bytes of memory allocated.
+ 17,953 minor page faults, 0 major page faults, 0 swaps.
 SHASHT;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 37,786,852 microseconds (37.786854 seconds) to run.
-     23,011,511 microseconds (23.011513 seconds, 60.90%) of which was spent in GC.
+took 38,993,847 microseconds (38.993847 seconds) to run.
+     23,917,144 microseconds (23.917145 seconds, 61.34%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     37,600,766 microseconds (37.600770 seconds) were spent in user mode
-        163,972 microseconds ( 0.163972 seconds) were spent in system mode
- 1,682,407,328 bytes of memory allocated.
+     38,795,353 microseconds (38.795353 seconds) were spent in user mode
+        184,018 microseconds ( 0.184018 seconds) were spent in system mode
+ 1,682,407,808 bytes of memory allocated.
  5 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
@@ -115,21 +93,21 @@ ST-JSON
 ========================================
 ST-JSON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 24,889,408 microseconds (24.889408 seconds) to run.
-      2,152,928 microseconds ( 2.152928 seconds, 8.65%) of which was spent in GC.
+took 24,147,288 microseconds (24.147287 seconds) to run.
+      1,978,391 microseconds ( 1.978391 seconds, 8.19%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     24,726,205 microseconds (24.726206 seconds) were spent in user mode
-        135,968 microseconds ( 0.135968 seconds) were spent in system mode
- 3,453,016,352 bytes of memory allocated.
- 4,377 minor page faults, 0 major page faults, 0 swaps.
+     23,960,483 microseconds (23.960484 seconds) were spent in user mode
+        156,022 microseconds ( 0.156022 seconds) were spent in system mode
+ 3,452,975,056 bytes of memory allocated.
+ 4,343 minor page faults, 0 major page faults, 0 swaps.
 ST-JSON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 10,625,039 microseconds (10.625040 seconds) to run.
-         94,058 microseconds ( 0.094058 seconds, 0.89%) of which was spent in GC.
+took 10,611,088 microseconds (10.611088 seconds) to run.
+         90,256 microseconds ( 0.090256 seconds, 0.85%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     10,447,211 microseconds (10.447211 seconds) were spent in user mode
-        163,934 microseconds ( 0.163934 seconds) were spent in system mode
- 1,603,173,456 bytes of memory allocated.
+     10,433,455 microseconds (10.433455 seconds) were spent in user mode
+        167,963 microseconds ( 0.167963 seconds) were spent in system mode
+ 1,603,173,648 bytes of memory allocated.
  1 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
@@ -137,21 +115,21 @@ YASON
 ========================================
 YASON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 60,147,868 microseconds (60.147870 seconds) to run.
-     31,833,289 microseconds (31.833288 seconds, 52.93%) of which was spent in GC.
+took 60,241,324 microseconds (60.241325 seconds) to run.
+     32,083,801 microseconds (32.083800 seconds, 53.26%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     59,920,845 microseconds (59.920845 seconds) were spent in user mode
-        192,126 microseconds ( 0.192126 seconds) were spent in system mode
+     59,922,848 microseconds (59.922848 seconds) were spent in user mode
+        283,796 microseconds ( 0.283796 seconds) were spent in system mode
  3,625,752,880 bytes of memory allocated.
- 10,758 minor page faults, 0 major page faults, 0 swaps.
+ 11,243 minor page faults, 0 major page faults, 0 swaps.
 YASON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 15,853,557 microseconds (15.853557 seconds) to run.
-      6,743,326 microseconds ( 6.743326 seconds, 42.54%) of which was spent in GC.
+took 15,887,280 microseconds (15.887280 seconds) to run.
+      6,813,903 microseconds ( 6.813903 seconds, 42.89%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     15,738,392 microseconds (15.738392 seconds) were spent in user mode
-        103,945 microseconds ( 0.103945 seconds) were spent in system mode
- 487,125,504 bytes of memory allocated.
+     15,747,127 microseconds (15.747127 seconds) were spent in user mode
+        136,031 microseconds ( 0.136031 seconds) were spent in system mode
+ 487,126,320 bytes of memory allocated.
  1 minor page faults, 0 major page faults, 0 swaps.
 Clozure Common Lisp Version 1.13 (v1.13) LinuxX8664
 
@@ -160,7 +138,47 @@ For more information about CCL, please see https://ccl.clozure.com.
 CCL is free software.
 It is distributed under the terms of the Apache License, Version 2.0.
 ? 
-ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large)
+ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large :self t)
+To load "trivial-features":
+  Load 1 ASDF system:
+    trivial-features
+; Loading "trivial-features"
+
+To load "rs-json/bench":
+  Load 1 ASDF system:
+    rs-json/bench
+; Loading "rs-json/bench"
+
+
+========================================
+RS-JSON
+========================================
+RS-JSON;READ;large.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
+took 6,742,258 microseconds (6.742258 seconds) to run.
+     1,158,573 microseconds (1.158573 seconds, 17.18%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     6,675,080 microseconds (6.675080 seconds) were spent in user mode
+        64,049 microseconds (0.064049 seconds) were spent in system mode
+ 484,649,168 bytes of memory allocated.
+ 4,207 minor page faults, 0 major page faults, 0 swaps.
+RS-JSON;WRITE;large.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 8,520,622 microseconds (8.520622 seconds) to run.
+        61,554 microseconds (0.061554 seconds, 0.72%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     8,388,516 microseconds (8.388516 seconds) were spent in user mode
+       127,903 microseconds (0.127903 seconds) were spent in system mode
+ 481,458,208 bytes of memory allocated.
+ 8 minor page faults, 0 major page faults, 0 swaps.
+Clozure Common Lisp Version 1.13 (v1.13) LinuxX8664
+
+For more information about CCL, please see https://ccl.clozure.com.
+
+CCL is free software.
+It is distributed under the terms of the Apache License, Version 2.0.
+? 
+ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large :self nil)
 To load "trivial-features":
   Load 1 ASDF system:
     trivial-features
@@ -185,9 +203,9 @@ JONATHAN
 JONATHAN;READ;large.json
 /home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-EXISTS)
 There is no applicable method for the generic function:
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D2480F>
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D382EF>
 when called with arguments:
-  (:JONATHAN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D77ADD>)
+  (:JONATHAN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D84A3D>)
 
 ========================================
 JSON-STREAMS
@@ -202,74 +220,52 @@ JSOWN
 JSOWN;READ;large.json
 /home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-EXISTS)
 There is no applicable method for the generic function:
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D242BF>
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D37D9F>
 when called with arguments:
-  (:JSOWN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D785BD>)
+  (:JSOWN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D8551D>)
 
 ========================================
 JZON
 ========================================
 JZON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 27,524,042 microseconds (27.524042 seconds) to run.
-     18,186,717 microseconds (18.186716 seconds, 66.08%) of which was spent in GC.
+took 27,139,238 microseconds (27.139238 seconds) to run.
+     17,768,420 microseconds (17.768420 seconds, 65.47%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     27,334,429 microseconds (27.334429 seconds) were spent in user mode
-        168,009 microseconds ( 0.168009 seconds) were spent in system mode
+     26,886,480 microseconds (26.886480 seconds) were spent in user mode
+        231,956 microseconds ( 0.231956 seconds) were spent in system mode
  2,244,412,976 bytes of memory allocated.
- 19,504 minor page faults, 0 major page faults, 0 swaps.
+ 19,981 minor page faults, 0 major page faults, 0 swaps.
 JZON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 98,164,567 microseconds (98.164566 seconds) to run.
-     73,837,021 microseconds (73.837020 seconds, 75.22%) of which was spent in GC.
+took 98,065,678 microseconds (98.065680 seconds) to run.
+     73,946,330 microseconds (73.946330 seconds, 75.40%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     97,795,272 microseconds (97.795270 seconds) were spent in user mode
-        316,025 microseconds ( 0.316025 seconds) were spent in system mode
+     97,717,515 microseconds (97.717520 seconds) were spent in user mode
+        283,883 microseconds ( 0.283883 seconds) were spent in system mode
  5,926,089,744 bytes of memory allocated.
- 8 minor page faults, 0 major page faults, 0 swaps.
-
-========================================
-RS-JSON
-========================================
-RS-JSON;READ;large.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 6,853,828 microseconds (6.853828 seconds) to run.
-     1,210,109 microseconds (1.210109 seconds, 17.66%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     6,767,800 microseconds (6.767800 seconds) were spent in user mode
-        76,006 microseconds (0.076006 seconds) were spent in system mode
- 484,642,832 bytes of memory allocated.
- 3,850 minor page faults, 0 major page faults, 0 swaps.
-RS-JSON;WRITE;large.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 8,446,050 microseconds (8.446050 seconds) to run.
-        60,354 microseconds (0.060354 seconds, 0.71%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     8,344,935 microseconds (8.344935 seconds) were spent in user mode
-        95,971 microseconds (0.095971 seconds) were spent in system mode
- 481,456,336 bytes of memory allocated.
- 4 minor page faults, 0 major page faults, 0 swaps.
+ 9 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
 SHASHT
 ========================================
 SHASHT;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 41,906,250 microseconds (41.906250 seconds) to run.
-     26,657,443 microseconds (26.657444 seconds, 63.61%) of which was spent in GC.
+took 41,436,863 microseconds (41.436863 seconds) to run.
+     26,287,258 microseconds (26.287258 seconds, 63.44%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     41,688,268 microseconds (41.688267 seconds) were spent in user mode
-        196,061 microseconds ( 0.196061 seconds) were spent in system mode
- 2,143,625,088 bytes of memory allocated.
- 18,979 minor page faults, 0 major page faults, 0 swaps.
+     41,182,495 microseconds (41.182495 seconds) were spent in user mode
+        227,971 microseconds ( 0.227971 seconds) were spent in system mode
+ 2,143,626,384 bytes of memory allocated.
+ 17,953 minor page faults, 0 major page faults, 0 swaps.
 SHASHT;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 37,972,402 microseconds (37.972400 seconds) to run.
-     23,247,578 microseconds (23.247578 seconds, 61.22%) of which was spent in GC.
+took 38,993,847 microseconds (38.993847 seconds) to run.
+     23,917,144 microseconds (23.917145 seconds, 61.34%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     37,790,889 microseconds (37.790890 seconds) were spent in user mode
-        159,969 microseconds ( 0.159969 seconds) were spent in system mode
- 1,682,407,328 bytes of memory allocated.
+     38,795,353 microseconds (38.795353 seconds) were spent in user mode
+        184,018 microseconds ( 0.184018 seconds) were spent in system mode
+ 1,682,407,808 bytes of memory allocated.
  5 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
@@ -277,21 +273,21 @@ ST-JSON
 ========================================
 ST-JSON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 24,092,598 microseconds (24.092598 seconds) to run.
-      1,857,361 microseconds ( 1.857361 seconds, 7.71%) of which was spent in GC.
+took 24,147,288 microseconds (24.147287 seconds) to run.
+      1,978,391 microseconds ( 1.978391 seconds, 8.19%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     23,930,174 microseconds (23.930174 seconds) were spent in user mode
-        135,993 microseconds ( 0.135993 seconds) were spent in system mode
- 3,453,016,352 bytes of memory allocated.
- 4,377 minor page faults, 0 major page faults, 0 swaps.
+     23,960,483 microseconds (23.960484 seconds) were spent in user mode
+        156,022 microseconds ( 0.156022 seconds) were spent in system mode
+ 3,452,975,056 bytes of memory allocated.
+ 4,343 minor page faults, 0 major page faults, 0 swaps.
 ST-JSON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 10,784,258 microseconds (10.784258 seconds) to run.
-        185,321 microseconds ( 0.185321 seconds, 1.72%) of which was spent in GC.
+took 10,611,088 microseconds (10.611088 seconds) to run.
+         90,256 microseconds ( 0.090256 seconds, 0.85%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     10,616,392 microseconds (10.616392 seconds) were spent in user mode
-        156,014 microseconds ( 0.156014 seconds) were spent in system mode
- 1,603,173,456 bytes of memory allocated.
+     10,433,455 microseconds (10.433455 seconds) were spent in user mode
+        167,963 microseconds ( 0.167963 seconds) were spent in system mode
+ 1,603,173,648 bytes of memory allocated.
  1 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
@@ -299,21 +295,21 @@ YASON
 ========================================
 YASON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 60,468,912 microseconds (60.468910 seconds) to run.
-     32,311,993 microseconds (32.311993 seconds, 53.44%) of which was spent in GC.
+took 60,241,324 microseconds (60.241325 seconds) to run.
+     32,083,801 microseconds (32.083800 seconds, 53.26%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     60,190,840 microseconds (60.190840 seconds) were spent in user mode
-        235,964 microseconds ( 0.235964 seconds) were spent in system mode
+     59,922,848 microseconds (59.922848 seconds) were spent in user mode
+        283,796 microseconds ( 0.283796 seconds) were spent in system mode
  3,625,752,880 bytes of memory allocated.
- 10,758 minor page faults, 0 major page faults, 0 swaps.
+ 11,243 minor page faults, 0 major page faults, 0 swaps.
 YASON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 15,662,218 microseconds (15.662218 seconds) to run.
-      6,603,843 microseconds ( 6.603843 seconds, 42.16%) of which was spent in GC.
+took 15,887,280 microseconds (15.887280 seconds) to run.
+      6,813,903 microseconds ( 6.813903 seconds, 42.89%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     15,536,777 microseconds (15.536777 seconds) were spent in user mode
-        115,923 microseconds ( 0.115923 seconds) were spent in system mode
- 487,125,504 bytes of memory allocated.
+     15,747,127 microseconds (15.747127 seconds) were spent in user mode
+        136,031 microseconds ( 0.136031 seconds) were spent in system mode
+ 487,126,320 bytes of memory allocated.
  1 minor page faults, 0 major page faults, 0 swaps.
 Clozure Common Lisp Version 1.13 (v1.13) LinuxX8664
 
@@ -322,7 +318,47 @@ For more information about CCL, please see https://ccl.clozure.com.
 CCL is free software.
 It is distributed under the terms of the Apache License, Version 2.0.
 ? 
-ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large)
+ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large :self t)
+To load "trivial-features":
+  Load 1 ASDF system:
+    trivial-features
+; Loading "trivial-features"
+
+To load "rs-json/bench":
+  Load 1 ASDF system:
+    rs-json/bench
+; Loading "rs-json/bench"
+
+
+========================================
+RS-JSON
+========================================
+RS-JSON;READ;large.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
+took 6,742,258 microseconds (6.742258 seconds) to run.
+     1,158,573 microseconds (1.158573 seconds, 17.18%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     6,675,080 microseconds (6.675080 seconds) were spent in user mode
+        64,049 microseconds (0.064049 seconds) were spent in system mode
+ 484,649,168 bytes of memory allocated.
+ 4,207 minor page faults, 0 major page faults, 0 swaps.
+RS-JSON;WRITE;large.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 8,520,622 microseconds (8.520622 seconds) to run.
+        61,554 microseconds (0.061554 seconds, 0.72%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     8,388,516 microseconds (8.388516 seconds) were spent in user mode
+       127,903 microseconds (0.127903 seconds) were spent in system mode
+ 481,458,208 bytes of memory allocated.
+ 8 minor page faults, 0 major page faults, 0 swaps.
+Clozure Common Lisp Version 1.13 (v1.13) LinuxX8664
+
+For more information about CCL, please see https://ccl.clozure.com.
+
+CCL is free software.
+It is distributed under the terms of the Apache License, Version 2.0.
+? 
+ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large :self nil)
 To load "trivial-features":
   Load 1 ASDF system:
     trivial-features
@@ -347,9 +383,9 @@ JONATHAN
 JONATHAN;READ;large.json
 /home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-EXISTS)
 There is no applicable method for the generic function:
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D2480F>
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D382EF>
 when called with arguments:
-  (:JONATHAN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D77ADD>)
+  (:JONATHAN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D84A3D>)
 
 ========================================
 JSON-STREAMS
@@ -364,74 +400,52 @@ JSOWN
 JSOWN;READ;large.json
 /home/ralph/src/lisp/rs-json/t/large.json: error (NO-APPLICABLE-METHOD-EXISTS)
 There is no applicable method for the generic function:
-  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D242BF>
+  #<STANDARD-GENERIC-FUNCTION DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ #x302001D37D9F>
 when called with arguments:
-  (:JSOWN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D785BD>)
+  (:JSOWN #<BASIC-FILE-CHARACTER-INPUT-STREAM ("/home/ralph/src/lisp/rs-json/t/large.json"/:closed #x302001D8551D>)
 
 ========================================
 JZON
 ========================================
 JZON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 27,020,056 microseconds (27.020056 seconds) to run.
-     17,820,289 microseconds (17.820288 seconds, 65.95%) of which was spent in GC.
+took 27,139,238 microseconds (27.139238 seconds) to run.
+     17,768,420 microseconds (17.768420 seconds, 65.47%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     26,752,580 microseconds (26.752580 seconds) were spent in user mode
-        248,072 microseconds ( 0.248072 seconds) were spent in system mode
+     26,886,480 microseconds (26.886480 seconds) were spent in user mode
+        231,956 microseconds ( 0.231956 seconds) were spent in system mode
  2,244,412,976 bytes of memory allocated.
- 19,504 minor page faults, 0 major page faults, 0 swaps.
+ 19,981 minor page faults, 0 major page faults, 0 swaps.
 JZON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 97,056,102 microseconds (97.056110 seconds) to run.
-     72,970,676 microseconds (72.970670 seconds, 75.18%) of which was spent in GC.
+took 98,065,678 microseconds (98.065680 seconds) to run.
+     73,946,330 microseconds (73.946330 seconds, 75.40%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     96,576,941 microseconds (96.576940 seconds) were spent in user mode
-        411,819 microseconds ( 0.411819 seconds) were spent in system mode
+     97,717,515 microseconds (97.717520 seconds) were spent in user mode
+        283,883 microseconds ( 0.283883 seconds) were spent in system mode
  5,926,089,744 bytes of memory allocated.
- 8 minor page faults, 0 major page faults, 0 swaps.
-
-========================================
-RS-JSON
-========================================
-RS-JSON;READ;large.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 6,611,256 microseconds (6.611256 seconds) to run.
-     1,129,621 microseconds (1.129621 seconds, 17.09%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     6,548,306 microseconds (6.548306 seconds) were spent in user mode
-        59,970 microseconds (0.059970 seconds) were spent in system mode
- 484,642,832 bytes of memory allocated.
- 3,850 minor page faults, 0 major page faults, 0 swaps.
-RS-JSON;WRITE;large.json
-(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 8,231,048 microseconds (8.231048 seconds) to run.
-        34,904 microseconds (0.034904 seconds, 0.42%) of which was spent in GC.
-During that period, and with 4 available CPU cores,
-     8,095,627 microseconds (8.095627 seconds) were spent in user mode
-       131,942 microseconds (0.131942 seconds) were spent in system mode
- 481,456,336 bytes of memory allocated.
- 4 minor page faults, 0 major page faults, 0 swaps.
+ 9 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
 SHASHT
 ========================================
 SHASHT;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 42,364,028 microseconds (42.364030 seconds) to run.
-     27,074,880 microseconds (27.074880 seconds, 63.91%) of which was spent in GC.
+took 41,436,863 microseconds (41.436863 seconds) to run.
+     26,287,258 microseconds (26.287258 seconds, 63.44%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     42,071,138 microseconds (42.071136 seconds) were spent in user mode
-        271,927 microseconds ( 0.271927 seconds) were spent in system mode
- 2,143,625,088 bytes of memory allocated.
- 18,979 minor page faults, 0 major page faults, 0 swaps.
+     41,182,495 microseconds (41.182495 seconds) were spent in user mode
+        227,971 microseconds ( 0.227971 seconds) were spent in system mode
+ 2,143,626,384 bytes of memory allocated.
+ 17,953 minor page faults, 0 major page faults, 0 swaps.
 SHASHT;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 37,997,731 microseconds (37.997730 seconds) to run.
-     23,232,988 microseconds (23.232988 seconds, 61.14%) of which was spent in GC.
+took 38,993,847 microseconds (38.993847 seconds) to run.
+     23,917,144 microseconds (23.917145 seconds, 61.34%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     37,824,918 microseconds (37.824920 seconds) were spent in user mode
-        155,810 microseconds ( 0.155810 seconds) were spent in system mode
- 1,682,407,328 bytes of memory allocated.
+     38,795,353 microseconds (38.795353 seconds) were spent in user mode
+        184,018 microseconds ( 0.184018 seconds) were spent in system mode
+ 1,682,407,808 bytes of memory allocated.
  5 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
@@ -439,21 +453,21 @@ ST-JSON
 ========================================
 ST-JSON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 24,868,289 microseconds (24.868288 seconds) to run.
-      2,122,127 microseconds ( 2.122127 seconds, 8.53%) of which was spent in GC.
+took 24,147,288 microseconds (24.147287 seconds) to run.
+      1,978,391 microseconds ( 1.978391 seconds, 8.19%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     24,682,332 microseconds (24.682331 seconds) were spent in user mode
-        156,113 microseconds ( 0.156113 seconds) were spent in system mode
- 3,453,016,352 bytes of memory allocated.
- 4,377 minor page faults, 0 major page faults, 0 swaps.
+     23,960,483 microseconds (23.960484 seconds) were spent in user mode
+        156,022 microseconds ( 0.156022 seconds) were spent in system mode
+ 3,452,975,056 bytes of memory allocated.
+ 4,343 minor page faults, 0 major page faults, 0 swaps.
 ST-JSON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 10,557,209 microseconds (10.557209 seconds) to run.
-         99,619 microseconds ( 0.099619 seconds, 0.94%) of which was spent in GC.
+took 10,611,088 microseconds (10.611088 seconds) to run.
+         90,256 microseconds ( 0.090256 seconds, 0.85%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     10,371,417 microseconds (10.371417 seconds) were spent in user mode
-        171,964 microseconds ( 0.171964 seconds) were spent in system mode
- 1,603,173,456 bytes of memory allocated.
+     10,433,455 microseconds (10.433455 seconds) were spent in user mode
+        167,963 microseconds ( 0.167963 seconds) were spent in system mode
+ 1,603,173,648 bytes of memory allocated.
  1 minor page faults, 0 major page faults, 0 swaps.
 
 ========================================
@@ -461,22 +475,62 @@ YASON
 ========================================
 YASON;READ;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
-took 61,699,886 microseconds (61.699886 seconds) to run.
-     33,176,880 microseconds (33.176880 seconds, 53.77%) of which was spent in GC.
+took 60,241,324 microseconds (60.241325 seconds) to run.
+     32,083,801 microseconds (32.083800 seconds, 53.26%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     61,399,393 microseconds (61.399390 seconds) were spent in user mode
-        256,107 microseconds ( 0.256107 seconds) were spent in system mode
+     59,922,848 microseconds (59.922848 seconds) were spent in user mode
+        283,796 microseconds ( 0.283796 seconds) were spent in system mode
  3,625,752,880 bytes of memory allocated.
- 10,758 minor page faults, 0 major page faults, 0 swaps.
+ 11,243 minor page faults, 0 major page faults, 0 swaps.
 YASON;WRITE;large.json
 (DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
-took 15,680,789 microseconds (15.680789 seconds) to run.
-      6,621,725 microseconds ( 6.621725 seconds, 42.23%) of which was spent in GC.
+took 15,887,280 microseconds (15.887280 seconds) to run.
+      6,813,903 microseconds ( 6.813903 seconds, 42.89%) of which was spent in GC.
 During that period, and with 4 available CPU cores,
-     15,546,832 microseconds (15.546832 seconds) were spent in user mode
-        123,885 microseconds ( 0.123885 seconds) were spent in system mode
- 487,125,504 bytes of memory allocated.
+     15,747,127 microseconds (15.747127 seconds) were spent in user mode
+        136,031 microseconds ( 0.136031 seconds) were spent in system mode
+ 487,126,320 bytes of memory allocated.
  1 minor page faults, 0 major page faults, 0 swaps.
+Clozure Common Lisp Version 1.13 (v1.13) LinuxX8664
+
+For more information about CCL, please see https://ccl.clozure.com.
+
+CCL is free software.
+It is distributed under the terms of the Apache License, Version 2.0.
+? 
+ccl --image-name /home/ralph/.lisp.d/ccl.core --batch --eval (ql:quickload "rs-json/bench") --eval (rs-json-bench:large :self t)
+To load "trivial-features":
+  Load 1 ASDF system:
+    trivial-features
+; Loading "trivial-features"
+
+To load "rs-json/bench":
+  Load 1 ASDF system:
+    rs-json/bench
+; Loading "rs-json/bench"
+
+
+========================================
+RS-JSON
+========================================
+RS-JSON;READ;large.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%READ DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB STREAM)
+took 6,742,258 microseconds (6.742258 seconds) to run.
+     1,158,573 microseconds (1.158573 seconds, 17.18%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     6,675,080 microseconds (6.675080 seconds) were spent in user mode
+        64,049 microseconds (0.064049 seconds) were spent in system mode
+ 484,649,168 bytes of memory allocated.
+ 4,207 minor page faults, 0 major page faults, 0 swaps.
+RS-JSON;WRITE;large.json
+(DE.RALPH-SCHLEICHER.JSON-BENCHMARK::%WRITE DE.RALPH-SCHLEICHER.JSON-BENCHMARK::LIB DE.RALPH-SCHLEICHER.JSON-BENCHMARK::DATA)
+took 8,520,622 microseconds (8.520622 seconds) to run.
+        61,554 microseconds (0.061554 seconds, 0.72%) of which was spent in GC.
+During that period, and with 4 available CPU cores,
+     8,388,516 microseconds (8.388516 seconds) were spent in user mode
+       127,903 microseconds (0.127903 seconds) were spent in system mode
+ 481,458,208 bytes of memory allocated.
+ 8 minor page faults, 0 major page faults, 0 swaps.
 Clozure Common Lisp Version 1.13 (v1.13) LinuxX8664
 
 For more information about CCL, please see https://ccl.clozure.com.
