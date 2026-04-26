@@ -81,16 +81,38 @@ all:
 	perl ./bench.pl $* > $@
 
 .PRECIOUS: %.sbcl.log
-%.sbcl.log: bench.lisp
-	$(SBCL) --eval '(ql:quickload "rs-json/bench")' --eval '(rs-json-bench:$*)' --quit | tee $@
+%.sbcl.log: %.other.sbcl.log %.self.sbcl.log
+	cat $*.other.sbcl.log $*.self.sbcl.log > $@
+
+.PRECIOUS: %.other.sbcl.log
+%.other.sbcl.log: bench.lisp
+	$(SBCL) --eval '(ql:quickload "rs-json/bench")' --eval '(rs-json-bench:$* :self nil)' --quit | tee $@
+
+.PRECIOUS: %.self.sbcl.log
+%.self.sbcl.log: bench.lisp
+	$(SBCL) --eval '(ql:quickload "rs-json/bench")' --eval '(rs-json-bench:$* :self t)' --quit | tee $@
 
 .PRECIOUS: %.ccl.log
-%.ccl.log: bench.lisp
-	$(CCL) --batch --eval '(ql:quickload "rs-json/bench")' --eval '(rs-json-bench:$*)' < /dev/null | tee $@
+%.ccl.log: %.other.ccl.log %.self.ccl.log
+	cat $*.other.ccl.log $*.self.ccl.log > $@
+
+.PRECIOUS: %.other.ccl.log
+%.other.ccl.log: bench.lisp
+	$(CCL) --batch --eval '(ql:quickload "rs-json/bench")' --eval '(rs-json-bench:$* :self nil)' < /dev/null | tee $@
+
+.PRECIOUS: %.self.ccl.log
+%.self.ccl.log: bench.lisp
+	$(CCL) --batch --eval '(ql:quickload "rs-json/bench")' --eval '(rs-json-bench:$* :self t)' < /dev/null | tee $@
 
 .PRECIOUS: %.clisp.log
 %.clisp.log: bench.lisp
 	$(CLISP) -x '(ql:quickload "rs-json/bench")' -x '(rs-json-bench:$*)' | tee $@
+
+.PHONY: rerun
+rerun:
+	rm -f *.self.sbcl.log *.self.ccl.log
+	$(MAKE) citm_catalog.self.sbcl.log citm_catalog.self.ccl.log citm_catalog
+	$(MAKE) large.self.sbcl.log large.self.ccl.log large
 
 .PHONY: citm_catalog
 citm_catalog: citm_catalog.stamp
