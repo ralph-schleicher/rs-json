@@ -93,203 +93,6 @@
                 :format-control "Premature end of file."
                 :format-arguments ()))))
 
-(defun %unicode-escape ()
-  "Helper function for ‘parse-string’."
-  (flet ((parse-hex ()
-           "Read four hexadecimal digits and return the corresponding numerical value."
-           (logior (ash (or (digit-char-p (next-char) 16) (%syntax-error)) 12)
-                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  8)
-                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  4)
-                   (or (digit-char-p (next-char) 16) (%syntax-error)))))
-    (let ((high (parse-hex)))
-      (if (not (<= #xD800 high #xDFFF))
-          ;; A regular character.
-          (code-char high)
-        ;; A surrogate pair.
-        (progn
-          (unless (and (char= (next-char) #\\)
-                       (char= (next-char) #\u))
-            (%syntax-error))
-          (let ((low (parse-hex)))
-            (unless (and (<= #xD800 high #xDBFF)
-                         (<= #xDC00 low #xDFFF))
-              (%syntax-error "Invalid UTF-16 surrogate pair U+~4,'0X and U+~4,'0X in string." high low))
-            #-cmucl
-            (code-char (+ (ash (- high #xD800) 10)
-                          (- low #xDC00)
-                          #x10000))
-            ;; CMUCL strings use UTF-16 encoding.  Just return the
-            ;; surrogate pair as is.
-            #+cmucl
-            (values (code-char high) (code-char low))))))))
-
-(macrolet ((body ()
-             ;; Parse quoted string.
-             `(loop
-                ;; Initially, this call discards the
-                ;; opening quote character.
-                (next-char)
-                (case next-char
-                  (#\"
-                   ;; Discard closing quote character
-                   ;; and skip trailing whitespace.
-                   (next-char* nil)
-                   (return))
-                  (#\\
-                   ;; Escape sequence.
-                   (next-char)
-                   (case next-char
-                     (#\" (outc #\"))
-                     (#\\ (outc #\\))
-                     (#\/ (outc #\/))
-                     (#\b (outc #\Backspace))
-                     (#\f (outc #\Page))
-                     (#\n (outc #\Linefeed))
-                     (#\r (outc #\Return))
-                     (#\t (outc #\Tab))
-                     (#\u
-                      #-cmucl
-                      (outc (%unicode-escape))
-                      #+cmucl
-                      (multiple-value-bind (high low)
-                          (%unicode-escape)
-                        (outc high)
-                        (when low
-                          (outc low))))
-                     (t
-                      (%syntax-error "Unknown escape sequence ‘\\~A’ in string." next-char))))
-                  (t
-                   ;; Any other character.
-                   ;;
-                   ;; “All code points may be placed within the
-                   ;; quotation marks except for the code points
-                   ;; that must be escaped: quotation mark (U+0022),
-                   ;; reverse solidus (U+005C), and the control
-                   ;; characters U+0000 to U+001F.”
-                   (when (<= 0 (char-code next-char) #x1F)
-                     (%syntax-error "Raw control character ‘~A’ in string." next-char))
-                   (outc next-char)))))
-
-           (define-string-parser (name () doc form)
-             `(defun ,name ()
-                ,@(when doc (list doc))
-                ,@(when form (list form)))))
-
-  (define-string-parser %string-as-string ()
-    "Parse a JSON string as a ‘string’."
-    (with-output-to-string (buffer)
-      (flet ((outc (char)
-               "Append a character to the output buffer."
-               (write-char char buffer)))
-        (declare (inline outc))
-        (body))))
-
-  (define-string-parser %string-as-base-string ()
-    "Attempt to parse a JSON string as a ‘base-string’."
-    (with-scratch-buffer ()
-      (let ((base-string-p t))
-        (flet ((outc (char)
-                 "Append a character to the output buffer."
-                 (unless (typep char 'base-char)
-                   (setf base-string-p nil))
-                 (outc char)))
-          (declare (inline outc))
-          (body))
-        (if (not base-string-p)
-            (buffer-string)
-          (let ((string (make-array (- (point-max) (point-min)) :element-type 'base-char)))
-            (iter (for i :from 0)
-                  (for j :from (point-min) :below (point-max))
-                  (setf (char string i) (char (current-buffer) j)))
-            string))))))
-
-(defvar parse-string-function #'%string-as-string
-  "The function to parse a JSON string.")
-
-(defsubst parse-string ()
-  "Parse a JSON string."
-  (funcall parse-string-function))
-
-(defun %read (stream &optional junk-allowed)
-  "Common entry point for all read functions."
-  ;; Using a non-volatile scratch buffer for parsing numbers
-  ;; and literals reduces running time by approximately 10 %
-  ;; and memory requirements by 20 % on file ‘large.json’.
-  (let ((*scratch* (make-scratch-buffer))
-        (*standard-input* stream)
-        (next-char nil)
-        (nesting-depth 0)
-        (parse-string-function (if *string-as-base-string* #'%string-as-base-string #'%string-as-string)))
-    ;; Read first character.
-    (next-char*)
-    ;; Parse the JSON value.
-    (let ((data (parse-value)))
-      ;; Check for end of file.
-      (when next-char
-        (unless junk-allowed
-          (%syntax-error))
-        (unread-char next-char stream))
-      ;; Return values.
-      (values data (file-position stream)))))
-
-(defun parse (source &key junk-allowed)
-  "Read a JSON value.
-
-First argument SOURCE is the input object.  Value is either a
- stream, a string, or a pathname.  The special value ‘t’ is
- equal to ‘*standard-input*’
-If keyword argument JUNK-ALLOWED is true, do not signal an error
- of type ‘syntax-error’ if a non-whitespace character occurs after
- the JSON value.  Default value is false.
-
-The ‘parse’ function expects exactly one JSON value.  Any value
-is accepted, not only an object or array.  Optional leading and
-trailing whitespace is ignored.
-
-Return value is the Lisp representation of the JSON value.
-Secondary value is the position where the parsing ends, or
-‘nil’ if the position can not be determined.
-
-Exceptional Situations:
-
-   * Signals an ‘end-of-file’ error if the input ends in the
-     middle of a JSON value.
-
-   * Signals a ‘syntax-error’ if the input contains an invalid
-     JSON structure.
-
-   * May signal an ‘arithmetic-error’ if a JSON number can not
-     be represented as a Lisp number.
-
-   * Signals a ‘program-error’ if JSON objects are parsed as
-     hash tables, ‘*allow-duplicate-object-keys*’ is bound to
-     ‘:append’, and a duplicate object member occurs."
-  (etypecase source
-    (stream
-     (%read source junk-allowed))
-    (string
-     (with-input-from-string (stream source)
-       (%read stream junk-allowed)))
-    (pathname
-     (with-open-file (stream source :external-format (uiop:encoding-external-format :utf-8))
-       (%read stream junk-allowed)))
-    ((member t)
-     (%read *standard-input* junk-allowed))))
-
-(defun parse-value ()
-  "Parse any JSON value."
-  (case next-char
-    (#\{
-     (parse-object))
-    (#\[
-     (parse-array))
-    (#\"
-     (parse-string))
-    ((#\0 #\1 #\2 #\3 #\4 #\5 #\6 #\7 #\8 #\9 #\- #\+ #\.)
-     (parse-number))
-    (t
-     (parse-literal))))
-
 (defsubst %plist-from-alist-reverse (alist)
   "Destructively rearrange an alist into a plist.
 The order of the pairs is reversed."
@@ -412,6 +215,123 @@ The order of the pairs is reversed."
     (when *decode-array-hook*
       (setf array (funcall *decode-array-hook* array)))
     array))
+
+(defun %unicode-escape ()
+  "Helper function for ‘parse-string’."
+  (flet ((parse-hex ()
+           "Read four hexadecimal digits and return the corresponding numerical value."
+           (logior (ash (or (digit-char-p (next-char) 16) (%syntax-error)) 12)
+                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  8)
+                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  4)
+                   (or (digit-char-p (next-char) 16) (%syntax-error)))))
+    (let ((high (parse-hex)))
+      (if (not (<= #xD800 high #xDFFF))
+          ;; A regular character.
+          (code-char high)
+        ;; A surrogate pair.
+        (progn
+          (unless (and (char= (next-char) #\\)
+                       (char= (next-char) #\u))
+            (%syntax-error))
+          (let ((low (parse-hex)))
+            (unless (and (<= #xD800 high #xDBFF)
+                         (<= #xDC00 low #xDFFF))
+              (%syntax-error "Invalid UTF-16 surrogate pair U+~4,'0X and U+~4,'0X in string." high low))
+            #-cmucl
+            (code-char (+ (ash (- high #xD800) 10)
+                          (- low #xDC00)
+                          #x10000))
+            ;; CMUCL strings use UTF-16 encoding.  Just return the
+            ;; surrogate pair as is.
+            #+cmucl
+            (values (code-char high) (code-char low))))))))
+
+(macrolet ((body ()
+             ;; Parse quoted string.
+             `(loop
+                ;; Initially, this call discards the
+                ;; opening quote character.
+                (next-char)
+                (case next-char
+                  (#\"
+                   ;; Discard closing quote character
+                   ;; and skip trailing whitespace.
+                   (next-char* nil)
+                   (return))
+                  (#\\
+                   ;; Escape sequence.
+                   (next-char)
+                   (case next-char
+                     (#\" (outc #\"))
+                     (#\\ (outc #\\))
+                     (#\/ (outc #\/))
+                     (#\b (outc #\Backspace))
+                     (#\f (outc #\Page))
+                     (#\n (outc #\Linefeed))
+                     (#\r (outc #\Return))
+                     (#\t (outc #\Tab))
+                     (#\u
+                      #-cmucl
+                      (outc (%unicode-escape))
+                      #+cmucl
+                      (multiple-value-bind (high low)
+                          (%unicode-escape)
+                        (outc high)
+                        (when low
+                          (outc low))))
+                     (t
+                      (%syntax-error "Unknown escape sequence ‘\\~A’ in string." next-char))))
+                  (t
+                   ;; Any other character.
+                   ;;
+                   ;; “All code points may be placed within the
+                   ;; quotation marks except for the code points
+                   ;; that must be escaped: quotation mark (U+0022),
+                   ;; reverse solidus (U+005C), and the control
+                   ;; characters U+0000 to U+001F.”
+                   (when (<= 0 (char-code next-char) #x1F)
+                     (%syntax-error "Raw control character ‘~A’ in string." next-char))
+                   (outc next-char)))))
+
+           (define-string-parser (name () doc form)
+             `(defun ,name ()
+                ,@(when doc (list doc))
+                ,@(when form (list form)))))
+
+  (define-string-parser %string-as-string ()
+    "Parse a JSON string as a ‘string’."
+    (with-output-to-string (buffer)
+      (flet ((outc (char)
+               "Append a character to the output buffer."
+               (write-char char buffer)))
+        (declare (inline outc))
+        (body))))
+
+  (define-string-parser %string-as-base-string ()
+    "Attempt to parse a JSON string as a ‘base-string’."
+    (with-scratch-buffer ()
+      (let ((base-string-p t))
+        (flet ((outc (char)
+                 "Append a character to the output buffer."
+                 (unless (typep char 'base-char)
+                   (setf base-string-p nil))
+                 (outc char)))
+          (declare (inline outc))
+          (body))
+        (if (not base-string-p)
+            (buffer-string)
+          (let ((string (make-array (- (point-max) (point-min)) :element-type 'base-char)))
+            (iter (for i :from 0)
+                  (for j :from (point-min) :below (point-max))
+                  (setf (char string i) (char (current-buffer) j)))
+            string))))))
+
+(defvar parse-string-function #'%string-as-string
+  "The function to parse a JSON string.")
+
+(defsubst parse-string ()
+  "Parse a JSON string."
+  (funcall parse-string-function))
 
 (defun %make-float (n q d)
   "Poor man's floating-point number conversion of significand N and
@@ -596,6 +516,86 @@ name (a string)."
         ;; Skip trailing whitespace.
         (when (and next-char (whitespace-char-p next-char))
           (next-char* nil))))))
+
+(defun parse-value ()
+  "Parse any JSON value."
+  (case next-char
+    (#\{
+     (parse-object))
+    (#\[
+     (parse-array))
+    (#\"
+     (parse-string))
+    ((#\0 #\1 #\2 #\3 #\4 #\5 #\6 #\7 #\8 #\9 #\- #\+ #\.)
+     (parse-number))
+    (t
+     (parse-literal))))
+
+(defun %read (stream &optional junk-allowed)
+  "Common entry point for all read functions."
+  ;; Using a non-volatile scratch buffer for parsing numbers
+  ;; and literals reduces running time by approximately 10 %
+  ;; and memory requirements by 20 % on file ‘large.json’.
+  (let ((*scratch* (make-scratch-buffer))
+        (*standard-input* stream)
+        (next-char nil)
+        (nesting-depth 0)
+        (parse-string-function (if *string-as-base-string* #'%string-as-base-string #'%string-as-string)))
+    ;; Read first character.
+    (next-char*)
+    ;; Parse the JSON value.
+    (let ((data (parse-value)))
+      ;; Check for end of file.
+      (when next-char
+        (unless junk-allowed
+          (%syntax-error))
+        (unread-char next-char stream))
+      ;; Return values.
+      (values data (file-position stream)))))
+
+(defun parse (source &key junk-allowed)
+  "Read a JSON value.
+
+First argument SOURCE is the input object.  Value is either a
+ stream, a string, or a pathname.  The special value ‘t’ is
+ equal to ‘*standard-input*’
+If keyword argument JUNK-ALLOWED is true, do not signal an error
+ of type ‘syntax-error’ if a non-whitespace character occurs after
+ the JSON value.  Default value is false.
+
+The ‘parse’ function expects exactly one JSON value.  Any value
+is accepted, not only an object or array.  Optional leading and
+trailing whitespace is ignored.
+
+Return value is the Lisp representation of the JSON value.
+Secondary value is the position where the parsing ends, or
+‘nil’ if the position can not be determined.
+
+Exceptional Situations:
+
+   * Signals an ‘end-of-file’ error if the input ends in the
+     middle of a JSON value.
+
+   * Signals a ‘syntax-error’ if the input contains an invalid
+     JSON structure.
+
+   * May signal an ‘arithmetic-error’ if a JSON number can not
+     be represented as a Lisp number.
+
+   * Signals a ‘program-error’ if JSON objects are parsed as
+     hash tables, ‘*allow-duplicate-object-keys*’ is bound to
+     ‘:append’, and a duplicate object member occurs."
+  (etypecase source
+    (stream
+     (%read source junk-allowed))
+    (string
+     (with-input-from-string (stream source)
+       (%read stream junk-allowed)))
+    (pathname
+     (with-open-file (stream source :external-format (uiop:encoding-external-format :utf-8))
+       (%read stream junk-allowed)))
+    ((member t)
+     (%read *standard-input* junk-allowed))))
 
 (defun %oref (data key)
   "Return the value of an object member.
