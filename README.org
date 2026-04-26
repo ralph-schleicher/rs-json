@@ -191,6 +191,22 @@ Try it out.
 That's it.  Any questions?
 
 
+** JSON Pointer
+
+The =jref= accessor function is an interpretation of the JSON Pointer
+standard (see RFC 6901) with a Lisp like interface.  It operates on
+the Lisp data structure of a JSON value.  For example,
+#+BEGIN_SRC common-lisp
+(let ((data (parse "[{\"foo\" : 42, \"bar\" : [\"baz\", \"hack\"]}, null]")))
+  (setf (jref data 0 "bar" 1) :true)
+  (serialize t (jref data 0 "bar")))
+#+END_SRC
+prints
+#+BEGIN_EXAMPLE
+["baz", true]
+#+END_EXAMPLE
+
+
 ** Performance
 
 Don't trust any benchmark you haven't forged yourself!
@@ -222,7 +238,9 @@ Notes:
 - json-streams fails reading with the error message “Number with
   integer syntax too large 505874924095815700”.
 - YASON is not RFC 8259 compliant (see below).
-- RS-JSON has a nice balance between speed and memory usage.
+- RS-JSON has a nice balance between speed and memory usage.  For a
+  small speed penalty, you can optimize memory usage by setting the
+  =*string-as-base-string*= special variable to true.
 
 Results from the [[https://github.com/nst/JSONTestSuite][JSON Parsing Test Suite]]
 can be found [[file:./ref/json-test-suite.html][here]] (HTML)
