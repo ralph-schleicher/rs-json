@@ -181,7 +181,6 @@ function plot1(ax, lisp, lib, data, lim, tag, name, loc)
       else
         s = sprintf('%G', xround(data(i, j), p / 10));
         y = data(i, j);
-        s = '';
       end
       if ~ isempty(s)
         text(x, y + p / 4, s, ...
