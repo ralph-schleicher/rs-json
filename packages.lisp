@@ -45,6 +45,7 @@
    #:*decode-object-hook*
    #:*array-as*
    #:*decode-array-hook*
+   #:*string-as-base-string*
    #:*true*
    #:*false*
    #:*null*
