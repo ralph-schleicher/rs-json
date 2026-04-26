@@ -93,6 +93,123 @@
                 :format-control "Premature end of file."
                 :format-arguments ()))))
 
+(defun %unicode-escape ()
+  "Helper function for ‘parse-string’."
+  (flet ((parse-hex ()
+           "Read four hexadecimal digits and return the corresponding numerical value."
+           (logior (ash (or (digit-char-p (next-char) 16) (%syntax-error)) 12)
+                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  8)
+                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  4)
+                   (or (digit-char-p (next-char) 16) (%syntax-error)))))
+    (let ((high (parse-hex)))
+      (if (not (<= #xD800 high #xDFFF))
+          ;; A regular character.
+          (code-char high)
+        ;; A surrogate pair.
+        (progn
+          (unless (and (char= (next-char) #\\)
+                       (char= (next-char) #\u))
+            (%syntax-error))
+          (let ((low (parse-hex)))
+            (unless (and (<= #xD800 high #xDBFF)
+                         (<= #xDC00 low #xDFFF))
+              (%syntax-error "Invalid UTF-16 surrogate pair U+~4,'0X and U+~4,'0X in string." high low))
+            #-cmucl
+            (code-char (+ (ash (- high #xD800) 10)
+                          (- low #xDC00)
+                          #x10000))
+            ;; CMUCL strings use UTF-16 encoding.  Just return the
+            ;; surrogate pair as is.
+            #+cmucl
+            (values (code-char high) (code-char low))))))))
+
+(macrolet ((body ()
+             ;; Parse quoted string.
+             `(loop
+                ;; Initially, this call discards the
+                ;; opening quote character.
+                (next-char)
+                (case next-char
+                  (#\"
+                   ;; Discard closing quote character
+                   ;; and skip trailing whitespace.
+                   (next-char* nil)
+                   (return))
+                  (#\\
+                   ;; Escape sequence.
+                   (next-char)
+                   (case next-char
+                     (#\" (outc #\"))
+                     (#\\ (outc #\\))
+                     (#\/ (outc #\/))
+                     (#\b (outc #\Backspace))
+                     (#\f (outc #\Page))
+                     (#\n (outc #\Linefeed))
+                     (#\r (outc #\Return))
+                     (#\t (outc #\Tab))
+                     (#\u
+                      #-cmucl
+                      (outc (%unicode-escape))
+                      #+cmucl
+                      (multiple-value-bind (high low)
+                          (%unicode-escape)
+                        (outc high)
+                        (when low
+                          (outc low))))
+                     (t
+                      (%syntax-error "Unknown escape sequence ‘\\~A’ in string." next-char))))
+                  (t
+                   ;; Any other character.
+                   ;;
+                   ;; “All code points may be placed within the
+                   ;; quotation marks except for the code points
+                   ;; that must be escaped: quotation mark (U+0022),
+                   ;; reverse solidus (U+005C), and the control
+                   ;; characters U+0000 to U+001F.”
+                   (when (<= 0 (char-code next-char) #x1F)
+                     (%syntax-error "Raw control character ‘~A’ in string." next-char))
+                   (outc next-char)))))
+
+           (define-string-parser (name () doc form)
+             `(defun ,name ()
+                ,@(when doc (list doc))
+                ,@(when form (list form)))))
+
+  (define-string-parser %string-as-string ()
+    "Parse a JSON string as a ‘string’."
+    (with-output-to-string (buffer)
+      (flet ((outc (char)
+               "Append a character to the output buffer."
+               (write-char char buffer)))
+        (declare (inline outc))
+        (body))))
+
+  (define-string-parser %string-as-base-string ()
+    "Attempt to parse a JSON string as a ‘base-string’."
+    (with-scratch-buffer ()
+      (let ((base-string-p t))
+        (flet ((outc (char)
+                 "Append a character to the output buffer."
+                 (unless (typep char 'base-char)
+                   (setf base-string-p nil))
+                 (outc char)))
+          (declare (inline outc))
+          (body))
+        (if (not base-string-p)
+            (buffer-string)
+          (let ((string (make-array (- (point-max) (point-min)) :element-type 'base-char)))
+            (iter (for i :from 0)
+                  (for j :from (point-min) :below (point-max))
+                  (setf (char string i) (char (current-buffer) j)))
+            string))))))
+
+(defvar parse-string-function #'%string-as-string
+  "The function to parse a JSON string.")
+
+(defsubst parse-string ()
+  "Parse a JSON string."
+  (funcall parse-string-function))
+
 (defun %read (stream &optional junk-allowed)
   "Common entry point for all read functions."
   ;; Using a non-volatile scratch buffer for parsing numbers
@@ -101,7 +218,8 @@
   (let ((*scratch* (make-scratch-buffer))
         (*standard-input* stream)
         (next-char nil)
-        (nesting-depth 0))
+        (nesting-depth 0)
+        (parse-string-function (if *string-as-base-string* #'%string-as-base-string #'%string-as-string)))
     ;; Read first character.
     (next-char*)
     ;; Parse the JSON value.
@@ -294,89 +412,6 @@ The order of the pairs is reversed."
     (when *decode-array-hook*
       (setf array (funcall *decode-array-hook* array)))
     array))
-
-(defun parse-string ()
-  "Parse a JSON string."
-  (with-output-to-string (buffer)
-    (labels ((outc (char)
-               "Append a character to the output buffer."
-               (write-char char buffer)))
-      (declare (inline outc))
-      ;; Parse quoted string.
-      (loop
-        ;; Initially, this call discards the
-        ;; opening quote character.
-        (next-char)
-        (case next-char
-          (#\"
-           ;; Discard closing quote character
-           ;; and skip trailing whitespace.
-           (next-char* nil)
-           (return))
-          (#\\
-           ;; Escape sequence.
-           (next-char)
-           (case next-char
-             (#\" (outc #\"))
-             (#\\ (outc #\\))
-             (#\/ (outc #\/))
-             (#\b (outc #\Backspace))
-             (#\f (outc #\Page))
-             (#\n (outc #\Linefeed))
-             (#\r (outc #\Return))
-             (#\t (outc #\Tab))
-             (#\u
-              #-cmucl
-              (outc (parse-unicode-escape))
-              #+cmucl
-              (multiple-value-bind (high low)
-                  (parse-unicode-escape)
-                (outc high)
-                (when low
-                  (outc low))))
-             (t
-              (%syntax-error "Unknown escape sequence ‘\\~A’ in string." next-char))))
-          (t
-           ;; Any other character.
-           ;;
-           ;; “All code points may be placed within the
-           ;; quotation marks except for the code points
-           ;; that must be escaped: quotation mark (U+0022),
-           ;; reverse solidus (U+005C), and the control
-           ;; characters U+0000 to U+001F.”
-           (when (<= 0 (char-code next-char) #x1F)
-             (%syntax-error "Raw control character ‘~A’ in string." next-char))
-           (outc next-char)))))))
-
-(defun parse-unicode-escape ()
-  "Helper function for ‘parse-string’."
-  (flet ((parse-hex ()
-           "Read four hexadecimal digits and return the corresponding numerical value."
-           (logior (ash (or (digit-char-p (next-char) 16) (%syntax-error)) 12)
-                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  8)
-                   (ash (or (digit-char-p (next-char) 16) (%syntax-error))  4)
-                   (or (digit-char-p (next-char) 16) (%syntax-error)))))
-    (let ((high (parse-hex)))
-      (if (not (<= #xD800 high #xDFFF))
-          ;; A regular character.
-          (code-char high)
-        ;; A surrogate pair.
-        (progn
-          (unless (and (char= (next-char) #\\)
-                       (char= (next-char) #\u))
-            (%syntax-error))
-          (let ((low (parse-hex)))
-            (unless (and (<= #xD800 high #xDBFF)
-                         (<= #xDC00 low #xDFFF))
-              (%syntax-error "Invalid UTF-16 surrogate pair U+~4,'0X and U+~4,'0X in string." high low))
-            #-cmucl
-            (code-char (+ (ash (- high #xD800) 10)
-                          (- low #xDC00)
-                          #x10000))
-            ;; CMUCL strings use UTF-16 encoding.  Just return the
-            ;; surrogate pair as is.
-            #+cmucl
-            (values (code-char high) (code-char low))))))))
 
 (defun %make-float (n q d)
   "Poor man's floating-point number conversion of significand N and
