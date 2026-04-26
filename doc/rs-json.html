@@ -194,6 +194,12 @@ The main differences are listed below.
       </a>
      </li>
      <li>
+      <a href="#vawwt2fo">
+       <span class="category">Special Variable</span>
+       <span class="symbol">*string-as-base-string*</span>
+      </a>
+     </li>
+     <li>
       <a href="#vddbknv2">
        <span class="category">Special Variable</span>
        <span class="symbol">*true*</span>
@@ -926,6 +932,29 @@ to intern them into the current package.
 Using symbols safes some memory if you have many objects with the
 same keys.  It may also speed up object member access.  But please
 remember: don't speculate, profile!</pre>
+    </div>
+   </div>
+   <div class="definition" id="vawwt2fo">
+    <div class="signature">
+     <table class="signature">
+      <colgroup>
+       <col />
+       <col />
+       <col />
+      </colgroup>
+      <tbody>
+       <tr>
+	<td class="symbol"><a href="#contents"><span class="symbol">*string-as-base-string*</span></a></td>
+	<td class="lambda-list"></td>
+	<td class="category"><span class="category">Special Variable</span></td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <div class="documentation">
+     <pre>Whether or not to prefer type ‘base-string’ for string values.
+If true, attempt to decode JSON strings as Lisp base strings.
+Default is false.</pre>
     </div>
    </div>
    <div class="definition" id="vddbknv2">

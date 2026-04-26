@@ -214,6 +214,12 @@ syntax-error
    remember: don't speculate, profile!
 
                                                               [Special Variable]
+*string-as-base-string*
+   Whether or not to prefer type ‘base-string’ for string values.
+   If true, attempt to decode JSON strings as Lisp base strings.
+   Default is false.
+
+                                                              [Special Variable]
 *true*
    The symbol to represent the JSON value ‘true’.
    Default is ‘:true’, but ‘t’ may be appropriate, too.
