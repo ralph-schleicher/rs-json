@@ -35,7 +35,7 @@
 
 (in-package :rs-json)
 
-(defvar *object-key-decoder* #'identity
+(defvar *object-key-decoder* 'identity
   "The function to convert the key string of an object member.
 Default is the ‘identity’ function.
 
@@ -88,6 +88,11 @@ Value has to be a function designator.  The function is called with
 one argument, the Lisp data structure representing the JSON array;
 see the ‘*array-as*’ special variable.  The return value of the
 function is used as the actual array value.")
+
+(defvar *string-as-base-string* nil
+  "Whether or not to prefer type ‘base-string’ for string values.
+If true, attempt to decode JSON strings as Lisp base strings.
+Default is false.")
 
 (defvar *true* :true
   "The symbol to represent the JSON value ‘true’.
@@ -195,24 +200,25 @@ variable.")
   "Establish a lexical environment with all special variables bound
 to their default values."
   (declare (ignore ignored))
-  `(let ((*object-key-decoder* #'identity)
-	 (*object-as* :alist)
-	 (*decode-object-hook* nil)
-	 (*array-as* :vector)
-	 (*decode-array-hook* nil)
-	 (*true* :true)
-	 (*false* :false)
-	 (*null* :null)
-	 (*maximum-nesting-depth* 1000)
-	 (*allow-unicode-whitespace* nil)
-	 (*allow-unicode-graphic* t)
-	 (*allow-trailing-comma* nil)
-	 (*allow-literal-object-keys* nil)
-	 (*allow-duplicate-object-keys* nil)
-	 (*allow-lax-numbers* nil)
-	 (*list-encoder* 'encode-object)
-	 (*nil-encoder* 'encode-list)
-	 (*encode-symbol-hook* nil))
+  `(let ((*object-key-decoder* 'identity)
+         (*object-as* :alist)
+         (*decode-object-hook* nil)
+         (*array-as* :vector)
+         (*decode-array-hook* nil)
+         (*string-as-base-string* nil)
+         (*true* :true)
+         (*false* :false)
+         (*null* :null)
+         (*maximum-nesting-depth* 1000)
+         (*allow-unicode-whitespace* nil)
+         (*allow-unicode-graphic* t)
+         (*allow-trailing-comma* nil)
+         (*allow-literal-object-keys* nil)
+         (*allow-duplicate-object-keys* nil)
+         (*allow-lax-numbers* nil)
+         (*list-encoder* 'encode-object)
+         (*nil-encoder* 'encode-list)
+         (*encode-symbol-hook* nil))
      ,@body))
 
 ;;; specials.lisp ends here
