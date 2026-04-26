@@ -286,10 +286,14 @@
     (yason:encode data *standard-output*))
   ())
 
-(defun bench (pathname &key (libraries *libraries*) (repeat-count 1) stream dump)
+(defun bench (pathname &key (libraries *libraries*) (self nil self-supplied-p) (repeat-count 1) stream dump)
   (let ((file-name (file-namestring pathname))
 	(source (unless stream (alexandria:read-file-into-string pathname))))
     (iter (for lib :in libraries)
+          (when (and self-supplied-p
+                     (or (and self (not (eq lib :rs-json)))
+                         (and (not self) (eq lib :rs-json))))
+            (next-iteration))
 	  (terpri *trace-output*)
 	  (format *trace-output* "========================================~%")
 	  (format *trace-output* "~A~%" lib)
@@ -341,23 +345,23 @@
 
 ;;; Program entry points.
 
-(defun pass1 ()
+(defun pass1 (&rest options)
   (let ((pathname (merge-pathnames
 		   #P"t/json-checker/pass1.json"
 		   (asdf:system-source-directory "rs-json"))))
-    (bench pathname :repeat-count 1 :dump t)))
+    (apply #'bench pathname :repeat-count 1 :dump t options)))
 
-(defun citm_catalog ()
+(defun citm_catalog (&rest options)
   (let ((pathname (merge-pathnames
 		   #P"t/data/citm_catalog.json"
 		   (asdf:system-source-directory "rs-json"))))
-    (bench pathname :repeat-count 9)))
+    (apply #'bench pathname :repeat-count 9 options)))
 
-(defun large ()
+(defun large (&rest options)
   (let ((pathname (merge-pathnames
 		   #P"t/large.json"
 		   (asdf:system-source-directory "rs-json"))))
-    (bench pathname :repeat-count 1 :stream t)))
+    (apply #'bench pathname :repeat-count 1 :stream t options)))
 
 #+sbcl
 (defun parser (library directory)
